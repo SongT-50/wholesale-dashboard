@@ -2,6 +2,7 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>전국 도매시장 법인 대시보드</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/deck.gl@9.0.16/dist.min.js"></script>
@@ -215,6 +216,45 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', s
 }
 .metric-btn:hover { color: var(--accent); }
 .metric-btn.active { background: rgba(74,222,128,0.15); border-color: var(--accent); color: var(--accent); }
+
+/* 모바일 토글 버튼 */
+.mobile-toggle {
+  display: none; position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%);
+  z-index: 20; background: var(--accent); color: #0a0a12; border: none; border-radius: 24px;
+  padding: 10px 24px; font-size: 13px; font-weight: 700; font-family: 'Noto Sans KR';
+  cursor: pointer; box-shadow: 0 4px 16px rgba(74,222,128,0.4);
+}
+
+/* 모바일 반응형 */
+@media (max-width: 768px) {
+  .panel {
+    width: 100vw; height: 55vh; top: auto; bottom: 0; left: 0;
+    border-right: none; border-top: 1px solid var(--border);
+    border-radius: 16px 16px 0 0; padding: 16px;
+    transition: transform 0.3s ease;
+  }
+  .panel.hidden { transform: translateY(100%); }
+  .panel h1 { font-size: 15px; margin-bottom: 6px; }
+  .date-nav button { width: 28px; height: 28px; font-size: 14px; }
+  .date-label { font-size: 13px; }
+  .summary-card .num { font-size: 18px; }
+  .summary-card .label { font-size: 10px; }
+  .summary-card { padding: 8px; }
+  .summary-grid { gap: 6px; margin-bottom: 10px; }
+  .corp-item, .market-item { padding: 8px 10px; margin-bottom: 4px; }
+  .corp-name, .market-name { font-size: 12px; }
+  #map { width: 100vw; height: 100vh; }
+  .mobile-toggle { display: block; }
+  .detail-panel { width: 100vw; right: -100vw; padding: 16px; }
+  .detail-panel.open { right: 0; }
+  .origin-float-panel { bottom: 10px; right: 10px; width: 220px; max-height: 250px; }
+  .legend { left: 10px; font-size: 10px; bottom: 10px; gap: 8px; padding: 6px 10px; }
+  .flow-toggle { left: 10px; bottom: 50px; font-size: 11px; padding: 6px 10px; }
+  .metric-toggle { left: 10px; bottom: 86px; padding: 3px; }
+  .metric-btn { padding: 4px 8px; font-size: 10px; }
+  .foreign-badge { left: 10px; bottom: 120px; max-width: 200px; font-size: 10px; }
+  #legendMetricLabel { display: none; }
+}
 </style>
 </head>
 <body>
@@ -303,6 +343,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', s
   <div class="foreign-badge-title">수입 산지</div>
   <div id="foreignList"></div>
 </div>
+<button class="mobile-toggle" id="mobileToggle" onclick="toggleMobilePanel()">지도 보기</button>
 <div class="flow-toggle" id="flowToggle" onclick="toggleFlows()">물류 흐름 표시</div>
 <div class="metric-toggle" id="metricToggle">
   <button class="metric-btn active" data-metric="trades" onclick="setMapMetric('trades')">건수</button>
@@ -317,6 +358,29 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', s
 </div>
 
 <script>
+let mobileMapMode = false;
+function isMobile() { return window.innerWidth <= 768; }
+function openDetailPanel() {
+  document.getElementById('detailPanel').classList.add('open');
+  if (isMobile()) { document.querySelector('.panel').classList.add('hidden'); document.getElementById('mobileToggle').style.display = 'none'; }
+}
+function toggleMobilePanel() {
+  mobileMapMode = !mobileMapMode;
+  const panel = document.querySelector('.panel');
+  const btn = document.getElementById('mobileToggle');
+  if (mobileMapMode) {
+    panel.classList.add('hidden');
+    btn.textContent = '목록 보기';
+    btn.style.bottom = '16px';
+  } else {
+    panel.classList.remove('hidden');
+    btn.textContent = '지도 보기';
+    btn.style.bottom = '16px';
+  }
+  // deck.gl resize
+  if (deckgl) setTimeout(() => window.dispatchEvent(new Event('resize')), 350);
+}
+
 let summaryData = null;
 let deckgl = null;
 let selectedCorp = null;
@@ -709,7 +773,7 @@ function selectMarket(market) {
   document.getElementById('originCount').textContent = '';
   document.getElementById('detailOrigins').innerHTML = '<div style="font-size:11px;color:var(--dim);padding:8px 0;">법인을 클릭하면 상세 정보</div>';
   document.getElementById('productOriginsSection').classList.remove('visible');
-  document.getElementById('detailPanel').classList.add('open');
+  openDetailPanel();
 
   updateLayers();
 }
@@ -750,7 +814,7 @@ function selectCorp(corp, skipZoom = false) {
 
   document.getElementById('productOriginsSection').classList.remove('visible');
   document.getElementById('foreignBadge').classList.remove('visible');
-  document.getElementById('detailPanel').classList.add('open');
+  openDetailPanel();
 
   if (!skipZoom && corp.lat && corp.lng && deckgl) {
     deckgl.setProps({ initialViewState: { longitude: corp.lng, latitude: corp.lat, zoom: 11, pitch: 45, bearing: 0, transitionDuration: 800 } });
@@ -855,6 +919,12 @@ function closeDetail() {
   document.querySelectorAll('.market-item').forEach(el => el.classList.remove('active'));
   document.getElementById('foreignBadge').classList.remove('visible');
   document.getElementById('originFloatPanel').classList.remove('visible');
+  if (isMobile()) {
+    document.querySelector('.panel').classList.remove('hidden');
+    mobileMapMode = false;
+    const btn = document.getElementById('mobileToggle');
+    btn.textContent = '지도 보기'; btn.style.display = '';
+  }
   if (deckgl) updateLayers();
 }
 
