@@ -286,16 +286,14 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', s
   .guide-section { padding: 12px; }
 }
 
-/* 가이드 버튼 */
-.guide-btn {
-  position: fixed; bottom: 20px; right: 20px; z-index: 20;
-  width: 44px; height: 44px; border-radius: 50%;
-  background: rgba(74,222,128,0.15); border: 1px solid var(--accent);
-  color: var(--accent); font-size: 20px; font-weight: 900;
-  cursor: pointer; transition: all 0.2s;
-  display: flex; align-items: center; justify-content: center;
+/* 가이드 헤더 버튼 */
+.guide-header-btn {
+  background: rgba(74,222,128,0.1); border: 1px solid rgba(74,222,128,0.4);
+  color: var(--accent); font-size: 10px; font-weight: 700;
+  padding: 3px 10px; border-radius: 12px; cursor: pointer;
+  transition: all 0.15s; font-family: 'Noto Sans KR';
 }
-.guide-btn:hover { background: rgba(74,222,128,0.3); transform: scale(1.1); }
+.guide-header-btn:hover { background: rgba(74,222,128,0.25); border-color: var(--accent); }
 
 /* 가이드 오버레이 */
 .guide-overlay {
@@ -340,7 +338,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', s
 <div id="map"></div>
 
 <div class="panel">
-  <h1>전국 도매시장 법인</h1>
+  <h1 style="display:flex;align-items:center;gap:8px;">전국 도매시장 법인 <button class="guide-header-btn" onclick="toggleGuide()">사용 가이드</button></h1>
   <div class="date-nav">
     <button onclick="changeDate(-1)" id="prevBtn">&lt;</button>
     <div style="flex:1;text-align:center;">
@@ -437,9 +435,6 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', s
   <button class="metric-btn" data-metric="qty" onclick="setMapMetric('qty')">물량</button>
   <button class="metric-btn" data-metric="amount" onclick="setMapMetric('amount')">금액</button>
 </div>
-<!-- 가이드 버튼 -->
-<button class="guide-btn" onclick="toggleGuide()" title="사용 가이드 (? 키)">?</button>
-
 <!-- 가이드 오버레이 -->
 <div class="guide-overlay" id="guideOverlay" onclick="if(event.target===this)toggleGuide()">
   <div class="guide-content">
@@ -1494,18 +1489,26 @@ function updateLayers() {
     }));
   }
 
+  // === 우리 법인 강조 ===
+  const MY_CORP = '대전중앙청과㈜';
+  const isMyCorp = d => d.corp === MY_CORP;
+
   // === 법인 점 ===
   layers.push(new deck.ScatterplotLayer({
     id: 'corps', data: corpPositions,
     getPosition: d => [d.displayLng, d.displayLat],
     getRadius: d => {
       const v = getCorpMetricValue(d);
-      if (selectedCorp && d.corp === selectedCorp) return getCorpRadius(v) * 1.3;
-      if (selectedCorp || selectedMarket) return getCorpRadius(v) * 0.6;
-      return getCorpRadius(v);
+      const base = getCorpRadius(v);
+      if (selectedCorp && d.corp === selectedCorp) return base * 1.3;
+      if (isMyCorp(d)) return Math.max(base * 1.15, 400);
+      if (selectedCorp || selectedMarket) return base * 0.6;
+      return base;
     },
     getFillColor: d => {
       const v = getCorpMetricValue(d);
+      // 우리 법인은 항상 잘 보이게
+      if (isMyCorp(d)) return getCorpColor(v);
       // 시장 선택 시 해당 시장 법인만 full
       if (selectedMarket) {
         if (d.market === selectedMarket) return getCorpColor(v);
@@ -1518,9 +1521,11 @@ function updateLayers() {
     },
     getLineColor: d => {
       if (selectedCorp && d.corp === selectedCorp) return [255,255,255,255];
+      if (isMyCorp(d)) return [255,152,0,255];  // 주황 테두리
       if (selectedMarket && d.market === selectedMarket) return [255,255,255,180];
       return [255,255,255,40];
     },
+    getLineWidth: d => isMyCorp(d) ? 3 : 1,
     lineWidthMinPixels: 1, stroked: true, pickable: true,
     onClick: ({object}) => { if (object) selectCorp(object); },
     updateTriggers: { getRadius: [selectedCorp, selectedMarket, mapMetric], getFillColor: [selectedCorp, selectedMarket, mapMetric], getLineColor: [selectedCorp, selectedMarket] },
@@ -1531,14 +1536,19 @@ function updateLayers() {
   layers.push(new deck.TextLayer({
     id: 'labels', data: corpPositions,
     getPosition: d => [d.displayLng, d.displayLat],
-    getText: d => d.corp.replace('㈜','').replace('(공)',''),
+    getText: d => {
+      const name = d.corp.replace('㈜','').replace('(공)','');
+      return isMyCorp(d) ? '⭐ ' + name : name;
+    },
     getSize: d => {
       if (selectedCorp && d.corp === selectedCorp) return 14;
+      if (isMyCorp(d)) return 13;
       if (selectedMarket && d.market === selectedMarket) return 13;
       if (selectedCorp || selectedMarket) return 10;
       return 12;
     },
     getColor: d => {
+      if (isMyCorp(d)) return [255,183,77,255];  // 주황 라벨
       if (selectedMarket && d.market !== selectedMarket) return [255,255,255,50];
       if (selectedCorp && d.corp !== selectedCorp) return [255,255,255,80];
       return [255,255,255,220];
