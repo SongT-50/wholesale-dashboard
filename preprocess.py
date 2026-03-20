@@ -11,9 +11,10 @@ from pathlib import Path
 
 sys.stdout.reconfigure(encoding="utf-8")
 
-# 데이터 경로
-DATA_DIR = Path(__file__).parent.parent / "daily-wholesale-analysis" / "data"
-ARCHIVE_DIR = Path(__file__).parent.parent.parent / "wholesale-data"
+# 데이터 경로 (환경변수 AUCTION_DATA_DIR로 오버라이드 가능)
+import os
+DATA_DIR = Path(os.environ.get("AUCTION_DATA_DIR", str(Path(__file__).parent.parent / "daily-wholesale-analysis" / "data")))
+ARCHIVE_DIR = Path(os.environ.get("AUCTION_ARCHIVE_DIR", str(Path(__file__).parent.parent.parent / "wholesale-data")))
 CORP_FILE = Path(__file__).parent / "corporations.json"
 REGION_FILE = Path(__file__).parent / "region_coords.json"
 OUT_DIR = Path(__file__).parent / "data"
