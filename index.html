@@ -237,21 +237,27 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', s
   .panel h1 { font-size: 15px; margin-bottom: 6px; }
   .date-nav button { width: 28px; height: 28px; font-size: 14px; }
   .date-label { font-size: 13px; }
-  .summary-card .num { font-size: 18px; }
-  .summary-card .label { font-size: 10px; }
-  .summary-card { padding: 8px; }
-  .summary-grid { gap: 6px; margin-bottom: 10px; }
+  .summary-card .num { font-size: 14px; }
+  .summary-card .label { font-size: 9px; }
+  .summary-card { padding: 4px 6px; }
+  .summary-grid { grid-template-columns: repeat(4, 1fr); gap: 4px; margin-bottom: 8px; }
   .corp-item, .market-item { padding: 8px 10px; margin-bottom: 4px; }
   .corp-name, .market-name { font-size: 12px; }
   #map { width: 100vw; height: 100vh; }
   .mobile-toggle { display: block; }
   .detail-panel {
-    width: 100vw; height: 60vh; top: auto; bottom: 0; right: auto;
+    width: 100vw; height: 65vh; top: auto; bottom: 0; right: auto;
     left: 0; transform: translateY(100%); transition: transform 0.3s ease;
     border-left: none; border-top: 1px solid var(--border);
     border-radius: 16px 16px 0 0; padding: 16px;
+    overflow-y: auto; -webkit-overflow-scrolling: touch;
   }
   .detail-panel.open { transform: translateY(0); right: auto; }
+  .detail-panel .scrollable-list { max-height: 25vh; }
+  .detail-panel .detail-stats { display: flex; gap: 6px; margin-bottom: 8px; }
+  .detail-panel .detail-stat { padding: 6px; }
+  .detail-panel .detail-stat .n { font-size: 14px; }
+  .detail-panel .detail-stat .l { font-size: 9px; }
   .origin-float-panel { bottom: 10px; right: 10px; width: 220px; max-height: 250px; }
   .legend { left: 10px; font-size: 10px; bottom: 10px; gap: 8px; padding: 6px 10px; }
   .flow-toggle { left: 10px; bottom: 50px; font-size: 11px; padding: 6px 10px; }
