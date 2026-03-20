@@ -1,0 +1,1325 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>전국 도매시장 법인 대시보드</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/deck.gl@9.0.16/dist.min.js"></script>
+<script src="https://unpkg.com/maplibre-gl@4.1.2/dist/maplibre-gl.js"></script>
+<link href="https://unpkg.com/maplibre-gl@4.1.2/dist/maplibre-gl.css" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0a12; --card: #12121e; --border: #1e293b;
+  --text: #e2e8f0; --dim: #94a3b8; --accent: #4ade80;
+  --blue: #60a5fa; --orange: #fb923c; --red: #f87171; --yellow: #facc15; --purple: #c084fc;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', sans-serif; overflow: hidden; }
+#map { width: 100vw; height: 100vh; }
+
+.panel {
+  position: fixed; top: 0; left: 0; width: 360px; height: 100vh;
+  background: rgba(10,10,18,0.92); backdrop-filter: blur(12px);
+  border-right: 1px solid var(--border); padding: 24px; overflow-y: auto; z-index: 10;
+}
+.panel h1 { font-size: 18px; font-weight: 900; color: var(--accent); margin-bottom: 8px; }
+
+/* 날짜 네비게이터 */
+.date-nav { display: flex; align-items: center; gap: 8px; margin-bottom: 16px; }
+.date-nav button {
+  background: var(--card); border: 1px solid var(--border); color: var(--dim);
+  border-radius: 6px; width: 32px; height: 32px; cursor: pointer; font-size: 16px; transition: all 0.15s;
+}
+.date-nav button:hover { border-color: var(--accent); color: var(--accent); }
+.date-label { flex: 1; text-align: center; font-family: 'JetBrains Mono'; font-size: 15px; font-weight: 700; color: var(--text); }
+.date-sub { text-align: center; font-size: 11px; color: var(--dim); margin-top: 2px; }
+.period-bar { display: flex; gap: 4px; margin-bottom: 8px; }
+.period-btn {
+  flex: 1; background: var(--card); border: 1px solid var(--border); color: var(--dim);
+  border-radius: 6px; padding: 5px 0; font-size: 11px; font-weight: 700; cursor: pointer; transition: all 0.15s;
+}
+.period-btn:hover { border-color: var(--accent); color: var(--accent); }
+.period-btn.active { background: rgba(74,222,128,0.15); border-color: var(--accent); color: var(--accent); }
+.date-loading { text-align: center; font-size: 12px; color: var(--orange); display: none; margin-bottom: 8px; }
+
+.summary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
+.summary-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 12px; text-align: center; }
+.summary-card .num { font-family: 'JetBrains Mono'; font-size: 22px; font-weight: 700; color: var(--accent); }
+.summary-card .label { font-size: 11px; color: var(--dim); margin-top: 2px; }
+
+.tab-bar { display: flex; gap: 4px; margin-bottom: 10px; }
+.tab-btn {
+  flex: 1; background: var(--card); border: 1px solid var(--border); border-radius: 6px;
+  padding: 6px 0; color: var(--dim); font-size: 11px; font-weight: 700; cursor: pointer; transition: all 0.15s;
+}
+.tab-btn.active { background: rgba(74,222,128,0.15); border-color: var(--accent); color: var(--accent); }
+
+.list-section { margin-top: 4px; }
+.corp-item, .market-item {
+  background: var(--card); border: 1px solid var(--border); border-radius: 8px;
+  padding: 10px 12px; margin-bottom: 6px; cursor: pointer; transition: all 0.15s;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.corp-item:hover, .market-item:hover { border-color: var(--accent); background: rgba(74,222,128,0.05); }
+.corp-item.active, .market-item.active { border-color: var(--accent); background: rgba(74,222,128,0.1); }
+.corp-name { font-size: 13px; font-weight: 700; }
+.corp-market { font-size: 11px; color: var(--dim); }
+.corp-trades { font-family: 'JetBrains Mono'; font-size: 12px; color: var(--accent); }
+.market-name { font-size: 13px; font-weight: 700; }
+.market-info { font-size: 11px; color: var(--dim); }
+
+/* 가격비교 */
+.price-section { margin-top: 4px; }
+.price-search {
+  width: 100%; padding: 8px 12px; background: var(--card); border: 1px solid var(--border);
+  border-radius: 6px; color: var(--text); font-size: 13px; outline: none; margin-bottom: 8px;
+}
+.price-search:focus { border-color: var(--accent); }
+.price-product-item { padding: 6px 8px; font-size: 12px; cursor: pointer; border-radius: 4px; transition: background 0.1s; }
+.price-product-item:hover { background: rgba(74,222,128,0.06); }
+.price-product-item.selected { background: rgba(74,222,128,0.15); color: var(--accent); font-weight: 700; }
+.price-result { margin-top: 12px; display: none; }
+.price-result.visible { display: block; }
+.price-result-title { font-size: 14px; font-weight: 900; color: var(--accent); margin-bottom: 4px; }
+.price-result-sub { font-size: 11px; color: var(--dim); margin-bottom: 8px; }
+
+/* 산지 플로팅 패널 (우하단) */
+.origin-float-panel {
+  position: fixed; bottom: 20px; right: 20px;
+  width: 280px; max-height: 350px;
+  background: rgba(10,10,18,0.92); backdrop-filter: blur(12px);
+  border: 1px solid var(--orange); border-radius: 10px;
+  padding: 12px 14px; z-index: 10; display: none;
+  overflow: hidden;
+}
+.origin-float-panel.visible { display: block; }
+.origin-float-header {
+  display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;
+}
+.origin-float-title { font-size: 12px; font-weight: 700; color: var(--orange); }
+.origin-float-close {
+  background: none; border: none; color: var(--dim); cursor: pointer; font-size: 16px;
+}
+.origin-float-close:hover { color: var(--text); }
+.origin-toggle-list { max-height: 280px; overflow-y: auto; }
+.origin-toggle-list::-webkit-scrollbar { width: 4px; }
+.origin-toggle-list::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+.origin-toggle-item {
+  display: flex; align-items: center; gap: 6px; padding: 3px 4px; font-size: 11px; cursor: pointer;
+  border-radius: 3px; transition: background 0.1s;
+}
+.origin-toggle-item:hover { background: rgba(251,146,60,0.08); }
+.origin-toggle-item input { accent-color: var(--orange); }
+.origin-toggle-item .ot-name { flex: 1; }
+.origin-toggle-item .ot-corps { font-family: 'JetBrains Mono'; font-size: 10px; color: var(--dim); }
+
+.price-market-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 4px 0; font-size: 12px; border-bottom: 1px solid rgba(30,41,59,0.5);
+}
+.price-market-row:last-child { border-bottom: none; }
+.price-bar-wrap { flex: 1; margin: 0 8px; height: 5px; background: rgba(30,41,59,0.5); border-radius: 3px; overflow: hidden; }
+.price-bar { height: 100%; border-radius: 3px; transition: width 0.3s; }
+.price-value { font-family: 'JetBrains Mono'; font-size: 11px; min-width: 70px; text-align: right; }
+.price-high { color: var(--red); }
+.price-low { color: var(--accent); }
+.price-mid { color: var(--dim); }
+.scrollable-price-list { max-height: 300px; overflow-y: auto; }
+.scrollable-price-list::-webkit-scrollbar { width: 4px; }
+.scrollable-price-list::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+/* 상세 패널 */
+.detail-panel {
+  position: fixed; top: 0; right: -440px; width: 420px; height: 100vh;
+  background: rgba(10,10,18,0.95); backdrop-filter: blur(12px);
+  border-left: 1px solid var(--border); padding: 24px;
+  overflow-y: auto; z-index: 10; transition: right 0.3s ease;
+  display: flex; flex-direction: column;
+}
+.detail-panel.open { right: 0; }
+.detail-close {
+  position: absolute; top: 16px; right: 16px; background: none; border: 1px solid var(--border);
+  color: var(--dim); width: 30px; height: 30px; border-radius: 6px; cursor: pointer; font-size: 16px;
+}
+.detail-close:hover { color: var(--text); border-color: var(--text); }
+.detail-panel h2 { font-size: 20px; font-weight: 900; margin-bottom: 4px; }
+.detail-panel .market-label { font-size: 13px; color: var(--dim); margin-bottom: 16px; }
+.detail-stats { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 20px; }
+.detail-stat { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 10px; text-align: center; }
+.detail-stat .n { font-family: 'JetBrains Mono'; font-size: 16px; font-weight: 700; color: var(--accent); }
+.detail-stat .l { font-size: 10px; color: var(--dim); margin-top: 2px; }
+.section-title {
+  font-size: 12px; color: var(--dim); text-transform: uppercase; letter-spacing: 1px;
+  margin: 16px 0 8px; padding-bottom: 4px; border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.section-count { font-family: 'JetBrains Mono'; font-size: 11px; color: var(--accent); }
+.scrollable-list { max-height: 35vh; overflow-y: auto; margin-bottom: 8px; flex-shrink: 1; }
+.scrollable-list::-webkit-scrollbar { width: 4px; }
+.scrollable-list::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+.product-row, .origin-row {
+  display: flex; justify-content: space-between; padding: 5px 4px; font-size: 12px;
+  border-bottom: 1px solid rgba(30,41,59,0.5); cursor: pointer; border-radius: 4px; transition: background 0.1s;
+}
+.product-row:hover { background: rgba(74,222,128,0.06); }
+.product-row.selected { background: rgba(74,222,128,0.15); }
+.product-row:last-child, .origin-row:last-child { border-bottom: none; }
+.product-name { font-weight: 500; max-width: 140px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.product-info { font-family: 'JetBrains Mono'; font-size: 11px; color: var(--dim); }
+
+.product-origins-section {
+  background: var(--card); border: 1px solid var(--accent); border-radius: 8px;
+  padding: 10px 12px; margin-bottom: 12px; display: none;
+}
+.product-origins-section.visible { display: block; }
+.product-origins-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+.product-origins-header span { font-size: 12px; font-weight: 700; color: var(--accent); }
+.product-origins-close { background: none; border: none; color: var(--dim); cursor: pointer; font-size: 14px; }
+.po-row { display: flex; justify-content: space-between; padding: 3px 0; font-size: 11px; border-bottom: 1px solid rgba(30,41,59,0.3); }
+.po-row:last-child { border-bottom: none; }
+.po-domestic { color: var(--text); }
+.po-foreign { color: var(--yellow); }
+
+.foreign-badge {
+  position: fixed; bottom: 140px; left: 380px; background: rgba(10,10,18,0.92);
+  border: 1px solid var(--yellow); border-radius: 8px; padding: 10px 14px; font-size: 11px;
+  z-index: 5; max-width: 280px; display: none;
+}
+.foreign-badge.visible { display: block; }
+.foreign-badge-title { font-size: 11px; font-weight: 700; color: var(--yellow); margin-bottom: 6px; }
+.foreign-item { color: var(--dim); padding: 1px 0; }
+
+.legend {
+  position: fixed; bottom: 20px; left: 380px; background: rgba(10,10,18,0.85);
+  border: 1px solid var(--border); border-radius: 8px; padding: 10px 16px;
+  font-size: 11px; color: var(--dim); z-index: 5; display: flex; gap: 16px; align-items: center;
+}
+.legend-dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 4px; vertical-align: middle; }
+.flow-toggle {
+  position: fixed; bottom: 60px; left: 380px; background: rgba(10,10,18,0.85);
+  border: 1px solid var(--border); border-radius: 8px; padding: 8px 14px;
+  font-size: 12px; color: var(--dim); z-index: 5; cursor: pointer; user-select: none;
+}
+.flow-toggle:hover { border-color: var(--accent); color: var(--accent); }
+.flow-toggle.active { border-color: var(--accent); color: var(--accent); background: rgba(74,222,128,0.1); }
+
+.metric-toggle {
+  position: fixed; bottom: 96px; left: 380px; display: flex; gap: 2px;
+  background: rgba(10,10,18,0.92); border: 1px solid var(--accent); border-radius: 8px;
+  padding: 4px; z-index: 10;
+}
+.metric-btn {
+  background: transparent; border: 1px solid transparent; color: var(--dim);
+  border-radius: 5px; padding: 5px 12px; font-size: 11px; font-weight: 700;
+  cursor: pointer; transition: all 0.15s; font-family: 'Noto Sans KR';
+}
+.metric-btn:hover { color: var(--accent); }
+.metric-btn.active { background: rgba(74,222,128,0.15); border-color: var(--accent); color: var(--accent); }
+</style>
+</head>
+<body>
+<div id="map"></div>
+
+<div class="panel">
+  <h1>전국 도매시장 법인</h1>
+  <div class="date-nav">
+    <button onclick="changeDate(-1)" id="prevBtn">&lt;</button>
+    <div style="flex:1;text-align:center;">
+      <div class="date-label" id="dateLabel">-</div>
+      <div class="date-sub" id="dateSub">정산 기준</div>
+    </div>
+    <button onclick="changeDate(1)" id="nextBtn">&gt;</button>
+  </div>
+  <div class="period-bar">
+    <button class="period-btn active" onclick="setPeriod('1d')">1일</button>
+    <button class="period-btn" onclick="setPeriod('1w')">1주</button>
+    <button class="period-btn" onclick="setPeriod('1m')">1달</button>
+  </div>
+  <div class="date-loading" id="dateLoading">데이터 로딩 중...</div>
+
+  <div class="summary-grid">
+    <div class="summary-card"><div class="num" id="totalCorps">-</div><div class="label">법인</div></div>
+    <div class="summary-card"><div class="num" id="totalTrades">-</div><div class="label">거래건수</div></div>
+    <div class="summary-card"><div class="num" id="totalAmount">-</div><div class="label">거래금액</div></div>
+    <div class="summary-card"><div class="num" id="totalQty">-</div><div class="label">물량(톤)</div></div>
+  </div>
+
+  <div class="tab-bar">
+    <button class="tab-btn active" data-tab="corp" onclick="switchTab('corp')">법인별</button>
+    <button class="tab-btn" data-tab="market" onclick="switchTab('market')">시장별</button>
+    <button class="tab-btn" data-tab="price" onclick="switchTab('price')">가격비교</button>
+  </div>
+
+  <div class="list-section" id="corpListSection"><div id="corpList"></div></div>
+  <div class="list-section" id="marketListSection" style="display:none;"><div id="marketList"></div></div>
+  <div class="price-section" id="priceSection" style="display:none;">
+    <input class="price-search" id="priceSearch" placeholder="품목 검색..." oninput="filterPriceProducts()">
+    <div class="scrollable-list" id="priceProductList" style="max-height:180px;"></div>
+    <div class="price-result" id="priceResult">
+      <div class="price-result-title" id="priceResultTitle">-</div>
+      <div class="price-result-sub" id="priceResultSub">-</div>
+      <div class="scrollable-price-list" id="priceMarketList"></div>
+    </div>
+  </div>
+</div>
+
+<!-- 전체 산지 플로팅 패널 (지도 우하단) -->
+<div class="origin-float-panel" id="originFloatPanel">
+  <div class="origin-float-header">
+    <span class="origin-float-title" id="originToggleTitle">전체 산지</span>
+    <button class="origin-float-close" onclick="closeOriginPanel()">&times;</button>
+  </div>
+  <div class="origin-toggle-list" id="originToggleList"></div>
+</div>
+
+<div class="detail-panel" id="detailPanel">
+  <button class="detail-close" onclick="closeDetail()">&times;</button>
+  <h2 id="detailCorp">-</h2>
+  <div class="market-label" id="detailMarket">-</div>
+  <div class="period-bar" id="detailPeriodBar">
+    <button class="period-btn active" onclick="switchDetailPeriod('1d')">1일</button>
+    <button class="period-btn" onclick="switchDetailPeriod('1w')">1주</button>
+    <button class="period-btn" onclick="switchDetailPeriod('1m')">1달</button>
+  </div>
+  <div class="detail-stats">
+    <div class="detail-stat"><div class="n" id="dTrades">-</div><div class="l">거래건수</div></div>
+    <div class="detail-stat"><div class="n" id="dQty">-</div><div class="l">물량(톤)</div></div>
+    <div class="detail-stat"><div class="n" id="dAmount">-</div><div class="l">금액(만원)</div></div>
+  </div>
+  <div class="product-origins-section" id="productOriginsSection">
+    <div class="product-origins-header">
+      <span id="poProductName">-</span>
+      <button class="product-origins-close" onclick="clearProductSelection()">&times;</button>
+    </div>
+    <div id="productOriginsList"></div>
+  </div>
+  <div class="section-title">품목 <span class="section-count" id="productCount">-</span></div>
+  <div class="scrollable-list" id="detailProducts"></div>
+  <div class="section-title">산지 <span class="section-count" id="originCount">-</span></div>
+  <div class="scrollable-list" id="detailOrigins" style="flex:1;max-height:none;"></div>
+</div>
+
+<div class="foreign-badge" id="foreignBadge">
+  <div class="foreign-badge-title">수입 산지</div>
+  <div id="foreignList"></div>
+</div>
+<div class="flow-toggle" id="flowToggle" onclick="toggleFlows()">물류 흐름 표시</div>
+<div class="metric-toggle" id="metricToggle">
+  <button class="metric-btn active" data-metric="trades" onclick="setMapMetric('trades')">건수</button>
+  <button class="metric-btn" data-metric="qty" onclick="setMapMetric('qty')">물량</button>
+  <button class="metric-btn" data-metric="amount" onclick="setMapMetric('amount')">금액</button>
+</div>
+<div class="legend">
+  <span><span class="legend-dot" style="background:#4ade80;"></span>상위 30%</span>
+  <span><span class="legend-dot" style="background:#60a5fa;"></span>중간</span>
+  <span><span class="legend-dot" style="background:#fb923c;"></span>하위 40%</span>
+  <span id="legendMetricLabel">| 원 크기 = 거래건수 비례</span>
+</div>
+
+<script>
+let summaryData = null;
+let deckgl = null;
+let selectedCorp = null;
+let selectedCorpData = null;
+let selectedProduct = null;
+let selectedPriceProduct = null;
+let selectedMarket = null;
+let showFlows = false;
+let currentDate = (() => { const d = new Date(); d.setMinutes(d.getMinutes() + d.getTimezoneOffset() + 540); return d.toISOString().slice(0, 10); })();
+// KST(+9) 기준 오늘 날짜. 데이터 없으면 init()에서 자동 fallback
+let currentPeriod = '1d'; // '1d', '1w', '1m'
+let enabledOrigins = new Set(); // 산지 토글 ON/OFF
+let colorThresholds = { high: 300, mid: 100 }; // 동적 기준값
+let mapMetric = 'trades'; // 'trades', 'qty', 'amount'
+
+const MARKET_COORDS = {
+  '서울가락': [127.0124, 37.4943], '서울강서': [126.8275, 37.5665],
+  '인천남촌': [126.7312, 37.4292], '인천삼산': [126.7220, 37.5088],
+  '대전오정': [127.4260, 36.3862], '대전노은': [127.3203, 36.3743],
+  '대구북부': [128.5670, 35.9350], '부산엄궁': [128.9780, 35.1430],
+  '광주각화': [126.8520, 35.1500], '광주서부': [126.8080, 35.1920],
+  '전주': [127.1110, 35.8168], '창원팔용': [128.6575, 35.2332],
+};
+
+// === 키보드 단축키 ===
+document.addEventListener('keydown', e => {
+  if (e.target.tagName === 'INPUT') return;
+  if (e.key === 'ArrowLeft') changeDate(-1);
+  else if (e.key === 'ArrowRight') changeDate(1);
+  else if (e.key === 'Escape') { closeDetail(); clearPriceSelection(); }
+  else if (e.key === 'f' || e.key === 'F') toggleFlows();
+  else if (e.key === '1') switchTab('corp');
+  else if (e.key === '2') switchTab('market');
+  else if (e.key === '3') switchTab('price');
+  else if (e.key === 'm' || e.key === 'M') {
+    const next = { trades: 'qty', qty: 'amount', amount: 'trades' };
+    setMapMetric(next[mapMetric]);
+  }
+});
+
+// === 기간 토글 ===
+function setPeriod(period) {
+  currentPeriod = period;
+  const label = {'1d':'1일','1w':'1주','1m':'1달'}[period];
+  document.querySelectorAll('.period-btn').forEach(btn => btn.classList.toggle('active', btn.textContent === label));
+  loadForPeriod(!!selectedCorp); // 법인 선택 중이면 유지
+}
+
+function getDailyDates(period) {
+  const dates = [];
+  const end = new Date(currentDate);
+  const days = period === '1w' ? 7 : 31;
+  for (let i = 0; i < days; i++) {
+    const d = new Date(end);
+    d.setDate(d.getDate() - i);
+    dates.push(d.toISOString().slice(0, 10));
+  }
+  return dates;
+}
+
+function mergeSummaries(dailyList) {
+  const corpAgg = {}, marketAgg = {}, flowAgg = {}, priceAgg = {};
+  let totalTrades = 0, totalAmount = 0, totalQty = 0, daysCount = 0;
+  const dateRange = [dailyList[0].date, dailyList[dailyList.length - 1].date];
+
+  for (const data of dailyList) {
+    daysCount++;
+    totalTrades += data.total_trades;
+    totalAmount += data.total_amount;
+    totalQty += (data.total_qty || 0);
+
+    for (const c of data.corporations) {
+      if (!corpAgg[c.corp]) {
+        corpAgg[c.corp] = { ...c, trades: 0, total_qty: 0, total_amount: 0,
+          _products: {}, _origins: {}, _prodOrigins: {} };
+      }
+      const ca = corpAgg[c.corp];
+      ca.trades += c.trades;
+      ca.total_qty += c.total_qty;
+      ca.total_amount += c.total_amount;
+
+      for (const p of (c.products || [])) {
+        if (!ca._products[p.name]) ca._products[p.name] = { ...p, trades: 0, qty: 0, amount: 0, _wt_price_sum: 0, _wt_qty_sum: 0 };
+        const cp = ca._products[p.name];
+        cp.trades += p.trades; cp.qty += p.qty; cp.amount += p.amount;
+        if (p.avg_price_kg > 0 && p.qty > 0) { cp._wt_price_sum += p.avg_price_kg * p.qty; cp._wt_qty_sum += p.qty; }
+      }
+      for (const o of (c.origins || [])) {
+        if (!ca._origins[o.name]) ca._origins[o.name] = { ...o, trades: 0, qty: 0, amount: 0 };
+        const co = ca._origins[o.name];
+        co.trades += o.trades; co.qty += o.qty; co.amount += o.amount;
+      }
+      for (const [pname, poList] of Object.entries(c.product_origins || {})) {
+        if (!ca._prodOrigins[pname]) ca._prodOrigins[pname] = {};
+        for (const o of poList) {
+          if (!ca._prodOrigins[pname][o.name]) ca._prodOrigins[pname][o.name] = { ...o, trades: 0, qty: 0 };
+          const po = ca._prodOrigins[pname][o.name];
+          po.trades += o.trades; po.qty += o.qty;
+        }
+      }
+    }
+    for (const m of (data.markets || [])) {
+      if (!marketAgg[m.market]) marketAgg[m.market] = { ...m, trades: 0, total_qty: 0, total_amount: 0, _max_corp_count: 0 };
+      const ma = marketAgg[m.market];
+      ma.trades += m.trades; ma.total_qty += m.total_qty; ma.total_amount += m.total_amount;
+      if (m.corp_count > ma._max_corp_count) ma._max_corp_count = m.corp_count;
+    }
+    for (const fl of (data.flows || [])) {
+      const key = fl.origin + '→' + fl.dest_corp;
+      if (!flowAgg[key]) { flowAgg[key] = { ...fl, trades: 0, qty: 0, amount: 0 }; }
+      flowAgg[key].trades += fl.trades; flowAgg[key].qty += fl.qty; flowAgg[key].amount += (fl.amount || 0);
+    }
+    for (const [product, markets] of Object.entries(data.price_map || {})) {
+      if (!priceAgg[product]) priceAgg[product] = {};
+      for (const [market, price] of Object.entries(markets)) {
+        if (!priceAgg[product][market]) priceAgg[product][market] = [];
+        priceAgg[product][market].push(price);
+      }
+    }
+  }
+
+  // 최종 형태 변환
+  const corps = Object.values(corpAgg).sort((a, b) => b.trades - a.trades).map(ca => {
+    const products = Object.values(ca._products).sort((a, b) => b.trades - a.trades).map(p => {
+      const avg = p._wt_qty_sum > 0 ? Math.round(p._wt_price_sum / p._wt_qty_sum) : 0;
+      return { name: p.name, trades: p.trades, qty: p.qty, amount: p.amount, avg_price_kg: avg };
+    });
+    const origins = Object.values(ca._origins).sort((a, b) => b.trades - a.trades);
+    const product_origins = {};
+    for (const [pname, poMap] of Object.entries(ca._prodOrigins)) {
+      product_origins[pname] = Object.values(poMap).sort((a, b) => b.trades - a.trades).slice(0, 20);
+    }
+    return { corp: ca.corp, market: ca.market, market_code: ca.market_code,
+      lat: ca.lat, lng: ca.lng, trades: ca.trades, total_qty: ca.total_qty, total_amount: ca.total_amount,
+      products, origins, product_origins };
+  });
+
+  const markets = Object.values(marketAgg).sort((a, b) => b.trades - a.trades).map(m => {
+    if (m._max_corp_count) { m.corp_count = m._max_corp_count; delete m._max_corp_count; }
+    return m;
+  });
+  const flows = Object.values(flowAgg).sort((a, b) => b.trades - a.trades).slice(0, 300);
+
+  const price_map = {};
+  const sortedProducts = Object.keys(priceAgg).sort((a, b) => {
+    const ca = Object.values(priceAgg[a]).reduce((s, v) => s + v.length, 0);
+    const cb = Object.values(priceAgg[b]).reduce((s, v) => s + v.length, 0);
+    return cb - ca;
+  }).slice(0, 30);
+  for (const product of sortedProducts) {
+    price_map[product] = {};
+    for (const [market, prices] of Object.entries(priceAgg[product])) {
+      price_map[product][market] = Math.round(prices.reduce((s, v) => s + v, 0) / prices.length);
+    }
+  }
+
+  return {
+    date: `${dateRange[0]} ~ ${dateRange[1]}`,
+    date_start: dateRange[0], date_end: dateRange[1],
+    days_count: daysCount, total_trades: totalTrades, total_amount: totalAmount, total_qty: totalQty,
+    corp_count: corps.length, market_count: markets.length,
+    corporations: corps, markets, flows, price_map
+  };
+}
+
+async function loadForPeriod(preserveSelection = false) {
+  const loading = document.getElementById('dateLoading');
+  loading.style.display = 'block';
+  loading.textContent = '데이터 로딩 중...';
+  document.getElementById('dateLabel').textContent = currentDate;
+
+  const prevCorp = preserveSelection ? selectedCorp : null;
+  const prevProduct = preserveSelection ? selectedProduct : null;
+
+  try {
+    if (currentPeriod === '1d') {
+      const resp = await fetch(`data/summary_${currentDate}.json`);
+      if (!resp.ok) throw new Error('not found');
+      summaryData = await resp.json();
+    } else {
+      // daily 파일들을 병렬 로드 후 머지
+      const dates = getDailyDates(currentPeriod);
+      loading.textContent = `${dates.length}일치 로딩 중...`;
+      const fetches = dates.map(d => fetch(`data/summary_${d}.json`).then(r => r.ok ? r.json() : null).catch(() => null));
+      const results = (await Promise.all(fetches)).filter(Boolean);
+      if (results.length === 0) throw new Error('no data');
+      // 날짜순 정렬 (오래된 순)
+      results.sort((a, b) => a.date.localeCompare(b.date));
+      summaryData = mergeSummaries(results);
+    }
+
+    computeThresholds();
+    updateSummary();
+    renderCorpList();
+    renderMarketList();
+    renderPriceProducts();
+
+    if (prevCorp) {
+      const corpData = summaryData.corporations.find(c => c.corp === prevCorp);
+      if (corpData) {
+        selectCorp(corpData, true);
+        if (prevProduct) selectProduct(prevProduct);
+      } else {
+        closeDetail();
+      }
+    } else {
+      closeDetail();
+      clearPriceSelection();
+    }
+    selectedMarket = null;
+    if (deckgl) updateLayers();
+    loading.style.display = 'none';
+  } catch (e) {
+    if (currentPeriod === '1d' && !window._autoFallback) {
+      // 데이터 없으면 최대 7일 전까지 자동 탐색
+      window._autoFallback = true;
+      for (let i = 1; i <= 7; i++) {
+        const d = new Date(currentDate);
+        d.setDate(d.getDate() - i);
+        const fallback = d.toISOString().slice(0, 10);
+        try {
+          const resp = await fetch(`data/summary_${fallback}.json`);
+          if (resp.ok) {
+            currentDate = fallback;
+            window._autoFallback = false;
+            await loadForPeriod();
+            return;
+          }
+        } catch {}
+      }
+      window._autoFallback = false;
+      loading.textContent = `최근 7일간 데이터 없음`;
+    } else if (currentPeriod !== '1d') {
+      loading.textContent = `해당 기간 데이터 없음`;
+    } else {
+      loading.textContent = `${currentDate} 데이터 없음 (휴일?)`;
+    }
+    loading.style.display = 'block';
+    setTimeout(() => { loading.style.display = 'none'; }, 3000);
+  }
+}
+
+// === 상세 패널 내 기간 전환 (선택 유지) ===
+function switchDetailPeriod(period) {
+  currentPeriod = period;
+  // 양쪽 기간 버튼 동기화
+  const label = {'1d':'1일','1w':'1주','1m':'1달'}[period];
+  document.querySelectorAll('.period-btn').forEach(btn => btn.classList.toggle('active', btn.textContent === label));
+  loadForPeriod(true); // 선택 유지
+}
+
+// === 동적 색상 기준값 계산 ===
+function computeThresholds() {
+  if (!summaryData?.corporations?.length) return;
+  const values = summaryData.corporations.map(c => getCorpMetricValue(c)).sort((a, b) => a - b);
+  colorThresholds.high = values[Math.floor(values.length * 0.7)] || 300;
+  colorThresholds.mid = values[Math.floor(values.length * 0.4)] || 100;
+  // 범례 업데이트
+  const unit = mapMetric === 'amount' ? '만원' : mapMetric === 'qty' ? '' : '건';
+  const fmt = v => mapMetric === 'amount' ? Math.round(v/10000).toLocaleString() : v.toLocaleString();
+  const legendSpans = document.querySelectorAll('.legend > span');
+  if (legendSpans.length >= 3) {
+    legendSpans[0].innerHTML = `<span class="legend-dot" style="background:#4ade80;"></span>${fmt(colorThresholds.high)}${unit}+`;
+    legendSpans[1].innerHTML = `<span class="legend-dot" style="background:#60a5fa;"></span>${fmt(colorThresholds.mid)}~${fmt(colorThresholds.high - 1)}${unit}`;
+    legendSpans[2].innerHTML = `<span class="legend-dot" style="background:#fb923c;"></span>${fmt(colorThresholds.mid)}${unit} 미만`;
+  }
+}
+
+// === 날짜 네비게이터 ===
+async function loadDate(date) {
+  currentDate = date;
+  loadForPeriod();
+}
+
+function changeDate(delta) {
+  const d = new Date(currentDate);
+  d.setDate(d.getDate() + delta);
+  currentDate = d.toISOString().slice(0, 10);
+  loadForPeriod();
+}
+
+function updateSummary() {
+  document.getElementById('dateLabel').textContent = summaryData.date;
+  if (summaryData.days_count) {
+    document.getElementById('dateSub').textContent = `${summaryData.days_count}일 합산`;
+  } else {
+    const dow = ['일','월','화','수','목','금','토'][new Date(summaryData.date).getDay()];
+    document.getElementById('dateSub').textContent = dow + '요일 정산 기준';
+  }
+  document.getElementById('totalCorps').textContent = summaryData.corp_count;
+  document.getElementById('totalTrades').textContent = summaryData.total_trades.toLocaleString();
+  document.getElementById('totalAmount').textContent = (summaryData.total_amount / 100_000_000).toFixed(1) + '억';
+  document.getElementById('totalQty').textContent = (summaryData.total_qty / 1000).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+}
+
+// === 탭 ===
+function switchTab(tab) {
+  document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.tab === tab));
+  document.getElementById('corpListSection').style.display = tab === 'corp' ? '' : 'none';
+  document.getElementById('marketListSection').style.display = tab === 'market' ? '' : 'none';
+  document.getElementById('priceSection').style.display = tab === 'price' ? '' : 'none';
+  if (tab === 'price') { closeDetail(); selectedCorp = null; selectedCorpData = null; selectedMarket = null; }
+  else { clearPriceSelection(); }
+  if (tab !== 'market') { selectedMarket = null; }
+  if (deckgl) updateLayers();
+}
+
+// === 법인 리스트 ===
+function formatMetricValue(corp) {
+  if (mapMetric === 'qty') return (corp.total_qty / 1000).toFixed(1) + '톤';
+  if (mapMetric === 'amount') return (corp.total_amount / 10000).toLocaleString(undefined, {maximumFractionDigits: 0}) + '만';
+  return corp.trades.toLocaleString() + '건';
+}
+
+function renderCorpList() {
+  const list = document.getElementById('corpList');
+  list.innerHTML = '';
+  // 선택된 메트릭 기준 정렬
+  const sorted = [...summaryData.corporations].sort((a, b) => getCorpMetricValue(b) - getCorpMetricValue(a));
+  for (const corp of sorted) {
+    const div = document.createElement('div');
+    div.className = 'corp-item';
+    div.dataset.corp = corp.corp;
+    div.innerHTML = `<div><div class="corp-name">${corp.corp}</div><div class="corp-market">${corp.market}</div></div>
+      <div class="corp-trades">${formatMetricValue(corp)}</div>`;
+    div.addEventListener('click', () => selectCorp(corp));
+    list.appendChild(div);
+  }
+}
+
+// === 시장 리스트 (클릭 가능!) ===
+function renderMarketList() {
+  const list = document.getElementById('marketList');
+  list.innerHTML = '';
+  if (!summaryData.markets) return;
+  for (const m of summaryData.markets) {
+    const div = document.createElement('div');
+    div.className = 'market-item';
+    div.dataset.market = m.market;
+    div.innerHTML = `<div><div class="market-name">${m.market}</div><div class="market-info">법인 ${m.corp_count}개</div></div>
+      <div><div class="corp-trades">${m.trades.toLocaleString()}건</div>
+      <div style="font-size:10px;color:var(--dim);text-align:right;">${(m.total_amount / 100_000_000).toFixed(1)}억</div></div>`;
+    div.addEventListener('click', () => selectMarket(m));
+    list.appendChild(div);
+  }
+}
+
+// === 시장 선택 → 법인 필터 + 줌 ===
+function selectMarket(market) {
+  selectedMarket = market.market;
+  selectedCorp = null; selectedCorpData = null; selectedProduct = null;
+  closeDetail();
+
+  document.querySelectorAll('.market-item').forEach(el => {
+    el.classList.toggle('active', el.dataset.market === market.market);
+  });
+
+  // 시장 좌표로 줌인
+  const coords = MARKET_COORDS[market.market];
+  if (coords && deckgl) {
+    deckgl.setProps({
+      initialViewState: {
+        longitude: coords[0], latitude: coords[1], zoom: 11,
+        pitch: 45, bearing: 0, transitionDuration: 800,
+      }
+    });
+  }
+
+  // 상세 패널에 시장 정보 표시
+  document.getElementById('detailCorp').textContent = market.market;
+  document.getElementById('detailMarket').textContent = `법인 ${market.corp_count}개`;
+  document.getElementById('dTrades').textContent = market.trades.toLocaleString();
+  document.getElementById('dQty').textContent = (market.total_qty / 1000).toFixed(1);
+  document.getElementById('dAmount').textContent = (market.total_amount / 10000).toLocaleString(undefined, {maximumFractionDigits: 0});
+
+  // 소속 법인 목록
+  const corps = summaryData.corporations.filter(c => c.market === market.market);
+  document.getElementById('productCount').textContent = corps.length + '개';
+  const prodDiv = document.getElementById('detailProducts');
+  prodDiv.innerHTML = '';
+  for (const c of corps) {
+    const row = document.createElement('div');
+    row.className = 'product-row';
+    row.innerHTML = `<span class="product-name">${c.corp}</span>
+      <span class="product-info">${c.trades.toLocaleString()}건</span>`;
+    row.addEventListener('click', () => { selectedMarket = null; selectCorp(c); switchTab('corp'); });
+    prodDiv.appendChild(row);
+  }
+
+  document.getElementById('originCount').textContent = '';
+  document.getElementById('detailOrigins').innerHTML = '<div style="font-size:11px;color:var(--dim);padding:8px 0;">법인을 클릭하면 상세 정보</div>';
+  document.getElementById('productOriginsSection').classList.remove('visible');
+  document.getElementById('detailPanel').classList.add('open');
+
+  updateLayers();
+}
+
+// === 법인 선택 ===
+function selectCorp(corp, skipZoom = false) {
+  selectedCorp = corp.corp; selectedCorpData = corp; selectedProduct = null; selectedMarket = null;
+  document.querySelectorAll('.corp-item').forEach(el => el.classList.toggle('active', el.dataset.corp === corp.corp));
+  document.querySelectorAll('.market-item').forEach(el => el.classList.remove('active'));
+
+  document.getElementById('detailCorp').textContent = corp.corp;
+  document.getElementById('detailMarket').textContent = corp.market;
+  document.getElementById('dTrades').textContent = corp.trades.toLocaleString();
+  document.getElementById('dQty').textContent = (corp.total_qty / 1000).toFixed(1);
+  document.getElementById('dAmount').textContent = (corp.total_amount / 10000).toLocaleString(undefined, {maximumFractionDigits: 0});
+
+  const products = corp.products || [];
+  document.getElementById('productCount').textContent = products.length + '개';
+  const prodDiv = document.getElementById('detailProducts');
+  prodDiv.innerHTML = '';
+  for (const p of products) {
+    const row = document.createElement('div');
+    row.className = 'product-row'; row.dataset.product = p.name;
+    row.innerHTML = `<span class="product-name" title="${p.name}">${p.name}</span>
+      <span class="product-info">${p.trades}건 | ${p.avg_price_kg.toLocaleString()}원/kg</span>`;
+    row.addEventListener('click', () => selectProduct(p.name));
+    prodDiv.appendChild(row);
+  }
+
+  const origins = corp.origins || [];
+  document.getElementById('originCount').textContent = origins.length + '개';
+  const origDiv = document.getElementById('detailOrigins');
+  origDiv.innerHTML = '';
+  for (const o of origins) {
+    origDiv.innerHTML += `<div class="origin-row"><span class="product-name" title="${o.name}">${o.name}</span>
+      <span class="product-info">${o.trades}건 | ${o.qty.toLocaleString()}</span></div>`;
+  }
+
+  document.getElementById('productOriginsSection').classList.remove('visible');
+  document.getElementById('foreignBadge').classList.remove('visible');
+  document.getElementById('detailPanel').classList.add('open');
+
+  if (!skipZoom && corp.lat && corp.lng && deckgl) {
+    deckgl.setProps({ initialViewState: { longitude: corp.lng, latitude: corp.lat, zoom: 11, pitch: 45, bearing: 0, transitionDuration: 800 } });
+  }
+  updateLayers();
+}
+
+// === 품목 선택 → 산지 표시 ===
+function selectProduct(productName) {
+  selectedProduct = productName;
+  document.querySelectorAll('.product-row').forEach(el => el.classList.toggle('selected', el.dataset.product === productName));
+
+  const poSection = document.getElementById('productOriginsSection');
+  const poList = document.getElementById('productOriginsList');
+  const productOrigins = selectedCorpData?.product_origins?.[productName] || [];
+
+  // 경쟁 산지 카운트 계산
+  const myOriginNames = new Set(productOrigins.filter(o => !o.foreign && o.lat !== 0).map(o => o.name));
+  const otherNames = new Set();
+  for (const corp of summaryData.corporations) {
+    if (corp.corp === selectedCorp) continue;
+    const po = corp.product_origins?.[productName];
+    if (!po) continue;
+    for (const o of po) {
+      if (!o.foreign && o.lat !== 0 && !myOriginNames.has(o.name)) {
+        otherNames.add(o.name);
+      }
+    }
+  }
+  const myCount = myOriginNames.size;
+  const missCount = otherNames.size;
+  document.getElementById('poProductName').textContent =
+    `${productName} 산지 (우리 ${myCount}개 / 미거래 ${missCount}개)`;
+  poList.innerHTML = '';
+  const domestic = [], foreign = [];
+  for (const o of productOrigins) { (o.foreign ? foreign : domestic).push(o); }
+
+  for (const o of domestic) {
+    poList.innerHTML += `<div class="po-row po-domestic"><span>${o.name}</span>
+      <span style="font-family:'JetBrains Mono';font-size:10px;color:var(--dim);">${o.trades}건 | ${o.qty.toLocaleString()}</span></div>`;
+  }
+  for (const o of foreign) {
+    poList.innerHTML += `<div class="po-row po-foreign"><span>${o.name}</span>
+      <span style="font-family:'JetBrains Mono';font-size:10px;color:var(--yellow);">${o.trades}건 | ${o.qty.toLocaleString()}</span></div>`;
+  }
+  poSection.classList.add('visible');
+
+  if (foreign.length > 0) {
+    document.getElementById('foreignList').innerHTML = foreign.map(o => `<div class="foreign-item">${o.name} ${o.trades}건</div>`).join('');
+    document.getElementById('foreignBadge').classList.add('visible');
+  } else { document.getElementById('foreignBadge').classList.remove('visible'); }
+
+  // === 경쟁 산지 플로팅 패널 표시 (originFloatPanel 재활용) ===
+  const allOrigins = {};
+  for (const corp of summaryData.corporations) {
+    const po = corp.product_origins?.[productName];
+    if (!po) continue;
+    for (const o of po) {
+      if (o.foreign || o.lat === 0) continue;
+      if (!allOrigins[o.name]) {
+        allOrigins[o.name] = { lat: o.lat, lng: o.lng, corps: [], totalTrades: 0, isMine: false };
+      }
+      allOrigins[o.name].corps.push({ corp: corp.corp, market: corp.market, trades: o.trades, qty: o.qty });
+      allOrigins[o.name].totalTrades += o.trades;
+      if (corp.corp === selectedCorp) allOrigins[o.name].isMine = true;
+    }
+  }
+  const sorted = Object.entries(allOrigins).sort((a, b) => b[1].totalTrades - a[1].totalTrades);
+  document.getElementById('originToggleTitle').textContent = `${productName} 전체 산지 (${sorted.length}개)`;
+  const oList = document.getElementById('originToggleList');
+  oList.innerHTML = '';
+  for (const [name, info] of sorted) {
+    const corpNames = info.corps.map(c => c.corp.replace('㈜','').replace('(공)','')).join(', ');
+    const div = document.createElement('div');
+    div.className = 'origin-toggle-item';
+    div.title = corpNames;
+    const nameColor = info.isMine ? 'var(--orange)' : 'var(--purple)';
+    const badge = info.isMine ? '●' : '○';
+    div.innerHTML = `<span style="color:${nameColor};min-width:14px;">${badge}</span>
+      <span class="ot-name" style="color:${nameColor}">${name}</span>
+      <span class="ot-corps">${info.corps.length}법인 ${info.totalTrades}건</span>`;
+    oList.appendChild(div);
+  }
+  document.getElementById('originFloatPanel').classList.add('visible');
+
+  updateLayers();
+}
+
+function clearProductSelection() {
+  selectedProduct = null;
+  document.querySelectorAll('.product-row').forEach(el => el.classList.remove('selected'));
+  document.getElementById('productOriginsSection').classList.remove('visible');
+  document.getElementById('foreignBadge').classList.remove('visible');
+  document.getElementById('originFloatPanel').classList.remove('visible');
+  updateLayers();
+}
+
+function closeDetail() {
+  document.getElementById('detailPanel').classList.remove('open');
+  selectedCorp = null; selectedCorpData = null; selectedProduct = null;
+  document.querySelectorAll('.corp-item').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.market-item').forEach(el => el.classList.remove('active'));
+  document.getElementById('foreignBadge').classList.remove('visible');
+  document.getElementById('originFloatPanel').classList.remove('visible');
+  if (deckgl) updateLayers();
+}
+
+// === 가격비교 (법인별) ===
+function renderPriceProducts() {
+  const list = document.getElementById('priceProductList');
+  list.innerHTML = '';
+  if (!summaryData.price_map) return;
+  for (const p of Object.keys(summaryData.price_map)) {
+    const div = document.createElement('div');
+    div.className = 'price-product-item'; div.dataset.product = p; div.textContent = p;
+    div.addEventListener('click', () => selectPriceProduct(p));
+    list.appendChild(div);
+  }
+}
+
+function filterPriceProducts() {
+  const q = document.getElementById('priceSearch').value.trim().toLowerCase();
+  document.querySelectorAll('.price-product-item').forEach(el => {
+    el.style.display = el.dataset.product.toLowerCase().includes(q) ? '' : 'none';
+  });
+}
+
+function selectPriceProduct(productName) {
+  selectedPriceProduct = productName;
+  document.querySelectorAll('.price-product-item').forEach(el => el.classList.toggle('selected', el.dataset.product === productName));
+
+  // 법인별 가격 수집 (corporations 데이터에서)
+  const corpPrices = [];
+  for (const corp of summaryData.corporations) {
+    const prod = (corp.products || []).find(p => p.name === productName);
+    if (prod && prod.avg_price_kg > 0) {
+      corpPrices.push({ name: corp.corp, market: corp.market, price: prod.avg_price_kg, trades: prod.trades });
+    }
+  }
+  corpPrices.sort((a, b) => b.price - a.price);
+
+  if (corpPrices.length === 0) {
+    document.getElementById('priceResultTitle').textContent = productName;
+    document.getElementById('priceResultSub').textContent = '가격 데이터 없음';
+    document.getElementById('priceMarketList').innerHTML = '';
+    document.querySelector('.price-result')?.classList.add('visible');
+    return;
+  }
+  const maxPrice = corpPrices[0].price;
+  const minPrice = corpPrices[corpPrices.length - 1].price;
+
+  document.getElementById('priceResultTitle').textContent = productName;
+  document.getElementById('priceResultSub').textContent = `${corpPrices.length}개 법인 가격비교 (원/kg)`;
+  const listEl = document.getElementById('priceMarketList');
+  listEl.innerHTML = '';
+
+  for (const item of corpPrices) {
+    const pct = maxPrice > 0 ? (item.price / maxPrice * 100) : 0;
+    const isHigh = item.price === maxPrice;
+    const isLow = item.price === minPrice && corpPrices.length > 1;
+    const cls = isHigh ? 'price-high' : isLow ? 'price-low' : 'price-mid';
+    const barColor = isHigh ? 'var(--red)' : isLow ? 'var(--accent)' : 'var(--blue)';
+
+    listEl.innerHTML += `<div class="price-market-row">
+      <span style="min-width:90px;font-weight:500;font-size:11px;" title="${item.name}">${item.name.length > 8 ? item.name.slice(0,8) + '..' : item.name}</span>
+      <div class="price-bar-wrap"><div class="price-bar" style="width:${pct}%;background:${barColor};"></div></div>
+      <span class="price-value ${cls}">${item.price.toLocaleString()}원</span>
+    </div>`;
+  }
+  document.getElementById('priceResult').classList.add('visible');
+
+  // === 전체 산지 수집 (산지 개발용) ===
+  buildOriginToggle(productName);
+
+  if (deckgl) {
+    deckgl.setProps({ initialViewState: { longitude: 127.5, latitude: 36.0, zoom: 7, pitch: 30, bearing: 0, transitionDuration: 800 } });
+  }
+  updateLayers();
+}
+
+// === 전체 산지 토글 (품목에 대해 전국 모든 법인의 산지 집계) ===
+function buildOriginToggle(productName) {
+  const allOrigins = {}; // {origin_name: {lat, lng, foreign, corps: [{corp, trades, qty}], totalTrades}}
+
+  for (const corp of summaryData.corporations) {
+    const po = corp.product_origins?.[productName];
+    if (!po) continue;
+    for (const o of po) {
+      if (!allOrigins[o.name]) {
+        allOrigins[o.name] = { lat: o.lat, lng: o.lng, foreign: o.foreign, corps: [], totalTrades: 0 };
+      }
+      allOrigins[o.name].corps.push({ corp: corp.corp, market: corp.market, trades: o.trades, qty: o.qty });
+      allOrigins[o.name].totalTrades += o.trades;
+    }
+  }
+
+  const sorted = Object.entries(allOrigins).sort((a, b) => b[1].totalTrades - a[1].totalTrades);
+  enabledOrigins = new Set(sorted.map(([name]) => name)); // 기본 전체 ON
+
+  const list = document.getElementById('originToggleList');
+  document.getElementById('originToggleTitle').textContent = `${productName} 전체 산지 (${sorted.length}개)`;
+
+  list.innerHTML = '';
+  for (const [name, info] of sorted) {
+    const corpNames = info.corps.map(c => c.corp.replace('㈜','').replace('(공)','')).join(', ');
+    const div = document.createElement('div');
+    div.className = 'origin-toggle-item';
+    div.title = corpNames;
+    div.innerHTML = `<input type="checkbox" checked data-origin="${name}">
+      <span class="ot-name" style="color:${info.foreign ? 'var(--yellow)' : 'var(--text)'}">${name}</span>
+      <span class="ot-corps">${info.corps.length}법인 ${info.totalTrades}건</span>`;
+    div.querySelector('input').addEventListener('change', function() {
+      if (this.checked) enabledOrigins.add(name); else enabledOrigins.delete(name);
+      updateLayers();
+    });
+    div.addEventListener('click', (e) => { if (e.target.tagName !== 'INPUT') div.querySelector('input').click(); });
+    list.appendChild(div);
+  }
+
+  document.getElementById('originFloatPanel').classList.add('visible');
+}
+
+function closeOriginPanel() {
+  document.getElementById('originFloatPanel').classList.remove('visible');
+  enabledOrigins.clear();
+  if (deckgl) updateLayers();
+}
+
+function clearPriceSelection() {
+  selectedPriceProduct = null;
+  enabledOrigins.clear();
+  document.querySelectorAll('.price-product-item').forEach(el => el.classList.remove('selected'));
+  const pr = document.getElementById('priceResult');
+  if (pr) pr.classList.remove('visible');
+  document.getElementById('originFloatPanel').classList.remove('visible');
+  if (deckgl) updateLayers();
+}
+
+// === 흐름 토글 ===
+function toggleFlows() {
+  showFlows = !showFlows;
+  document.getElementById('flowToggle').classList.toggle('active', showFlows);
+  document.getElementById('flowToggle').textContent = showFlows ? '물류 흐름 숨기기' : '물류 흐름 표시';
+  updateLayers();
+}
+
+// === 메트릭 전환 ===
+function getCorpMetricValue(corp) {
+  if (mapMetric === 'qty') return corp.total_qty;
+  if (mapMetric === 'amount') return corp.total_amount;
+  return corp.trades;
+}
+
+function setMapMetric(metric) {
+  mapMetric = metric;
+  document.querySelectorAll('.metric-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.metric === metric));
+  const labels = { trades: '거래건수', qty: '물량(톤)', amount: '거래금액' };
+  document.getElementById('legendMetricLabel').textContent = `| 원 크기 = ${labels[metric]} 비례`;
+  computeThresholds();
+  renderCorpList();
+  if (deckgl) updateLayers();
+}
+
+// === 색상/사이즈 ===
+function getCorpColor(value) {
+  if (value >= colorThresholds.high) return [74, 222, 128, 200];
+  if (value >= colorThresholds.mid) return [96, 165, 250, 200];
+  return [251, 146, 60, 200];
+}
+function getCorpRadius(value) {
+  if (!summaryData || !summaryData.corporations.length) return 300;
+  const maxVal = Math.max(...summaryData.corporations.map(c => getCorpMetricValue(c)));
+  if (!maxVal || !isFinite(maxVal)) return 300;
+  return Math.max(300, (value / maxVal) * 6000);
+}
+
+// === 레이어 업데이트 ===
+function updateLayers() {
+  if (!deckgl || !summaryData) return; // null 체크
+
+  const layers = [];
+
+  // 법인 위치 계산
+  const marketGroups = {};
+  for (const corp of summaryData.corporations) {
+    const key = corp.market_code;
+    if (!marketGroups[key]) marketGroups[key] = [];
+    marketGroups[key].push(corp);
+  }
+  const corpPositions = [];
+  for (const [code, corps] of Object.entries(marketGroups)) {
+    const n = corps.length;
+    corps.forEach((corp, i) => {
+      const angle = (2 * Math.PI * i) / n;
+      const offset = n > 1 ? 0.008 : 0;
+      corpPositions.push({ ...corp, displayLat: corp.lat + Math.sin(angle) * offset, displayLng: corp.lng + Math.cos(angle) * offset });
+    });
+  }
+
+  // === 가격비교 모드 ===
+  if (selectedPriceProduct) {
+    // 법인별 가격 dot + 라벨
+    const corpPriceData = [];
+    for (const cp of corpPositions) {
+      const prod = (cp.products || []).find(p => p.name === selectedPriceProduct);
+      if (prod && prod.avg_price_kg > 0) {
+        corpPriceData.push({ ...cp, price: prod.avg_price_kg, pTrades: prod.trades });
+      }
+    }
+
+    if (corpPriceData.length > 0) {
+      const maxP = Math.max(...corpPriceData.map(d => d.price));
+      const minP = Math.min(...corpPriceData.map(d => d.price));
+
+      for (const d of corpPriceData) {
+        d.priceColor = d.price === maxP ? [248,113,113,220] : d.price === minP && corpPriceData.length > 1 ? [74,222,128,220] : [96,165,250,180];
+        d.priceRadius = 2000 + (d.price / maxP) * 4000;
+      }
+
+      layers.push(new deck.ScatterplotLayer({
+        id: 'price-dots', data: corpPriceData,
+        getPosition: d => [d.displayLng, d.displayLat],
+        getRadius: d => d.priceRadius,
+        getFillColor: d => d.priceColor,
+        getLineColor: [255,255,255,100], lineWidthMinPixels: 1, stroked: true,
+      }));
+
+      layers.push(new deck.TextLayer({
+        id: 'price-labels', data: corpPriceData,
+        getPosition: d => [d.displayLng, d.displayLat],
+        getText: d => `${d.corp.replace('㈜','').replace('(공)','')}\n${d.price.toLocaleString()}원`,
+        getSize: 11, getColor: d => d.priceColor,
+        getPixelOffset: [0, -25], fontFamily: 'Noto Sans KR', fontWeight: 700,
+        outlineWidth: 4, outlineColor: [10,10,18,240], getTextAnchor: 'middle',
+      }));
+    }
+
+    // 전체 산지 표시 (ON인 것만, 국내만)
+    const allOriginData = [];
+    for (const corp of summaryData.corporations) {
+      const po = corp.product_origins?.[selectedPriceProduct];
+      if (!po) continue;
+      for (const o of po) {
+        if (!o.foreign && o.lat !== 0 && enabledOrigins.has(o.name)) {
+          allOriginData.push({ ...o, destCorps: [corp.corp] });
+        }
+      }
+    }
+    // 산지별 중복 제거 (같은 산지 → 여러 법인)
+    const originMap = {};
+    for (const o of allOriginData) {
+      if (!originMap[o.name]) originMap[o.name] = { ...o, destCorps: [], trades: 0 };
+      originMap[o.name].destCorps.push(...o.destCorps);
+      originMap[o.name].trades += o.trades;
+    }
+    const uniqueOrigins = Object.values(originMap);
+
+    if (uniqueOrigins.length > 0) {
+      layers.push(new deck.ScatterplotLayer({
+        id: 'origin-dots', data: uniqueOrigins,
+        getPosition: d => [d.lng, d.lat], getRadius: 2500,
+        getFillColor: [251,146,60,180], getLineColor: [255,255,255,120],
+        lineWidthMinPixels: 1, stroked: true,
+      }));
+      layers.push(new deck.TextLayer({
+        id: 'origin-labels', data: uniqueOrigins,
+        getPosition: d => [d.lng, d.lat], getText: d => d.name,
+        getSize: 10, getColor: [251,146,60,200], getPixelOffset: [0, -16],
+        fontFamily: 'Noto Sans KR', fontWeight: 700,
+        outlineWidth: 3, outlineColor: [10,10,18,200],
+      }));
+    }
+
+    // 배경에 법인 점 dim으로 표시 (버그 수정)
+    layers.push(new deck.ScatterplotLayer({
+      id: 'corps-bg', data: corpPositions,
+      getPosition: d => [d.displayLng, d.displayLat],
+      getRadius: d => getCorpRadius(getCorpMetricValue(d)) * 0.5,
+      getFillColor: d => { const c = getCorpColor(getCorpMetricValue(d)); return [c[0],c[1],c[2],40]; },
+      getLineColor: [255,255,255,20], lineWidthMinPixels: 1, stroked: true,
+    }));
+
+    deckgl.setProps({ layers });
+    return;
+  }
+
+  // === 품목별 산지 흐름 ===
+  if (selectedProduct && selectedCorpData) {
+    const productOrigins = selectedCorpData.product_origins?.[selectedProduct] || [];
+    const domesticOrigins = productOrigins.filter(o => !o.foreign && o.lat !== 0);
+    const myOriginNames = new Set(productOrigins.map(o => o.name));
+
+    if (domesticOrigins.length > 0) {
+      const corpPos = corpPositions.find(c => c.corp === selectedCorp);
+      const destLng = corpPos ? corpPos.displayLng : selectedCorpData.lng;
+      const destLat = corpPos ? corpPos.displayLat : selectedCorpData.lat;
+      layers.push(new deck.ArcLayer({
+        id: 'product-flows', data: domesticOrigins,
+        getSourcePosition: d => [d.lng, d.lat], getTargetPosition: () => [destLng, destLat],
+        getSourceColor: [251,146,60,160], getTargetColor: [74,222,128,220],
+        getWidth: d => Math.max(1.5, Math.min(d.trades/5, 6)), greatCircle: false,
+      }));
+      layers.push(new deck.ScatterplotLayer({
+        id: 'origin-dots', data: domesticOrigins,
+        getPosition: d => [d.lng, d.lat], getRadius: 2000,
+        getFillColor: [251,146,60,200], getLineColor: [255,255,255,150],
+        lineWidthMinPixels: 1, stroked: true,
+      }));
+      layers.push(new deck.TextLayer({
+        id: 'origin-labels', data: domesticOrigins,
+        getPosition: d => [d.lng, d.lat], getText: d => d.name,
+        getSize: 11, getColor: [251,146,60,220], getPixelOffset: [0, -14],
+        fontFamily: 'Noto Sans KR', fontWeight: 700, outlineWidth: 3, outlineColor: [10,10,18,220],
+      }));
+    }
+
+    // 다른 법인의 같은 품목 산지 (우리가 안 하는 것만 = 산지 개발 타겟)
+    const otherOriginMap = {};
+    for (const corp of summaryData.corporations) {
+      if (corp.corp === selectedCorp) continue;
+      const po = corp.product_origins?.[selectedProduct];
+      if (!po) continue;
+      for (const o of po) {
+        if (!o.foreign && o.lat !== 0 && !myOriginNames.has(o.name)) {
+          if (!otherOriginMap[o.name]) otherOriginMap[o.name] = { ...o, corps: [], totalTrades: 0 };
+          otherOriginMap[o.name].corps.push(corp.corp.replace('㈜','').replace('(공)',''));
+          otherOriginMap[o.name].totalTrades += o.trades;
+        }
+      }
+    }
+    const otherOrigins = Object.values(otherOriginMap);
+
+    if (otherOrigins.length > 0) {
+      layers.push(new deck.ScatterplotLayer({
+        id: 'other-origin-dots', data: otherOrigins,
+        getPosition: d => [d.lng, d.lat],
+        getRadius: d => Math.max(1500, Math.min(d.totalTrades * 5, 3000)),
+        getFillColor: [192,132,252,150], getLineColor: [192,132,252,100],
+        lineWidthMinPixels: 1, stroked: true,
+      }));
+      layers.push(new deck.TextLayer({
+        id: 'other-origin-labels', data: otherOrigins,
+        getPosition: d => [d.lng, d.lat],
+        getText: d => `${d.name} ${d.totalTrades}건 (${d.corps.length}법인)`,
+        getSize: 10, getColor: [192,132,252,220], getPixelOffset: [0, -14],
+        fontFamily: 'Noto Sans KR', fontWeight: 700, outlineWidth: 3, outlineColor: [10,10,18,220],
+      }));
+    }
+  }
+  // === 전체 흐름 (시장 선택 시 자동 표시) ===
+  else if ((showFlows || selectedMarket) && summaryData.flows) {
+    let domesticFlows = summaryData.flows.filter(f => f.origin_lat && f.origin_lat !== 0 && !f.foreign);
+    if (selectedMarket) {
+      domesticFlows = domesticFlows.filter(f => f.dest_market === selectedMarket);
+    }
+    // 법인별 분위수로 색상 분배 (각 법인 내에서 상대적 상/중/하위)
+    const corpFlowMap = {};
+    for (const f of domesticFlows) {
+      if (!corpFlowMap[f.dest_corp]) corpFlowMap[f.dest_corp] = [];
+      corpFlowMap[f.dest_corp].push(f.trades);
+    }
+    const corpFT = {};
+    for (const [corp, vals] of Object.entries(corpFlowMap)) {
+      vals.sort((a, b) => a - b);
+      corpFT[corp] = { high: vals[Math.floor(vals.length * 0.7)] || 1, mid: vals[Math.floor(vals.length * 0.35)] || 1 };
+    }
+    layers.push(new deck.ArcLayer({
+      id: 'flows', data: domesticFlows,
+      getSourcePosition: d => [d.origin_lng, d.origin_lat], getTargetPosition: d => [d.dest_lng, d.dest_lat],
+      getSourceColor: d => { const t = corpFT[d.dest_corp] || {high:1,mid:1}; return d.trades >= t.high ? [74,222,128,120] : d.trades >= t.mid ? [96,165,250,100] : [251,146,60,80]; },
+      getTargetColor: d => { const t = corpFT[d.dest_corp] || {high:1,mid:1}; return d.trades >= t.high ? [74,222,128,200] : d.trades >= t.mid ? [96,165,250,160] : [251,146,60,140]; },
+      getWidth: d => { const t = corpFT[d.dest_corp] || {high:1,mid:1}; return Math.max(1, Math.min(d.trades / Math.max(1, t.high/3), 5)); },
+      greatCircle: false, pickable: true,
+    }));
+  }
+
+  // === 법인 점 ===
+  layers.push(new deck.ScatterplotLayer({
+    id: 'corps', data: corpPositions,
+    getPosition: d => [d.displayLng, d.displayLat],
+    getRadius: d => {
+      const v = getCorpMetricValue(d);
+      if (selectedCorp && d.corp === selectedCorp) return getCorpRadius(v) * 1.3;
+      if (selectedCorp || selectedMarket) return getCorpRadius(v) * 0.6;
+      return getCorpRadius(v);
+    },
+    getFillColor: d => {
+      const v = getCorpMetricValue(d);
+      // 시장 선택 시 해당 시장 법인만 full
+      if (selectedMarket) {
+        if (d.market === selectedMarket) return getCorpColor(v);
+        const c = getCorpColor(v); return [c[0],c[1],c[2],40];
+      }
+      if (selectedCorp && d.corp !== selectedCorp) {
+        const c = getCorpColor(v); return [c[0],c[1],c[2],60];
+      }
+      return getCorpColor(v);
+    },
+    getLineColor: d => {
+      if (selectedCorp && d.corp === selectedCorp) return [255,255,255,255];
+      if (selectedMarket && d.market === selectedMarket) return [255,255,255,180];
+      return [255,255,255,40];
+    },
+    lineWidthMinPixels: 1, stroked: true, pickable: true,
+    onClick: ({object}) => { if (object) selectCorp(object); },
+    updateTriggers: { getRadius: [selectedCorp, selectedMarket, mapMetric], getFillColor: [selectedCorp, selectedMarket, mapMetric], getLineColor: [selectedCorp, selectedMarket] },
+    transitions: { getRadius: 300, getFillColor: 300 },
+  }));
+
+  // === 법인 이름 ===
+  layers.push(new deck.TextLayer({
+    id: 'labels', data: corpPositions,
+    getPosition: d => [d.displayLng, d.displayLat],
+    getText: d => d.corp.replace('㈜','').replace('(공)',''),
+    getSize: d => {
+      if (selectedCorp && d.corp === selectedCorp) return 14;
+      if (selectedMarket && d.market === selectedMarket) return 13;
+      if (selectedCorp || selectedMarket) return 10;
+      return 12;
+    },
+    getColor: d => {
+      if (selectedMarket && d.market !== selectedMarket) return [255,255,255,50];
+      if (selectedCorp && d.corp !== selectedCorp) return [255,255,255,80];
+      return [255,255,255,220];
+    },
+    getPixelOffset: [0, -20], fontFamily: 'Noto Sans KR', fontWeight: 700,
+    outlineWidth: 3, outlineColor: [10,10,18,200],
+    updateTriggers: { getSize: [selectedCorp, selectedMarket], getColor: [selectedCorp, selectedMarket] },
+  }));
+
+  deckgl.setProps({ layers });
+}
+
+// === 지도 초기화 (순서 수정: renderMap 먼저!) ===
+function renderMap() {
+  deckgl = new deck.DeckGL({
+    container: 'map',
+    mapStyle: 'https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json',
+    initialViewState: { longitude: 127.5, latitude: 36.0, zoom: 7, pitch: 30, bearing: 0 },
+    controller: true,
+    getTooltip: ({object}) => {
+      if (!object) return null;
+      if (object.corp && object.market) {
+        return {
+          html: `<div style="font-family:'Noto Sans KR';padding:4px;">
+            <strong>${object.corp}</strong><br><span style="color:#94a3b8;">${object.market}</span><br>
+            거래: ${object.trades.toLocaleString()}건<br>물량: ${(object.total_qty/1000).toFixed(1)}톤<br>금액: ${(object.total_amount/10000).toLocaleString()}만원</div>`,
+          style: { background:'rgba(10,10,18,0.92)', color:'#e2e8f0', border:'1px solid #1e293b', borderRadius:'8px', fontSize:'12px' }
+        };
+      }
+      if (object.origin && object.dest_corp) {
+        return {
+          html: `<div style="font-family:'Noto Sans KR';padding:4px;">
+            <strong>${object.origin} → ${object.dest_corp}</strong><br>
+            <span style="color:#94a3b8;">${object.dest_market}</span><br>
+            거래: ${object.trades.toLocaleString()}건<br>수량: ${object.qty.toLocaleString()}</div>`,
+          style: { background:'rgba(10,10,18,0.92)', color:'#e2e8f0', border:'1px solid #fb923c', borderRadius:'8px', fontSize:'12px' }
+        };
+      }
+      return null;
+    },
+  });
+}
+
+async function init() {
+  renderMap();         // deckgl 먼저 생성
+  await loadDate(currentDate); // 그 다음 데이터 로드 + updateLayers
+}
+init();
+</script>
+</body>
+</html>
