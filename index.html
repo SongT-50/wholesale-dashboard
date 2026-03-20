@@ -1483,6 +1483,72 @@ function updateLayers() {
       }));
     }
   }
+  // === 법인 선택 시 전체 산지 (품목 미선택) ===
+  else if (selectedCorp && selectedCorpData) {
+    // 우리 법인 산지 (주황)
+    const myOrigins = {};
+    for (const [pname, poList] of Object.entries(selectedCorpData.product_origins || {})) {
+      for (const o of poList) {
+        if (!o.foreign && o.lat !== 0) {
+          if (!myOrigins[o.name]) myOrigins[o.name] = { ...o, trades: 0, amount: 0 };
+          myOrigins[o.name].trades += o.trades;
+          myOrigins[o.name].amount += o.amount || 0;
+        }
+      }
+    }
+    const myOriginList = Object.values(myOrigins);
+    const myOriginNames = new Set(Object.keys(myOrigins));
+
+    // 다른 법인 산지 중 우리가 안 거래하는 것 (회색)
+    const otherOrigins = {};
+    for (const corp of summaryData.corporations) {
+      if (corp.corp === selectedCorp) continue;
+      for (const [pname, poList] of Object.entries(corp.product_origins || {})) {
+        for (const o of poList) {
+          if (!o.foreign && o.lat !== 0 && !myOriginNames.has(o.name)) {
+            if (!otherOrigins[o.name]) otherOrigins[o.name] = { ...o, trades: 0, corpCount: 0 };
+            otherOrigins[o.name].trades += o.trades;
+          }
+        }
+      }
+    }
+    const otherOriginList = Object.values(otherOrigins);
+
+    // 우리 산지 → 법인 아크
+    if (myOriginList.length > 0) {
+      const corpPos = corpPositions.find(c => c.corp === selectedCorp);
+      const destLng = corpPos ? corpPos.displayLng : selectedCorpData.lng;
+      const destLat = corpPos ? corpPos.displayLat : selectedCorpData.lat;
+      layers.push(new deck.ArcLayer({
+        id: 'corp-origin-flows', data: myOriginList,
+        getSourcePosition: d => [d.lng, d.lat], getTargetPosition: () => [destLng, destLat],
+        getSourceColor: [251,146,60,140], getTargetColor: [74,222,128,200],
+        getWidth: d => Math.max(1.5, Math.min(d.trades / 8, 5)), greatCircle: false,
+      }));
+      layers.push(new deck.ScatterplotLayer({
+        id: 'my-origin-dots', data: myOriginList,
+        getPosition: d => [d.lng, d.lat], getRadius: 2500,
+        getFillColor: [251,146,60,200], getLineColor: [255,255,255,150],
+        lineWidthMinPixels: 1, stroked: true,
+      }));
+      layers.push(new deck.TextLayer({
+        id: 'my-origin-labels', data: myOriginList.slice(0, 30),
+        getPosition: d => [d.lng, d.lat], getText: d => d.name,
+        getSize: 11, getColor: [251,146,60,220], getPixelOffset: [0, -16],
+        fontFamily: 'Noto Sans KR', fontWeight: 700, outlineWidth: 3, outlineColor: [10,10,18,220],
+      }));
+    }
+
+    // 미거래 산지 (회색 점)
+    if (otherOriginList.length > 0) {
+      layers.push(new deck.ScatterplotLayer({
+        id: 'other-origin-dots', data: otherOriginList,
+        getPosition: d => [d.lng, d.lat], getRadius: 1500,
+        getFillColor: [120,120,120,100], getLineColor: [120,120,120,60],
+        lineWidthMinPixels: 1, stroked: true,
+      }));
+    }
+  }
   // === 전체 흐름 (시장 선택 시 자동 표시) ===
   else if ((showFlows || selectedMarket) && summaryData.flows) {
     let domesticFlows = summaryData.flows.filter(f => f.origin_lat && f.origin_lat !== 0 && !f.foreign);
