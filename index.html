@@ -279,7 +279,61 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', s
   .foreign-badge { left: 10px; bottom: 120px; max-width: 200px; font-size: 10px; }
   #legendMetricLabel { display: none; }
   .detail-map-btn { display: block; }
+  .guide-btn { bottom: 12px; right: 12px; width: 36px; height: 36px; font-size: 16px; }
+  .guide-overlay .guide-content { width: 95vw; max-height: 85vh; padding: 20px; }
+  .guide-overlay h2 { font-size: 16px; }
+  .guide-overlay h3 { font-size: 13px; }
+  .guide-section { padding: 12px; }
 }
+
+/* 가이드 버튼 */
+.guide-btn {
+  position: fixed; bottom: 20px; right: 20px; z-index: 20;
+  width: 44px; height: 44px; border-radius: 50%;
+  background: rgba(74,222,128,0.15); border: 1px solid var(--accent);
+  color: var(--accent); font-size: 20px; font-weight: 900;
+  cursor: pointer; transition: all 0.2s;
+  display: flex; align-items: center; justify-content: center;
+}
+.guide-btn:hover { background: rgba(74,222,128,0.3); transform: scale(1.1); }
+
+/* 가이드 오버레이 */
+.guide-overlay {
+  position: fixed; inset: 0; z-index: 100;
+  background: rgba(0,0,0,0.7); backdrop-filter: blur(4px);
+  display: none; align-items: center; justify-content: center;
+}
+.guide-overlay.open { display: flex; }
+.guide-overlay .guide-content {
+  background: var(--bg); border: 1px solid var(--border); border-radius: 14px;
+  width: 680px; max-height: 80vh; overflow-y: auto; padding: 28px 32px;
+  position: relative;
+}
+.guide-overlay .guide-close {
+  position: absolute; top: 14px; right: 14px;
+  background: none; border: 1px solid var(--border); color: var(--dim);
+  width: 30px; height: 30px; border-radius: 6px; cursor: pointer; font-size: 16px;
+}
+.guide-overlay .guide-close:hover { color: var(--text); border-color: var(--text); }
+.guide-overlay h2 { font-size: 20px; font-weight: 900; color: var(--accent); margin-bottom: 6px; }
+.guide-overlay .guide-subtitle { font-size: 13px; color: var(--dim); margin-bottom: 20px; }
+.guide-overlay h3 { font-size: 14px; font-weight: 700; color: var(--blue); margin: 16px 0 8px; }
+.guide-section {
+  background: var(--card); border: 1px solid var(--border); border-radius: 8px;
+  padding: 14px 16px; margin-bottom: 10px;
+}
+.guide-section p { font-size: 12.5px; line-height: 1.7; color: var(--text); margin: 0; }
+.guide-section .gkey {
+  display: inline-block; background: rgba(74,222,128,0.12); border: 1px solid rgba(74,222,128,0.3);
+  border-radius: 4px; padding: 1px 7px; font-family: 'JetBrains Mono'; font-size: 11px;
+  color: var(--accent); font-weight: 700;
+}
+.guide-section .gdot {
+  display: inline-block; width: 8px; height: 8px; border-radius: 50%; vertical-align: middle; margin-right: 4px;
+}
+.guide-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+@media (max-width: 768px) { .guide-grid { grid-template-columns: 1fr; } }
+.guide-footer { font-size: 11px; color: var(--dim); text-align: center; margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--border); }
 </style>
 </head>
 <body>
@@ -383,6 +437,89 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', s
   <button class="metric-btn" data-metric="qty" onclick="setMapMetric('qty')">물량</button>
   <button class="metric-btn" data-metric="amount" onclick="setMapMetric('amount')">금액</button>
 </div>
+<!-- 가이드 버튼 -->
+<button class="guide-btn" onclick="toggleGuide()" title="사용 가이드 (? 키)">?</button>
+
+<!-- 가이드 오버레이 -->
+<div class="guide-overlay" id="guideOverlay" onclick="if(event.target===this)toggleGuide()">
+  <div class="guide-content">
+    <button class="guide-close" onclick="toggleGuide()">&times;</button>
+    <h2>전국 도매시장 법인 대시보드</h2>
+    <div class="guide-subtitle">전국 12개 공영도매시장, 23개 법인의 거래 현황을 지도 위에서 한눈에 비교합니다.</div>
+
+    <h3>이 대시보드는 뭔가요?</h3>
+    <div class="guide-section">
+      <p>
+        농산물 공영도매시장에서는 매일 수천 건의 경매·거래가 이뤄집니다.<br>
+        이 대시보드는 <strong>공공데이터포털(data.go.kr)</strong>의 도매시장 거래 데이터를 수집·분석해서,<br>
+        어떤 법인이 어떤 품목을 얼마에, 어디 산지에서 가져오는지 시각화한 도구입니다.
+      </p>
+    </div>
+
+    <h3>기본 사용법</h3>
+    <div class="guide-grid">
+      <div class="guide-section">
+        <p><strong>📅 날짜 이동</strong><br>
+        상단 <span class="gkey">&lt;</span> <span class="gkey">&gt;</span> 버튼 또는 키보드 <span class="gkey">←</span> <span class="gkey">→</span> 키로 날짜를 변경합니다.<br>
+        오늘 데이터가 없으면 자동으로 가장 최근 거래일로 이동합니다.</p>
+      </div>
+      <div class="guide-section">
+        <p><strong>📊 기간 합산</strong><br>
+        <span class="gkey">1일</span> <span class="gkey">1주</span> <span class="gkey">1달</span> 버튼으로 기간을 변경합니다.<br>
+        1주·1달은 여러 날의 데이터를 합산해서 보여줍니다.</p>
+      </div>
+    </div>
+
+    <h3>3가지 보기 모드</h3>
+    <div class="guide-section">
+      <p><strong>1. 법인별</strong> (단축키 <span class="gkey">1</span>) — 법인을 거래 순으로 정렬. 클릭하면 상세 패널이 열리며 품목·산지를 볼 수 있습니다.<br>
+      <strong>2. 시장별</strong> (단축키 <span class="gkey">2</span>) — 시장 단위로 묶어서 비교. 클릭하면 해당 시장으로 줌인합니다.<br>
+      <strong>3. 가격비교</strong> (단축키 <span class="gkey">3</span>) — 같은 품목의 법인별 가격을 한눈에 비교합니다. 산지 분포도 함께 표시됩니다.</p>
+    </div>
+
+    <h3>지도 위 기능</h3>
+    <div class="guide-grid">
+      <div class="guide-section">
+        <p><strong>원 크기/색상</strong><br>
+        <span class="gdot" style="background:#4ade80;"></span>초록 = 상위 30%<br>
+        <span class="gdot" style="background:#60a5fa;"></span>파랑 = 중간<br>
+        <span class="gdot" style="background:#fb923c;"></span>주황 = 하위 40%<br>
+        원 크기는 선택한 지표에 비례합니다.</p>
+      </div>
+      <div class="guide-section">
+        <p><strong>지표 전환</strong> (단축키 <span class="gkey">M</span>)<br>
+        <span class="gkey">건수</span> <span class="gkey">물량</span> <span class="gkey">금액</span> 버튼으로 지도의 기준 지표를 바꿉니다.<br><br>
+        <strong>물류 흐름</strong> (단축키 <span class="gkey">F</span>)<br>
+        산지→시장 물류 아크를 지도에 표시합니다.</p>
+      </div>
+    </div>
+
+    <h3>법인 상세 패널</h3>
+    <div class="guide-section">
+      <p>법인을 클릭하면 우측에 상세 패널이 열립니다.<br>
+      <strong>품목 클릭</strong> → 해당 품목의 산지가 지도에 표시됩니다 (주황=우리 산지, 보라=경쟁 산지).<br>
+      <strong>"우리 5개 / 미거래 7개"</strong> — 우리 법인이 거래하는 산지 vs 다른 법인만 거래하는 산지를 비교합니다.<br>
+      <span class="gkey">Esc</span> 키로 닫을 수 있습니다.</p>
+    </div>
+
+    <h3>키보드 단축키</h3>
+    <div class="guide-section">
+      <p>
+        <span class="gkey">←</span> <span class="gkey">→</span> 날짜 이동 &nbsp;|&nbsp;
+        <span class="gkey">1</span> <span class="gkey">2</span> <span class="gkey">3</span> 탭 전환 &nbsp;|&nbsp;
+        <span class="gkey">M</span> 지표 순환 &nbsp;|&nbsp;
+        <span class="gkey">F</span> 물류 흐름 &nbsp;|&nbsp;
+        <span class="gkey">Esc</span> 닫기 &nbsp;|&nbsp;
+        <span class="gkey">?</span> 이 가이드
+      </p>
+    </div>
+
+    <div class="guide-footer">
+      데이터 출처: 공공데이터포털(data.go.kr) 도매시장 거래정보 &nbsp;|&nbsp; 삽질코딩
+    </div>
+  </div>
+</div>
+
 <div class="legend">
   <span><span class="legend-dot" style="background:#4ade80;"></span>상위 30%</span>
   <span><span class="legend-dot" style="background:#60a5fa;"></span>중간</span>
@@ -416,6 +553,9 @@ function toggleDetailMap() {
     document.getElementById('mobileToggle').style.display = 'none';
   }
   if (deckgl) setTimeout(() => window.dispatchEvent(new Event('resize')), 350);
+}
+function toggleGuide() {
+  document.getElementById('guideOverlay').classList.toggle('open');
 }
 function toggleMobilePanel() {
   mobileMapMode = !mobileMapMode;
@@ -463,7 +603,8 @@ document.addEventListener('keydown', e => {
   if (e.target.tagName === 'INPUT') return;
   if (e.key === 'ArrowLeft') changeDate(-1);
   else if (e.key === 'ArrowRight') changeDate(1);
-  else if (e.key === 'Escape') { closeDetail(); clearPriceSelection(); }
+  else if (e.key === 'Escape') { const g=document.getElementById('guideOverlay'); if(g.classList.contains('open')){toggleGuide();return;} closeDetail(); clearPriceSelection(); }
+  else if (e.key === '?' || e.key === '/') toggleGuide();
   else if (e.key === 'f' || e.key === 'F') toggleFlows();
   else if (e.key === '1') switchTab('corp');
   else if (e.key === '2') switchTab('market');
