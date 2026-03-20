@@ -204,10 +204,22 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', s
 .flow-toggle:hover { border-color: var(--accent); color: var(--accent); }
 .flow-toggle.active { border-color: var(--accent); color: var(--accent); background: rgba(74,222,128,0.1); }
 
+/* 패널 내 인라인 메트릭 토글 (모바일만 표시) */
+.metric-toggle-inline {
+  display: none; gap: 2px; background: var(--card); border: 1px solid var(--accent);
+  border-radius: 8px; padding: 3px; margin-bottom: 8px;
+}
+/* 지도 위 플로팅 메트릭 토글 (PC) */
 .metric-toggle {
   position: fixed; bottom: 96px; left: 380px; display: flex; gap: 2px;
   background: rgba(10,10,18,0.92); border: 1px solid var(--accent); border-radius: 8px;
   padding: 4px; z-index: 10;
+}
+/* 모바일 상세 패널 지도 보기 버튼 */
+.detail-map-btn {
+  display: none; background: var(--card); border: 1px solid var(--accent); color: var(--accent);
+  border-radius: 8px; padding: 6px 14px; font-size: 12px; font-weight: 700;
+  cursor: pointer; font-family: 'Noto Sans KR'; margin-bottom: 8px;
 }
 .metric-btn {
   background: transparent; border: 1px solid transparent; color: var(--dim);
@@ -261,10 +273,12 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', s
   .origin-float-panel { bottom: 10px; right: 10px; width: 220px; max-height: 250px; }
   .legend { left: 10px; font-size: 10px; bottom: 10px; gap: 8px; padding: 6px 10px; }
   .flow-toggle { left: 10px; bottom: 50px; font-size: 11px; padding: 6px 10px; }
-  .metric-toggle { left: 10px; bottom: 86px; padding: 3px; }
+  .metric-toggle { display: none; }
+  .metric-toggle-inline { display: flex; }
   .metric-btn { padding: 4px 8px; font-size: 10px; }
   .foreign-badge { left: 10px; bottom: 120px; max-width: 200px; font-size: 10px; }
   #legendMetricLabel { display: none; }
+  .detail-map-btn { display: block; }
 }
 </style>
 </head>
@@ -295,6 +309,11 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', s
     <div class="summary-card"><div class="num" id="totalQty">-</div><div class="label">물량(톤)</div></div>
   </div>
 
+  <div class="metric-toggle-inline" id="metricToggleInline">
+    <button class="metric-btn active" data-metric="trades" onclick="setMapMetric('trades')">건수</button>
+    <button class="metric-btn" data-metric="qty" onclick="setMapMetric('qty')">물량</button>
+    <button class="metric-btn" data-metric="amount" onclick="setMapMetric('amount')">금액</button>
+  </div>
   <div class="tab-bar">
     <button class="tab-btn active" data-tab="corp" onclick="switchTab('corp')">법인별</button>
     <button class="tab-btn" data-tab="market" onclick="switchTab('market')">시장별</button>
@@ -325,7 +344,10 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', s
 
 <div class="detail-panel" id="detailPanel">
   <button class="detail-close" onclick="closeDetail()">&times;</button>
-  <h2 id="detailCorp">-</h2>
+  <div style="display:flex;align-items:center;gap:8px;">
+    <h2 id="detailCorp" style="flex:1;">-</h2>
+    <button class="detail-map-btn" id="detailMapBtn" onclick="toggleDetailMap()">지도 보기</button>
+  </div>
   <div class="market-label" id="detailMarket">-</div>
   <div class="period-bar" id="detailPeriodBar">
     <button class="period-btn active" onclick="switchDetailPeriod('1d')">1일</button>
@@ -370,10 +392,30 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', s
 
 <script>
 let mobileMapMode = false;
+let detailMapMode = false;
 function isMobile() { return window.innerWidth <= 768; }
 function openDetailPanel() {
   document.getElementById('detailPanel').classList.add('open');
   if (isMobile()) { document.querySelector('.panel').classList.add('hidden'); document.getElementById('mobileToggle').style.display = 'none'; }
+}
+function toggleDetailMap() {
+  if (!isMobile()) return;
+  const dp = document.getElementById('detailPanel');
+  const btn = document.getElementById('detailMapBtn');
+  detailMapMode = !detailMapMode;
+  if (detailMapMode) {
+    dp.classList.remove('open');
+    btn.textContent = '정보 보기';
+    // 하단에 돌아가기 버튼 표시
+    document.getElementById('mobileToggle').style.display = 'block';
+    document.getElementById('mobileToggle').textContent = '상세 보기';
+    document.getElementById('mobileToggle').onclick = function() { toggleDetailMap(); };
+  } else {
+    dp.classList.add('open');
+    btn.textContent = '지도 보기';
+    document.getElementById('mobileToggle').style.display = 'none';
+  }
+  if (deckgl) setTimeout(() => window.dispatchEvent(new Event('resize')), 350);
 }
 function toggleMobilePanel() {
   mobileMapMode = !mobileMapMode;
@@ -926,6 +968,7 @@ function clearProductSelection() {
 function closeDetail() {
   document.getElementById('detailPanel').classList.remove('open');
   selectedCorp = null; selectedCorpData = null; selectedProduct = null;
+  detailMapMode = false;
   document.querySelectorAll('.corp-item').forEach(el => el.classList.remove('active'));
   document.querySelectorAll('.market-item').forEach(el => el.classList.remove('active'));
   document.getElementById('foreignBadge').classList.remove('visible');
@@ -935,6 +978,7 @@ function closeDetail() {
     mobileMapMode = false;
     const btn = document.getElementById('mobileToggle');
     btn.textContent = '지도 보기'; btn.style.display = '';
+    btn.onclick = toggleMobilePanel;
   }
   if (deckgl) updateLayers();
 }
@@ -1087,6 +1131,7 @@ function getCorpMetricValue(corp) {
 
 function setMapMetric(metric) {
   mapMetric = metric;
+  // 인라인 + 플로팅 메트릭 버튼 모두 동기화
   document.querySelectorAll('.metric-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.metric === metric));
   const labels = { trades: '거래건수', qty: '물량(톤)', amount: '거래금액' };
   document.getElementById('legendMetricLabel').textContent = `| 원 크기 = ${labels[metric]} 비례`;
