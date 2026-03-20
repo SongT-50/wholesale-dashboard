@@ -218,8 +218,8 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', s
 /* 모바일 상세 패널 지도 보기 버튼 */
 .detail-map-btn {
   display: none; background: var(--card); border: 1px solid var(--accent); color: var(--accent);
-  border-radius: 8px; padding: 6px 14px; font-size: 12px; font-weight: 700;
-  cursor: pointer; font-family: 'Noto Sans KR'; margin-bottom: 8px;
+  border-radius: 8px; padding: 8px 14px; font-size: 12px; font-weight: 700;
+  cursor: pointer; font-family: 'Noto Sans KR'; text-align: center;
 }
 .metric-btn {
   background: transparent; border: 1px solid transparent; color: var(--dim);
@@ -278,13 +278,32 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', s
   .metric-btn { padding: 4px 8px; font-size: 10px; }
   .foreign-badge { left: 10px; bottom: 120px; max-width: 200px; font-size: 10px; }
   #legendMetricLabel { display: none; }
-  .detail-map-btn { display: block; }
+  .detail-close { width: 36px; height: 36px; font-size: 20px; top: 10px; right: 10px; }
+  .detail-map-btn { display: block; width: 100%; padding: 10px; font-size: 13px; margin-bottom: 12px; }
   .guide-btn { bottom: 12px; right: 12px; width: 36px; height: 36px; font-size: 16px; }
   .guide-overlay .guide-content { width: 95vw; max-height: 85vh; padding: 20px; }
   .guide-overlay h2 { font-size: 16px; }
   .guide-overlay h3 { font-size: 13px; }
   .guide-section { padding: 12px; }
 }
+
+/* 우리 법인(MY) 배지 */
+.corp-item.my-corp {
+  border-color: rgba(250,204,21,0.4); background: rgba(250,204,21,0.05);
+}
+.corp-item.my-corp:hover { border-color: var(--yellow); background: rgba(250,204,21,0.1); }
+.my-badge {
+  display: inline-block; background: rgba(250,204,21,0.2); border: 1px solid rgba(250,204,21,0.5);
+  color: var(--yellow); font-size: 9px; font-weight: 900; padding: 1px 6px;
+  border-radius: 8px; margin-left: 6px; vertical-align: middle; letter-spacing: 0.5px;
+}
+
+/* 크레딧 바 */
+.credit-bar {
+  position: fixed; top: 8px; right: 12px; z-index: 5;
+  font-size: 10px; color: var(--dim); font-family: 'Noto Sans KR';
+}
+.credit-bar .credit-name { color: var(--yellow); font-weight: 700; }
 
 /* 가이드 헤더 버튼 */
 .guide-header-btn {
@@ -336,6 +355,8 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', s
 </head>
 <body>
 <div id="map"></div>
+
+<div class="credit-bar">거래정보 : <span class="credit-name">대전중앙청과 송태은</span></div>
 
 <div class="panel">
   <h1 style="display:flex;align-items:center;gap:8px;">전국 도매시장 법인 <button class="guide-header-btn" onclick="toggleGuide()">사용 가이드</button></h1>
@@ -396,10 +417,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', s
 
 <div class="detail-panel" id="detailPanel">
   <button class="detail-close" onclick="closeDetail()">&times;</button>
-  <div style="display:flex;align-items:center;gap:8px;">
-    <h2 id="detailCorp" style="flex:1;">-</h2>
-    <button class="detail-map-btn" id="detailMapBtn" onclick="toggleDetailMap()">지도 보기</button>
-  </div>
+  <h2 id="detailCorp" style="padding-right:40px;">-</h2>
   <div class="market-label" id="detailMarket">-</div>
   <div class="period-bar" id="detailPeriodBar">
     <button class="period-btn active" onclick="switchDetailPeriod('1d')">1일</button>
@@ -411,6 +429,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', s
     <div class="detail-stat"><div class="n" id="dQty">-</div><div class="l">물량(톤)</div></div>
     <div class="detail-stat"><div class="n" id="dAmount">-</div><div class="l">금액(만원)</div></div>
   </div>
+  <button class="detail-map-btn" id="detailMapBtn" onclick="toggleDetailMap()">지도 보기</button>
   <div class="product-origins-section" id="productOriginsSection">
     <div class="product-origins-header">
       <span id="poProductName">-</span>
@@ -510,7 +529,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', s
     </div>
 
     <div class="guide-footer">
-      데이터 출처: 공공데이터포털(data.go.kr) 도매시장 거래정보 &nbsp;|&nbsp; 삽질코딩
+      거래정보 : 대전중앙청과 송태은 &nbsp;|&nbsp; 데이터 출처: 공공데이터포털(data.go.kr) &nbsp;|&nbsp; 삽질코딩
     </div>
   </div>
 </div>
@@ -891,9 +910,11 @@ function renderCorpList() {
   const sorted = [...summaryData.corporations].sort((a, b) => getCorpMetricValue(b) - getCorpMetricValue(a));
   for (const corp of sorted) {
     const div = document.createElement('div');
-    div.className = 'corp-item';
+    const isMy = corp.corp === '대전중앙청과㈜';
+    div.className = 'corp-item' + (isMy ? ' my-corp' : '');
     div.dataset.corp = corp.corp;
-    div.innerHTML = `<div><div class="corp-name">${corp.corp}</div><div class="corp-market">${corp.market}</div></div>
+    const badge = isMy ? '<span class="my-badge">MY</span>' : '';
+    div.innerHTML = `<div><div class="corp-name">${corp.corp}${badge}</div><div class="corp-market">${corp.market}</div></div>
       <div class="corp-trades">${formatMetricValue(corp)}</div>`;
     div.addEventListener('click', () => selectCorp(corp));
     list.appendChild(div);
@@ -1492,6 +1513,21 @@ function updateLayers() {
   // === 우리 법인 강조 ===
   const MY_CORP = '대전중앙청과㈜';
   const isMyCorp = d => d.corp === MY_CORP;
+
+  // 우리 법인 펄스 링 (노란색 깜빡이는 외곽선)
+  const myCorpData = corpPositions.filter(isMyCorp);
+  if (myCorpData.length > 0 && !selectedPriceProduct) {
+    const pulsePhase = (Date.now() % 2000) / 2000; // 0~1 순환
+    const pulseAlpha = Math.floor(80 + 120 * Math.abs(Math.sin(pulsePhase * Math.PI)));
+    layers.push(new deck.ScatterplotLayer({
+      id: 'my-corp-ring', data: myCorpData,
+      getPosition: d => [d.displayLng, d.displayLat],
+      getRadius: d => getCorpRadius(getCorpMetricValue(d)) * 1.5,
+      getFillColor: [0,0,0,0],
+      getLineColor: [250, 204, 21, pulseAlpha],
+      lineWidthMinPixels: 2, stroked: true, filled: false,
+    }));
+  }
 
   // === 법인 점 ===
   layers.push(new deck.ScatterplotLayer({
