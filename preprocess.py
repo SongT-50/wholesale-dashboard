@@ -1,5 +1,6 @@
 """경매 원본 데이터 → 대시보드용 요약 JSON 생성
 법인 기준 집계 (38개 법인 × 품목별 거래량/가격/산지)
++ 출하예약 데이터 포함
 
 사용: python preprocess.py --date 2026-03-09
 """
@@ -7,6 +8,7 @@ import sys
 import json
 import argparse
 from collections import defaultdict
+from datetime import datetime, timedelta
 from pathlib import Path
 
 sys.stdout.reconfigure(encoding="utf-8")
@@ -31,6 +33,102 @@ def load_auction(date: str) -> dict | None:
         with open(f, "r", encoding="utf-8") as fp:
             return json.load(fp)
     return None
+
+
+def load_shipment(base_date: str) -> dict | None:
+    """정산일 기준 +1~+3일 출하예약 파일 탐색"""
+    d = datetime.strptime(base_date, "%Y-%m-%d")
+    for delta in range(1, 4):
+        target = (d + timedelta(days=delta)).strftime("%Y-%m-%d")
+        for search_dir in [DATA_DIR, ARCHIVE_DIR / target[:7]]:
+            f = search_dir / f"shipment_{target}.json"
+            if f.exists():
+                with open(f, "r", encoding="utf-8") as fp:
+                    data = json.load(fp)
+                if data.get("total_collected", 0) > 0:
+                    return data
+    return None
+
+
+def summarize_shipment(ship_data: dict, corp_coords: dict) -> dict:
+    """출하예약 원본 → 대시보드용 요약"""
+    ship_date = ship_data.get("date", "")
+    total_items = 0
+    total_kg = 0.0
+
+    corp_agg = defaultdict(lambda: {"items": 0, "qty_kg": 0.0, "products": defaultdict(lambda: {"qty": 0, "qty_kg": 0.0, "grades": set()})})
+    market_agg = defaultdict(lambda: {"items": 0, "qty_kg": 0.0})
+
+    for mcode, mdata in ship_data.get("markets", {}).items():
+        for item in mdata.get("items", []):
+            corp_name = item.get("corp_name", "")
+            product = item.get("product", "")
+            qty = float(item.get("quantity", 0) or 0)
+            unit_wt = float(item.get("unit_weight", 0) or 0)
+            kg = qty * unit_wt
+            grade = item.get("grade", "")
+            market_name = item.get("market_name", "")
+
+            total_items += 1
+            total_kg += kg
+
+            if corp_name:
+                ca = corp_agg[corp_name]
+                ca["items"] += 1
+                ca["qty_kg"] += kg
+                if product:
+                    pa = ca["products"][product]
+                    pa["qty"] += qty
+                    pa["qty_kg"] += kg
+                    if grade:
+                        pa["grades"].add(grade)
+
+            if market_name:
+                ma = market_agg[market_name]
+                ma["items"] += 1
+                ma["qty_kg"] += kg
+
+    # 법인 리스트
+    corps = []
+    for corp_name, ca in sorted(corp_agg.items(), key=lambda x: -x[1]["qty_kg"]):
+        info = corp_coords.get(corp_name, {})
+        products = []
+        for pname, pa in sorted(ca["products"].items(), key=lambda x: -x[1]["qty_kg"]):
+            products.append({
+                "name": pname,
+                "qty": int(pa["qty"]) if pa["qty"] == int(pa["qty"]) else pa["qty"],
+                "qty_kg": round(pa["qty_kg"], 1),
+                "grade": ", ".join(sorted(pa["grades"])) if pa["grades"] else "",
+            })
+        corps.append({
+            "corp": corp_name,
+            "market": info.get("market", ""),
+            "market_code": info.get("market_code", ""),
+            "lat": info.get("lat", 0),
+            "lng": info.get("lng", 0),
+            "items": ca["items"],
+            "qty_kg": round(ca["qty_kg"], 1),
+            "products": products[:30],
+        })
+
+    # 시장 리스트
+    markets = []
+    for mname, ma in sorted(market_agg.items(), key=lambda x: -x[1]["qty_kg"]):
+        markets.append({
+            "market": mname,
+            "items": ma["items"],
+            "qty_kg": round(ma["qty_kg"], 1),
+        })
+
+    return {
+        "date": ship_date,
+        "total_items": total_items,
+        "total_qty_kg": round(total_kg, 1),
+        "market_count": len(markets),
+        "corp_count": len(corps),
+        "markets": markets,
+        "corporations": corps,
+    }
 
 
 def load_corps() -> list[dict]:
@@ -311,6 +409,12 @@ def preprocess(date: str):
         "flows": flows_list,
         "price_map": price_map,
     }
+
+    # 출하예약 데이터 포함
+    ship_data = load_shipment(date)
+    if ship_data:
+        result["shipments"] = summarize_shipment(ship_data, corp_coords)
+        print(f"  출하예약: {result['shipments']['date']} ({result['shipments']['total_items']:,}건, {result['shipments']['total_qty_kg']:,.0f}kg)")
 
     OUT_DIR.mkdir(exist_ok=True)
     out = OUT_DIR / f"summary_{date}.json"

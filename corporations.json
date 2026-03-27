@@ -47,5 +47,28 @@
   {"market": "전주", "market_code": "350101", "corp": "전주청과물㈜", "lat": 35.8168, "lng": 127.1110},
 
   {"market": "창원팔용", "market_code": "380101", "corp": "농협창원(공)", "lat": 35.2332, "lng": 128.6575},
-  {"market": "창원팔용", "market_code": "380101", "corp": "㈜창원청과시장", "lat": 35.2332, "lng": 128.6575}
+  {"market": "창원팔용", "market_code": "380101", "corp": "㈜창원청과시장", "lat": 35.2332, "lng": 128.6575},
+
+  {"market": "부산반여", "market_code": "210009", "corp": "동부청과㈜", "lat": 35.1956, "lng": 129.0942},
+  {"market": "부산반여", "market_code": "210009", "corp": "부산중앙청과㈜", "lat": 35.1956, "lng": 129.0942},
+  {"market": "울산", "market_code": "380201", "corp": "울산중앙청과시장㈜", "lat": 35.5469, "lng": 129.2570},
+  {"market": "구리", "market_code": "311201", "corp": "구리청과㈜", "lat": 37.5924, "lng": 127.1293},
+  {"market": "구리", "market_code": "311201", "corp": "㈜인터넷청과", "lat": 37.5924, "lng": 127.1293},
+  {"market": "안산", "market_code": "310901", "corp": "안산농산물㈜", "lat": 37.3139, "lng": 126.8308},
+  {"market": "구미", "market_code": "371501", "corp": "구미중앙청과㈜", "lat": 36.1190, "lng": 128.3446},
+  {"market": "수원", "market_code": "310101", "corp": "경기청과㈜", "lat": 37.2790, "lng": 127.0150},
+  {"market": "안양", "market_code": "310401", "corp": "안양농산물㈜", "lat": 37.3943, "lng": 126.9568},
+  {"market": "춘천", "market_code": "320101", "corp": "춘천중앙청과㈜", "lat": 37.8813, "lng": 127.7298},
+  {"market": "원주", "market_code": "320201", "corp": "합동청과㈜", "lat": 37.3422, "lng": 127.9202},
+  {"market": "강릉", "market_code": "320301", "corp": "㈜강릉농산물", "lat": 37.7519, "lng": 128.8961},
+  {"market": "청주", "market_code": "330101", "corp": "청주청과시장㈜", "lat": 36.6424, "lng": 127.4890},
+  {"market": "충주", "market_code": "330201", "corp": "충주중원청과㈜", "lat": 36.9910, "lng": 127.9259},
+  {"market": "익산", "market_code": "350301", "corp": "(합자)이리청과회사", "lat": 35.9588, "lng": 126.9548},
+  {"market": "순천", "market_code": "360301", "corp": "남일청과㈜", "lat": 34.9506, "lng": 127.4872},
+  {"market": "순천", "market_code": "360301", "corp": "순천남도청과㈜", "lat": 34.9506, "lng": 127.4872},
+  {"market": "포항", "market_code": "370101", "corp": "포항청과㈜", "lat": 36.0190, "lng": 129.3650},
+  {"market": "안동", "market_code": "370401", "corp": "안동청과(합자)", "lat": 36.5684, "lng": 128.7294},
+  {"market": "안동", "market_code": "370401", "corp": "(주)경북청과", "lat": 36.5684, "lng": 128.7294},
+  {"market": "창원내서", "market_code": "380303", "corp": "마산청과시장㈜", "lat": 35.2100, "lng": 128.5562},
+  {"market": "진주", "market_code": "380401", "corp": "진주중앙청과㈜", "lat": 35.1798, "lng": 128.1076}
 ]

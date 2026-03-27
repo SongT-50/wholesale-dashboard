@@ -287,6 +287,33 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', s
   .guide-section { padding: 12px; }
 }
 
+/* 출하예약 탭 */
+.ship-market-group { margin-bottom: 10px; }
+.ship-market-header {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 8px 10px; background: var(--card); border: 1px solid var(--border);
+  border-radius: 8px; cursor: pointer; transition: all 0.15s;
+}
+.ship-market-header:hover { border-color: var(--purple); }
+.ship-market-header.expanded { border-color: var(--purple); background: rgba(192,132,252,0.05); border-radius: 8px 8px 0 0; }
+.ship-market-name { font-size: 13px; font-weight: 700; }
+.ship-market-info { font-family: 'JetBrains Mono'; font-size: 12px; color: var(--purple); }
+.ship-corp-list { display: none; border: 1px solid var(--border); border-top: none; border-radius: 0 0 8px 8px; padding: 4px 8px; background: rgba(18,18,30,0.6); }
+.ship-corp-list.expanded { display: block; }
+.ship-corp-item {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 6px 4px; font-size: 12px; border-bottom: 1px solid rgba(30,41,59,0.3);
+  cursor: pointer; transition: background 0.1s;
+}
+.ship-corp-item:hover { background: rgba(192,132,252,0.06); }
+.ship-corp-item:last-child { border-bottom: none; }
+.ship-product-row {
+  display: flex; justify-content: space-between; padding: 3px 4px; font-size: 11px;
+  border-bottom: 1px solid rgba(30,41,59,0.3); color: var(--dim);
+}
+.ship-product-row:last-child { border-bottom: none; }
+.no-shipment { text-align: center; color: var(--dim); font-size: 13px; padding: 30px 0; }
+
 /* 우리 법인(MY) 배지 */
 .corp-item.my-corp {
   border-color: rgba(250,204,21,0.4); background: rgba(250,204,21,0.05);
@@ -362,16 +389,26 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', s
   <h1 style="display:flex;align-items:center;gap:8px;">전국 도매시장 법인 <button class="guide-header-btn" onclick="toggleGuide()">사용 가이드</button></h1>
   <div class="date-nav">
     <button onclick="changeDate(-1)" id="prevBtn">&lt;</button>
-    <div style="flex:1;text-align:center;">
+    <div style="flex:1;text-align:center;cursor:pointer;" onclick="toggleDatePicker()">
       <div class="date-label" id="dateLabel">-</div>
-      <div class="date-sub" id="dateSub">정산 기준</div>
+      <div class="date-sub" id="dateSub">정산 기준 (클릭하여 날짜 선택)</div>
     </div>
     <button onclick="changeDate(1)" id="nextBtn">&gt;</button>
+  </div>
+  <input type="date" id="datePicker" style="position:absolute;opacity:0;pointer-events:none;z-index:-1;"
+    onchange="jumpToDate(this.value)">
+  <div style="display:flex;align-items:center;gap:6px;margin-bottom:8px;">
+    <button class="period-btn" onclick="changeDate(-7)" style="font-size:10px;">◀7일</button>
+    <button class="period-btn" onclick="changeDate(-30)" style="font-size:10px;">◀30일</button>
+    <button class="period-btn" onclick="jumpToToday()" style="font-size:10px;">오늘</button>
+    <button class="period-btn" onclick="changeDate(30)" style="font-size:10px;">30일▶</button>
+    <button class="period-btn" onclick="changeDate(7)" style="font-size:10px;">7일▶</button>
   </div>
   <div class="period-bar">
     <button class="period-btn active" onclick="setPeriod('1d')">1일</button>
     <button class="period-btn" onclick="setPeriod('1w')">1주</button>
     <button class="period-btn" onclick="setPeriod('1m')">1달</button>
+    <button class="period-btn" onclick="setPeriod('1y')">1년</button>
   </div>
   <div class="date-loading" id="dateLoading">데이터 로딩 중...</div>
 
@@ -391,6 +428,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', s
     <button class="tab-btn active" data-tab="corp" onclick="switchTab('corp')">법인별</button>
     <button class="tab-btn" data-tab="market" onclick="switchTab('market')">시장별</button>
     <button class="tab-btn" data-tab="price" onclick="switchTab('price')">가격비교</button>
+    <button class="tab-btn" data-tab="shipment" onclick="switchTab('shipment')">내일 입하</button>
   </div>
 
   <div class="list-section" id="corpListSection"><div id="corpList"></div></div>
@@ -403,6 +441,14 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', s
       <div class="price-result-sub" id="priceResultSub">-</div>
       <div class="scrollable-price-list" id="priceMarketList"></div>
     </div>
+  </div>
+  <div class="list-section" id="shipmentSection" style="display:none;">
+    <div id="shipmentHeader" style="font-size:12px;color:var(--dim);margin-bottom:8px;"></div>
+    <div class="summary-grid" id="shipmentSummary" style="margin-bottom:12px;">
+      <div class="summary-card"><div class="num" id="shipTotalItems">-</div><div class="label">출하건수</div></div>
+      <div class="summary-card"><div class="num" id="shipTotalQty">-</div><div class="label">물량(톤)</div></div>
+    </div>
+    <div class="scrollable-list" id="shipmentList" style="max-height:50vh;"></div>
   </div>
 </div>
 
@@ -423,6 +469,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', s
     <button class="period-btn active" onclick="switchDetailPeriod('1d')">1일</button>
     <button class="period-btn" onclick="switchDetailPeriod('1w')">1주</button>
     <button class="period-btn" onclick="switchDetailPeriod('1m')">1달</button>
+    <button class="period-btn" onclick="switchDetailPeriod('1y')">1년</button>
   </div>
   <div class="detail-stats">
     <div class="detail-stat"><div class="n" id="dTrades">-</div><div class="l">거래건수</div></div>
@@ -437,6 +484,8 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', s
     </div>
     <div id="productOriginsList"></div>
   </div>
+  <div class="section-title" id="shipmentDetailTitle" style="display:none;color:var(--purple);">내일 입하 예정 <span class="section-count" id="shipmentDetailCount" style="color:var(--purple);">-</span></div>
+  <div class="scrollable-list" id="detailShipments" style="display:none;max-height:20vh;"></div>
   <div class="section-title">품목 <span class="section-count" id="productCount">-</span></div>
   <div class="scrollable-list" id="detailProducts"></div>
   <div class="section-title">산지 <span class="section-count" id="originCount">-</span></div>
@@ -459,7 +508,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', s
   <div class="guide-content">
     <button class="guide-close" onclick="toggleGuide()">&times;</button>
     <h2>전국 도매시장 법인 대시보드</h2>
-    <div class="guide-subtitle">전국 12개 공영도매시장, 23개 법인의 거래 현황을 지도 위에서 한눈에 비교합니다.</div>
+    <div class="guide-subtitle">전국 32개 공영도매시장, 60개+ 법인의 거래 현황을 지도 위에서 한눈에 비교합니다.</div>
 
     <h3>이 대시보드는 뭔가요?</h3>
     <div class="guide-section">
@@ -488,7 +537,8 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', s
     <div class="guide-section">
       <p><strong>1. 법인별</strong> (단축키 <span class="gkey">1</span>) — 법인을 거래 순으로 정렬. 클릭하면 상세 패널이 열리며 품목·산지를 볼 수 있습니다.<br>
       <strong>2. 시장별</strong> (단축키 <span class="gkey">2</span>) — 시장 단위로 묶어서 비교. 클릭하면 해당 시장으로 줌인합니다.<br>
-      <strong>3. 가격비교</strong> (단축키 <span class="gkey">3</span>) — 같은 품목의 법인별 가격을 한눈에 비교합니다. 산지 분포도 함께 표시됩니다.</p>
+      <strong>3. 가격비교</strong> (단축키 <span class="gkey">3</span>) — 같은 품목의 법인별 가격을 한눈에 비교합니다. 산지 분포도 함께 표시됩니다.<br>
+      <strong>4. 내일 입하</strong> (단축키 <span class="gkey">4</span>) — 전자송품장 출하예약 데이터로 내일 예상 입하량을 시장/법인별로 확인합니다.</p>
     </div>
 
     <h3>지도 위 기능</h3>
@@ -520,7 +570,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', s
     <div class="guide-section">
       <p>
         <span class="gkey">←</span> <span class="gkey">→</span> 날짜 이동 &nbsp;|&nbsp;
-        <span class="gkey">1</span> <span class="gkey">2</span> <span class="gkey">3</span> 탭 전환 &nbsp;|&nbsp;
+        <span class="gkey">1</span> <span class="gkey">2</span> <span class="gkey">3</span> <span class="gkey">4</span> 탭 전환 &nbsp;|&nbsp;
         <span class="gkey">M</span> 지표 순환 &nbsp;|&nbsp;
         <span class="gkey">F</span> 물류 흐름 &nbsp;|&nbsp;
         <span class="gkey">Esc</span> 닫기 &nbsp;|&nbsp;
@@ -608,8 +658,18 @@ const MARKET_COORDS = {
   '인천남촌': [126.7312, 37.4292], '인천삼산': [126.7220, 37.5088],
   '대전오정': [127.4260, 36.3862], '대전노은': [127.3203, 36.3743],
   '대구북부': [128.5670, 35.9350], '부산엄궁': [128.9780, 35.1430],
+  '부산반여': [129.0942, 35.1956], '울산': [129.2570, 35.5469],
   '광주각화': [126.8520, 35.1500], '광주서부': [126.8080, 35.1920],
-  '전주': [127.1110, 35.8168], '창원팔용': [128.6575, 35.2332],
+  '구리': [127.1293, 37.5924], '안산': [126.8308, 37.3139],
+  '구미': [128.3446, 36.1190], '수원': [127.0150, 37.2790],
+  '안양': [126.9568, 37.3943], '춘천': [127.7298, 37.8813],
+  '원주': [127.9202, 37.3422], '강릉': [128.8961, 37.7519],
+  '청주': [127.4890, 36.6424], '충주': [127.9259, 36.9910],
+  '천안': [127.1522, 36.8151], '전주': [127.1110, 35.8168],
+  '익산': [126.9548, 35.9588], '정읍': [126.8568, 35.5699],
+  '순천': [127.4872, 34.9506], '포항': [129.3650, 36.0190],
+  '안동': [128.7294, 36.5684], '창원팔용': [128.6575, 35.2332],
+  '창원내서': [128.5562, 35.2100], '진주': [128.1076, 35.1798],
 };
 
 // === 키보드 단축키 ===
@@ -623,6 +683,7 @@ document.addEventListener('keydown', e => {
   else if (e.key === '1') switchTab('corp');
   else if (e.key === '2') switchTab('market');
   else if (e.key === '3') switchTab('price');
+  else if (e.key === '4') switchTab('shipment');
   else if (e.key === 'm' || e.key === 'M') {
     const next = { trades: 'qty', qty: 'amount', amount: 'trades' };
     setMapMetric(next[mapMetric]);
@@ -632,7 +693,7 @@ document.addEventListener('keydown', e => {
 // === 기간 토글 ===
 function setPeriod(period) {
   currentPeriod = period;
-  const label = {'1d':'1일','1w':'1주','1m':'1달'}[period];
+  const label = {'1d':'1일','1w':'1주','1m':'1달','1y':'1년'}[period];
   document.querySelectorAll('.period-btn').forEach(btn => btn.classList.toggle('active', btn.textContent === label));
   loadForPeriod(!!selectedCorp); // 법인 선택 중이면 유지
 }
@@ -640,7 +701,7 @@ function setPeriod(period) {
 function getDailyDates(period) {
   const dates = [];
   const end = new Date(currentDate);
-  const days = period === '1w' ? 7 : 31;
+  const days = period === '1w' ? 7 : period === '1y' ? 365 : 31;
   for (let i = 0; i < days; i++) {
     const d = new Date(end);
     d.setDate(d.getDate() - i);
@@ -870,6 +931,34 @@ function changeDate(delta) {
   loadForPeriod();
 }
 
+function toggleDatePicker() {
+  const picker = document.getElementById('datePicker');
+  picker.value = currentDate;
+  picker.style.opacity = '1';
+  picker.style.pointerEvents = 'auto';
+  picker.style.position = 'relative';
+  picker.style.zIndex = '10';
+  picker.showPicker ? picker.showPicker() : picker.click();
+}
+
+function jumpToDate(dateStr) {
+  if (!dateStr) return;
+  const picker = document.getElementById('datePicker');
+  picker.style.opacity = '0';
+  picker.style.pointerEvents = 'none';
+  picker.style.position = 'absolute';
+  picker.style.zIndex = '-1';
+  currentDate = dateStr;
+  loadForPeriod();
+}
+
+function jumpToToday() {
+  const d = new Date();
+  d.setMinutes(d.getMinutes() + d.getTimezoneOffset() + 540);
+  currentDate = d.toISOString().slice(0, 10);
+  loadForPeriod();
+}
+
 function updateSummary() {
   document.getElementById('dateLabel').textContent = summaryData.date;
   if (summaryData.days_count) {
@@ -880,25 +969,29 @@ function updateSummary() {
   }
   document.getElementById('totalCorps').textContent = summaryData.corp_count;
   document.getElementById('totalTrades').textContent = summaryData.total_trades.toLocaleString();
-  document.getElementById('totalAmount').textContent = (summaryData.total_amount / 100_000_000).toFixed(1) + '억';
-  document.getElementById('totalQty').textContent = (summaryData.total_qty / 1000).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  document.getElementById('totalAmount').textContent = ((summaryData.total_amount || 0) / 100_000_000).toFixed(1) + '억';
+  document.getElementById('totalQty').textContent = ((summaryData.total_qty || 0) / 1000).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 
 // === 탭 ===
+let currentTab = 'corp';
 function switchTab(tab) {
+  currentTab = tab;
   document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.tab === tab));
   document.getElementById('corpListSection').style.display = tab === 'corp' ? '' : 'none';
   document.getElementById('marketListSection').style.display = tab === 'market' ? '' : 'none';
   document.getElementById('priceSection').style.display = tab === 'price' ? '' : 'none';
+  document.getElementById('shipmentSection').style.display = tab === 'shipment' ? '' : 'none';
   if (tab === 'price') { closeDetail(); selectedCorp = null; selectedCorpData = null; selectedMarket = null; }
   else { clearPriceSelection(); }
   if (tab !== 'market') { selectedMarket = null; }
+  if (tab === 'shipment') { renderShipmentList(); }
   if (deckgl) updateLayers();
 }
 
 // === 법인 리스트 ===
 function formatMetricValue(corp) {
-  if (mapMetric === 'qty') return (corp.total_qty / 1000).toFixed(1) + '톤';
+  if (mapMetric === 'qty') return ((corp.total_qty || 0) / 1000).toFixed(1) + '톤';
   if (mapMetric === 'amount') return (corp.total_amount / 10000).toLocaleString(undefined, {maximumFractionDigits: 0}) + '만';
   return corp.trades.toLocaleString() + '건';
 }
@@ -963,7 +1056,7 @@ function selectMarket(market) {
   document.getElementById('detailCorp').textContent = market.market;
   document.getElementById('detailMarket').textContent = `법인 ${market.corp_count}개`;
   document.getElementById('dTrades').textContent = market.trades.toLocaleString();
-  document.getElementById('dQty').textContent = (market.total_qty / 1000).toFixed(1);
+  document.getElementById('dQty').textContent = ((market.total_qty || 0) / 1000).toFixed(1);
   document.getElementById('dAmount').textContent = (market.total_amount / 10000).toLocaleString(undefined, {maximumFractionDigits: 0});
 
   // 소속 법인 목록
@@ -997,7 +1090,7 @@ function selectCorp(corp, skipZoom = false) {
   document.getElementById('detailCorp').textContent = corp.corp;
   document.getElementById('detailMarket').textContent = corp.market;
   document.getElementById('dTrades').textContent = corp.trades.toLocaleString();
-  document.getElementById('dQty').textContent = (corp.total_qty / 1000).toFixed(1);
+  document.getElementById('dQty').textContent = ((corp.total_qty || 0) / 1000).toFixed(1);
   document.getElementById('dAmount').textContent = (corp.total_amount / 10000).toLocaleString(undefined, {maximumFractionDigits: 0});
 
   const products = corp.products || [];
@@ -1024,6 +1117,10 @@ function selectCorp(corp, skipZoom = false) {
 
   document.getElementById('productOriginsSection').classList.remove('visible');
   document.getElementById('foreignBadge').classList.remove('visible');
+
+  // 출하예약 정보 표시
+  renderDetailShipment(corp.corp);
+
   openDetailPanel();
 
   if (!skipZoom && corp.lat && corp.lng && deckgl) {
@@ -1255,6 +1352,147 @@ function buildOriginToggle(productName) {
   document.getElementById('originFloatPanel').classList.add('visible');
 }
 
+// === 출하예약 렌더링 ===
+function renderShipmentList() {
+  const ship = summaryData?.shipments;
+  const header = document.getElementById('shipmentHeader');
+  const list = document.getElementById('shipmentList');
+
+  if (!ship || ship.total_items === 0) {
+    header.textContent = '';
+    document.getElementById('shipTotalItems').textContent = '-';
+    document.getElementById('shipTotalQty').textContent = '-';
+    list.innerHTML = '<div class="no-shipment">출하예약 데이터 없음</div>';
+    return;
+  }
+
+  header.textContent = `출하예정일: ${ship.date}`;
+  document.getElementById('shipTotalItems').textContent = ship.total_items.toLocaleString();
+  document.getElementById('shipTotalQty').textContent = (ship.total_qty_kg / 1000).toFixed(1);
+
+  // 시장별 그룹핑
+  list.innerHTML = '';
+  const corpsByMarket = {};
+  for (const c of (ship.corporations || [])) {
+    const mkt = c.market || '기타';
+    if (!corpsByMarket[mkt]) corpsByMarket[mkt] = [];
+    corpsByMarket[mkt].push(c);
+  }
+
+  // 시장 물량 기준 정렬
+  const marketOrder = (ship.markets || []).map(m => m.market);
+  const orderedMarkets = [...new Set([...marketOrder, ...Object.keys(corpsByMarket)])];
+
+  for (const mkt of orderedMarkets) {
+    const corps = corpsByMarket[mkt] || [];
+    const mktData = (ship.markets || []).find(m => m.market === mkt);
+    const mktItems = mktData?.items || corps.reduce((s, c) => s + c.items, 0);
+    const mktKg = mktData?.qty_kg || corps.reduce((s, c) => s + c.qty_kg, 0);
+
+    const group = document.createElement('div');
+    group.className = 'ship-market-group';
+
+    const hdr = document.createElement('div');
+    hdr.className = 'ship-market-header';
+    hdr.innerHTML = `<span class="ship-market-name">${mkt} (${corps.length}법인)</span>
+      <span class="ship-market-info">${mktItems.toLocaleString()}건 | ${(mktKg/1000).toFixed(1)}톤</span>`;
+    hdr.onclick = () => {
+      hdr.classList.toggle('expanded');
+      corpList.classList.toggle('expanded');
+    };
+
+    const corpList = document.createElement('div');
+    corpList.className = 'ship-corp-list';
+
+    for (const c of corps) {
+      const isMy = c.corp === '대전중앙청과㈜';
+      const item = document.createElement('div');
+      item.className = 'ship-corp-item';
+      const badge = isMy ? '<span class="my-badge" style="margin-left:0;margin-right:4px;">MY</span>' : '';
+      item.innerHTML = `<span style="font-weight:${isMy?'700':'500'}">${badge}${c.corp}</span>
+        <span style="font-family:'JetBrains Mono';color:var(--purple);">${c.items}건 ${(c.qty_kg/1000).toFixed(1)}톤</span>`;
+      item.onclick = (e) => { e.stopPropagation(); showShipmentDetail(c); };
+      corpList.appendChild(item);
+    }
+
+    group.appendChild(hdr);
+    group.appendChild(corpList);
+    list.appendChild(group);
+  }
+}
+
+function showShipmentDetail(corpShip) {
+  // 상세패널에 출하예약 상세 표시
+  document.getElementById('detailCorp').textContent = corpShip.corp;
+  document.getElementById('detailMarket').textContent = corpShip.market + ' | 출하예약';
+  document.getElementById('dTrades').textContent = corpShip.items.toLocaleString();
+  document.getElementById('dQty').textContent = (corpShip.qty_kg / 1000).toFixed(1);
+  document.getElementById('dAmount').textContent = '-';
+
+  const prodDiv = document.getElementById('detailProducts');
+  prodDiv.innerHTML = '';
+  document.getElementById('productCount').textContent = (corpShip.products || []).length + '개';
+  for (const p of (corpShip.products || [])) {
+    const row = document.createElement('div');
+    row.className = 'product-row';
+    row.style.cursor = 'default';
+    const gradeStr = p.grade ? ` [${p.grade}]` : '';
+    row.innerHTML = `<span class="product-name" title="${p.name}">${p.name}${gradeStr}</span>
+      <span class="product-info">${p.qty}건 | ${(p.qty_kg/1000).toFixed(2)}톤</span>`;
+    prodDiv.appendChild(row);
+  }
+
+  document.getElementById('originCount').textContent = '';
+  document.getElementById('detailOrigins').innerHTML = '';
+  document.getElementById('productOriginsSection').classList.remove('visible');
+  document.getElementById('foreignBadge').classList.remove('visible');
+  openDetailPanel();
+
+  // 줌 to 해당 법인 위치
+  if (corpShip.lat && corpShip.lng && deckgl) {
+    deckgl.setProps({ initialViewState: {
+      longitude: corpShip.lng, latitude: corpShip.lat, zoom: 11,
+      pitch: 45, bearing: 0, transitionDuration: 800
+    }});
+  }
+}
+
+function renderDetailShipment(corpName) {
+  const ship = summaryData?.shipments;
+  const titleEl = document.getElementById('shipmentDetailTitle');
+  const countEl = document.getElementById('shipmentDetailCount');
+  const listEl = document.getElementById('detailShipments');
+
+  if (!ship || !ship.corporations) {
+    titleEl.style.display = 'none';
+    listEl.style.display = 'none';
+    return;
+  }
+
+  const corpShip = ship.corporations.find(c => c.corp === corpName);
+  if (!corpShip || corpShip.items === 0) {
+    titleEl.style.display = 'none';
+    listEl.style.display = 'none';
+    return;
+  }
+
+  titleEl.style.display = '';
+  listEl.style.display = '';
+  countEl.textContent = `${corpShip.items}건 ${(corpShip.qty_kg/1000).toFixed(1)}톤 (${ship.date})`;
+
+  listEl.innerHTML = '';
+  for (const p of (corpShip.products || []).slice(0, 10)) {
+    const gradeStr = p.grade ? ` [${p.grade}]` : '';
+    listEl.innerHTML += `<div class="ship-product-row">
+      <span>${p.name}${gradeStr}</span>
+      <span style="font-family:'JetBrains Mono';color:var(--purple);">${p.qty}건 ${(p.qty_kg/1000).toFixed(2)}톤</span>
+    </div>`;
+  }
+  if ((corpShip.products || []).length > 10) {
+    listEl.innerHTML += `<div class="ship-product-row" style="justify-content:center;color:var(--dim);">외 ${corpShip.products.length - 10}개 품목</div>`;
+  }
+}
+
 function closeOriginPanel() {
   document.getElementById('originFloatPanel').classList.remove('visible');
   enabledOrigins.clear();
@@ -1331,6 +1569,48 @@ function updateLayers() {
       const offset = n > 1 ? 0.008 : 0;
       corpPositions.push({ ...corp, displayLat: corp.lat + Math.sin(angle) * offset, displayLng: corp.lng + Math.cos(angle) * offset });
     });
+  }
+
+  // === 출하예약 모드 ===
+  if (currentTab === 'shipment' && summaryData?.shipments?.corporations?.length) {
+    const shipCorps = summaryData.shipments.corporations.filter(c => c.lat && c.lng);
+    if (shipCorps.length > 0) {
+      const maxKg = Math.max(...shipCorps.map(c => c.qty_kg));
+
+      // 배경: 기존 법인 점 (dim)
+      layers.push(new deck.ScatterplotLayer({
+        id: 'corps-bg-ship', data: corpPositions,
+        getPosition: d => [d.displayLng, d.displayLat],
+        getRadius: d => getCorpRadius(getCorpMetricValue(d)) * 0.4,
+        getFillColor: d => { const c = getCorpColor(getCorpMetricValue(d)); return [c[0],c[1],c[2],30]; },
+        getLineColor: [255,255,255,15], lineWidthMinPixels: 1, stroked: true,
+      }));
+
+      // 출하예약 원 (보라색)
+      layers.push(new deck.ScatterplotLayer({
+        id: 'shipment-dots', data: shipCorps,
+        getPosition: d => [d.lng, d.lat],
+        getRadius: d => Math.max(800, (d.qty_kg / maxKg) * 8000),
+        getFillColor: d => d.corp === '대전중앙청과㈜' ? [250,204,21,200] : [192,132,252,180],
+        getLineColor: d => d.corp === '대전중앙청과㈜' ? [255,152,0,255] : [255,255,255,80],
+        lineWidthMinPixels: 1, stroked: true, pickable: true,
+        onClick: ({object}) => { if (object) showShipmentDetail(object); },
+      }));
+
+      // 출하예약 라벨
+      layers.push(new deck.TextLayer({
+        id: 'shipment-labels', data: shipCorps,
+        getPosition: d => [d.lng, d.lat],
+        getText: d => `${d.corp.replace('㈜','').replace('(공)','')}\n${d.items}건 ${(d.qty_kg/1000).toFixed(1)}톤`,
+        getSize: 11,
+        getColor: d => d.corp === '대전중앙청과㈜' ? [255,183,77,255] : [192,132,252,220],
+        getPixelOffset: [0, -25], fontFamily: 'Noto Sans KR', fontWeight: 700,
+        outlineWidth: 4, outlineColor: [10,10,18,240], getTextAnchor: 'middle',
+      }));
+    }
+
+    deckgl.setProps({ layers });
+    return;
   }
 
   // === 가격비교 모드 ===
@@ -1676,7 +1956,7 @@ function renderMap() {
         return {
           html: `<div style="font-family:'Noto Sans KR';padding:4px;">
             <strong>${object.corp}</strong><br><span style="color:#94a3b8;">${object.market}</span><br>
-            거래: ${object.trades.toLocaleString()}건<br>물량: ${(object.total_qty/1000).toFixed(1)}톤<br>금액: ${(object.total_amount/10000).toLocaleString()}만원</div>`,
+            거래: ${object.trades.toLocaleString()}건<br>물량: ${((object.total_qty||0)/1000).toFixed(1)}톤<br>금액: ${((object.total_amount||0)/10000).toLocaleString()}만원</div>`,
           style: { background:'rgba(10,10,18,0.92)', color:'#e2e8f0', border:'1px solid #1e293b', borderRadius:'8px', fontSize:'12px' }
         };
       }
