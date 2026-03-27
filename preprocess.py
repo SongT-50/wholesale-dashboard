@@ -53,11 +53,12 @@ def load_shipment(base_date: str) -> dict | None:
 def summarize_shipment(ship_data: dict, corp_coords: dict) -> dict:
     """출하예약 원본 → 대시보드용 요약"""
     ship_date = ship_data.get("date", "")
-    total_items = 0
+    total_qty = 0
     total_kg = 0.0
+    total_records = 0
 
-    corp_agg = defaultdict(lambda: {"items": 0, "qty_kg": 0.0, "products": defaultdict(lambda: {"qty": 0, "qty_kg": 0.0, "grades": set()})})
-    market_agg = defaultdict(lambda: {"items": 0, "qty_kg": 0.0})
+    corp_agg = defaultdict(lambda: {"qty": 0, "qty_kg": 0.0, "records": 0, "products": defaultdict(lambda: {"qty": 0, "qty_kg": 0.0, "grades": set()})})
+    market_agg = defaultdict(lambda: {"qty": 0, "qty_kg": 0.0})
 
     for mcode, mdata in ship_data.get("markets", {}).items():
         for item in mdata.get("items", []):
@@ -69,12 +70,14 @@ def summarize_shipment(ship_data: dict, corp_coords: dict) -> dict:
             grade = item.get("grade", "")
             market_name = item.get("market_name", "")
 
-            total_items += 1
+            total_qty += qty
             total_kg += kg
+            total_records += 1
 
             if corp_name:
                 ca = corp_agg[corp_name]
-                ca["items"] += 1
+                ca["qty"] += qty
+                ca["records"] += 1
                 ca["qty_kg"] += kg
                 if product:
                     pa = ca["products"][product]
@@ -85,7 +88,7 @@ def summarize_shipment(ship_data: dict, corp_coords: dict) -> dict:
 
             if market_name:
                 ma = market_agg[market_name]
-                ma["items"] += 1
+                ma["qty"] += qty
                 ma["qty_kg"] += kg
 
     # 법인 리스트
@@ -106,7 +109,7 @@ def summarize_shipment(ship_data: dict, corp_coords: dict) -> dict:
             "market_code": info.get("market_code", ""),
             "lat": info.get("lat", 0),
             "lng": info.get("lng", 0),
-            "items": ca["items"],
+            "qty": int(ca["qty"]),
             "qty_kg": round(ca["qty_kg"], 1),
             "products": products[:30],
         })
@@ -116,13 +119,14 @@ def summarize_shipment(ship_data: dict, corp_coords: dict) -> dict:
     for mname, ma in sorted(market_agg.items(), key=lambda x: -x[1]["qty_kg"]):
         markets.append({
             "market": mname,
-            "items": ma["items"],
+            "qty": int(ma["qty"]),
             "qty_kg": round(ma["qty_kg"], 1),
         })
 
     return {
         "date": ship_date,
-        "total_items": total_items,
+        "total_qty": int(total_qty),
+        "total_records": total_records,
         "total_qty_kg": round(total_kg, 1),
         "market_count": len(markets),
         "corp_count": len(corps),
@@ -414,7 +418,7 @@ def preprocess(date: str):
     ship_data = load_shipment(date)
     if ship_data:
         result["shipments"] = summarize_shipment(ship_data, corp_coords)
-        print(f"  출하예약: {result['shipments']['date']} ({result['shipments']['total_items']:,}건, {result['shipments']['total_qty_kg']:,.0f}kg)")
+        print(f"  출하예약: {result['shipments']['date']} ({result['shipments']['total_qty']:,}박스, {result['shipments']['total_qty_kg']:,.0f}kg)")
 
     OUT_DIR.mkdir(exist_ok=True)
     out = OUT_DIR / f"summary_{date}.json"

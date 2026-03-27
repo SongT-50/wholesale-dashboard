@@ -445,7 +445,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', s
   <div class="list-section" id="shipmentSection" style="display:none;">
     <div id="shipmentHeader" style="font-size:12px;color:var(--dim);margin-bottom:8px;"></div>
     <div class="summary-grid" id="shipmentSummary" style="margin-bottom:12px;">
-      <div class="summary-card"><div class="num" id="shipTotalItems">-</div><div class="label">출하건수</div></div>
+      <div class="summary-card"><div class="num" id="shipTotalItems">-</div><div class="label">총수량(박스)</div></div>
       <div class="summary-card"><div class="num" id="shipTotalQty">-</div><div class="label">물량(톤)</div></div>
     </div>
     <div class="scrollable-list" id="shipmentList" style="max-height:50vh;"></div>
@@ -1358,7 +1358,7 @@ function renderShipmentList() {
   const header = document.getElementById('shipmentHeader');
   const list = document.getElementById('shipmentList');
 
-  if (!ship || ship.total_items === 0) {
+  if (!ship || ship.total_qty === 0) {
     header.textContent = '';
     document.getElementById('shipTotalItems').textContent = '-';
     document.getElementById('shipTotalQty').textContent = '-';
@@ -1367,7 +1367,7 @@ function renderShipmentList() {
   }
 
   header.innerHTML = `입하예약 <span style="color:var(--purple)">${ship.date}</span> <span style="opacity:0.5;">| 전자송품장 기준</span>`;
-  document.getElementById('shipTotalItems').textContent = ship.total_items.toLocaleString();
+  document.getElementById('shipTotalItems').textContent = ship.total_qty.toLocaleString();
   document.getElementById('shipTotalQty').textContent = (ship.total_qty_kg / 1000).toFixed(1);
 
   // 시장별 그룹핑
@@ -1410,7 +1410,7 @@ function renderShipmentList() {
       item.className = 'ship-corp-item';
       const badge = isMy ? '<span class="my-badge" style="margin-left:0;margin-right:4px;">MY</span>' : '';
       item.innerHTML = `<span style="font-weight:${isMy?'700':'500'}">${badge}${c.corp}</span>
-        <span style="font-family:'JetBrains Mono';color:var(--purple);">${c.items}건 ${(c.qty_kg/1000).toFixed(1)}톤</span>`;
+        <span style="font-family:'JetBrains Mono';color:var(--purple);">${c.qty.toLocaleString()}박스 ${(c.qty_kg/1000).toFixed(1)}톤</span>`;
       item.onclick = (e) => { e.stopPropagation(); showShipmentDetail(c); };
       corpList.appendChild(item);
     }
@@ -1425,7 +1425,7 @@ function showShipmentDetail(corpShip) {
   // 상세패널에 출하예약 상세 표시
   document.getElementById('detailCorp').textContent = corpShip.corp;
   document.getElementById('detailMarket').textContent = corpShip.market + ' | 출하예약';
-  document.getElementById('dTrades').textContent = corpShip.items.toLocaleString();
+  document.getElementById('dTrades').textContent = corpShip.qty.toLocaleString();
   document.getElementById('dQty').textContent = (corpShip.qty_kg / 1000).toFixed(1);
   document.getElementById('dAmount').textContent = '-';
 
@@ -1478,14 +1478,14 @@ function renderDetailShipment(corpName) {
 
   titleEl.style.display = '';
   listEl.style.display = '';
-  countEl.textContent = `${corpShip.items}건 ${(corpShip.qty_kg/1000).toFixed(1)}톤 (${ship.date})`;
+  countEl.textContent = `${corpShip.qty.toLocaleString()}박스 ${(corpShip.qty_kg/1000).toFixed(1)}톤 (${ship.date})`;
 
   listEl.innerHTML = '';
   for (const p of (corpShip.products || []).slice(0, 10)) {
     const gradeStr = p.grade ? ` [${p.grade}]` : '';
     listEl.innerHTML += `<div class="ship-product-row">
       <span>${p.name}${gradeStr}</span>
-      <span style="font-family:'JetBrains Mono';color:var(--purple);">${p.qty}건 ${(p.qty_kg/1000).toFixed(2)}톤</span>
+      <span style="font-family:'JetBrains Mono';color:var(--purple);">${p.qty.toLocaleString()}박스 ${(p.qty_kg/1000).toFixed(2)}톤</span>
     </div>`;
   }
   if ((corpShip.products || []).length > 10) {
@@ -1601,7 +1601,7 @@ function updateLayers() {
       layers.push(new deck.TextLayer({
         id: 'shipment-labels', data: shipCorps,
         getPosition: d => [d.lng, d.lat],
-        getText: d => `${d.corp.replace('㈜','').replace('(공)','')}\n${d.items}건 ${(d.qty_kg/1000).toFixed(1)}톤`,
+        getText: d => `${d.corp.replace('㈜','').replace('(공)','')}\n${d.qty.toLocaleString()}박스 ${(d.qty_kg/1000).toFixed(1)}톤`,
         getSize: 11,
         getColor: d => d.corp === '대전중앙청과㈜' ? [255,183,77,255] : [192,132,252,220],
         getPixelOffset: [0, -25], fontFamily: 'Noto Sans KR', fontWeight: 700,
