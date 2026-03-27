@@ -428,7 +428,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', s
     <button class="tab-btn active" data-tab="corp" onclick="switchTab('corp')">법인별</button>
     <button class="tab-btn" data-tab="market" onclick="switchTab('market')">시장별</button>
     <button class="tab-btn" data-tab="price" onclick="switchTab('price')">가격비교</button>
-    <button class="tab-btn" data-tab="shipment" onclick="switchTab('shipment')">내일 입하</button>
+    <button class="tab-btn" data-tab="shipment" onclick="switchTab('shipment')">입하예약</button>
   </div>
 
   <div class="list-section" id="corpListSection"><div id="corpList"></div></div>
@@ -484,7 +484,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', s
     </div>
     <div id="productOriginsList"></div>
   </div>
-  <div class="section-title" id="shipmentDetailTitle" style="display:none;color:var(--purple);">내일 입하 예정 <span class="section-count" id="shipmentDetailCount" style="color:var(--purple);">-</span></div>
+  <div class="section-title" id="shipmentDetailTitle" style="display:none;color:var(--purple);">입하예약 <span style="font-size:10px;color:var(--dim);text-transform:none;letter-spacing:0;">(전자송품장)</span> <span class="section-count" id="shipmentDetailCount" style="color:var(--purple);">-</span></div>
   <div class="scrollable-list" id="detailShipments" style="display:none;max-height:20vh;"></div>
   <div class="section-title">품목 <span class="section-count" id="productCount">-</span></div>
   <div class="scrollable-list" id="detailProducts"></div>
@@ -538,7 +538,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', s
       <p><strong>1. 법인별</strong> (단축키 <span class="gkey">1</span>) — 법인을 거래 순으로 정렬. 클릭하면 상세 패널이 열리며 품목·산지를 볼 수 있습니다.<br>
       <strong>2. 시장별</strong> (단축키 <span class="gkey">2</span>) — 시장 단위로 묶어서 비교. 클릭하면 해당 시장으로 줌인합니다.<br>
       <strong>3. 가격비교</strong> (단축키 <span class="gkey">3</span>) — 같은 품목의 법인별 가격을 한눈에 비교합니다. 산지 분포도 함께 표시됩니다.<br>
-      <strong>4. 내일 입하</strong> (단축키 <span class="gkey">4</span>) — 전자송품장 출하예약 데이터로 내일 예상 입하량을 시장/법인별로 확인합니다.</p>
+      <strong>4. 입하예약</strong> (단축키 <span class="gkey">4</span>) — 전자송품장에 등록된 확인된 입하예약을 시장/법인별로 확인합니다.</p>
     </div>
 
     <h3>지도 위 기능</h3>
@@ -1366,7 +1366,7 @@ function renderShipmentList() {
     return;
   }
 
-  header.textContent = `출하예정일: ${ship.date}`;
+  header.innerHTML = `입하예약 <span style="color:var(--purple)">${ship.date}</span> <span style="opacity:0.5;">| 전자송품장 기준</span>`;
   document.getElementById('shipTotalItems').textContent = ship.total_items.toLocaleString();
   document.getElementById('shipTotalQty').textContent = (ship.total_qty_kg / 1000).toFixed(1);
 
