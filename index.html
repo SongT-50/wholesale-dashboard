@@ -167,6 +167,10 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', s
 .product-row:last-child, .origin-row:last-child { border-bottom: none; }
 .product-name { font-weight: 500; max-width: 140px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .product-info { font-family: 'JetBrains Mono'; font-size: 11px; color: var(--dim); }
+.change-badge { display:inline-block; padding:1px 5px; border-radius:3px; font-size:11px; font-family:'JetBrains Mono'; background:rgba(255,255,255,0.08); color:var(--dim); }
+.change-badge.up { background:rgba(255,60,60,0.15); color:#ff6b6b; }
+.change-badge.down { background:rgba(60,180,75,0.15); color:#5bde7b; }
+.change-badge.sm { font-size:10px; padding:0 3px; }
 
 .product-origins-section {
   background: var(--card); border: 1px solid var(--accent); border-radius: 8px;
@@ -476,6 +480,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', s
     <div class="detail-stat"><div class="n" id="dAmount">-</div><div class="l">금액(만원)</div></div>
     <div class="detail-stat"><div class="n" id="dTrades">-</div><div class="l">거래건수</div></div>
   </div>
+  <div id="dPriceChange" style="display:none; margin:4px 0 8px; font-size:12px;"></div>
   <button class="detail-map-btn" id="detailMapBtn" onclick="toggleDetailMap()">지도 보기</button>
   <div class="product-origins-section" id="productOriginsSection">
     <div class="product-origins-header">
@@ -1102,6 +1107,28 @@ function selectCorp(corp, skipZoom = false) {
   document.getElementById('dQty').textContent = ((corp.total_qty || 0) / 1000).toFixed(1);
   document.getElementById('dAmount').textContent = (corp.total_amount / 10000).toLocaleString(undefined, {maximumFractionDigits: 0});
 
+  // 등락률 배지 표시
+  const pcEl = document.getElementById('dPriceChange');
+  if (pcEl) {
+    const pc = corp.price_change;
+    if (pc) {
+      const parts = [];
+      for (const [key, label] of [['d1','전일'],['w1','전주'],['m1','전월']]) {
+        const ch = pc[key];
+        if (!ch) continue;
+        const v = ch.qty ?? ch.amount;
+        if (v == null) continue;
+        const cls = v > 0 ? 'up' : v < 0 ? 'down' : '';
+        const sign = v > 0 ? '+' : '';
+        parts.push(`<span class="change-badge ${cls}" title="${label} 대비">${label} ${sign}${v}%</span>`);
+      }
+      pcEl.innerHTML = parts.join(' ');
+      pcEl.style.display = parts.length ? '' : 'none';
+    } else {
+      pcEl.style.display = 'none';
+    }
+  }
+
   const products = corp.products || [];
   document.getElementById('productCount').textContent = products.length + '개';
   const prodDiv = document.getElementById('detailProducts');
@@ -1109,8 +1136,17 @@ function selectCorp(corp, skipZoom = false) {
   for (const p of products) {
     const row = document.createElement('div');
     row.className = 'product-row'; row.dataset.product = p.name;
+    let priceChangeHtml = '';
+    if (p.price_change) {
+      const d1 = p.price_change.d1;
+      if (d1 != null) {
+        const cls = d1 > 0 ? 'up' : d1 < 0 ? 'down' : '';
+        const sign = d1 > 0 ? '+' : '';
+        priceChangeHtml = `<span class="change-badge sm ${cls}">${sign}${d1}%</span>`;
+      }
+    }
     row.innerHTML = `<span class="product-name" title="${p.name}">${p.name}</span>
-      <span class="product-info">${(p.qty/1000).toFixed(1)}톤 | ${p.avg_price_kg.toLocaleString()}원/kg</span>`;
+      <span class="product-info">${(p.qty/1000).toFixed(1)}톤 | ${p.avg_price_kg.toLocaleString()}원/kg ${priceChangeHtml}</span>`;
     row.addEventListener('click', () => selectProduct(p.name));
     prodDiv.appendChild(row);
   }

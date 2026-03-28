@@ -420,6 +420,9 @@ def preprocess(date: str):
         result["shipments"] = summarize_shipment(ship_data, corp_coords)
         print(f"  출하예약: {result['shipments']['date']} ({result['shipments']['total_qty']:,}박스, {result['shipments']['total_qty_kg']:,.0f}kg)")
 
+    # 등락률 계산 (전일/전주/전월 비교)
+    compute_price_changes(date, result)
+
     OUT_DIR.mkdir(exist_ok=True)
     out = OUT_DIR / f"summary_{date}.json"
     with open(out, "w", encoding="utf-8") as f:
@@ -431,6 +434,75 @@ def preprocess(date: str):
     print(f"  시장: {len(markets_summary)}개")
     print(f"  물류흐름: {len(flows_list)}개 (산지GPS매칭: {origin_matched}/{len(flows_list)})")
     print(f"  가격맵: {len(price_map)}개 품목")
+
+
+def find_prev_summary(date: str, days_back: int) -> dict | None:
+    """date로부터 days_back일 전 근처의 summary를 찾아 반환.
+    정확한 날짜 없으면 ±2일 범위에서 탐색."""
+    target = datetime.strptime(date, "%Y-%m-%d") - timedelta(days=days_back)
+    for offset in [0, -1, 1, -2, 2]:
+        d = (target + timedelta(days=offset)).strftime("%Y-%m-%d")
+        f = OUT_DIR / f"summary_{d}.json"
+        if f.exists():
+            with open(f, "r", encoding="utf-8") as fp:
+                return json.load(fp)
+    return None
+
+
+def compute_price_changes(date: str, summary: dict) -> None:
+    """summary에 전일/전주/전월 대비 등락률 추가 (in-place)."""
+    periods = {"d1": 1, "w1": 7, "m1": 30}
+    prev_data = {}
+    for key, days in periods.items():
+        prev = find_prev_summary(date, days)
+        if prev:
+            prev_data[key] = prev
+
+    if not prev_data:
+        return
+
+    # 비교 데이터 인덱싱: {period: {corp_name: corp_data}}
+    prev_corps = {}
+    for key, prev in prev_data.items():
+        prev_corps[key] = {c["corp"]: c for c in prev.get("corporations", [])}
+
+    for corp in summary.get("corporations", []):
+        changes = {}
+        for key in prev_data:
+            prev_corp = prev_corps[key].get(corp["corp"])
+            if not prev_corp:
+                continue
+            ch = {}
+            # 금액 변화율
+            if prev_corp.get("total_amount", 0) > 0:
+                ch["amount"] = round((corp["total_amount"] / prev_corp["total_amount"] - 1) * 100, 1)
+            # 물량 변화율
+            if prev_corp.get("total_qty", 0) > 0:
+                ch["qty"] = round((corp["total_qty"] / prev_corp["total_qty"] - 1) * 100, 1)
+            if ch:
+                changes[key] = ch
+
+        # 품목별 가격 변화율
+        if changes:
+            corp["price_change"] = changes
+
+        prev_products = {}
+        for key in prev_data:
+            pc = prev_corps[key].get(corp["corp"])
+            if pc:
+                prev_products[key] = {p["name"]: p for p in pc.get("products", [])}
+
+        for product in corp.get("products", []):
+            p_changes = {}
+            for key, pp_map in prev_products.items():
+                pp = pp_map.get(product["name"])
+                if pp and pp.get("avg_price_kg", 0) > 0:
+                    p_changes[key] = round((product["avg_price_kg"] / pp["avg_price_kg"] - 1) * 100, 1)
+            if p_changes:
+                product["price_change"] = p_changes
+
+    changes_count = sum(1 for c in summary.get("corporations", []) if "price_change" in c)
+    print(f"  등락률: {changes_count}/{len(summary.get('corporations', []))}개 법인")
 
 
 def merge_summaries(start: str, end: str):
