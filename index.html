@@ -691,11 +691,13 @@ document.addEventListener('keydown', e => {
 });
 
 // === 기간 토글 ===
+let _loadSeq = 0;
 function setPeriod(period) {
   currentPeriod = period;
   const label = {'1d':'1일','1w':'1주','1m':'1달','1y':'1년'}[period];
   document.querySelectorAll('.period-btn').forEach(btn => btn.classList.toggle('active', btn.textContent === label));
-  loadForPeriod(!!selectedCorp); // 법인 선택 중이면 유지
+  const seq = ++_loadSeq;
+  loadForPeriod(!!selectedCorp).then(() => { if (_loadSeq !== seq) return; }); // 이전 요청 무시
 }
 
 function getDailyDates(period) {
@@ -719,7 +721,7 @@ function mergeSummaries(dailyList) {
     daysCount++;
     totalTrades += data.total_trades;
     totalAmount += data.total_amount;
-    totalQty += (data.total_qty || 0);
+    totalQty += (data.total_qty || data.corporations?.reduce((s, c) => s + (c.total_qty || 0), 0) || 0);
 
     for (const c of data.corporations) {
       if (!corpAgg[c.corp]) {
@@ -816,6 +818,7 @@ function mergeSummaries(dailyList) {
 }
 
 async function loadForPeriod(preserveSelection = false) {
+  const mySeq = _loadSeq;
   const loading = document.getElementById('dateLoading');
   loading.style.display = 'block';
   loading.textContent = '데이터 로딩 중...';
@@ -828,13 +831,19 @@ async function loadForPeriod(preserveSelection = false) {
     if (currentPeriod === '1d') {
       const resp = await fetch(`data/summary_${currentDate}.json`);
       if (!resp.ok) throw new Error('not found');
-      summaryData = await resp.json();
+      const loaded = await resp.json();
+      if (!loaded.total_qty && loaded.corporations) {
+        loaded.total_qty = loaded.corporations.reduce((s, c) => s + (c.total_qty || 0), 0);
+      }
+      if (_loadSeq !== mySeq) return; // 새 요청이 들어왔으면 무시
+      summaryData = loaded;
     } else {
       // daily 파일들을 병렬 로드 후 머지
       const dates = getDailyDates(currentPeriod);
       loading.textContent = `${dates.length}일치 로딩 중...`;
       const fetches = dates.map(d => fetch(`data/summary_${d}.json`).then(r => r.ok ? r.json() : null).catch(() => null));
       const results = (await Promise.all(fetches)).filter(Boolean);
+      if (_loadSeq !== mySeq) return; // 새 요청이 들어왔으면 무시
       if (results.length === 0) throw new Error('no data');
       // 날짜순 정렬 (오래된 순)
       results.sort((a, b) => a.date.localeCompare(b.date));
@@ -896,7 +905,7 @@ async function loadForPeriod(preserveSelection = false) {
 function switchDetailPeriod(period) {
   currentPeriod = period;
   // 양쪽 기간 버튼 동기화
-  const label = {'1d':'1일','1w':'1주','1m':'1달'}[period];
+  const label = {'1d':'1일','1w':'1주','1m':'1달','1y':'1년'}[period];
   document.querySelectorAll('.period-btn').forEach(btn => btn.classList.toggle('active', btn.textContent === label));
   loadForPeriod(true); // 선택 유지
 }
