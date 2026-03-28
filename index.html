@@ -413,16 +413,16 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', s
   <div class="date-loading" id="dateLoading">데이터 로딩 중...</div>
 
   <div class="summary-grid">
-    <div class="summary-card"><div class="num" id="totalCorps">-</div><div class="label">법인</div></div>
-    <div class="summary-card"><div class="num" id="totalTrades">-</div><div class="label">거래건수</div></div>
-    <div class="summary-card"><div class="num" id="totalAmount">-</div><div class="label">거래금액</div></div>
     <div class="summary-card"><div class="num" id="totalQty">-</div><div class="label">물량(톤)</div></div>
+    <div class="summary-card"><div class="num" id="totalAmount">-</div><div class="label">거래금액</div></div>
+    <div class="summary-card"><div class="num" id="totalTrades">-</div><div class="label">거래건수</div></div>
+    <div class="summary-card"><div class="num" id="totalCorps">-</div><div class="label">법인</div></div>
   </div>
 
   <div class="metric-toggle-inline" id="metricToggleInline">
-    <button class="metric-btn active" data-metric="trades" onclick="setMapMetric('trades')">건수</button>
-    <button class="metric-btn" data-metric="qty" onclick="setMapMetric('qty')">물량</button>
+    <button class="metric-btn active" data-metric="qty" onclick="setMapMetric('qty')">물량</button>
     <button class="metric-btn" data-metric="amount" onclick="setMapMetric('amount')">금액</button>
+    <button class="metric-btn" data-metric="trades" onclick="setMapMetric('trades')">건수</button>
   </div>
   <div class="tab-bar">
     <button class="tab-btn active" data-tab="corp" onclick="switchTab('corp')">법인별</button>
@@ -445,8 +445,8 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', s
   <div class="list-section" id="shipmentSection" style="display:none;">
     <div id="shipmentHeader" style="font-size:12px;color:var(--dim);margin-bottom:8px;"></div>
     <div class="summary-grid" id="shipmentSummary" style="margin-bottom:12px;">
-      <div class="summary-card"><div class="num" id="shipTotalItems">-</div><div class="label">총수량(박스)</div></div>
       <div class="summary-card"><div class="num" id="shipTotalQty">-</div><div class="label">물량(톤)</div></div>
+      <div class="summary-card"><div class="num" id="shipTotalItems">-</div><div class="label">총수량(박스)</div></div>
     </div>
     <div class="scrollable-list" id="shipmentList" style="max-height:50vh;"></div>
   </div>
@@ -472,9 +472,9 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', s
     <button class="period-btn" onclick="switchDetailPeriod('1y')">1년</button>
   </div>
   <div class="detail-stats">
-    <div class="detail-stat"><div class="n" id="dTrades">-</div><div class="l">거래건수</div></div>
     <div class="detail-stat"><div class="n" id="dQty">-</div><div class="l">물량(톤)</div></div>
     <div class="detail-stat"><div class="n" id="dAmount">-</div><div class="l">금액(만원)</div></div>
+    <div class="detail-stat"><div class="n" id="dTrades">-</div><div class="l">거래건수</div></div>
   </div>
   <button class="detail-map-btn" id="detailMapBtn" onclick="toggleDetailMap()">지도 보기</button>
   <div class="product-origins-section" id="productOriginsSection">
@@ -499,9 +499,9 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', s
 <button class="mobile-toggle" id="mobileToggle" onclick="toggleMobilePanel()">지도 보기</button>
 <div class="flow-toggle" id="flowToggle" onclick="toggleFlows()">물류 흐름 표시</div>
 <div class="metric-toggle" id="metricToggle">
-  <button class="metric-btn active" data-metric="trades" onclick="setMapMetric('trades')">건수</button>
-  <button class="metric-btn" data-metric="qty" onclick="setMapMetric('qty')">물량</button>
+  <button class="metric-btn active" data-metric="qty" onclick="setMapMetric('qty')">물량</button>
   <button class="metric-btn" data-metric="amount" onclick="setMapMetric('amount')">금액</button>
+  <button class="metric-btn" data-metric="trades" onclick="setMapMetric('trades')">건수</button>
 </div>
 <!-- 가이드 오버레이 -->
 <div class="guide-overlay" id="guideOverlay" onclick="if(event.target===this)toggleGuide()">
@@ -552,7 +552,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', s
       </div>
       <div class="guide-section">
         <p><strong>지표 전환</strong> (단축키 <span class="gkey">M</span>)<br>
-        <span class="gkey">건수</span> <span class="gkey">물량</span> <span class="gkey">금액</span> 버튼으로 지도의 기준 지표를 바꿉니다.<br><br>
+        <span class="gkey">물량</span> <span class="gkey">금액</span> <span class="gkey">건수</span> 버튼으로 지도의 기준 지표를 바꿉니다.<br><br>
         <strong>물류 흐름</strong> (단축키 <span class="gkey">F</span>)<br>
         산지→시장 물류 아크를 지도에 표시합니다.</p>
       </div>
@@ -588,7 +588,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', s
   <span><span class="legend-dot" style="background:#4ade80;"></span>상위 30%</span>
   <span><span class="legend-dot" style="background:#60a5fa;"></span>중간</span>
   <span><span class="legend-dot" style="background:#fb923c;"></span>하위 40%</span>
-  <span id="legendMetricLabel">| 원 크기 = 거래건수 비례</span>
+  <span id="legendMetricLabel">| 원 크기 = 물량(톤) 비례</span>
 </div>
 
 <script>
@@ -651,7 +651,7 @@ let currentDate = (() => { const d = new Date(); d.setMinutes(d.getMinutes() + d
 let currentPeriod = '1d'; // '1d', '1w', '1m'
 let enabledOrigins = new Set(); // 산지 토글 ON/OFF
 let colorThresholds = { high: 300, mid: 100 }; // 동적 기준값
-let mapMetric = 'trades'; // 'trades', 'qty', 'amount'
+let mapMetric = 'qty'; // 'qty', 'amount', 'trades'
 
 const MARKET_COORDS = {
   '서울가락': [127.0124, 37.4943], '서울강서': [126.8275, 37.5665],
@@ -685,7 +685,7 @@ document.addEventListener('keydown', e => {
   else if (e.key === '3') switchTab('price');
   else if (e.key === '4') switchTab('shipment');
   else if (e.key === 'm' || e.key === 'M') {
-    const next = { trades: 'qty', qty: 'amount', amount: 'trades' };
+    const next = { qty: 'amount', amount: 'trades', trades: 'qty' };
     setMapMetric(next[mapMetric]);
   }
 });
@@ -1024,8 +1024,8 @@ function renderMarketList() {
     div.className = 'market-item';
     div.dataset.market = m.market;
     div.innerHTML = `<div><div class="market-name">${m.market}</div><div class="market-info">법인 ${m.corp_count}개</div></div>
-      <div><div class="corp-trades">${m.trades.toLocaleString()}건</div>
-      <div style="font-size:10px;color:var(--dim);text-align:right;">${(m.total_amount / 100_000_000).toFixed(1)}억</div></div>`;
+      <div><div class="corp-trades">${((m.total_qty||0)/1000).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g,',')}톤</div>
+      <div style="font-size:10px;color:var(--dim);text-align:right;">${(m.total_amount / 100_000_000).toFixed(1)}억 | ${m.trades.toLocaleString()}건</div></div>`;
     div.addEventListener('click', () => selectMarket(m));
     list.appendChild(div);
   }
@@ -1068,7 +1068,7 @@ function selectMarket(market) {
     const row = document.createElement('div');
     row.className = 'product-row';
     row.innerHTML = `<span class="product-name">${c.corp}</span>
-      <span class="product-info">${c.trades.toLocaleString()}건</span>`;
+      <span class="product-info">${((c.total_qty||0)/1000).toFixed(1)}톤</span>`;
     row.addEventListener('click', () => { selectedMarket = null; selectCorp(c); switchTab('corp'); });
     prodDiv.appendChild(row);
   }
@@ -1101,7 +1101,7 @@ function selectCorp(corp, skipZoom = false) {
     const row = document.createElement('div');
     row.className = 'product-row'; row.dataset.product = p.name;
     row.innerHTML = `<span class="product-name" title="${p.name}">${p.name}</span>
-      <span class="product-info">${p.trades}건 | ${p.avg_price_kg.toLocaleString()}원/kg</span>`;
+      <span class="product-info">${(p.qty/1000).toFixed(1)}톤 | ${p.avg_price_kg.toLocaleString()}원/kg</span>`;
     row.addEventListener('click', () => selectProduct(p.name));
     prodDiv.appendChild(row);
   }
@@ -1112,7 +1112,7 @@ function selectCorp(corp, skipZoom = false) {
   origDiv.innerHTML = '';
   for (const o of origins) {
     origDiv.innerHTML += `<div class="origin-row"><span class="product-name" title="${o.name}">${o.name}</span>
-      <span class="product-info">${o.trades}건 | ${o.qty.toLocaleString()}</span></div>`;
+      <span class="product-info">${(o.qty/1000).toFixed(1)}톤 | ${o.trades}건</span></div>`;
   }
 
   document.getElementById('productOriginsSection').classList.remove('visible');
@@ -1410,7 +1410,7 @@ function renderShipmentList() {
       item.className = 'ship-corp-item';
       const badge = isMy ? '<span class="my-badge" style="margin-left:0;margin-right:4px;">MY</span>' : '';
       item.innerHTML = `<span style="font-weight:${isMy?'700':'500'}">${badge}${c.corp}</span>
-        <span style="font-family:'JetBrains Mono';color:var(--purple);">${c.qty.toLocaleString()}박스 ${(c.qty_kg/1000).toFixed(1)}톤</span>`;
+        <span style="font-family:'JetBrains Mono';color:var(--purple);">${(c.qty_kg/1000).toFixed(1)}톤 ${c.qty.toLocaleString()}박스</span>`;
       item.onclick = (e) => { e.stopPropagation(); showShipmentDetail(c); };
       corpList.appendChild(item);
     }
@@ -1425,9 +1425,9 @@ function showShipmentDetail(corpShip) {
   // 상세패널에 출하예약 상세 표시
   document.getElementById('detailCorp').textContent = corpShip.corp;
   document.getElementById('detailMarket').textContent = corpShip.market + ' | 출하예약';
-  document.getElementById('dTrades').textContent = corpShip.qty.toLocaleString();
   document.getElementById('dQty').textContent = (corpShip.qty_kg / 1000).toFixed(1);
   document.getElementById('dAmount').textContent = '-';
+  document.getElementById('dTrades').textContent = corpShip.qty.toLocaleString() + '박스';
 
   const prodDiv = document.getElementById('detailProducts');
   prodDiv.innerHTML = '';
@@ -1438,7 +1438,7 @@ function showShipmentDetail(corpShip) {
     row.style.cursor = 'default';
     const gradeStr = p.grade ? ` [${p.grade}]` : '';
     row.innerHTML = `<span class="product-name" title="${p.name}">${p.name}${gradeStr}</span>
-      <span class="product-info">${p.qty}건 | ${(p.qty_kg/1000).toFixed(2)}톤</span>`;
+      <span class="product-info">${(p.qty_kg/1000).toFixed(2)}톤 | ${p.qty.toLocaleString()}박스</span>`;
     prodDiv.appendChild(row);
   }
 
@@ -1478,14 +1478,14 @@ function renderDetailShipment(corpName) {
 
   titleEl.style.display = '';
   listEl.style.display = '';
-  countEl.textContent = `${corpShip.qty.toLocaleString()}박스 ${(corpShip.qty_kg/1000).toFixed(1)}톤 (${ship.date})`;
+  countEl.textContent = `${(corpShip.qty_kg/1000).toFixed(1)}톤 ${corpShip.qty.toLocaleString()}박스 (${ship.date})`;
 
   listEl.innerHTML = '';
   for (const p of (corpShip.products || []).slice(0, 10)) {
     const gradeStr = p.grade ? ` [${p.grade}]` : '';
     listEl.innerHTML += `<div class="ship-product-row">
       <span>${p.name}${gradeStr}</span>
-      <span style="font-family:'JetBrains Mono';color:var(--purple);">${p.qty.toLocaleString()}박스 ${(p.qty_kg/1000).toFixed(2)}톤</span>
+      <span style="font-family:'JetBrains Mono';color:var(--purple);">${(p.qty_kg/1000).toFixed(2)}톤 ${p.qty.toLocaleString()}박스</span>
     </div>`;
   }
   if ((corpShip.products || []).length > 10) {
@@ -1601,7 +1601,7 @@ function updateLayers() {
       layers.push(new deck.TextLayer({
         id: 'shipment-labels', data: shipCorps,
         getPosition: d => [d.lng, d.lat],
-        getText: d => `${d.corp.replace('㈜','').replace('(공)','')}\n${d.qty.toLocaleString()}박스 ${(d.qty_kg/1000).toFixed(1)}톤`,
+        getText: d => `${d.corp.replace('㈜','').replace('(공)','')}\n${(d.qty_kg/1000).toFixed(1)}톤`,
         getSize: 11,
         getColor: d => d.corp === '대전중앙청과㈜' ? [255,183,77,255] : [192,132,252,220],
         getPixelOffset: [0, -25], fontFamily: 'Noto Sans KR', fontWeight: 700,
@@ -1956,7 +1956,7 @@ function renderMap() {
         return {
           html: `<div style="font-family:'Noto Sans KR';padding:4px;">
             <strong>${object.corp}</strong><br><span style="color:#94a3b8;">${object.market}</span><br>
-            거래: ${object.trades.toLocaleString()}건<br>물량: ${((object.total_qty||0)/1000).toFixed(1)}톤<br>금액: ${((object.total_amount||0)/10000).toLocaleString()}만원</div>`,
+            물량: ${((object.total_qty||0)/1000).toFixed(1)}톤<br>금액: ${((object.total_amount||0)/10000).toLocaleString()}만원<br>거래: ${object.trades.toLocaleString()}건</div>`,
           style: { background:'rgba(10,10,18,0.92)', color:'#e2e8f0', border:'1px solid #1e293b', borderRadius:'8px', fontSize:'12px' }
         };
       }
