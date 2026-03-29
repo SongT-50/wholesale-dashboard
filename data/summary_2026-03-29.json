@@ -1,0 +1,74 @@
+{
+  "date": "2026-03-29",
+  "total_trades": 0,
+  "total_amount": 0,
+  "total_qty": 0,
+  "corp_count": 0,
+  "market_count": 0,
+  "corporations": [],
+  "markets": [],
+  "flows": [],
+  "price_map": {},
+  "shipments": {
+    "date": "2026-03-31",
+    "total_qty": 3782,
+    "total_records": 3,
+    "total_qty_kg": 63368.0,
+    "market_count": 2,
+    "corp_count": 2,
+    "markets": [
+      {
+        "market": "광주서부",
+        "qty": 2500,
+        "qty_kg": 50000.0
+      },
+      {
+        "market": "서울강서",
+        "qty": 1282,
+        "qty_kg": 13368.0
+      }
+    ],
+    "corporations": [
+      {
+        "corp": "두레청과㈜",
+        "market": "광주서부",
+        "market_code": "240004",
+        "lat": 35.192,
+        "lng": 126.808,
+        "qty": 2500,
+        "qty_kg": 50000.0,
+        "products": [
+          {
+            "name": "양파",
+            "qty": 2500,
+            "qty_kg": 50000.0,
+            "grade": "특"
+          }
+        ]
+      },
+      {
+        "corp": "농협강서(공)",
+        "market": "서울강서",
+        "market_code": "110008",
+        "lat": 37.5665,
+        "lng": 126.8275,
+        "qty": 1282,
+        "qty_kg": 13368.0,
+        "products": [
+          {
+            "name": "배추",
+            "qty": 994,
+            "qty_kg": 11928.0,
+            "grade": "특"
+          },
+          {
+            "name": "감귤",
+            "qty": 288,
+            "qty_kg": 1440.0,
+            "grade": "특"
+          }
+        ]
+      }
+    ]
+  }
+}
