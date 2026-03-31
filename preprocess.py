@@ -35,6 +35,18 @@ def load_auction(date: str) -> dict | None:
     return None
 
 
+def _load_shipment_direct(date: str) -> dict | None:
+    """당일 출하예약 파일 직접 탐색 (정산 없이 출하예약만 볼 때)"""
+    for search_dir in [DATA_DIR, ARCHIVE_DIR / date[:7]]:
+        f = search_dir / f"shipment_{date}.json"
+        if f.exists():
+            with open(f, "r", encoding="utf-8") as fp:
+                data = json.load(fp)
+            if data.get("total_collected", 0) > 0:
+                return data
+    return None
+
+
 def load_shipment(base_date: str) -> dict | None:
     """정산일 기준 +1~+3일 출하예약 파일 탐색"""
     d = datetime.strptime(base_date, "%Y-%m-%d")
@@ -175,9 +187,6 @@ def resolve_origin_coords(origin: str, region_coords: dict) -> tuple[float, floa
 
 def preprocess(date: str):
     data = load_auction(date)
-    if not data:
-        print(f"{date} 데이터 없음")
-        return
 
     corps_master = load_corps()
     region_coords = load_region_coords()
@@ -190,6 +199,38 @@ def preprocess(date: str):
             "lat": c["lat"],
             "lng": c["lng"],
         }
+
+    # 정산 데이터 없으면 출하예약만으로 최소 summary 생성
+    if not data:
+        # 정산 기준(+1~3일)이 아닌 당일 shipment도 직접 탐색
+        ship_data = load_shipment(date)
+        if not ship_data:
+            ship_data = _load_shipment_direct(date)
+        if not ship_data:
+            print(f"{date} 정산·출하예약 모두 없음")
+            return
+        print(f"{date} 정산 없음 → 출하예약만으로 summary 생성")
+        result = {
+            "date": date,
+            "total_trades": 0,
+            "total_amount": 0,
+            "total_qty": 0,
+            "corp_count": 0,
+            "market_count": 0,
+            "corporations": [],
+            "markets": [],
+            "flows": [],
+            "price_map": {},
+            "shipments": summarize_shipment(ship_data, corp_coords),
+        }
+        OUT_DIR.mkdir(exist_ok=True)
+        out = OUT_DIR / f"summary_{date}.json"
+        with open(out, "w", encoding="utf-8") as f:
+            json.dump(result, f, ensure_ascii=False, indent=2)
+        ship = result["shipments"]
+        print(f"요약 생성 (출하예약만): {out}")
+        print(f"  출하예약: {ship['date']} ({ship['total_qty']:,}박스, {ship['total_qty_kg']:,.0f}kg, {ship['corp_count']}개 법인)")
+        return
 
     # 법인별 집계
     corp_stats = defaultdict(lambda: {
@@ -451,7 +492,7 @@ def find_prev_summary(date: str, days_back: int) -> dict | None:
 
 def compute_price_changes(date: str, summary: dict) -> None:
     """summary에 전일/전주/전월 대비 등락률 추가 (in-place)."""
-    periods = {"d1": 1, "w1": 7, "m1": 30}
+    periods = {"d1": 1, "w1": 7, "m1": 30, "y1": 365}
     prev_data = {}
     for key, days in periods.items():
         prev = find_prev_summary(date, days)
