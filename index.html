@@ -1113,7 +1113,7 @@ function selectCorp(corp, skipZoom = false) {
     const pc = corp.price_change;
     if (pc) {
       const parts = [];
-      for (const [key, label] of [['d1','전일'],['w1','전주'],['m1','전월']]) {
+      for (const [key, label] of [['d1','전일'],['w1','전주'],['m1','전월'],['y1','전년']]) {
         const ch = pc[key];
         if (!ch) continue;
         const v = ch.qty ?? ch.amount;
@@ -1138,11 +1138,13 @@ function selectCorp(corp, skipZoom = false) {
     row.className = 'product-row'; row.dataset.product = p.name;
     let priceChangeHtml = '';
     if (p.price_change) {
-      const d1 = p.price_change.d1;
-      if (d1 != null) {
-        const cls = d1 > 0 ? 'up' : d1 < 0 ? 'down' : '';
-        const sign = d1 > 0 ? '+' : '';
-        priceChangeHtml = `<span class="change-badge sm ${cls}">${sign}${d1}%</span>`;
+      const pc = p.price_change;
+      for (const [key, label] of [['d1','전일'],['w1','전주'],['m1','전월'],['y1','전년']]) {
+        const v = pc[key];
+        if (v == null) continue;
+        const cls = v > 0 ? 'up' : v < 0 ? 'down' : '';
+        const sign = v > 0 ? '+' : '';
+        priceChangeHtml += `<span class="change-badge sm ${cls}" title="${label} 대비">${sign}${v}%</span>`;
       }
     }
     row.innerHTML = `<span class="product-name" title="${p.name}">${p.name}</span>
