@@ -202,10 +202,10 @@ def preprocess(date: str):
 
     # 정산 데이터 없으면 출하예약만으로 최소 summary 생성
     if not data:
-        # 정산 기준(+1~3일)이 아닌 당일 shipment도 직접 탐색
-        ship_data = load_shipment(date)
+        # 당일 출하예약을 먼저 탐색 (정산 없을 때는 당일이 정확)
+        ship_data = _load_shipment_direct(date)
         if not ship_data:
-            ship_data = _load_shipment_direct(date)
+            ship_data = load_shipment(date)
         if not ship_data:
             print(f"{date} 정산·출하예약 모두 없음")
             return
