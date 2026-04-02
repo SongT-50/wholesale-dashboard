@@ -1,0 +1,58 @@
+{
+  "date": "2026-04-02",
+  "total_trades": 0,
+  "total_amount": 0,
+  "total_qty": 0,
+  "corp_count": 0,
+  "market_count": 0,
+  "corporations": [],
+  "markets": [],
+  "flows": [],
+  "price_map": {},
+  "shipments": {
+    "date": "2026-04-02",
+    "total_qty": 428,
+    "total_records": 7,
+    "total_qty_kg": 5282.0,
+    "market_count": 1,
+    "corp_count": 1,
+    "markets": [
+      {
+        "market": "광주각화",
+        "qty": 428,
+        "qty_kg": 5282.0
+      }
+    ],
+    "corporations": [
+      {
+        "corp": "광주중앙청과㈜",
+        "market": "광주각화",
+        "market_code": "240001",
+        "lat": 35.15,
+        "lng": 126.852,
+        "qty": 428,
+        "qty_kg": 5282.0,
+        "products": [
+          {
+            "name": "바나나",
+            "qty": 389,
+            "qty_kg": 4836.5,
+            "grade": "특"
+          },
+          {
+            "name": "파인애플",
+            "qty": 37,
+            "qty_kg": 425.5,
+            "grade": "특"
+          },
+          {
+            "name": "참다래(키위)",
+            "qty": 2,
+            "qty_kg": 20.0,
+            "grade": "특"
+          }
+        ]
+      }
+    ]
+  }
+}
