@@ -464,6 +464,12 @@ def preprocess(date: str):
     # 등락률 계산 (전일/전주/전월 비교)
     compute_price_changes(date, result)
 
+    # KAMIS 수집기 데이터 병합 (있으면)
+    kamis = load_kamis_data(date)
+    if kamis:
+        result["kamis"] = kamis
+        print(f"  KAMIS: {len(kamis.get('changes', []))}개 등락 + {len(kamis.get('trends', []))}개 추이")
+
     OUT_DIR.mkdir(exist_ok=True)
     out = OUT_DIR / f"summary_{date}.json"
     with open(out, "w", encoding="utf-8") as f:
@@ -475,6 +481,55 @@ def preprocess(date: str):
     print(f"  시장: {len(markets_summary)}개")
     print(f"  물류흐름: {len(flows_list)}개 (산지GPS매칭: {origin_matched}/{len(flows_list)})")
     print(f"  가격맵: {len(price_map)}개 품목")
+
+
+def load_kamis_data(date: str) -> dict | None:
+    """KAMIS 수집기 데이터(price_change, price_trend) 로드 및 병합."""
+    result = {}
+
+    # price_change (등락률)
+    for search_dir in [DATA_DIR, ARCHIVE_DIR / date[:7]]:
+        f = search_dir / f"price_change_{date}.json"
+        if f.exists():
+            with open(f, "r", encoding="utf-8") as fp:
+                data = json.load(fp)
+            changes = []
+            for item in data.get("items", []):
+                changes.append({
+                    "item": item["item_name"],
+                    "variety": item.get("variety_name", ""),
+                    "grade": item.get("grade_name", ""),
+                    "price_kg": item.get("avg_price_kg", 0),
+                    "d1": item.get("change_1d_pct", 0),
+                    "w1": item.get("change_1w_pct", 0),
+                    "m1": item.get("change_1m_pct", 0),
+                    "y1": item.get("change_1y_pct", 0),
+                })
+            result["changes"] = changes
+            break
+
+    # price_trend (4주 추이)
+    for search_dir in [DATA_DIR, ARCHIVE_DIR / date[:7]]:
+        f = search_dir / f"price_trend_{date}.json"
+        if f.exists():
+            with open(f, "r", encoding="utf-8") as fp:
+                data = json.load(fp)
+            trends = []
+            for item in data.get("items", []):
+                trends.append({
+                    "item": item["item_name"],
+                    "variety": item.get("variety_name", ""),
+                    "grade": item.get("grade_name", ""),
+                    "price_kg": item.get("avg_price_kg", 0),
+                    "w1": item.get("w1_avg_price_kg", 0),
+                    "w2": item.get("w2_avg_price_kg", 0),
+                    "w3": item.get("w3_avg_price_kg", 0),
+                    "w4": item.get("w4_avg_price_kg", 0),
+                })
+            result["trends"] = trends
+            break
+
+    return result if result else None
 
 
 def find_prev_summary(date: str, days_back: int) -> dict | None:
@@ -726,19 +781,84 @@ def merge_summaries(start: str, end: str):
     print(f"  법인: {len(corps_summary)}개, 거래: {total_trades:,}건, 금액: {total_amount:,.0f}원")
 
 
+def batch_regenerate(start: str = None, end: str = None, force: bool = False):
+    """아카이브 전 기간 auction 파일에 대해 summary 일괄 (재)생성.
+    force=True면 기존 summary 있어도 덮어쓰기."""
+    import glob as glob_mod
+    import time
+
+    auction_files = []
+    # 1) daily-wholesale-analysis/data/ 에서
+    for f in sorted(DATA_DIR.glob("auction_*.json")):
+        date = f.stem.replace("auction_", "")
+        auction_files.append(date)
+    # 2) 아카이브에서
+    for month_dir in sorted(ARCHIVE_DIR.iterdir()):
+        if not month_dir.is_dir():
+            continue
+        for f in sorted(month_dir.glob("auction_*.json")):
+            date = f.stem.replace("auction_", "")
+            if date not in auction_files:
+                auction_files.append(date)
+
+    auction_files = sorted(set(auction_files))
+
+    # 날짜 범위 필터
+    if start:
+        auction_files = [d for d in auction_files if d >= start]
+    if end:
+        auction_files = [d for d in auction_files if d <= end]
+
+    # force=False면 이미 summary 있는 날짜 스킵
+    if not force:
+        existing = {f.stem.replace("summary_", "") for f in OUT_DIR.glob("summary_*.json")}
+        auction_files = [d for d in auction_files if d not in existing]
+
+    print(f"배치 재생성: {len(auction_files)}일 대상 (force={force})")
+    if not auction_files:
+        print("처리할 파일 없음")
+        return
+
+    t0 = time.time()
+    success, fail = 0, 0
+    for i, date in enumerate(auction_files):
+        try:
+            preprocess(date)
+            success += 1
+        except Exception as e:
+            print(f"  ❌ {date}: {e}")
+            fail += 1
+        if (i + 1) % 50 == 0:
+            elapsed = time.time() - t0
+            rate = (i + 1) / elapsed
+            remaining = (len(auction_files) - i - 1) / rate
+            print(f"  진행: {i+1}/{len(auction_files)} ({rate:.1f}일/초, 남은 시간: {remaining/60:.0f}분)")
+
+    elapsed = time.time() - t0
+    print(f"배치 완료: {success}성공, {fail}실패, {elapsed:.0f}초 소요")
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--date")
     parser.add_argument("--range", nargs=2, metavar=("START", "END"),
                         help="기간 합산: --range 2026-02-09 2026-03-09")
+    parser.add_argument("--batch", action="store_true",
+                        help="아카이브 전 기간 summary 일괄 생성")
+    parser.add_argument("--batch-start", help="배치 시작일 (예: 2020-01-01)")
+    parser.add_argument("--batch-end", help="배치 종료일 (예: 2026-04-05)")
+    parser.add_argument("--force", action="store_true",
+                        help="기존 summary 있어도 덮어쓰기")
     args = parser.parse_args()
 
-    if args.range:
+    if args.batch:
+        batch_regenerate(args.batch_start, args.batch_end, args.force)
+    elif args.range:
         merge_summaries(args.range[0], args.range[1])
     elif args.date:
         preprocess(args.date)
     else:
-        parser.error("--date 또는 --range 필수")
+        parser.error("--date, --range, 또는 --batch 필수")
 
 
 if __name__ == "__main__":

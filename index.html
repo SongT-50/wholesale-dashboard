@@ -69,6 +69,15 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', s
 .market-name { font-size: 13px; font-weight: 700; }
 .market-info { font-size: 11px; color: var(--dim); }
 
+/* KAMIS 전국 시세 */
+.kamis-section { background: rgba(59,130,246,0.08); border: 1px solid rgba(59,130,246,0.2); border-radius: 6px; padding: 8px 10px; margin-bottom: 10px; }
+.kamis-header { font-size: 10px; font-weight: 700; color: var(--blue); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+.kamis-row { display: flex; align-items: center; gap: 6px; font-size: 11px; padding: 3px 0; flex-wrap: wrap; }
+.kamis-label { color: var(--dim); min-width: 60px; }
+.kamis-price { color: var(--text); font-weight: 600; }
+.kamis-trend { display: inline-flex; align-items: flex-end; gap: 2px; margin: 0 4px; }
+.trend-bar { width: 4px; background: var(--blue); border-radius: 1px; min-height: 4px; }
+
 /* 가격비교 */
 .price-section { margin-top: 4px; }
 .price-search {
@@ -778,20 +787,49 @@ function mergeSummaries(dailyList) {
     }
   }
 
+  // 기간 등락률 계산: 첫날 vs 마지막날 비교
+  const firstDay = dailyList[0], lastDay = dailyList[dailyList.length - 1];
+  const firstCorps = {}, lastCorps = {};
+  for (const c of (firstDay.corporations || [])) {
+    firstCorps[c.corp] = c;
+  }
+  for (const c of (lastDay.corporations || [])) {
+    lastCorps[c.corp] = c;
+  }
+
   // 최종 형태 변환
   const corps = Object.values(corpAgg).sort((a, b) => b.trades - a.trades).map(ca => {
     const products = Object.values(ca._products).sort((a, b) => b.trades - a.trades).map(p => {
       const avg = p._wt_qty_sum > 0 ? Math.round(p._wt_price_sum / p._wt_qty_sum) : 0;
-      return { name: p.name, trades: p.trades, qty: p.qty, amount: p.amount, avg_price_kg: avg };
+      const prod = { name: p.name, trades: p.trades, qty: p.qty, amount: p.amount, avg_price_kg: avg };
+      // 품목 등락률: 첫날 vs 마지막날 가격 비교
+      const fc = firstCorps[ca.corp], lc = lastCorps[ca.corp];
+      if (fc && lc) {
+        const fp = (fc.products || []).find(x => x.name === p.name);
+        const lp = (lc.products || []).find(x => x.name === p.name);
+        if (fp && lp && fp.avg_price_kg > 0) {
+          prod.price_change = { period: Math.round((lp.avg_price_kg / fp.avg_price_kg - 1) * 1000) / 10 };
+        }
+      }
+      return prod;
     });
     const origins = Object.values(ca._origins).sort((a, b) => b.trades - a.trades);
     const product_origins = {};
     for (const [pname, poMap] of Object.entries(ca._prodOrigins)) {
       product_origins[pname] = Object.values(poMap).sort((a, b) => b.trades - a.trades).slice(0, 20);
     }
-    return { corp: ca.corp, market: ca.market, market_code: ca.market_code,
+    // 법인 등락률: 첫날 vs 마지막날
+    const result = { corp: ca.corp, market: ca.market, market_code: ca.market_code,
       lat: ca.lat, lng: ca.lng, trades: ca.trades, total_qty: ca.total_qty, total_amount: ca.total_amount,
       products, origins, product_origins };
+    const fc = firstCorps[ca.corp], lc = lastCorps[ca.corp];
+    if (fc && lc) {
+      const pc = {};
+      if (fc.total_amount > 0) pc.amount = Math.round((lc.total_amount / fc.total_amount - 1) * 1000) / 10;
+      if (fc.total_qty > 0) pc.qty = Math.round((lc.total_qty / fc.total_qty - 1) * 1000) / 10;
+      if (pc.amount !== undefined || pc.qty !== undefined) result.price_change = { period: pc };
+    }
+    return result;
   });
 
   const markets = Object.values(marketAgg).sort((a, b) => b.trades - a.trades).map(m => {
@@ -1113,14 +1151,25 @@ function selectCorp(corp, skipZoom = false) {
     const pc = corp.price_change;
     if (pc) {
       const parts = [];
-      for (const [key, label] of [['d1','전일'],['w1','전주'],['m1','전월'],['y1','전년']]) {
-        const ch = pc[key];
-        if (!ch) continue;
-        const v = ch.qty ?? ch.amount;
-        if (v == null) continue;
-        const cls = v > 0 ? 'up' : v < 0 ? 'down' : '';
-        const sign = v > 0 ? '+' : '';
-        parts.push(`<span class="change-badge ${cls}" title="${label} 대비">${label} ${sign}${v}%</span>`);
+      if (pc.period) {
+        // 기간 합산 모드: 첫날→마지막날 변화율
+        const periodLabel = {'1w':'주간','1m':'월간','1y':'연간'}[currentPeriod] || '기간';
+        const v = pc.period.qty ?? pc.period.amount;
+        if (v != null) {
+          const cls = v > 0 ? 'up' : v < 0 ? 'down' : '';
+          const sign = v > 0 ? '+' : '';
+          parts.push(`<span class="change-badge ${cls}" title="${periodLabel} 변화">${periodLabel} ${sign}${v}%</span>`);
+        }
+      } else {
+        for (const [key, label] of [['d1','전일'],['w1','전주'],['m1','전월'],['y1','전년']]) {
+          const ch = pc[key];
+          if (!ch) continue;
+          const v = ch.qty ?? ch.amount;
+          if (v == null) continue;
+          const cls = v > 0 ? 'up' : v < 0 ? 'down' : '';
+          const sign = v > 0 ? '+' : '';
+          parts.push(`<span class="change-badge ${cls}" title="${label} 대비">${label} ${sign}${v}%</span>`);
+        }
       }
       pcEl.innerHTML = parts.join(' ');
       pcEl.style.display = parts.length ? '' : 'none';
@@ -1139,12 +1188,20 @@ function selectCorp(corp, skipZoom = false) {
     let priceChangeHtml = '';
     if (p.price_change) {
       const pc = p.price_change;
-      for (const [key, label] of [['d1','전일'],['w1','전주'],['m1','전월'],['y1','전년']]) {
-        const v = pc[key];
-        if (v == null) continue;
+      if (pc.period != null) {
+        // 기간 합산 모드
+        const v = pc.period;
         const cls = v > 0 ? 'up' : v < 0 ? 'down' : '';
         const sign = v > 0 ? '+' : '';
-        priceChangeHtml += `<span class="change-badge sm ${cls}" title="${label} 대비">${sign}${v}%</span>`;
+        priceChangeHtml = `<span class="change-badge sm ${cls}" title="기간 변화">${sign}${v}%</span>`;
+      } else {
+        for (const [key, label] of [['d1','전일'],['w1','전주'],['m1','전월'],['y1','전년']]) {
+          const v = pc[key];
+          if (v == null) continue;
+          const cls = v > 0 ? 'up' : v < 0 ? 'down' : '';
+          const sign = v > 0 ? '+' : '';
+          priceChangeHtml += `<span class="change-badge sm ${cls}" title="${label} 대비">${sign}${v}%</span>`;
+        }
       }
     }
     row.innerHTML = `<span class="product-name" title="${p.name}">${p.name}</span>
@@ -1332,6 +1389,43 @@ function selectPriceProduct(productName) {
   document.getElementById('priceResultSub').textContent = `${corpPrices.length}개 법인 가격비교 (원/kg)`;
   const listEl = document.getElementById('priceMarketList');
   listEl.innerHTML = '';
+
+  // KAMIS 전국 시세 (있으면 상단에 표시)
+  const kamis = summaryData.kamis;
+  if (kamis?.changes) {
+    const kItems = kamis.changes.filter(k => k.item === productName);
+    if (kItems.length > 0) {
+      let kamisHtml = '<div class="kamis-section">';
+      kamisHtml += '<div class="kamis-header">KAMIS 전국 시세</div>';
+      for (const k of kItems) {
+        const label = k.variety ? `${k.variety} ${k.grade}` : k.grade;
+        const badges = [];
+        if (k.d1) { const c = k.d1 > 0 ? 'up' : 'down'; badges.push(`<span class="change-badge sm ${c}">일 ${k.d1>0?'+':''}${k.d1}%</span>`); }
+        if (k.w1) { const c = k.w1 > 0 ? 'up' : 'down'; badges.push(`<span class="change-badge sm ${c}">주 ${k.w1>0?'+':''}${k.w1}%</span>`); }
+        if (k.m1) { const c = k.m1 > 0 ? 'up' : 'down'; badges.push(`<span class="change-badge sm ${c}">월 ${k.m1>0?'+':''}${k.m1}%</span>`); }
+        if (k.y1) { const c = k.y1 > 0 ? 'up' : 'down'; badges.push(`<span class="change-badge sm ${c}">년 ${k.y1>0?'+':''}${k.y1}%</span>`); }
+        // 4주 추이 미니바
+        let trendHtml = '';
+        if (kamis.trends) {
+          const t = kamis.trends.find(tr => tr.item === productName && tr.variety === k.variety && tr.grade === k.grade);
+          if (t) {
+            const weeks = [t.w4, t.w3, t.w2, t.w1].filter(v => v > 0);
+            if (weeks.length >= 2) {
+              const mx = Math.max(...weeks), mn = Math.min(...weeks);
+              trendHtml = '<span class="kamis-trend" title="4주 추이">' +
+                weeks.map(w => `<span class="trend-bar" style="height:${mx>mn ? Math.round((w-mn)/(mx-mn)*12+4) : 10}px"></span>`).join('') +
+                '</span>';
+            }
+          }
+        }
+        kamisHtml += `<div class="kamis-row"><span class="kamis-label">${label}</span>
+          <span class="kamis-price">${k.price_kg > 0 ? k.price_kg.toLocaleString()+'원/kg' : ''}</span>
+          ${trendHtml} ${badges.join(' ')}</div>`;
+      }
+      kamisHtml += '</div>';
+      listEl.innerHTML = kamisHtml;
+    }
+  }
 
   for (const item of corpPrices) {
     const pct = maxPrice > 0 ? (item.price / maxPrice * 100) : 0;
