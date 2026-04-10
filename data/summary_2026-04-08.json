@@ -1,9 +1,9 @@
 {
   "date": "2026-04-08",
-  "total_trades": 35222,
-  "total_amount": 40232765777,
-  "total_qty": 18693740.820000004,
-  "corp_count": 81,
+  "total_trades": 35703,
+  "total_amount": 40876784947,
+  "total_qty": 19061388.519999996,
+  "corp_count": 82,
   "market_count": 31,
   "corporations": [
     {
@@ -124828,6 +124828,3238 @@
       }
     },
     {
+      "corp": "서부청과㈜",
+      "market": "서울강서",
+      "market_code": "110008",
+      "lat": 37.5665,
+      "lng": 126.8275,
+      "trades": 481,
+      "total_qty": 367647.7,
+      "total_amount": 644019170,
+      "products": [
+        {
+          "name": "딸기",
+          "trades": 38,
+          "qty": 16113.0,
+          "amount": 85257500,
+          "avg_price_kg": 5325,
+          "price_change": {
+            "d1": -2.5,
+            "w1": -5.7
+          }
+        },
+        {
+          "name": "오이",
+          "trades": 33,
+          "qty": 23776.0,
+          "amount": 41279500,
+          "avg_price_kg": 1336,
+          "price_change": {
+            "d1": -20.0,
+            "w1": -16.7
+          }
+        },
+        {
+          "name": "수박",
+          "trades": 20,
+          "qty": 3456.0,
+          "amount": 12846500,
+          "avg_price_kg": 3387,
+          "price_change": {
+            "d1": -45.4,
+            "w1": 2.0
+          }
+        },
+        {
+          "name": "두릅",
+          "trades": 20,
+          "qty": 397.6,
+          "amount": 9159500,
+          "avg_price_kg": 20857,
+          "price_change": {
+            "d1": 5.4,
+            "w1": -13.3
+          }
+        },
+        {
+          "name": "얼갈이배추",
+          "trades": 19,
+          "qty": 23732.0,
+          "amount": 21721450,
+          "avg_price_kg": 973,
+          "price_change": {
+            "d1": -15.1,
+            "w1": -20.0
+          }
+        },
+        {
+          "name": "풋고추",
+          "trades": 18,
+          "qty": 5388.0,
+          "amount": 18501800,
+          "avg_price_kg": 3067,
+          "price_change": {
+            "d1": -12.8,
+            "w1": -39.8
+          }
+        },
+        {
+          "name": "호박",
+          "trades": 17,
+          "qty": 11474.0,
+          "amount": 18877000,
+          "avg_price_kg": 1237,
+          "price_change": {
+            "d1": -7.4,
+            "w1": -4.6
+          }
+        },
+        {
+          "name": "시금치",
+          "trades": 17,
+          "qty": 6675.0,
+          "amount": 9926980,
+          "avg_price_kg": 1418,
+          "price_change": {
+            "d1": 2.5,
+            "w1": 30.1
+          }
+        },
+        {
+          "name": "상추",
+          "trades": 15,
+          "qty": 5416.0,
+          "amount": 9288400,
+          "avg_price_kg": 1628,
+          "price_change": {
+            "d1": -6.9,
+            "w1": -5.8
+          }
+        },
+        {
+          "name": "참외",
+          "trades": 14,
+          "qty": 8680.0,
+          "amount": 50933000,
+          "avg_price_kg": 4800,
+          "price_change": {
+            "d1": -14.1,
+            "w1": -15.5
+          }
+        },
+        {
+          "name": "새송이버섯",
+          "trades": 13,
+          "qty": 2756.0,
+          "amount": 6197800,
+          "avg_price_kg": 2496,
+          "price_change": {
+            "d1": 1.2,
+            "w1": 4.9
+          }
+        },
+        {
+          "name": "토마토",
+          "trades": 12,
+          "qty": 8883.0,
+          "amount": 25842000,
+          "avg_price_kg": 3031,
+          "price_change": {
+            "d1": 27.8,
+            "w1": -3.4
+          }
+        },
+        {
+          "name": "감자",
+          "trades": 11,
+          "qty": 8080.0,
+          "amount": 25717000,
+          "avg_price_kg": 2623,
+          "price_change": {
+            "d1": -14.3,
+            "w1": -11.8
+          }
+        },
+        {
+          "name": "가지",
+          "trades": 11,
+          "qty": 3677.0,
+          "amount": 8033000,
+          "avg_price_kg": 1708,
+          "price_change": {
+            "d1": -11.6,
+            "w1": 23.6
+          }
+        },
+        {
+          "name": "쪽파",
+          "trades": 11,
+          "qty": 10580.0,
+          "amount": 10722300,
+          "avg_price_kg": 1128,
+          "price_change": {
+            "d1": -26.7,
+            "w1": -30.7
+          }
+        },
+        {
+          "name": "사과",
+          "trades": 9,
+          "qty": 9860.0,
+          "amount": 38308000,
+          "avg_price_kg": 2620,
+          "price_change": {
+            "d1": -24.9,
+            "w1": -22.0
+          }
+        },
+        {
+          "name": "열무",
+          "trades": 9,
+          "qty": 12219.5,
+          "amount": 5992100,
+          "avg_price_kg": 555,
+          "price_change": {
+            "d1": 13.0,
+            "w1": -30.5
+          }
+        },
+        {
+          "name": "쑥갓",
+          "trades": 9,
+          "qty": 882.0,
+          "amount": 1031200,
+          "avg_price_kg": 1137,
+          "price_change": {
+            "d1": -1.7,
+            "w1": -32.5
+          }
+        },
+        {
+          "name": "양파",
+          "trades": 9,
+          "qty": 28770.0,
+          "amount": 24163600,
+          "avg_price_kg": 918,
+          "price_change": {
+            "d1": 24.7,
+            "w1": 4.2
+          }
+        },
+        {
+          "name": "표고버섯",
+          "trades": 8,
+          "qty": 1288.0,
+          "amount": 8672250,
+          "avg_price_kg": 6557,
+          "price_change": {
+            "d1": -0.2,
+            "w1": -11.8
+          }
+        },
+        {
+          "name": "깻잎",
+          "trades": 8,
+          "qty": 1087.0,
+          "amount": 4868400,
+          "avg_price_kg": 4601,
+          "price_change": {
+            "d1": -2.6,
+            "w1": -5.5
+          }
+        },
+        {
+          "name": "당근",
+          "trades": 7,
+          "qty": 12320.0,
+          "amount": 11525000,
+          "avg_price_kg": 919,
+          "price_change": {
+            "d1": 3.0,
+            "w1": 8.1
+          }
+        },
+        {
+          "name": "만감",
+          "trades": 6,
+          "qty": 4632.4,
+          "amount": 15861900,
+          "avg_price_kg": 3765,
+          "price_change": {
+            "d1": -16.7,
+            "w1": 13.4
+          }
+        },
+        {
+          "name": "방울토마토",
+          "trades": 6,
+          "qty": 3284.0,
+          "amount": 13804500,
+          "avg_price_kg": 4220,
+          "price_change": {
+            "d1": -16.2,
+            "w1": -15.7
+          }
+        },
+        {
+          "name": "꽈리고추",
+          "trades": 6,
+          "qty": 1688.0,
+          "amount": 6950500,
+          "avg_price_kg": 3780,
+          "price_change": {
+            "d1": -8.8,
+            "w1": 4.2
+          }
+        },
+        {
+          "name": "홍고추",
+          "trades": 6,
+          "qty": 146.0,
+          "amount": 465000,
+          "avg_price_kg": 3078,
+          "price_change": {
+            "d1": -63.3,
+            "w1": -53.1
+          }
+        },
+        {
+          "name": "양배추",
+          "trades": 6,
+          "qty": 22120.0,
+          "amount": 7345900,
+          "avg_price_kg": 316,
+          "price_change": {
+            "d1": -12.7,
+            "w1": 3.6
+          }
+        },
+        {
+          "name": "마늘",
+          "trades": 6,
+          "qty": 740.0,
+          "amount": 4995900,
+          "avg_price_kg": 6946,
+          "price_change": {
+            "d1": 6.4,
+            "w1": 17.2
+          }
+        },
+        {
+          "name": "고구마",
+          "trades": 5,
+          "qty": 6160.0,
+          "amount": 15397000,
+          "avg_price_kg": 2366,
+          "price_change": {
+            "d1": 27.7,
+            "w1": -4.6
+          }
+        },
+        {
+          "name": "근대",
+          "trades": 5,
+          "qty": 774.0,
+          "amount": 468300,
+          "avg_price_kg": 696,
+          "price_change": {
+            "d1": -17.8,
+            "w1": 91.7
+          }
+        },
+        {
+          "name": "파프리카",
+          "trades": 5,
+          "qty": 475.0,
+          "amount": 2409000,
+          "avg_price_kg": 5071,
+          "price_change": {
+            "d1": -20.6,
+            "w1": -28.2
+          }
+        },
+        {
+          "name": "고사리",
+          "trades": 5,
+          "qty": 115.7,
+          "amount": 871500,
+          "avg_price_kg": 11865,
+          "price_change": {
+            "w1": 106.3
+          }
+        },
+        {
+          "name": "기타",
+          "trades": 5,
+          "qty": 213.0,
+          "amount": 1001000,
+          "avg_price_kg": 7610,
+          "price_change": {
+            "d1": 8.3,
+            "w1": 11.9
+          }
+        },
+        {
+          "name": "오렌지",
+          "trades": 4,
+          "qty": 4134.0,
+          "amount": 14836000,
+          "avg_price_kg": 3208,
+          "price_change": {
+            "w1": -18.2
+          }
+        },
+        {
+          "name": "미나리",
+          "trades": 4,
+          "qty": 3276.0,
+          "amount": 5397400,
+          "avg_price_kg": 1848,
+          "price_change": {
+            "d1": -14.7,
+            "w1": -70.5
+          }
+        },
+        {
+          "name": "취나물",
+          "trades": 4,
+          "qty": 848.0,
+          "amount": 2351900,
+          "avg_price_kg": 3012,
+          "price_change": {
+            "d1": 19.5,
+            "w1": 15.7
+          }
+        },
+        {
+          "name": "느타리버섯",
+          "trades": 4,
+          "qty": 1390.0,
+          "amount": 3929000,
+          "avg_price_kg": 2527,
+          "price_change": {
+            "d1": -3.0,
+            "w1": -7.5
+          }
+        },
+        {
+          "name": "양송이",
+          "trades": 4,
+          "qty": 70.0,
+          "amount": 674000,
+          "avg_price_kg": 8875,
+          "price_change": {
+            "d1": -2.1,
+            "w1": 2.9
+          }
+        },
+        {
+          "name": "부추",
+          "trades": 4,
+          "qty": 5124.5,
+          "amount": 11714320,
+          "avg_price_kg": 2222,
+          "price_change": {
+            "d1": 24.0,
+            "w1": -28.5
+          }
+        },
+        {
+          "name": "대파",
+          "trades": 4,
+          "qty": 19450.0,
+          "amount": 10612500,
+          "avg_price_kg": 505,
+          "price_change": {
+            "d1": -1.0,
+            "w1": -32.1
+          }
+        },
+        {
+          "name": "팽이버섯",
+          "trades": 4,
+          "qty": 1250.0,
+          "amount": 2147500,
+          "avg_price_kg": 1762,
+          "price_change": {
+            "d1": 4.2,
+            "w1": 10.6
+          }
+        },
+        {
+          "name": "포도",
+          "trades": 3,
+          "qty": 1294.0,
+          "amount": 5070500,
+          "avg_price_kg": 4024,
+          "price_change": {
+            "d1": -19.6,
+            "w1": -5.6
+          }
+        },
+        {
+          "name": "바나나",
+          "trades": 3,
+          "qty": 7650.0,
+          "amount": 17782120,
+          "avg_price_kg": 2332,
+          "price_change": {
+            "d1": 11.5,
+            "w1": -0.3
+          }
+        },
+        {
+          "name": "아욱",
+          "trades": 3,
+          "qty": 396.0,
+          "amount": 1043300,
+          "avg_price_kg": 2422,
+          "price_change": {
+            "d1": -19.5,
+            "w1": 3.2
+          }
+        },
+        {
+          "name": "무",
+          "trades": 3,
+          "qty": 43000.0,
+          "amount": 15328400,
+          "avg_price_kg": 378,
+          "price_change": {
+            "d1": 7.4,
+            "w1": -0.5
+          }
+        },
+        {
+          "name": "양상추",
+          "trades": 3,
+          "qty": 2300.0,
+          "amount": 2493500,
+          "avg_price_kg": 1097,
+          "price_change": {
+            "d1": -15.7,
+            "w1": -43.6
+          }
+        },
+        {
+          "name": "치커리",
+          "trades": 3,
+          "qty": 790.0,
+          "amount": 699200,
+          "avg_price_kg": 909,
+          "price_change": {
+            "d1": -26.5,
+            "w1": -4.1
+          }
+        },
+        {
+          "name": "민들레",
+          "trades": 3,
+          "qty": 82.0,
+          "amount": 385200,
+          "avg_price_kg": 5733,
+          "price_change": {
+            "d1": -5.6,
+            "w1": -42.7
+          }
+        },
+        {
+          "name": "고수",
+          "trades": 3,
+          "qty": 840.0,
+          "amount": 2914250,
+          "avg_price_kg": 3609,
+          "price_change": {
+            "d1": 7.3,
+            "w1": 2.2
+          }
+        },
+        {
+          "name": "아스파라거스",
+          "trades": 3,
+          "qty": 30.0,
+          "amount": 418500,
+          "avg_price_kg": 13833
+        },
+        {
+          "name": "단감",
+          "trades": 2,
+          "qty": 990.0,
+          "amount": 2120000,
+          "avg_price_kg": 1917,
+          "price_change": {
+            "d1": -20.3,
+            "w1": 6.4
+          }
+        },
+        {
+          "name": "망고",
+          "trades": 2,
+          "qty": 795.0,
+          "amount": 3796000,
+          "avg_price_kg": 4917,
+          "price_change": {
+            "d1": -11.1,
+            "w1": -34.4
+          }
+        },
+        {
+          "name": "머위대",
+          "trades": 2,
+          "qty": 136.0,
+          "amount": 798000,
+          "avg_price_kg": 4818,
+          "price_change": {
+            "d1": -15.9,
+            "w1": -38.9
+          }
+        },
+        {
+          "name": "쑥",
+          "trades": 2,
+          "qty": 164.0,
+          "amount": 1223500,
+          "avg_price_kg": 5540,
+          "price_change": {
+            "d1": -13.2,
+            "w1": -9.4
+          }
+        },
+        {
+          "name": "청경채",
+          "trades": 2,
+          "qty": 708.0,
+          "amount": 496600,
+          "avg_price_kg": 671,
+          "price_change": {
+            "d1": -9.1,
+            "w1": -5.8
+          }
+        },
+        {
+          "name": "피망(단고추)",
+          "trades": 2,
+          "qty": 210.0,
+          "amount": 1453000,
+          "avg_price_kg": 6955,
+          "price_change": {
+            "d1": 6.3
+          }
+        },
+        {
+          "name": "배추",
+          "trades": 2,
+          "qty": 23016.0,
+          "amount": 9495600,
+          "avg_price_kg": 417,
+          "price_change": {
+            "d1": 11.5,
+            "w1": -17.6
+          }
+        },
+        {
+          "name": "밤",
+          "trades": 2,
+          "qty": 250.0,
+          "amount": 290000,
+          "avg_price_kg": 1100
+        },
+        {
+          "name": "콩나물",
+          "trades": 2,
+          "qty": 620.0,
+          "amount": 424000,
+          "avg_price_kg": 725,
+          "price_change": {
+            "d1": -4.5,
+            "w1": 0.0
+          }
+        },
+        {
+          "name": "숙주나물",
+          "trades": 2,
+          "qty": 620.0,
+          "amount": 717500,
+          "avg_price_kg": 1169,
+          "price_change": {
+            "d1": -0.4,
+            "w1": -3.0
+          }
+        },
+        {
+          "name": "감귤",
+          "trades": 1,
+          "qty": 200.0,
+          "amount": 991000,
+          "avg_price_kg": 4955,
+          "price_change": {
+            "w1": 38.1
+          }
+        },
+        {
+          "name": "블루베리",
+          "trades": 1,
+          "qty": 28.0,
+          "amount": 1523000,
+          "avg_price_kg": 54393,
+          "price_change": {
+            "w1": 172.0
+          }
+        },
+        {
+          "name": "고들빼기",
+          "trades": 1,
+          "qty": 40.0,
+          "amount": 310000,
+          "avg_price_kg": 7750,
+          "price_change": {
+            "d1": -13.9
+          }
+        },
+        {
+          "name": "셀러리(양미나리)",
+          "trades": 1,
+          "qty": 100.0,
+          "amount": 65000,
+          "avg_price_kg": 650,
+          "price_change": {
+            "d1": 8.3,
+            "w1": 3.2
+          }
+        },
+        {
+          "name": "적채",
+          "trades": 1,
+          "qty": 648.0,
+          "amount": 519500,
+          "avg_price_kg": 802,
+          "price_change": {
+            "d1": -6.4,
+            "w1": 4.6
+          }
+        },
+        {
+          "name": "브로코리(녹색꽃양배추)",
+          "trades": 1,
+          "qty": 448.0,
+          "amount": 1783000,
+          "avg_price_kg": 3980,
+          "price_change": {
+            "d1": 9.3,
+            "w1": 51.9
+          }
+        },
+        {
+          "name": "칼리플라워(꽃양배추)",
+          "trades": 1,
+          "qty": 16.0,
+          "amount": 26000,
+          "avg_price_kg": 1625,
+          "price_change": {
+            "d1": -48.5,
+            "w1": -57.8
+          }
+        },
+        {
+          "name": "참나물",
+          "trades": 1,
+          "qty": 136.0,
+          "amount": 372600,
+          "avg_price_kg": 2740,
+          "price_change": {
+            "d1": -24.1,
+            "w1": 24.5
+          }
+        },
+        {
+          "name": "유채",
+          "trades": 1,
+          "qty": 60.0,
+          "amount": 94500,
+          "avg_price_kg": 1575,
+          "price_change": {
+            "d1": 50.9,
+            "w1": -23.2
+          }
+        },
+        {
+          "name": "강낭콩",
+          "trades": 1,
+          "qty": 60.0,
+          "amount": 390000,
+          "avg_price_kg": 6500,
+          "price_change": {
+            "d1": 2.0
+          }
+        },
+        {
+          "name": "방풍나물",
+          "trades": 1,
+          "qty": 500.0,
+          "amount": 682000,
+          "avg_price_kg": 1364,
+          "price_change": {
+            "d1": -52.6,
+            "w1": -56.4
+          }
+        },
+        {
+          "name": "호박잎",
+          "trades": 1,
+          "qty": 30.0,
+          "amount": 90000,
+          "avg_price_kg": 3000
+        },
+        {
+          "name": "실파",
+          "trades": 1,
+          "qty": 90.0,
+          "amount": 126000,
+          "avg_price_kg": 1400
+        }
+      ],
+      "origins": [
+        {
+          "name": "경상남도 진주시",
+          "trades": 29,
+          "qty": 9430.0,
+          "amount": 26707000
+        },
+        {
+          "name": "경상남도 밀양시",
+          "trades": 24,
+          "qty": 3730.6,
+          "amount": 17610900
+        },
+        {
+          "name": "제주특별자치도 제주시",
+          "trades": 24,
+          "qty": 63466.0,
+          "amount": 41804100
+        },
+        {
+          "name": "경기도 고양시",
+          "trades": 21,
+          "qty": 24153.5,
+          "amount": 21231250
+        },
+        {
+          "name": "경상남도 거창군",
+          "trades": 19,
+          "qty": 12542.0,
+          "amount": 58109000
+        },
+        {
+          "name": "전라남도 광양시",
+          "trades": 18,
+          "qty": 6971.7,
+          "amount": 19302500
+        },
+        {
+          "name": "경상남도 창녕군",
+          "trades": 12,
+          "qty": 4818.0,
+          "amount": 12423500
+        },
+        {
+          "name": "충청북도 음성군",
+          "trades": 12,
+          "qty": 3657.0,
+          "amount": 9057000
+        },
+        {
+          "name": "전라남도 무안군",
+          "trades": 12,
+          "qty": 10980.0,
+          "amount": 16591400
+        },
+        {
+          "name": "경기도 파주시",
+          "trades": 11,
+          "qty": 7889.5,
+          "amount": 7549900
+        },
+        {
+          "name": "경상남도 함안군",
+          "trades": 10,
+          "qty": 1139.0,
+          "amount": 6429500
+        },
+        {
+          "name": "전라남도 보성군",
+          "trades": 10,
+          "qty": 5800.0,
+          "amount": 8888000
+        },
+        {
+          "name": "전라남도 순천시",
+          "trades": 9,
+          "qty": 3590.0,
+          "amount": 5519000
+        },
+        {
+          "name": "경상북도 성주군",
+          "trades": 9,
+          "qty": 6302.0,
+          "amount": 36403800
+        },
+        {
+          "name": "충청남도 논산시",
+          "trades": 9,
+          "qty": 4141.0,
+          "amount": 10763400
+        },
+        {
+          "name": "인천광역시 계양구",
+          "trades": 9,
+          "qty": 1575.0,
+          "amount": 2183800
+        },
+        {
+          "name": "제주특별자치도 서귀포시",
+          "trades": 8,
+          "qty": 37648.4,
+          "amount": 25006700
+        },
+        {
+          "name": "경기도 김포시",
+          "trades": 8,
+          "qty": 1595.0,
+          "amount": 1710000
+        },
+        {
+          "name": "전라남도 함평군",
+          "trades": 7,
+          "qty": 1325.0,
+          "amount": 6093250
+        },
+        {
+          "name": "전북특별자치도 김제시",
+          "trades": 7,
+          "qty": 7820.0,
+          "amount": 25117000
+        },
+        {
+          "name": "충청남도 아산시",
+          "trades": 7,
+          "qty": 2048.0,
+          "amount": 3127300
+        },
+        {
+          "name": "광주광역시 광산구",
+          "trades": 7,
+          "qty": 1113.0,
+          "amount": 2474000
+        },
+        {
+          "name": "경기도 여주시",
+          "trades": 7,
+          "qty": 2327.0,
+          "amount": 3108300
+        },
+        {
+          "name": "경상남도 산청군",
+          "trades": 6,
+          "qty": 2674.0,
+          "amount": 15855000
+        },
+        {
+          "name": "전라남도 담양군",
+          "trades": 6,
+          "qty": 2594.0,
+          "amount": 16154500
+        },
+        {
+          "name": "경기도 광명시",
+          "trades": 6,
+          "qty": 1343.0,
+          "amount": 1644700
+        },
+        {
+          "name": "충청남도 서산시",
+          "trades": 6,
+          "qty": 338.0,
+          "amount": 2378000
+        },
+        {
+          "name": "중국",
+          "trades": 6,
+          "qty": 3480.0,
+          "amount": 4341500
+        },
+        {
+          "name": "전라남도 영암군",
+          "trades": 5,
+          "qty": 6160.0,
+          "amount": 15397000
+        },
+        {
+          "name": "전북특별자치도 순창군",
+          "trades": 5,
+          "qty": 1584.0,
+          "amount": 7805500
+        },
+        {
+          "name": "충청남도 천안시",
+          "trades": 5,
+          "qty": 4920.0,
+          "amount": 9100500
+        },
+        {
+          "name": "경기도 평택시",
+          "trades": 5,
+          "qty": 8510.0,
+          "amount": 14538000
+        },
+        {
+          "name": "광주광역시 광주 남구",
+          "trades": 5,
+          "qty": 552.0,
+          "amount": 1146800
+        },
+        {
+          "name": "전라남도 해남군",
+          "trades": 5,
+          "qty": 25176.0,
+          "amount": 12645600
+        },
+        {
+          "name": "서울특별시 양천구",
+          "trades": 5,
+          "qty": 406.0,
+          "amount": 415200
+        },
+        {
+          "name": "경상북도 상주시",
+          "trades": 4,
+          "qty": 2206.0,
+          "amount": 4466000
+        },
+        {
+          "name": "미국",
+          "trades": 4,
+          "qty": 4134.0,
+          "amount": 14836000
+        },
+        {
+          "name": "대구광역시 달성군",
+          "trades": 4,
+          "qty": 570.0,
+          "amount": 2692000
+        },
+        {
+          "name": "경상북도 칠곡군",
+          "trades": 4,
+          "qty": 2200.0,
+          "amount": 12658000
+        },
+        {
+          "name": "부산광역시 부산 강서구",
+          "trades": 4,
+          "qty": 4842.5,
+          "amount": 15823000
+        },
+        {
+          "name": "경상남도 김해시",
+          "trades": 4,
+          "qty": 297.5,
+          "amount": 1086500
+        },
+        {
+          "name": "충청남도 부여군",
+          "trades": 4,
+          "qty": 1441.0,
+          "amount": 6201300
+        },
+        {
+          "name": "경기도 안성시",
+          "trades": 4,
+          "qty": 2760.0,
+          "amount": 5124000
+        },
+        {
+          "name": "서울특별시 송파구",
+          "trades": 4,
+          "qty": 260.0,
+          "amount": 225000
+        },
+        {
+          "name": "서울특별시 서울 강서구",
+          "trades": 4,
+          "qty": 536.0,
+          "amount": 434800
+        },
+        {
+          "name": "경기도 부천시",
+          "trades": 4,
+          "qty": 2844.0,
+          "amount": 3899500
+        },
+        {
+          "name": "전라남도 신안군",
+          "trades": 4,
+          "qty": 19706.0,
+          "amount": 11630900
+        },
+        {
+          "name": "강원특별자치도 평창군",
+          "trades": 4,
+          "qty": 70.0,
+          "amount": 674000
+        },
+        {
+          "name": "경상남도 창원시",
+          "trades": 3,
+          "qty": 462.0,
+          "amount": 2307500
+        },
+        {
+          "name": "충청북도 제천시",
+          "trades": 3,
+          "qty": 920.0,
+          "amount": 2456000
+        },
+        {
+          "name": "경상북도 영주시",
+          "trades": 3,
+          "qty": 1700.0,
+          "amount": 4636500
+        },
+        {
+          "name": "경상북도 김천시",
+          "trades": 3,
+          "qty": 180.0,
+          "amount": 427000
+        },
+        {
+          "name": "전라남도 구례군",
+          "trades": 3,
+          "qty": 60.0,
+          "amount": 83500
+        },
+        {
+          "name": "충청남도 금산군",
+          "trades": 3,
+          "qty": 465.0,
+          "amount": 1885200
+        },
+        {
+          "name": "강원특별자치도 횡성군",
+          "trades": 3,
+          "qty": 435.0,
+          "amount": 765000
+        },
+        {
+          "name": "전라남도 장성군",
+          "trades": 3,
+          "qty": 320.0,
+          "amount": 940000
+        },
+        {
+          "name": "전라남도 영광군",
+          "trades": 3,
+          "qty": 30.0,
+          "amount": 418500
+        },
+        {
+          "name": "경상북도 청도군",
+          "trades": 3,
+          "qty": 570.0,
+          "amount": 1082500
+        },
+        {
+          "name": "충청남도 홍성군",
+          "trades": 2,
+          "qty": 2480.0,
+          "amount": 5039000
+        },
+        {
+          "name": "경상북도 영천시",
+          "trades": 2,
+          "qty": 878.0,
+          "amount": 3661500
+        },
+        {
+          "name": "베트남",
+          "trades": 2,
+          "qty": 1260.0,
+          "amount": 3742000
+        },
+        {
+          "name": "뉴질랜드",
+          "trades": 2,
+          "qty": 2080.0,
+          "amount": 2076000
+        },
+        {
+          "name": "광주광역시 광주 서구",
+          "trades": 2,
+          "qty": 700.0,
+          "amount": 992000
+        },
+        {
+          "name": "전라남도 나주시",
+          "trades": 2,
+          "qty": 2516.0,
+          "amount": 4297000
+        },
+        {
+          "name": "경상남도 의령군",
+          "trades": 2,
+          "qty": 1900.0,
+          "amount": 2093500
+        },
+        {
+          "name": "전라남도 고흥군",
+          "trades": 2,
+          "qty": 116.0,
+          "amount": 202300
+        },
+        {
+          "name": "전라남도 여수시",
+          "trades": 2,
+          "qty": 520.0,
+          "amount": 869000
+        },
+        {
+          "name": "경상북도 포항시",
+          "trades": 2,
+          "qty": 4901.5,
+          "amount": 11104400
+        },
+        {
+          "name": "경기도 이천시",
+          "trades": 2,
+          "qty": 2000.0,
+          "amount": 1600000
+        },
+        {
+          "name": "경상북도 예천군",
+          "trades": 2,
+          "qty": 1200.0,
+          "amount": 1280000
+        },
+        {
+          "name": "필리핀",
+          "trades": 2,
+          "qty": 6870.0,
+          "amount": 16072120
+        },
+        {
+          "name": "전북특별자치도 고창군",
+          "trades": 2,
+          "qty": 3180.0,
+          "amount": 2100000
+        },
+        {
+          "name": "경기도 양평군",
+          "trades": 2,
+          "qty": 1560.0,
+          "amount": 4141000
+        },
+        {
+          "name": "경상북도 청송군",
+          "trades": 1,
+          "qty": 2540.0,
+          "amount": 11956000
+        },
+        {
+          "name": "태국",
+          "trades": 1,
+          "qty": 315.0,
+          "amount": 1764000
+        },
+        {
+          "name": "충청남도 공주시",
+          "trades": 1,
+          "qty": 365.0,
+          "amount": 677500
+        },
+        {
+          "name": "강원특별자치도 춘천시",
+          "trades": 1,
+          "qty": 280.0,
+          "amount": 794000
+        },
+        {
+          "name": "인천광역시 강화군",
+          "trades": 1,
+          "qty": 369.0,
+          "amount": 1710000
+        },
+        {
+          "name": "전북특별자치도 익산시",
+          "trades": 1,
+          "qty": 216.0,
+          "amount": 367200
+        },
+        {
+          "name": "강원특별자치도 철원군",
+          "trades": 1,
+          "qty": 75.0,
+          "amount": 495000
+        },
+        {
+          "name": "인천광역시 부평구",
+          "trades": 1,
+          "qty": 110.0,
+          "amount": 710000
+        },
+        {
+          "name": "충청남도 태안군",
+          "trades": 1,
+          "qty": 172.0,
+          "amount": 791600
+        },
+        {
+          "name": "충청북도 충주시",
+          "trades": 1,
+          "qty": 120.0,
+          "amount": 276000
+        },
+        {
+          "name": "전라남도 화순군",
+          "trades": 1,
+          "qty": 144.0,
+          "amount": 432000
+        },
+        {
+          "name": "전라남도 진도군",
+          "trades": 1,
+          "qty": 20.0,
+          "amount": 60000
+        },
+        {
+          "name": "경기도 남양주시",
+          "trades": 1,
+          "qty": 270.0,
+          "amount": 87750
+        },
+        {
+          "name": "경기도 동두천시",
+          "trades": 1,
+          "qty": 1387.5,
+          "amount": 812000
+        },
+        {
+          "name": "서울 은평구 서울은평우체국사서함",
+          "trades": 1,
+          "qty": 295.0,
+          "amount": 430700
+        }
+      ],
+      "product_origins": {
+        "딸기": [
+          {
+            "name": "경상남도 거창군",
+            "trades": 14,
+            "qty": 7815.0,
+            "lat": 35.6867,
+            "lng": 127.9098,
+            "foreign": false
+          },
+          {
+            "name": "경상남도 밀양시",
+            "trades": 7,
+            "qty": 1342.0,
+            "lat": 35.5037,
+            "lng": 128.7465,
+            "foreign": false
+          },
+          {
+            "name": "경상남도 산청군",
+            "trades": 6,
+            "qty": 2674.0,
+            "lat": 35.4149,
+            "lng": 127.8735,
+            "foreign": false
+          },
+          {
+            "name": "전북특별자치도 순창군",
+            "trades": 5,
+            "qty": 1584.0,
+            "lat": 35.3744,
+            "lng": 127.1376,
+            "foreign": false
+          },
+          {
+            "name": "전라남도 담양군",
+            "trades": 5,
+            "qty": 2566.0,
+            "lat": 35.3214,
+            "lng": 126.9881,
+            "foreign": false
+          },
+          {
+            "name": "경상남도 창원시",
+            "trades": 1,
+            "qty": 132.0,
+            "lat": 35.2272,
+            "lng": 128.6811,
+            "foreign": false
+          }
+        ],
+        "표고버섯": [
+          {
+            "name": "전라남도 함평군",
+            "trades": 6,
+            "qty": 760.0,
+            "lat": 35.0656,
+            "lng": 126.5165,
+            "foreign": false
+          },
+          {
+            "name": "충청남도 홍성군",
+            "trades": 1,
+            "qty": 288.0,
+            "lat": 36.601,
+            "lng": 126.66,
+            "foreign": false
+          },
+          {
+            "name": "중국",
+            "trades": 1,
+            "qty": 240.0,
+            "lat": 35.8617,
+            "lng": 104.1954,
+            "foreign": true
+          }
+        ],
+        "감자": [
+          {
+            "name": "전북특별자치도 김제시",
+            "trades": 7,
+            "qty": 7820.0,
+            "lat": 35.8034,
+            "lng": 126.8809,
+            "foreign": false
+          },
+          {
+            "name": "전라남도 순천시",
+            "trades": 4,
+            "qty": 260.0,
+            "lat": 34.9506,
+            "lng": 127.4872,
+            "foreign": false
+          }
+        ],
+        "고구마": [
+          {
+            "name": "전라남도 영암군",
+            "trades": 5,
+            "qty": 6160.0,
+            "lat": 34.8,
+            "lng": 126.6969,
+            "foreign": false
+          }
+        ],
+        "사과": [
+          {
+            "name": "충청북도 제천시",
+            "trades": 3,
+            "qty": 920.0,
+            "lat": 37.1325,
+            "lng": 128.191,
+            "foreign": false
+          },
+          {
+            "name": "경상북도 영주시",
+            "trades": 3,
+            "qty": 1700.0,
+            "lat": 36.8057,
+            "lng": 128.624,
+            "foreign": false
+          },
+          {
+            "name": "경상남도 거창군",
+            "trades": 2,
+            "qty": 4700.0,
+            "lat": 35.6867,
+            "lng": 127.9098,
+            "foreign": false
+          },
+          {
+            "name": "경상북도 청송군",
+            "trades": 1,
+            "qty": 2540.0,
+            "lat": 36.436,
+            "lng": 129.0573,
+            "foreign": false
+          }
+        ],
+        "포도": [
+          {
+            "name": "경상북도 영천시",
+            "trades": 2,
+            "qty": 878.0,
+            "lat": 35.9732,
+            "lng": 128.9382,
+            "foreign": false
+          },
+          {
+            "name": "경상북도 상주시",
+            "trades": 1,
+            "qty": 416.0,
+            "lat": 36.411,
+            "lng": 128.159,
+            "foreign": false
+          }
+        ],
+        "단감": [
+          {
+            "name": "경상남도 창녕군",
+            "trades": 1,
+            "qty": 910.0,
+            "lat": 35.5444,
+            "lng": 128.4914,
+            "foreign": false
+          },
+          {
+            "name": "경상북도 김천시",
+            "trades": 1,
+            "qty": 80.0,
+            "lat": 36.1398,
+            "lng": 128.1134,
+            "foreign": false
+          }
+        ],
+        "바나나": [
+          {
+            "name": "필리핀",
+            "trades": 2,
+            "qty": 6870.0,
+            "lat": 12.8797,
+            "lng": 121.774,
+            "foreign": true
+          },
+          {
+            "name": "베트남",
+            "trades": 1,
+            "qty": 780.0,
+            "lat": 14.0583,
+            "lng": 108.2772,
+            "foreign": true
+          }
+        ],
+        "감귤": [
+          {
+            "name": "제주특별자치도 서귀포시",
+            "trades": 1,
+            "qty": 200.0,
+            "lat": 33.2541,
+            "lng": 126.56,
+            "foreign": false
+          }
+        ],
+        "만감": [
+          {
+            "name": "제주특별자치도 서귀포시",
+            "trades": 5,
+            "qty": 3048.4,
+            "lat": 33.2541,
+            "lng": 126.56,
+            "foreign": false
+          },
+          {
+            "name": "제주특별자치도 제주시",
+            "trades": 1,
+            "qty": 1584.0,
+            "lat": 33.5097,
+            "lng": 126.5219,
+            "foreign": false
+          }
+        ],
+        "오렌지": [
+          {
+            "name": "미국",
+            "trades": 4,
+            "qty": 4134.0,
+            "lat": 37.0902,
+            "lng": -95.7129,
+            "foreign": true
+          }
+        ],
+        "망고": [
+          {
+            "name": "태국",
+            "trades": 1,
+            "qty": 315.0,
+            "lat": 15.87,
+            "lng": 100.9925,
+            "foreign": true
+          },
+          {
+            "name": "베트남",
+            "trades": 1,
+            "qty": 480.0,
+            "lat": 14.0583,
+            "lng": 108.2772,
+            "foreign": true
+          }
+        ],
+        "블루베리": [
+          {
+            "name": "전라남도 담양군",
+            "trades": 1,
+            "qty": 28.0,
+            "lat": 35.3214,
+            "lng": 126.9881,
+            "foreign": false
+          }
+        ],
+        "수박": [
+          {
+            "name": "경상남도 함안군",
+            "trades": 10,
+            "qty": 1139.0,
+            "lat": 35.2724,
+            "lng": 128.4066,
+            "foreign": false
+          },
+          {
+            "name": "충청북도 음성군",
+            "trades": 10,
+            "qty": 2317.0,
+            "lat": 36.9404,
+            "lng": 127.6907,
+            "foreign": false
+          }
+        ],
+        "참외": [
+          {
+            "name": "경상북도 성주군",
+            "trades": 6,
+            "qty": 5910.0,
+            "lat": 35.9191,
+            "lng": 128.2831,
+            "foreign": false
+          },
+          {
+            "name": "대구광역시 달성군",
+            "trades": 4,
+            "qty": 570.0,
+            "lat": 35.8714,
+            "lng": 128.6014,
+            "foreign": false
+          },
+          {
+            "name": "경상북도 칠곡군",
+            "trades": 4,
+            "qty": 2200.0,
+            "lat": 35.9955,
+            "lng": 128.4016,
+            "foreign": false
+          }
+        ],
+        "토마토": [
+          {
+            "name": "부산광역시 부산 강서구",
+            "trades": 4,
+            "qty": 4842.5,
+            "lat": 35.1796,
+            "lng": 129.0756,
+            "foreign": false
+          },
+          {
+            "name": "경상남도 김해시",
+            "trades": 2,
+            "qty": 67.5,
+            "lat": 35.2341,
+            "lng": 128.8891,
+            "foreign": false
+          },
+          {
+            "name": "전라남도 광양시",
+            "trades": 2,
+            "qty": 2495.0,
+            "lat": 34.9407,
+            "lng": 127.6956,
+            "foreign": false
+          },
+          {
+            "name": "전라남도 보성군",
+            "trades": 1,
+            "qty": 268.0,
+            "lat": 34.7714,
+            "lng": 127.0802,
+            "foreign": false
+          },
+          {
+            "name": "충청남도 공주시",
+            "trades": 1,
+            "qty": 365.0,
+            "lat": 36.4465,
+            "lng": 127.119,
+            "foreign": false
+          },
+          {
+            "name": "전라남도 함평군",
+            "trades": 1,
+            "qty": 565.0,
+            "lat": 35.0656,
+            "lng": 126.5165,
+            "foreign": false
+          },
+          {
+            "name": "강원특별자치도 춘천시",
+            "trades": 1,
+            "qty": 280.0,
+            "lat": 37.8813,
+            "lng": 127.73,
+            "foreign": false
+          }
+        ],
+        "방울토마토": [
+          {
+            "name": "충청남도 논산시",
+            "trades": 2,
+            "qty": 1268.0,
+            "lat": 36.1872,
+            "lng": 127.0987,
+            "foreign": false
+          },
+          {
+            "name": "충청남도 부여군",
+            "trades": 2,
+            "qty": 1377.0,
+            "lat": 36.2756,
+            "lng": 126.9099,
+            "foreign": false
+          },
+          {
+            "name": "인천광역시 강화군",
+            "trades": 1,
+            "qty": 369.0,
+            "lat": 37.4563,
+            "lng": 126.7052,
+            "foreign": false
+          },
+          {
+            "name": "전라남도 보성군",
+            "trades": 1,
+            "qty": 270.0,
+            "lat": 34.7714,
+            "lng": 127.0802,
+            "foreign": false
+          }
+        ],
+        "오이": [
+          {
+            "name": "충청남도 천안시",
+            "trades": 5,
+            "qty": 4920.0,
+            "lat": 36.8151,
+            "lng": 127.1139,
+            "foreign": false
+          },
+          {
+            "name": "충청남도 아산시",
+            "trades": 5,
+            "qty": 1426.0,
+            "lat": 36.7898,
+            "lng": 127.0018,
+            "foreign": false
+          },
+          {
+            "name": "경기도 평택시",
+            "trades": 5,
+            "qty": 8510.0,
+            "lat": 36.9922,
+            "lng": 127.1129,
+            "foreign": false
+          },
+          {
+            "name": "전라남도 순천시",
+            "trades": 5,
+            "qty": 3330.0,
+            "lat": 34.9506,
+            "lng": 127.4872,
+            "foreign": false
+          },
+          {
+            "name": "전라남도 보성군",
+            "trades": 3,
+            "qty": 1090.0,
+            "lat": 34.7714,
+            "lng": 127.0802,
+            "foreign": false
+          },
+          {
+            "name": "경상북도 상주시",
+            "trades": 3,
+            "qty": 1790.0,
+            "lat": 36.411,
+            "lng": 128.159,
+            "foreign": false
+          },
+          {
+            "name": "경기도 안성시",
+            "trades": 2,
+            "qty": 2480.0,
+            "lat": 37.008,
+            "lng": 127.2797,
+            "foreign": false
+          },
+          {
+            "name": "광주광역시 광산구",
+            "trades": 2,
+            "qty": 160.0,
+            "lat": 35.1595,
+            "lng": 126.8526,
+            "foreign": false
+          },
+          {
+            "name": "경상남도 창녕군",
+            "trades": 2,
+            "qty": 50.0,
+            "lat": 35.5444,
+            "lng": 128.4914,
+            "foreign": false
+          },
+          {
+            "name": "전라남도 구례군",
+            "trades": 1,
+            "qty": 20.0,
+            "lat": 35.2024,
+            "lng": 127.4626,
+            "foreign": false
+          }
+        ],
+        "호박": [
+          {
+            "name": "경상남도 진주시",
+            "trades": 6,
+            "qty": 4992.0,
+            "lat": 35.1798,
+            "lng": 128.1076,
+            "foreign": false
+          },
+          {
+            "name": "전라남도 광양시",
+            "trades": 5,
+            "qty": 4192.0,
+            "lat": 34.9407,
+            "lng": 127.6956,
+            "foreign": false
+          },
+          {
+            "name": "전라남도 구례군",
+            "trades": 2,
+            "qty": 40.0,
+            "lat": 35.2024,
+            "lng": 127.4626,
+            "foreign": false
+          },
+          {
+            "name": "충청남도 논산시",
+            "trades": 2,
+            "qty": 170.0,
+            "lat": 36.1872,
+            "lng": 127.0987,
+            "foreign": false
+          },
+          {
+            "name": "뉴질랜드",
+            "trades": 2,
+            "qty": 2080.0,
+            "lat": -40.9006,
+            "lng": 174.886,
+            "foreign": true
+          }
+        ],
+        "가지": [
+          {
+            "name": "광주광역시 광산구",
+            "trades": 3,
+            "qty": 165.0,
+            "lat": 35.1595,
+            "lng": 126.8526,
+            "foreign": false
+          },
+          {
+            "name": "경상남도 창녕군",
+            "trades": 3,
+            "qty": 2110.0,
+            "lat": 35.5444,
+            "lng": 128.4914,
+            "foreign": false
+          },
+          {
+            "name": "경기도 파주시",
+            "trades": 3,
+            "qty": 1192.0,
+            "lat": 37.7599,
+            "lng": 126.78,
+            "foreign": false
+          },
+          {
+            "name": "경상남도 밀양시",
+            "trades": 2,
+            "qty": 210.0,
+            "lat": 35.5037,
+            "lng": 128.7465,
+            "foreign": false
+          }
+        ],
+        "얼갈이배추": [
+          {
+            "name": "경기도 고양시",
+            "trades": 3,
+            "qty": 10540.0,
+            "lat": 37.6584,
+            "lng": 126.832,
+            "foreign": false
+          },
+          {
+            "name": "경기도 김포시",
+            "trades": 2,
+            "qty": 780.0,
+            "lat": 37.6153,
+            "lng": 126.7156,
+            "foreign": false
+          },
+          {
+            "name": "광주광역시 광주 서구",
+            "trades": 2,
+            "qty": 700.0,
+            "lat": 35.1595,
+            "lng": 126.8526,
+            "foreign": false
+          },
+          {
+            "name": "광주광역시 광주 남구",
+            "trades": 2,
+            "qty": 452.0,
+            "lat": 35.1595,
+            "lng": 126.8526,
+            "foreign": false
+          },
+          {
+            "name": "전라남도 해남군",
+            "trades": 2,
+            "qty": 2040.0,
+            "lat": 34.5735,
+            "lng": 126.5993,
+            "foreign": false
+          },
+          {
+            "name": "경기도 파주시",
+            "trades": 2,
+            "qty": 2524.0,
+            "lat": 37.7599,
+            "lng": 126.78,
+            "foreign": false
+          },
+          {
+            "name": "전북특별자치도 고창군",
+            "trades": 2,
+            "qty": 3180.0,
+            "lat": 35.4359,
+            "lng": 126.702,
+            "foreign": false
+          },
+          {
+            "name": "서울특별시 송파구",
+            "trades": 1,
+            "qty": 100.0,
+            "lat": 37.5665,
+            "lng": 126.978,
+            "foreign": false
+          },
+          {
+            "name": "경기도 안성시",
+            "trades": 1,
+            "qty": 160.0,
+            "lat": 37.008,
+            "lng": 127.2797,
+            "foreign": false
+          },
+          {
+            "name": "경기도 여주시",
+            "trades": 1,
+            "qty": 1240.0,
+            "lat": 37.2985,
+            "lng": 127.6373,
+            "foreign": false
+          },
+          {
+            "name": "전라남도 나주시",
+            "trades": 1,
+            "qty": 2016.0,
+            "lat": 35.0157,
+            "lng": 126.7108,
+            "foreign": false
+          }
+        ],
+        "상추": [
+          {
+            "name": "경기도 고양시",
+            "trades": 5,
+            "qty": 1972.0,
+            "lat": 37.6584,
+            "lng": 126.832,
+            "foreign": false
+          },
+          {
+            "name": "서울특별시 송파구",
+            "trades": 2,
+            "qty": 60.0,
+            "lat": 37.5665,
+            "lng": 126.978,
+            "foreign": false
+          },
+          {
+            "name": "경기도 여주시",
+            "trades": 2,
+            "qty": 84.0,
+            "lat": 37.2985,
+            "lng": 127.6373,
+            "foreign": false
+          },
+          {
+            "name": "충청남도 논산시",
+            "trades": 2,
+            "qty": 2620.0,
+            "lat": 36.1872,
+            "lng": 127.0987,
+            "foreign": false
+          },
+          {
+            "name": "경기도 파주시",
+            "trades": 1,
+            "qty": 300.0,
+            "lat": 37.7599,
+            "lng": 126.78,
+            "foreign": false
+          },
+          {
+            "name": "서울특별시 양천구",
+            "trades": 1,
+            "qty": 28.0,
+            "lat": 37.5665,
+            "lng": 126.978,
+            "foreign": false
+          },
+          {
+            "name": "경기도 광명시",
+            "trades": 1,
+            "qty": 136.0,
+            "lat": 37.4786,
+            "lng": 126.8647,
+            "foreign": false
+          },
+          {
+            "name": "전북특별자치도 익산시",
+            "trades": 1,
+            "qty": 216.0,
+            "lat": 35.9483,
+            "lng": 126.9576,
+            "foreign": false
+          }
+        ],
+        "열무": [
+          {
+            "name": "경기도 고양시",
+            "trades": 2,
+            "qty": 7118.0,
+            "lat": 37.6584,
+            "lng": 126.832,
+            "foreign": false
+          },
+          {
+            "name": "경기도 파주시",
+            "trades": 2,
+            "qty": 2576.0,
+            "lat": 37.7599,
+            "lng": 126.78,
+            "foreign": false
+          },
+          {
+            "name": "인천광역시 계양구",
+            "trades": 1,
+            "qty": 348.0,
+            "lat": 37.4563,
+            "lng": 126.7052,
+            "foreign": false
+          },
+          {
+            "name": "경기도 김포시",
+            "trades": 1,
+            "qty": 240.0,
+            "lat": 37.6153,
+            "lng": 126.7156,
+            "foreign": false
+          },
+          {
+            "name": "경기도 광명시",
+            "trades": 1,
+            "qty": 280.0,
+            "lat": 37.4786,
+            "lng": 126.8647,
+            "foreign": false
+          },
+          {
+            "name": "경기도 남양주시",
+            "trades": 1,
+            "qty": 270.0,
+            "lat": 37.6367,
+            "lng": 127.2165,
+            "foreign": false
+          },
+          {
+            "name": "경기도 동두천시",
+            "trades": 1,
+            "qty": 1387.5,
+            "lat": 37.9034,
+            "lng": 127.0605,
+            "foreign": false
+          }
+        ],
+        "시금치": [
+          {
+            "name": "경기도 고양시",
+            "trades": 3,
+            "qty": 3496.0,
+            "lat": 37.6584,
+            "lng": 126.832,
+            "foreign": false
+          },
+          {
+            "name": "서울특별시 서울 강서구",
+            "trades": 2,
+            "qty": 296.0,
+            "lat": 37.5665,
+            "lng": 126.978,
+            "foreign": false
+          },
+          {
+            "name": "인천광역시 계양구",
+            "trades": 2,
+            "qty": 640.0,
+            "lat": 37.4563,
+            "lng": 126.7052,
+            "foreign": false
+          },
+          {
+            "name": "경기도 부천시",
+            "trades": 2,
+            "qty": 116.0,
+            "lat": 37.5034,
+            "lng": 126.766,
+            "foreign": false
+          },
+          {
+            "name": "경기도 파주시",
+            "trades": 2,
+            "qty": 870.0,
+            "lat": 37.7599,
+            "lng": 126.78,
+            "foreign": false
+          },
+          {
+            "name": "서울특별시 양천구",
+            "trades": 1,
+            "qty": 76.0,
+            "lat": 37.5665,
+            "lng": 126.978,
+            "foreign": false
+          },
+          {
+            "name": "경기도 김포시",
+            "trades": 1,
+            "qty": 160.0,
+            "lat": 37.6153,
+            "lng": 126.7156,
+            "foreign": false
+          },
+          {
+            "name": "경기도 광명시",
+            "trades": 1,
+            "qty": 28.0,
+            "lat": 37.4786,
+            "lng": 126.8647,
+            "foreign": false
+          },
+          {
+            "name": "전라남도 신안군",
+            "trades": 1,
+            "qty": 576.0,
+            "lat": 34.8275,
+            "lng": 126.1072,
+            "foreign": false
+          },
+          {
+            "name": "서울 은평구 서울은평우체국사서함",
+            "trades": 1,
+            "qty": 295.0,
+            "lat": 37.5665,
+            "lng": 126.978,
+            "foreign": false
+          },
+          {
+            "name": "경상북도 포항시",
+            "trades": 1,
+            "qty": 122.0,
+            "lat": 36.019,
+            "lng": 129.3435,
+            "foreign": false
+          }
+        ],
+        "미나리": [
+          {
+            "name": "광주광역시 광산구",
+            "trades": 2,
+            "qty": 788.0,
+            "lat": 35.1595,
+            "lng": 126.8526,
+            "foreign": false
+          },
+          {
+            "name": "경기도 김포시",
+            "trades": 1,
+            "qty": 80.0,
+            "lat": 37.6153,
+            "lng": 126.7156,
+            "foreign": false
+          },
+          {
+            "name": "경기도 부천시",
+            "trades": 1,
+            "qty": 2408.0,
+            "lat": 37.5034,
+            "lng": 126.766,
+            "foreign": false
+          }
+        ],
+        "깻잎": [
+          {
+            "name": "경상남도 밀양시",
+            "trades": 4,
+            "qty": 597.0,
+            "lat": 35.5037,
+            "lng": 128.7465,
+            "foreign": false
+          },
+          {
+            "name": "충청남도 논산시",
+            "trades": 2,
+            "qty": 33.0,
+            "lat": 36.1872,
+            "lng": 127.0987,
+            "foreign": false
+          },
+          {
+            "name": "충청남도 금산군",
+            "trades": 2,
+            "qty": 457.0,
+            "lat": 36.1086,
+            "lng": 127.4882,
+            "foreign": false
+          }
+        ],
+        "쑥갓": [
+          {
+            "name": "경기도 고양시",
+            "trades": 3,
+            "qty": 350.0,
+            "lat": 37.6584,
+            "lng": 126.832,
+            "foreign": false
+          },
+          {
+            "name": "서울특별시 양천구",
+            "trades": 2,
+            "qty": 220.0,
+            "lat": 37.5665,
+            "lng": 126.978,
+            "foreign": false
+          },
+          {
+            "name": "서울특별시 서울 강서구",
+            "trades": 1,
+            "qty": 80.0,
+            "lat": 37.5665,
+            "lng": 126.978,
+            "foreign": false
+          },
+          {
+            "name": "인천광역시 계양구",
+            "trades": 1,
+            "qty": 60.0,
+            "lat": 37.4563,
+            "lng": 126.7052,
+            "foreign": false
+          },
+          {
+            "name": "경기도 김포시",
+            "trades": 1,
+            "qty": 100.0,
+            "lat": 37.6153,
+            "lng": 126.7156,
+            "foreign": false
+          },
+          {
+            "name": "경기도 광명시",
+            "trades": 1,
+            "qty": 72.0,
+            "lat": 37.4786,
+            "lng": 126.8647,
+            "foreign": false
+          }
+        ],
+        "근대": [
+          {
+            "name": "서울특별시 양천구",
+            "trades": 1,
+            "qty": 82.0,
+            "lat": 37.5665,
+            "lng": 126.978,
+            "foreign": false
+          },
+          {
+            "name": "서울특별시 서울 강서구",
+            "trades": 1,
+            "qty": 160.0,
+            "lat": 37.5665,
+            "lng": 126.978,
+            "foreign": false
+          },
+          {
+            "name": "인천광역시 계양구",
+            "trades": 1,
+            "qty": 220.0,
+            "lat": 37.4563,
+            "lng": 126.7052,
+            "foreign": false
+          },
+          {
+            "name": "경기도 고양시",
+            "trades": 1,
+            "qty": 192.0,
+            "lat": 37.6584,
+            "lng": 126.832,
+            "foreign": false
+          },
+          {
+            "name": "경기도 김포시",
+            "trades": 1,
+            "qty": 120.0,
+            "lat": 37.6153,
+            "lng": 126.7156,
+            "foreign": false
+          }
+        ],
+        "아욱": [
+          {
+            "name": "충청남도 부여군",
+            "trades": 1,
+            "qty": 56.0,
+            "lat": 36.2756,
+            "lng": 126.9099,
+            "foreign": false
+          },
+          {
+            "name": "인천광역시 계양구",
+            "trades": 1,
+            "qty": 165.0,
+            "lat": 37.4563,
+            "lng": 126.7052,
+            "foreign": false
+          },
+          {
+            "name": "경기도 광명시",
+            "trades": 1,
+            "qty": 175.0,
+            "lat": 37.4786,
+            "lng": 126.8647,
+            "foreign": false
+          }
+        ],
+        "고들빼기": [
+          {
+            "name": "충청남도 서산시",
+            "trades": 1,
+            "qty": 40.0,
+            "lat": 36.7845,
+            "lng": 126.4503,
+            "foreign": false
+          }
+        ],
+        "머위대": [
+          {
+            "name": "충청남도 서산시",
+            "trades": 1,
+            "qty": 130.0,
+            "lat": 36.7845,
+            "lng": 126.4503,
+            "foreign": false
+          },
+          {
+            "name": "전라남도 광양시",
+            "trades": 1,
+            "qty": 6.0,
+            "lat": 34.9407,
+            "lng": 127.6956,
+            "foreign": false
+          }
+        ],
+        "쑥": [
+          {
+            "name": "충청남도 서산시",
+            "trades": 1,
+            "qty": 144.0,
+            "lat": 36.7845,
+            "lng": 126.4503,
+            "foreign": false
+          },
+          {
+            "name": "전라남도 진도군",
+            "trades": 1,
+            "qty": 20.0,
+            "lat": 34.4868,
+            "lng": 126.2636,
+            "foreign": false
+          }
+        ],
+        "청경채": [
+          {
+            "name": "경기도 안성시",
+            "trades": 1,
+            "qty": 120.0,
+            "lat": 37.008,
+            "lng": 127.2797,
+            "foreign": false
+          },
+          {
+            "name": "경기도 여주시",
+            "trades": 1,
+            "qty": 588.0,
+            "lat": 37.2985,
+            "lng": 127.6373,
+            "foreign": false
+          }
+        ],
+        "무": [
+          {
+            "name": "제주특별자치도 서귀포시",
+            "trades": 2,
+            "qty": 34400.0,
+            "lat": 33.2541,
+            "lng": 126.56,
+            "foreign": false
+          },
+          {
+            "name": "제주특별자치도 제주시",
+            "trades": 1,
+            "qty": 8600.0,
+            "lat": 33.5097,
+            "lng": 126.5219,
+            "foreign": false
+          }
+        ],
+        "당근": [
+          {
+            "name": "제주특별자치도 제주시",
+            "trades": 6,
+            "qty": 10320.0,
+            "lat": 33.5097,
+            "lng": 126.5219,
+            "foreign": false
+          },
+          {
+            "name": "중국",
+            "trades": 1,
+            "qty": 2000.0,
+            "lat": 35.8617,
+            "lng": 104.1954,
+            "foreign": true
+          }
+        ],
+        "쪽파": [
+          {
+            "name": "충청남도 아산시",
+            "trades": 2,
+            "qty": 622.0,
+            "lat": 36.7898,
+            "lng": 127.0018,
+            "foreign": false
+          },
+          {
+            "name": "경기도 이천시",
+            "trades": 2,
+            "qty": 2000.0,
+            "lat": 37.272,
+            "lng": 127.435,
+            "foreign": false
+          },
+          {
+            "name": "전라남도 보성군",
+            "trades": 2,
+            "qty": 4102.0,
+            "lat": 34.7714,
+            "lng": 127.0802,
+            "foreign": false
+          },
+          {
+            "name": "경상북도 예천군",
+            "trades": 2,
+            "qty": 1200.0,
+            "lat": 36.6574,
+            "lng": 128.4526,
+            "foreign": false
+          },
+          {
+            "name": "충청남도 서산시",
+            "trades": 1,
+            "qty": 4.0,
+            "lat": 36.7845,
+            "lng": 126.4503,
+            "foreign": false
+          },
+          {
+            "name": "제주특별자치도 제주시",
+            "trades": 1,
+            "qty": 460.0,
+            "lat": 33.5097,
+            "lng": 126.5219,
+            "foreign": false
+          },
+          {
+            "name": "충청남도 홍성군",
+            "trades": 1,
+            "qty": 2192.0,
+            "lat": 36.601,
+            "lng": 126.66,
+            "foreign": false
+          }
+        ],
+        "풋고추": [
+          {
+            "name": "경상남도 밀양시",
+            "trades": 5,
+            "qty": 1400.0,
+            "lat": 35.5037,
+            "lng": 128.7465,
+            "foreign": false
+          },
+          {
+            "name": "경상남도 진주시",
+            "trades": 5,
+            "qty": 1808.0,
+            "lat": 35.1798,
+            "lng": 128.1076,
+            "foreign": false
+          },
+          {
+            "name": "경상남도 창녕군",
+            "trades": 4,
+            "qty": 1620.0,
+            "lat": 35.5444,
+            "lng": 128.4914,
+            "foreign": false
+          },
+          {
+            "name": "경상남도 김해시",
+            "trades": 2,
+            "qty": 230.0,
+            "lat": 35.2341,
+            "lng": 128.8891,
+            "foreign": false
+          },
+          {
+            "name": "경상남도 창원시",
+            "trades": 2,
+            "qty": 330.0,
+            "lat": 35.2272,
+            "lng": 128.6811,
+            "foreign": false
+          }
+        ],
+        "꽈리고추": [
+          {
+            "name": "경상남도 진주시",
+            "trades": 4,
+            "qty": 1560.0,
+            "lat": 35.1798,
+            "lng": 128.1076,
+            "foreign": false
+          },
+          {
+            "name": "경상남도 창녕군",
+            "trades": 2,
+            "qty": 128.0,
+            "lat": 35.5444,
+            "lng": 128.4914,
+            "foreign": false
+          }
+        ],
+        "홍고추": [
+          {
+            "name": "경상남도 진주시",
+            "trades": 3,
+            "qty": 96.0,
+            "lat": 35.1798,
+            "lng": 128.1076,
+            "foreign": false
+          },
+          {
+            "name": "광주광역시 광주 남구",
+            "trades": 2,
+            "qty": 40.0,
+            "lat": 35.1595,
+            "lng": 126.8526,
+            "foreign": false
+          },
+          {
+            "name": "경상남도 밀양시",
+            "trades": 1,
+            "qty": 10.0,
+            "lat": 35.5037,
+            "lng": 128.7465,
+            "foreign": false
+          }
+        ],
+        "양상추": [
+          {
+            "name": "경상남도 의령군",
+            "trades": 2,
+            "qty": 1900.0,
+            "lat": 35.3222,
+            "lng": 128.2614,
+            "foreign": false
+          },
+          {
+            "name": "강원특별자치도 횡성군",
+            "trades": 1,
+            "qty": 400.0,
+            "lat": 37.4885,
+            "lng": 127.9847,
+            "foreign": false
+          }
+        ],
+        "피망(단고추)": [
+          {
+            "name": "경상남도 진주시",
+            "trades": 2,
+            "qty": 210.0,
+            "lat": 35.1798,
+            "lng": 128.1076,
+            "foreign": false
+          }
+        ],
+        "치커리": [
+          {
+            "name": "인천광역시 계양구",
+            "trades": 1,
+            "qty": 70.0,
+            "lat": 37.4563,
+            "lng": 126.7052,
+            "foreign": false
+          },
+          {
+            "name": "경기도 고양시",
+            "trades": 1,
+            "qty": 68.0,
+            "lat": 37.6584,
+            "lng": 126.832,
+            "foreign": false
+          },
+          {
+            "name": "경기도 광명시",
+            "trades": 1,
+            "qty": 652.0,
+            "lat": 37.4786,
+            "lng": 126.8647,
+            "foreign": false
+          }
+        ],
+        "셀러리(양미나리)": [
+          {
+            "name": "서울특별시 송파구",
+            "trades": 1,
+            "qty": 100.0,
+            "lat": 37.5665,
+            "lng": 126.978,
+            "foreign": false
+          }
+        ],
+        "적채": [
+          {
+            "name": "제주특별자치도 제주시",
+            "trades": 1,
+            "qty": 648.0,
+            "lat": 33.5097,
+            "lng": 126.5219,
+            "foreign": false
+          }
+        ],
+        "브로코리(녹색꽃양배추)": [
+          {
+            "name": "제주특별자치도 제주시",
+            "trades": 1,
+            "qty": 448.0,
+            "lat": 33.5097,
+            "lng": 126.5219,
+            "foreign": false
+          }
+        ],
+        "칼리플라워(꽃양배추)": [
+          {
+            "name": "제주특별자치도 제주시",
+            "trades": 1,
+            "qty": 16.0,
+            "lat": 33.5097,
+            "lng": 126.5219,
+            "foreign": false
+          }
+        ],
+        "파프리카": [
+          {
+            "name": "경상남도 진주시",
+            "trades": 3,
+            "qty": 290.0,
+            "lat": 35.1798,
+            "lng": 128.1076,
+            "foreign": false
+          },
+          {
+            "name": "강원특별자치도 철원군",
+            "trades": 1,
+            "qty": 75.0,
+            "lat": 38.1468,
+            "lng": 127.3133,
+            "foreign": false
+          },
+          {
+            "name": "인천광역시 부평구",
+            "trades": 1,
+            "qty": 110.0,
+            "lat": 37.4563,
+            "lng": 126.7052,
+            "foreign": false
+          }
+        ],
+        "취나물": [
+          {
+            "name": "충청남도 태안군",
+            "trades": 1,
+            "qty": 172.0,
+            "lat": 36.7455,
+            "lng": 126.2979,
+            "foreign": false
+          },
+          {
+            "name": "전라남도 고흥군",
+            "trades": 1,
+            "qty": 56.0,
+            "lat": 34.6114,
+            "lng": 127.2753,
+            "foreign": false
+          },
+          {
+            "name": "제주특별자치도 제주시",
+            "trades": 1,
+            "qty": 520.0,
+            "lat": 33.5097,
+            "lng": 126.5219,
+            "foreign": false
+          },
+          {
+            "name": "전라남도 무안군",
+            "trades": 1,
+            "qty": 100.0,
+            "lat": 34.9904,
+            "lng": 126.4817,
+            "foreign": false
+          }
+        ],
+        "고사리": [
+          {
+            "name": "전라남도 광양시",
+            "trades": 4,
+            "qty": 105.7,
+            "lat": 34.9407,
+            "lng": 127.6956,
+            "foreign": false
+          },
+          {
+            "name": "충청남도 서산시",
+            "trades": 1,
+            "qty": 10.0,
+            "lat": 36.7845,
+            "lng": 126.4503,
+            "foreign": false
+          }
+        ],
+        "두릅": [
+          {
+            "name": "전라남도 광양시",
+            "trades": 6,
+            "qty": 173.0,
+            "lat": 34.9407,
+            "lng": 127.6956,
+            "foreign": false
+          },
+          {
+            "name": "경상남도 밀양시",
+            "trades": 4,
+            "qty": 35.6,
+            "lat": 35.5037,
+            "lng": 128.7465,
+            "foreign": false
+          },
+          {
+            "name": "경상남도 거창군",
+            "trades": 3,
+            "qty": 27.0,
+            "lat": 35.6867,
+            "lng": 127.9098,
+            "foreign": false
+          },
+          {
+            "name": "전라남도 보성군",
+            "trades": 3,
+            "qty": 70.0,
+            "lat": 34.7714,
+            "lng": 127.0802,
+            "foreign": false
+          },
+          {
+            "name": "경상남도 진주시",
+            "trades": 2,
+            "qty": 64.0,
+            "lat": 35.1798,
+            "lng": 128.1076,
+            "foreign": false
+          },
+          {
+            "name": "충청남도 부여군",
+            "trades": 1,
+            "qty": 8.0,
+            "lat": 36.2756,
+            "lng": 126.9099,
+            "foreign": false
+          },
+          {
+            "name": "전라남도 여수시",
+            "trades": 1,
+            "qty": 20.0,
+            "lat": 34.7604,
+            "lng": 127.6622,
+            "foreign": false
+          }
+        ],
+        "참나물": [
+          {
+            "name": "경상남도 밀양시",
+            "trades": 1,
+            "qty": 136.0,
+            "lat": 35.5037,
+            "lng": 128.7465,
+            "foreign": false
+          }
+        ],
+        "민들레": [
+          {
+            "name": "인천광역시 계양구",
+            "trades": 2,
+            "qty": 72.0,
+            "lat": 37.4563,
+            "lng": 126.7052,
+            "foreign": false
+          },
+          {
+            "name": "충청남도 서산시",
+            "trades": 1,
+            "qty": 10.0,
+            "lat": 36.7845,
+            "lng": 126.4503,
+            "foreign": false
+          }
+        ],
+        "기타": [
+          {
+            "name": "강원특별자치도 횡성군",
+            "trades": 2,
+            "qty": 35.0,
+            "lat": 37.4885,
+            "lng": 127.9847,
+            "foreign": false
+          },
+          {
+            "name": "충청남도 금산군",
+            "trades": 1,
+            "qty": 8.0,
+            "lat": 36.1086,
+            "lng": 127.4882,
+            "foreign": false
+          },
+          {
+            "name": "전라남도 무안군",
+            "trades": 1,
+            "qty": 120.0,
+            "lat": 34.9904,
+            "lng": 126.4817,
+            "foreign": false
+          },
+          {
+            "name": "충청남도 논산시",
+            "trades": 1,
+            "qty": 50.0,
+            "lat": 36.1872,
+            "lng": 127.0987,
+            "foreign": false
+          }
+        ],
+        "유채": [
+          {
+            "name": "전라남도 고흥군",
+            "trades": 1,
+            "qty": 60.0,
+            "lat": 34.6114,
+            "lng": 127.2753,
+            "foreign": false
+          }
+        ],
+        "느타리버섯": [
+          {
+            "name": "경기도 여주시",
+            "trades": 2,
+            "qty": 230.0,
+            "lat": 37.2985,
+            "lng": 127.6373,
+            "foreign": false
+          },
+          {
+            "name": "충청북도 충주시",
+            "trades": 1,
+            "qty": 120.0,
+            "lat": 36.991,
+            "lng": 127.9259,
+            "foreign": false
+          },
+          {
+            "name": "경기도 양평군",
+            "trades": 1,
+            "qty": 1040.0,
+            "lat": 37.4913,
+            "lng": 127.4875,
+            "foreign": false
+          }
+        ],
+        "새송이버섯": [
+          {
+            "name": "경상북도 성주군",
+            "trades": 3,
+            "qty": 392.0,
+            "lat": 35.9191,
+            "lng": 128.2831,
+            "foreign": false
+          },
+          {
+            "name": "전라남도 장성군",
+            "trades": 3,
+            "qty": 320.0,
+            "lat": 35.3019,
+            "lng": 126.7847,
+            "foreign": false
+          },
+          {
+            "name": "경상북도 김천시",
+            "trades": 2,
+            "qty": 100.0,
+            "lat": 36.1398,
+            "lng": 128.1134,
+            "foreign": false
+          },
+          {
+            "name": "전라남도 화순군",
+            "trades": 1,
+            "qty": 144.0,
+            "lat": 35.0644,
+            "lng": 126.9868,
+            "foreign": false
+          },
+          {
+            "name": "충청북도 음성군",
+            "trades": 1,
+            "qty": 1040.0,
+            "lat": 36.9404,
+            "lng": 127.6907,
+            "foreign": false
+          },
+          {
+            "name": "경기도 양평군",
+            "trades": 1,
+            "qty": 520.0,
+            "lat": 37.4913,
+            "lng": 127.4875,
+            "foreign": false
+          },
+          {
+            "name": "전라남도 해남군",
+            "trades": 1,
+            "qty": 120.0,
+            "lat": 34.5735,
+            "lng": 126.5993,
+            "foreign": false
+          },
+          {
+            "name": "경상북도 청도군",
+            "trades": 1,
+            "qty": 120.0,
+            "lat": 35.6473,
+            "lng": 128.734,
+            "foreign": false
+          }
+        ],
+        "양송이": [
+          {
+            "name": "강원특별자치도 평창군",
+            "trades": 4,
+            "qty": 70.0,
+            "lat": 37.3709,
+            "lng": 128.3903,
+            "foreign": false
+          }
+        ],
+        "강낭콩": [
+          {
+            "name": "광주광역시 광주 남구",
+            "trades": 1,
+            "qty": 60.0,
+            "lat": 35.1595,
+            "lng": 126.8526,
+            "foreign": false
+          }
+        ],
+        "배추": [
+          {
+            "name": "전라남도 해남군",
+            "trades": 2,
+            "qty": 23016.0,
+            "lat": 34.5735,
+            "lng": 126.5993,
+            "foreign": false
+          }
+        ],
+        "밤": [
+          {
+            "name": "경상남도 진주시",
+            "trades": 2,
+            "qty": 250.0,
+            "lat": 35.1798,
+            "lng": 128.1076,
+            "foreign": false
+          }
+        ],
+        "양배추": [
+          {
+            "name": "제주특별자치도 제주시",
+            "trades": 6,
+            "qty": 22120.0,
+            "lat": 33.5097,
+            "lng": 126.5219,
+            "foreign": false
+          }
+        ],
+        "양파": [
+          {
+            "name": "제주특별자치도 제주시",
+            "trades": 5,
+            "qty": 18750.0,
+            "lat": 33.5097,
+            "lng": 126.5219,
+            "foreign": false
+          },
+          {
+            "name": "전라남도 무안군",
+            "trades": 4,
+            "qty": 10020.0,
+            "lat": 34.9904,
+            "lng": 126.4817,
+            "foreign": false
+          }
+        ],
+        "방풍나물": [
+          {
+            "name": "전라남도 여수시",
+            "trades": 1,
+            "qty": 500.0,
+            "lat": 34.7604,
+            "lng": 127.6622,
+            "foreign": false
+          }
+        ],
+        "부추": [
+          {
+            "name": "경상남도 진주시",
+            "trades": 2,
+            "qty": 160.0,
+            "lat": 35.1798,
+            "lng": 128.1076,
+            "foreign": false
+          },
+          {
+            "name": "경기도 여주시",
+            "trades": 1,
+            "qty": 185.0,
+            "lat": 37.2985,
+            "lng": 127.6373,
+            "foreign": false
+          },
+          {
+            "name": "경상북도 포항시",
+            "trades": 1,
+            "qty": 4779.5,
+            "lat": 36.019,
+            "lng": 129.3435,
+            "foreign": false
+          }
+        ],
+        "호박잎": [
+          {
+            "name": "경기도 고양시",
+            "trades": 1,
+            "qty": 30.0,
+            "lat": 37.6584,
+            "lng": 126.832,
+            "foreign": false
+          }
+        ],
+        "고수": [
+          {
+            "name": "경기도 고양시",
+            "trades": 1,
+            "qty": 297.5,
+            "lat": 37.6584,
+            "lng": 126.832,
+            "foreign": false
+          },
+          {
+            "name": "경기도 파주시",
+            "trades": 1,
+            "qty": 427.5,
+            "lat": 37.7599,
+            "lng": 126.78,
+            "foreign": false
+          },
+          {
+            "name": "경기도 김포시",
+            "trades": 1,
+            "qty": 115.0,
+            "lat": 37.6153,
+            "lng": 126.7156,
+            "foreign": false
+          }
+        ],
+        "대파": [
+          {
+            "name": "전라남도 신안군",
+            "trades": 3,
+            "qty": 19130.0,
+            "lat": 34.8275,
+            "lng": 126.1072,
+            "foreign": false
+          },
+          {
+            "name": "경기도 부천시",
+            "trades": 1,
+            "qty": 320.0,
+            "lat": 37.5034,
+            "lng": 126.766,
+            "foreign": false
+          }
+        ],
+        "실파": [
+          {
+            "name": "경기도 고양시",
+            "trades": 1,
+            "qty": 90.0,
+            "lat": 37.6584,
+            "lng": 126.832,
+            "foreign": false
+          }
+        ],
+        "아스파라거스": [
+          {
+            "name": "전라남도 영광군",
+            "trades": 3,
+            "qty": 30.0,
+            "lat": 35.2772,
+            "lng": 126.5121,
+            "foreign": false
+          }
+        ],
+        "콩나물": [
+          {
+            "name": "중국",
+            "trades": 2,
+            "qty": 620.0,
+            "lat": 35.8617,
+            "lng": 104.1954,
+            "foreign": true
+          }
+        ],
+        "숙주나물": [
+          {
+            "name": "중국",
+            "trades": 2,
+            "qty": 620.0,
+            "lat": 35.8617,
+            "lng": 104.1954,
+            "foreign": true
+          }
+        ],
+        "팽이버섯": [
+          {
+            "name": "경상북도 청도군",
+            "trades": 2,
+            "qty": 450.0,
+            "lat": 35.6473,
+            "lng": 128.734,
+            "foreign": false
+          },
+          {
+            "name": "충청북도 음성군",
+            "trades": 1,
+            "qty": 300.0,
+            "lat": 36.9404,
+            "lng": 127.6907,
+            "foreign": false
+          },
+          {
+            "name": "전라남도 나주시",
+            "trades": 1,
+            "qty": 500.0,
+            "lat": 35.0157,
+            "lng": 126.7108,
+            "foreign": false
+          }
+        ],
+        "마늘": [
+          {
+            "name": "전라남도 무안군",
+            "trades": 6,
+            "qty": 740.0,
+            "lat": 34.9904,
+            "lng": 126.4817,
+            "foreign": false
+          }
+        ]
+      },
+      "price_change": {
+        "d1": {
+          "amount": -4.5,
+          "qty": 0.1
+        },
+        "w1": {
+          "amount": -6.8,
+          "qty": 8.5
+        }
+      }
+    },
+    {
       "corp": "㈜호남청과",
       "market": "광주서부",
       "market_code": "240004",
@@ -191232,6 +194464,7 @@
           "amount": 47420500,
           "avg_price_kg": 7182,
           "price_change": {
+            "d1": 17.2,
             "w1": 86.3
           }
         },
@@ -191242,6 +194475,7 @@
           "amount": 5186000,
           "avg_price_kg": 1244,
           "price_change": {
+            "d1": -17.2,
             "w1": 11.4
           }
         },
@@ -191252,6 +194486,7 @@
           "amount": 5336500,
           "avg_price_kg": 1349,
           "price_change": {
+            "d1": -11.0,
             "w1": 0.7
           }
         },
@@ -191262,6 +194497,7 @@
           "amount": 14159000,
           "avg_price_kg": 1887,
           "price_change": {
+            "d1": 36.7,
             "w1": -7.0
           }
         },
@@ -191272,6 +194508,7 @@
           "amount": 22753500,
           "avg_price_kg": 2415,
           "price_change": {
+            "d1": -24.5,
             "w1": -7.7
           }
         },
@@ -191282,6 +194519,7 @@
           "amount": 33262000,
           "avg_price_kg": 3789,
           "price_change": {
+            "d1": 3.8,
             "w1": -4.9
           }
         },
@@ -191292,6 +194530,7 @@
           "amount": 2134500,
           "avg_price_kg": 4213,
           "price_change": {
+            "d1": -22.6,
             "w1": -4.4
           }
         },
@@ -191302,6 +194541,7 @@
           "amount": 3470500,
           "avg_price_kg": 16093,
           "price_change": {
+            "d1": -33.5,
             "w1": 26.6
           }
         },
@@ -191312,6 +194552,7 @@
           "amount": 1134300,
           "avg_price_kg": 1510,
           "price_change": {
+            "d1": 2.7,
             "w1": 1.2
           }
         },
@@ -191322,6 +194563,7 @@
           "amount": 2025840,
           "avg_price_kg": 2061,
           "price_change": {
+            "d1": 57.2,
             "w1": 4.0
           }
         },
@@ -191332,6 +194574,7 @@
           "amount": 13799000,
           "avg_price_kg": 758,
           "price_change": {
+            "d1": -4.1,
             "w1": 22.5
           }
         },
@@ -191342,6 +194585,7 @@
           "amount": 21360000,
           "avg_price_kg": 4162,
           "price_change": {
+            "d1": 13.2,
             "w1": 7.9
           }
         },
@@ -191352,6 +194596,7 @@
           "amount": 31413000,
           "avg_price_kg": 5470,
           "price_change": {
+            "d1": -1.7,
             "w1": -8.9
           }
         },
@@ -191362,6 +194607,7 @@
           "amount": 1091500,
           "avg_price_kg": 1274,
           "price_change": {
+            "d1": -70.5,
             "w1": -78.2
           }
         },
@@ -191372,6 +194618,7 @@
           "amount": 240000,
           "avg_price_kg": 415,
           "price_change": {
+            "d1": 27.3,
             "w1": -45.3
           }
         },
@@ -191382,6 +194629,7 @@
           "amount": 881000,
           "avg_price_kg": 1102,
           "price_change": {
+            "d1": -2.8,
             "w1": -8.7
           }
         },
@@ -191392,6 +194640,7 @@
           "amount": 257300,
           "avg_price_kg": 1856,
           "price_change": {
+            "d1": -7.7,
             "w1": -0.1
           }
         },
@@ -191409,6 +194658,7 @@
           "amount": 9265500,
           "avg_price_kg": 5407,
           "price_change": {
+            "d1": -1.0,
             "w1": 14.8
           }
         },
@@ -191419,6 +194669,7 @@
           "amount": 430600,
           "avg_price_kg": 816,
           "price_change": {
+            "d1": -7.6,
             "w1": -14.8
           }
         },
@@ -191429,6 +194680,7 @@
           "amount": 3099000,
           "avg_price_kg": 3155,
           "price_change": {
+            "d1": 25.4,
             "w1": -22.0
           }
         },
@@ -191439,6 +194691,7 @@
           "amount": 482400,
           "avg_price_kg": 8754,
           "price_change": {
+            "d1": 30.9,
             "w1": -19.1
           }
         },
@@ -191449,6 +194702,7 @@
           "amount": 1550000,
           "avg_price_kg": 5250,
           "price_change": {
+            "d1": -14.9,
             "w1": -4.5
           }
         },
@@ -191459,6 +194713,7 @@
           "amount": 7591500,
           "avg_price_kg": 1168,
           "price_change": {
+            "d1": -21.1,
             "w1": -2.7
           }
         },
@@ -191469,6 +194724,7 @@
           "amount": 717000,
           "avg_price_kg": 5060,
           "price_change": {
+            "d1": 6.9,
             "w1": -1.8
           }
         },
@@ -191479,6 +194735,7 @@
           "amount": 75000,
           "avg_price_kg": 833,
           "price_change": {
+            "d1": -40.9,
             "w1": 4.1
           }
         },
@@ -191499,6 +194756,7 @@
           "amount": 526000,
           "avg_price_kg": 3552,
           "price_change": {
+            "d1": -28.7,
             "w1": -22.1
           }
         },
@@ -191509,6 +194767,7 @@
           "amount": 1732000,
           "avg_price_kg": 4025,
           "price_change": {
+            "d1": -10.6,
             "w1": 13.9
           }
         },
@@ -191526,6 +194785,7 @@
           "amount": 2397000,
           "avg_price_kg": 2658,
           "price_change": {
+            "d1": 25.1,
             "w1": 10.1
           }
         },
@@ -191536,6 +194796,7 @@
           "amount": 1707000,
           "avg_price_kg": 280,
           "price_change": {
+            "d1": 4.1,
             "w1": -2.8
           }
         },
@@ -191544,7 +194805,10 @@
           "trades": 2,
           "qty": 2280.0,
           "amount": 4555000,
-          "avg_price_kg": 2165
+          "avg_price_kg": 2165,
+          "price_change": {
+            "d1": -42.8
+          }
         },
         {
           "name": "근대",
@@ -191553,6 +194817,7 @@
           "amount": 92500,
           "avg_price_kg": 1000,
           "price_change": {
+            "d1": -38.5,
             "w1": -20.0
           }
         },
@@ -191563,6 +194828,7 @@
           "amount": 310000,
           "avg_price_kg": 1215,
           "price_change": {
+            "d1": -7.3,
             "w1": -17.6
           }
         },
@@ -191573,6 +194839,7 @@
           "amount": 450000,
           "avg_price_kg": 3500,
           "price_change": {
+            "d1": -36.4,
             "w1": -43.2
           }
         },
@@ -191583,6 +194850,7 @@
           "amount": 2048600,
           "avg_price_kg": 4979,
           "price_change": {
+            "d1": 97.7,
             "w1": 0.2
           }
         },
@@ -191603,6 +194871,7 @@
           "amount": 48000,
           "avg_price_kg": 975,
           "price_change": {
+            "d1": -2.5,
             "w1": -52.6
           }
         },
@@ -191613,6 +194882,7 @@
           "amount": 506000,
           "avg_price_kg": 1750,
           "price_change": {
+            "d1": -50.0,
             "w1": -30.0
           }
         },
@@ -191623,6 +194893,7 @@
           "amount": 280000,
           "avg_price_kg": 2300,
           "price_change": {
+            "d1": -64.4,
             "w1": -12.6
           }
         },
@@ -191633,6 +194904,7 @@
           "amount": 4895750,
           "avg_price_kg": 1041,
           "price_change": {
+            "d1": 26.0,
             "w1": 19.5
           }
         },
@@ -191643,6 +194915,7 @@
           "amount": 354000,
           "avg_price_kg": 1250,
           "price_change": {
+            "d1": -31.2,
             "w1": -36.7
           }
         },
@@ -191653,6 +194926,7 @@
           "amount": 307500,
           "avg_price_kg": 1375,
           "price_change": {
+            "d1": -41.1,
             "w1": -50.0
           }
         },
@@ -191673,6 +194947,7 @@
           "amount": 8845000,
           "avg_price_kg": 5219,
           "price_change": {
+            "d1": -6.4,
             "w1": 125.2
           }
         },
@@ -191693,6 +194968,7 @@
           "amount": 576000,
           "avg_price_kg": 4625,
           "price_change": {
+            "d1": 68.2,
             "w1": 68.2
           }
         },
@@ -191703,6 +194979,7 @@
           "amount": 279000,
           "avg_price_kg": 1443,
           "price_change": {
+            "d1": 36.9,
             "w1": 43.9
           }
         },
@@ -191720,6 +194997,7 @@
           "amount": 2380000,
           "avg_price_kg": 47600,
           "price_change": {
+            "d1": 33.5,
             "w1": -14.4
           }
         },
@@ -191728,7 +195006,10 @@
           "trades": 1,
           "qty": 96.0,
           "amount": 144000,
-          "avg_price_kg": 1500
+          "avg_price_kg": 1500,
+          "price_change": {
+            "d1": -40.0
+          }
         },
         {
           "name": "달래",
@@ -191737,6 +195018,7 @@
           "amount": 301000,
           "avg_price_kg": 5375,
           "price_change": {
+            "d1": 3.6,
             "w1": -7.5
           }
         },
@@ -191757,6 +195039,7 @@
           "amount": 121000,
           "avg_price_kg": 720,
           "price_change": {
+            "d1": 1.7,
             "w1": -5.8
           }
         },
@@ -191767,6 +195050,7 @@
           "amount": 36000,
           "avg_price_kg": 3600,
           "price_change": {
+            "d1": -13.0,
             "w1": -3.1
           }
         },
@@ -191775,7 +195059,10 @@
           "trades": 1,
           "qty": 640.0,
           "amount": 960000,
-          "avg_price_kg": 1500
+          "avg_price_kg": 1500,
+          "price_change": {
+            "d1": -25.0
+          }
         },
         {
           "name": "피망(단고추)",
@@ -191794,6 +195081,7 @@
           "amount": 207000,
           "avg_price_kg": 1125,
           "price_change": {
+            "d1": -18.2,
             "w1": 28.6
           }
         },
@@ -191804,6 +195092,7 @@
           "amount": 88800,
           "avg_price_kg": 1850,
           "price_change": {
+            "d1": -26.0,
             "w1": -47.1
           }
         },
@@ -191822,7 +195111,10 @@
           "trades": 1,
           "qty": 80.0,
           "amount": 240000,
-          "avg_price_kg": 3000
+          "avg_price_kg": 3000,
+          "price_change": {
+            "d1": -11.1
+          }
         },
         {
           "name": "산마늘",
@@ -191836,7 +195128,10 @@
           "trades": 1,
           "qty": 60.0,
           "amount": 45000,
-          "avg_price_kg": 750
+          "avg_price_kg": 750,
+          "price_change": {
+            "d1": -25.0
+          }
         },
         {
           "name": "팽이버섯",
@@ -191845,6 +195140,7 @@
           "amount": 938500,
           "avg_price_kg": 1564,
           "price_change": {
+            "d1": -3.2,
             "w1": 9.5
           }
         },
@@ -191855,6 +195151,7 @@
           "amount": 55000,
           "avg_price_kg": 5500,
           "price_change": {
+            "d1": -26.7,
             "w1": -6.5
           }
         },
@@ -191865,6 +195162,7 @@
           "amount": 44000,
           "avg_price_kg": 1100,
           "price_change": {
+            "d1": -81.3,
             "w1": -79.4
           }
         },
@@ -191873,7 +195171,10 @@
           "trades": 1,
           "qty": 165.0,
           "amount": 1914000,
-          "avg_price_kg": 11600
+          "avg_price_kg": 11600,
+          "price_change": {
+            "d1": 0.0
+          }
         },
         {
           "name": "바나나",
@@ -191882,6 +195183,7 @@
           "amount": 12859000,
           "avg_price_kg": 2563,
           "price_change": {
+            "d1": -0.2,
             "w1": -14.3
           }
         },
@@ -191892,6 +195194,7 @@
           "amount": 1890000,
           "avg_price_kg": 2224,
           "price_change": {
+            "d1": -4.9,
             "w1": -20.6
           }
         },
@@ -191902,6 +195205,7 @@
           "amount": 10466000,
           "avg_price_kg": 4109,
           "price_change": {
+            "d1": -15.1,
             "w1": 55.6
           }
         },
@@ -191910,7 +195214,10 @@
           "trades": 1,
           "qty": 612.0,
           "amount": 2268000,
-          "avg_price_kg": 3706
+          "avg_price_kg": 3706,
+          "price_change": {
+            "d1": 34.8
+          }
         },
         {
           "name": "오렌지",
@@ -191919,6 +195226,7 @@
           "amount": 4090000,
           "avg_price_kg": 2798,
           "price_change": {
+            "d1": -9.4,
             "w1": 94.2
           }
         },
@@ -191927,7 +195235,10 @@
           "trades": 1,
           "qty": 320.0,
           "amount": 2560000,
-          "avg_price_kg": 8000
+          "avg_price_kg": 8000,
+          "price_change": {
+            "d1": 148.9
+          }
         },
         {
           "name": "망고",
@@ -191936,6 +195247,7 @@
           "amount": 4300000,
           "avg_price_kg": 5733,
           "price_change": {
+            "d1": -12.2,
             "w1": -10.6
           }
         },
@@ -191946,6 +195258,7 @@
           "amount": 857500,
           "avg_price_kg": 1256,
           "price_change": {
+            "d1": -0.5,
             "w1": -1.3
           }
         },
@@ -191954,7 +195267,10 @@
           "trades": 1,
           "qty": 70.0,
           "amount": 165000,
-          "avg_price_kg": 2357
+          "avg_price_kg": 2357,
+          "price_change": {
+            "d1": -5.7
+          }
         },
         {
           "name": "연근",
@@ -191963,6 +195279,7 @@
           "amount": 72000,
           "avg_price_kg": 2400,
           "price_change": {
+            "d1": 2.1,
             "w1": 2.1
           }
         },
@@ -191973,6 +195290,7 @@
           "amount": 185000,
           "avg_price_kg": 3700,
           "price_change": {
+            "d1": 0.0,
             "w1": 0.0
           }
         },
@@ -191990,6 +195308,7 @@
           "amount": 780000,
           "avg_price_kg": 2438,
           "price_change": {
+            "d1": -7.1,
             "w1": 4.5
           }
         },
@@ -192007,6 +195326,7 @@
           "amount": 176000,
           "avg_price_kg": 5500,
           "price_change": {
+            "d1": -12.0,
             "w1": 10.0
           }
         },
@@ -192015,7 +195335,10 @@
           "trades": 1,
           "qty": 32.0,
           "amount": 54000,
-          "avg_price_kg": 1688
+          "avg_price_kg": 1688,
+          "price_change": {
+            "d1": 0.0
+          }
         },
         {
           "name": "조미제품",
@@ -192024,6 +195347,7 @@
           "amount": 39000,
           "avg_price_kg": 6019,
           "price_change": {
+            "d1": -26.3,
             "w1": 0.0
           }
         },
@@ -192034,6 +195358,7 @@
           "amount": 180000,
           "avg_price_kg": 4500,
           "price_change": {
+            "d1": 0.0,
             "w1": 0.0
           }
         },
@@ -192044,6 +195369,7 @@
           "amount": 260000,
           "avg_price_kg": 6500,
           "price_change": {
+            "d1": -3.0,
             "w1": 4.3
           }
         }
@@ -193691,6 +197017,10 @@
         ]
       },
       "price_change": {
+        "d1": {
+          "amount": -3.1,
+          "qty": -3.3
+        },
         "w1": {
           "amount": 6.5,
           "qty": 10.6
@@ -230493,6 +233823,13 @@
       "corp_count": 2
     },
     {
+      "market": "서울강서",
+      "trades": 1269,
+      "total_qty": 852513.6000000002,
+      "total_amount": 1563970180,
+      "corp_count": 3
+    },
+    {
       "market": "대전노은",
       "trades": 1262,
       "total_qty": 465890.86000000004,
@@ -230532,13 +233869,6 @@
       "trades": 789,
       "total_qty": 179967.34000000003,
       "total_amount": 452600245,
-      "corp_count": 2
-    },
-    {
-      "market": "서울강서",
-      "trades": 788,
-      "total_qty": 484865.89999999997,
-      "total_amount": 919951010,
       "corp_count": 2
     },
     {
@@ -232651,6 +235981,19 @@
       "foreign": false
     },
     {
+      "origin": "경상남도 진주시",
+      "origin_lat": 35.1798,
+      "origin_lng": 128.1076,
+      "dest_corp": "서부청과㈜",
+      "dest_market": "서울강서",
+      "dest_lat": 37.5665,
+      "dest_lng": 126.8275,
+      "trades": 29,
+      "qty": 9430.0,
+      "amount": 26707000,
+      "foreign": false
+    },
+    {
       "origin": "수입산",
       "origin_lat": 33.0,
       "origin_lng": 125.0,
@@ -233234,25 +236577,12 @@
       "qty": 3572.1999999999994,
       "amount": 8905948,
       "foreign": false
-    },
-    {
-      "origin": "경남 진주시 진주우체국사서함",
-      "origin_lat": 35.1798,
-      "origin_lng": 128.1076,
-      "dest_corp": "농협부산(공)",
-      "dest_market": "부산엄궁",
-      "dest_lat": 35.143,
-      "dest_lng": 128.978,
-      "trades": 25,
-      "qty": 3702.8,
-      "amount": 10955112,
-      "foreign": false
     }
   ],
   "price_map": {
     "딸기": {
       "서울가락": 6485,
-      "서울강서": 4895,
+      "서울강서": 5035,
       "부산엄궁": 6211,
       "부산반여": 6622,
       "대구북부": 6657,
@@ -233285,7 +236615,7 @@
     },
     "사과": {
       "서울가락": 4210,
-      "서울강서": 2956,
+      "서울강서": 2898,
       "부산엄궁": 3745,
       "부산반여": 4405,
       "대구북부": 3550,
@@ -233318,7 +236648,7 @@
     },
     "참외": {
       "서울가락": 4872,
-      "서울강서": 5056,
+      "서울강서": 4983,
       "부산엄궁": 4808,
       "부산반여": 4954,
       "대구북부": 5368,
@@ -233351,7 +236681,7 @@
     },
     "토마토": {
       "서울가락": 2210,
-      "서울강서": 2230,
+      "서울강서": 2419,
       "부산엄궁": 2442,
       "부산반여": 2490,
       "대구북부": 2551,
@@ -233384,7 +236714,7 @@
     },
     "오이": {
       "서울가락": 1275,
-      "서울강서": 1404,
+      "서울강서": 1377,
       "부산엄궁": 1652,
       "부산반여": 1830,
       "대구북부": 1724,
@@ -233416,7 +236746,7 @@
     },
     "호박": {
       "서울가락": 1247,
-      "서울강서": 1346,
+      "서울강서": 1309,
       "부산엄궁": 1169,
       "부산반여": 1201,
       "대구북부": 1164,
@@ -233448,7 +236778,7 @@
     },
     "두릅": {
       "서울가락": 17993,
-      "서울강서": 20477,
+      "서울강서": 20658,
       "부산엄궁": 19907,
       "부산반여": 18027,
       "대구북부": 19920,
@@ -233481,7 +236811,7 @@
     },
     "풋고추": {
       "서울가락": 3109,
-      "서울강서": 3537,
+      "서울강서": 3361,
       "부산엄궁": 2701,
       "부산반여": 3071,
       "대구북부": 3316,
@@ -233512,7 +236842,7 @@
     },
     "방울토마토": {
       "서울가락": 4569,
-      "서울강서": 4486,
+      "서울강서": 4422,
       "부산엄궁": 4883,
       "부산반여": 4353,
       "대구북부": 5350,
@@ -233545,7 +236875,7 @@
     },
     "상추": {
       "서울가락": 1467,
-      "서울강서": 1547,
+      "서울강서": 1585,
       "부산엄궁": 1467,
       "부산반여": 1779,
       "대구북부": 1581,
@@ -233578,7 +236908,7 @@
     },
     "표고버섯": {
       "서울가락": 5169,
-      "서울강서": 5522,
+      "서울강서": 5982,
       "부산엄궁": 4966,
       "부산반여": 9640,
       "대구북부": 5799,
@@ -233611,7 +236941,7 @@
     },
     "시금치": {
       "서울가락": 1552,
-      "서울강서": 1312,
+      "서울강서": 1362,
       "부산엄궁": 1980,
       "부산반여": 1751,
       "대구북부": 970,
@@ -233643,7 +236973,7 @@
     },
     "쪽파": {
       "서울가락": 1442,
-      "서울강서": 1051,
+      "서울강서": 1079,
       "부산엄궁": 1920,
       "부산반여": 1837,
       "대구북부": 1655,
@@ -233675,7 +237005,7 @@
     },
     "새송이버섯": {
       "서울가락": 2141,
-      "서울강서": 2701,
+      "서울강서": 2598,
       "부산엄궁": 2018,
       "부산반여": 2716,
       "대구북부": 1979,
@@ -233705,7 +237035,7 @@
     },
     "파프리카": {
       "서울가락": 4150,
-      "서울강서": 5598,
+      "서울강서": 5443,
       "부산엄궁": 3702,
       "부산반여": 3254,
       "대구북부": 4549,
@@ -233735,7 +237065,7 @@
     },
     "깻잎": {
       "서울가락": 4142,
-      "서울강서": 4077,
+      "서울강서": 4310,
       "부산엄궁": 3630,
       "부산반여": 3549,
       "대구북부": 2770,
@@ -233766,7 +237096,7 @@
     },
     "얼갈이배추": {
       "서울가락": 1064,
-      "서울강서": 938,
+      "서울강서": 956,
       "부산엄궁": 1088,
       "부산반여": 1246,
       "대구북부": 1153,
@@ -233795,9 +237125,35 @@
       "창원내서": 1096,
       "진주": 1855
     },
+    "수박": {
+      "서울가락": 3509,
+      "서울강서": 3409,
+      "부산엄궁": 3508,
+      "부산반여": 2938,
+      "대구북부": 4056,
+      "인천남촌": 3644,
+      "인천삼산": 2930,
+      "광주각화": 3395,
+      "광주서부": 3551,
+      "대전오정": 4289,
+      "대전노은": 3863,
+      "구리": 3701,
+      "수원": 3948,
+      "춘천": 3916,
+      "청주": 2636,
+      "충주": 3059,
+      "천안": 3665,
+      "전주": 3750,
+      "익산": 2423,
+      "순천": 3833,
+      "포항": 3825,
+      "창원팔용": 3198,
+      "창원내서": 3866,
+      "진주": 3781
+    },
     "부추": {
       "서울가락": 3328,
-      "서울강서": 2190,
+      "서울강서": 2200,
       "부산엄궁": 1733,
       "부산반여": 2382,
       "대구북부": 1776,
@@ -233827,35 +237183,9 @@
       "창원내서": 2234,
       "진주": 3100
     },
-    "수박": {
-      "서울가락": 3509,
-      "서울강서": 3470,
-      "부산엄궁": 3508,
-      "부산반여": 2938,
-      "대구북부": 4056,
-      "인천남촌": 3644,
-      "인천삼산": 2930,
-      "광주각화": 3395,
-      "광주서부": 3551,
-      "대전오정": 4289,
-      "대전노은": 3863,
-      "구리": 3701,
-      "수원": 3948,
-      "춘천": 3916,
-      "청주": 2636,
-      "충주": 3059,
-      "천안": 3665,
-      "전주": 3750,
-      "익산": 2423,
-      "순천": 3833,
-      "포항": 3825,
-      "창원팔용": 3198,
-      "창원내서": 3866,
-      "진주": 3781
-    },
     "만감": {
       "서울가락": 4599,
-      "서울강서": 5500,
+      "서울강서": 4198,
       "부산엄궁": 4119,
       "부산반여": 4500,
       "대구북부": 3717,
@@ -233883,7 +237213,7 @@
     },
     "미나리": {
       "서울가락": 3492,
-      "서울강서": 2847,
+      "서울강서": 2447,
       "부산엄궁": 3920,
       "부산반여": 3907,
       "대구북부": 4657,
@@ -233911,9 +237241,41 @@
       "창원팔용": 3867,
       "창원내서": 3538
     },
+    "양파": {
+      "서울가락": 806,
+      "서울강서": 862,
+      "부산엄궁": 786,
+      "부산반여": 716,
+      "대구북부": 660,
+      "인천남촌": 872,
+      "인천삼산": 727,
+      "광주각화": 835,
+      "광주서부": 716,
+      "대전오정": 1104,
+      "대전노은": 828,
+      "구리": 1080,
+      "울산": 952,
+      "수원": 929,
+      "안양": 810,
+      "안산": 899,
+      "춘천": 1170,
+      "원주": 663,
+      "청주": 1366,
+      "충주": 1139,
+      "천안": 670,
+      "전주": 751,
+      "익산": 1899,
+      "정읍": 1433,
+      "순천": 566,
+      "포항": 350,
+      "구미": 800,
+      "창원팔용": 1039,
+      "창원내서": 822,
+      "진주": 741
+    },
     "고구마": {
       "서울가락": 1934,
-      "서울강서": 1847,
+      "서울강서": 1991,
       "부산엄궁": 2234,
       "부산반여": 2122,
       "대구북부": 1886,
@@ -233944,41 +237306,9 @@
       "창원내서": 1603,
       "진주": 2013
     },
-    "양파": {
-      "서울가락": 806,
-      "서울강서": 760,
-      "부산엄궁": 786,
-      "부산반여": 716,
-      "대구북부": 660,
-      "인천남촌": 872,
-      "인천삼산": 727,
-      "광주각화": 835,
-      "광주서부": 716,
-      "대전오정": 1104,
-      "대전노은": 828,
-      "구리": 1080,
-      "울산": 952,
-      "수원": 929,
-      "안양": 810,
-      "안산": 899,
-      "춘천": 1170,
-      "원주": 663,
-      "청주": 1366,
-      "충주": 1139,
-      "천안": 670,
-      "전주": 751,
-      "익산": 1899,
-      "정읍": 1433,
-      "순천": 566,
-      "포항": 350,
-      "구미": 800,
-      "창원팔용": 1039,
-      "창원내서": 822,
-      "진주": 741
-    },
     "열무": {
       "서울가락": 689,
-      "서울강서": 492,
+      "서울강서": 519,
       "부산엄궁": 1366,
       "부산반여": 1589,
       "대구북부": 910,
@@ -234009,7 +237339,7 @@
     },
     "가지": {
       "서울가락": 2294,
-      "서울강서": 2183,
+      "서울강서": 1956,
       "부산엄궁": 2882,
       "부산반여": 2326,
       "대구북부": 2467,
@@ -234040,7 +237370,7 @@
     },
     "머위대": {
       "서울가락": 4346,
-      "서울강서": 4926,
+      "서울강서": 4913,
       "부산엄궁": 5484,
       "부산반여": 6559,
       "대구북부": 7397,
@@ -234071,7 +237401,7 @@
     },
     "배추": {
       "서울가락": 1601,
-      "서울강서": 1041,
+      "서울강서": 885,
       "부산엄궁": 9092,
       "부산반여": 9310,
       "대구북부": 1459,
@@ -234100,39 +237430,9 @@
       "창원내서": 1988,
       "진주": 1600
     },
-    "느타리버섯": {
-      "서울가락": 3295,
-      "서울강서": 2655,
-      "부산엄궁": 3768,
-      "부산반여": 3789,
-      "대구북부": 4800,
-      "인천남촌": 2871,
-      "인천삼산": 2374,
-      "광주각화": 4311,
-      "광주서부": 4164,
-      "대전오정": 3079,
-      "대전노은": 2883,
-      "구리": 3052,
-      "울산": 4412,
-      "수원": 3152,
-      "안양": 3376,
-      "안산": 3333,
-      "춘천": 5124,
-      "원주": 3954,
-      "청주": 3032,
-      "충주": 3648,
-      "천안": 2786,
-      "전주": 3192,
-      "익산": 3546,
-      "정읍": 3755,
-      "순천": 4156,
-      "구미": 4525,
-      "창원팔용": 2998,
-      "창원내서": 2350
-    },
     "마늘": {
       "서울가락": 2917,
-      "서울강서": 6587,
+      "서울강서": 6689,
       "부산엄궁": 3891,
       "부산반여": 2918,
       "대구북부": 6233,
@@ -234160,9 +237460,39 @@
       "창원팔용": 4781,
       "창원내서": 5381
     },
+    "느타리버섯": {
+      "서울가락": 3295,
+      "서울강서": 2616,
+      "부산엄궁": 3768,
+      "부산반여": 3789,
+      "대구북부": 4800,
+      "인천남촌": 2871,
+      "인천삼산": 2374,
+      "광주각화": 4311,
+      "광주서부": 4164,
+      "대전오정": 3079,
+      "대전노은": 2883,
+      "구리": 3052,
+      "울산": 4412,
+      "수원": 3152,
+      "안양": 3376,
+      "안산": 3333,
+      "춘천": 5124,
+      "원주": 3954,
+      "청주": 3032,
+      "충주": 3648,
+      "천안": 2786,
+      "전주": 3192,
+      "익산": 3546,
+      "정읍": 3755,
+      "순천": 4156,
+      "구미": 4525,
+      "창원팔용": 2998,
+      "창원내서": 2350
+    },
     "취나물": {
       "서울가락": 4701,
-      "서울강서": 3135,
+      "서울강서": 3094,
       "부산엄궁": 3776,
       "부산반여": 4300,
       "대구북부": 4200,
