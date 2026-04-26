@@ -43174,7 +43174,6 @@
           "amount": 12068800,
           "avg_price_kg": 1188,
           "price_change": {
-            "d1": -17.6,
             "w1": 1.8
           }
         },
@@ -43196,7 +43195,6 @@
           "amount": 26225000,
           "avg_price_kg": 2070,
           "price_change": {
-            "d1": 6.8,
             "w1": 0.8
           }
         },
@@ -43218,7 +43216,7 @@
           "amount": 9067100,
           "avg_price_kg": 2027,
           "price_change": {
-            "d1": -24.5,
+            "d1": -6.1,
             "w1": -13.7
           }
         },
@@ -43229,7 +43227,6 @@
           "amount": 7284700,
           "avg_price_kg": 2291,
           "price_change": {
-            "d1": 11.6,
             "w1": 5.8
           }
         },
@@ -43240,7 +43237,6 @@
           "amount": 12172400,
           "avg_price_kg": 4351,
           "price_change": {
-            "d1": 27.5,
             "w1": 11.5
           }
         },
@@ -43284,7 +43280,6 @@
           "amount": 1438100,
           "avg_price_kg": 2262,
           "price_change": {
-            "d1": 148.3,
             "w1": -24.1
           }
         },
@@ -43306,7 +43301,6 @@
           "amount": 2966200,
           "avg_price_kg": 1862,
           "price_change": {
-            "d1": -0.5,
             "w1": -16.2
           }
         },
@@ -43317,7 +43311,6 @@
           "amount": 9359200,
           "avg_price_kg": 5600,
           "price_change": {
-            "d1": 4.4,
             "w1": 9.1
           }
         },
@@ -43338,7 +43331,6 @@
           "amount": 13321300,
           "avg_price_kg": 2347,
           "price_change": {
-            "d1": 5.6,
             "w1": 258.9
           }
         },
@@ -43349,7 +43341,6 @@
           "amount": 2665700,
           "avg_price_kg": 1344,
           "price_change": {
-            "d1": 7.3,
             "w1": -2.4
           }
         },
@@ -43360,7 +43351,6 @@
           "amount": 2056500,
           "avg_price_kg": 15076,
           "price_change": {
-            "d1": 5.9,
             "w1": 2.4
           }
         },
@@ -43371,7 +43361,6 @@
           "amount": 8341700,
           "avg_price_kg": 6548,
           "price_change": {
-            "d1": -18.6,
             "w1": 2.9
           }
         },
@@ -43382,7 +43371,6 @@
           "amount": 2741600,
           "avg_price_kg": 1188,
           "price_change": {
-            "d1": -2.5,
             "w1": 22.2
           }
         },
@@ -43393,7 +43381,7 @@
           "amount": 2849300,
           "avg_price_kg": 5728,
           "price_change": {
-            "d1": -11.2,
+            "d1": -27.8,
             "w1": -34.1
           }
         },
@@ -43404,7 +43392,6 @@
           "amount": 3009200,
           "avg_price_kg": 1560,
           "price_change": {
-            "d1": -12.3,
             "w1": -59.6
           }
         },
@@ -43415,7 +43402,6 @@
           "amount": 3343800,
           "avg_price_kg": 5811,
           "price_change": {
-            "d1": -18.5,
             "w1": 12.6
           }
         },
@@ -43426,7 +43412,6 @@
           "amount": 7822100,
           "avg_price_kg": 982,
           "price_change": {
-            "d1": -9.8,
             "w1": -30.2
           }
         },
@@ -43437,7 +43422,6 @@
           "amount": 1960400,
           "avg_price_kg": 4845,
           "price_change": {
-            "d1": 51.2,
             "w1": -13.2
           }
         },
@@ -43459,7 +43443,6 @@
           "amount": 2790300,
           "avg_price_kg": 2707,
           "price_change": {
-            "d1": 3.8,
             "w1": 78.7
           }
         },
@@ -43470,7 +43453,6 @@
           "amount": 3360000,
           "avg_price_kg": 840,
           "price_change": {
-            "d1": -51.8,
             "w1": -66.1
           }
         },
@@ -43481,7 +43463,6 @@
           "amount": 581200,
           "avg_price_kg": 1531,
           "price_change": {
-            "d1": 8.4,
             "w1": 41.1
           }
         },
@@ -43492,7 +43473,6 @@
           "amount": 401600,
           "avg_price_kg": 1857,
           "price_change": {
-            "d1": -21.4,
             "w1": 13.7
           }
         },
@@ -43503,7 +43483,6 @@
           "amount": 2888100,
           "avg_price_kg": 5153,
           "price_change": {
-            "d1": -10.4,
             "w1": -12.6
           }
         },
@@ -43514,7 +43493,6 @@
           "amount": 17152500,
           "avg_price_kg": 1240,
           "price_change": {
-            "d1": -24.4,
             "w1": -17.9
           }
         },
@@ -43525,7 +43503,6 @@
           "amount": 1051300,
           "avg_price_kg": 945,
           "price_change": {
-            "d1": 5.9,
             "w1": -10.3
           }
         },
@@ -43536,7 +43513,7 @@
           "amount": 852300,
           "avg_price_kg": 8352,
           "price_change": {
-            "d1": 52.7,
+            "d1": 13.9,
             "w1": 11.3
           }
         },
@@ -43547,7 +43524,6 @@
           "amount": 447800,
           "avg_price_kg": 2678,
           "price_change": {
-            "d1": -3.9,
             "w1": -19.7
           }
         },
@@ -43558,7 +43534,7 @@
           "amount": 288000,
           "avg_price_kg": 1063,
           "price_change": {
-            "d1": -16.0,
+            "d1": -7.8,
             "w1": -28.8
           }
         },
@@ -43569,7 +43545,6 @@
           "amount": 602800,
           "avg_price_kg": 4265,
           "price_change": {
-            "d1": -9.9,
             "w1": -19.5
           }
         },
@@ -43580,7 +43555,6 @@
           "amount": 829600,
           "avg_price_kg": 2602,
           "price_change": {
-            "d1": -9.8,
             "w1": -26.5
           }
         },
@@ -43591,7 +43565,6 @@
           "amount": 58700,
           "avg_price_kg": 1002,
           "price_change": {
-            "d1": -25.8,
             "w1": -33.2
           }
         },
@@ -43624,7 +43597,6 @@
           "amount": 1491600,
           "avg_price_kg": 5683,
           "price_change": {
-            "d1": 176.9,
             "w1": 93.7
           }
         },
@@ -43635,7 +43607,6 @@
           "amount": 1108200,
           "avg_price_kg": 4702,
           "price_change": {
-            "d1": -0.2,
             "w1": 22.6
           }
         },
@@ -43646,7 +43617,6 @@
           "amount": 2708100,
           "avg_price_kg": 3636,
           "price_change": {
-            "d1": 33.8,
             "w1": 26.7
           }
         },
@@ -43657,7 +43627,6 @@
           "amount": 72300,
           "avg_price_kg": 8405,
           "price_change": {
-            "d1": -2.3,
             "w1": 5.1
           }
         },
@@ -43668,7 +43637,6 @@
           "amount": 359000,
           "avg_price_kg": 5467,
           "price_change": {
-            "d1": -9.1,
             "w1": 22.9
           }
         },
@@ -43686,7 +43654,6 @@
           "amount": 132800,
           "avg_price_kg": 1858,
           "price_change": {
-            "d1": -10.5,
             "w1": -15.9
           }
         },
@@ -43707,7 +43674,6 @@
           "amount": 392100,
           "avg_price_kg": 19693,
           "price_change": {
-            "d1": 58.4,
             "w1": 22.4
           }
         },
@@ -43718,7 +43684,6 @@
           "amount": 13659800,
           "avg_price_kg": 1030,
           "price_change": {
-            "d1": 0.4,
             "w1": 15.3
           }
         },
@@ -43729,7 +43694,6 @@
           "amount": 3437800,
           "avg_price_kg": 9991,
           "price_change": {
-            "d1": 175.8,
             "w1": 84.7
           }
         },
@@ -43740,7 +43704,6 @@
           "amount": 256900,
           "avg_price_kg": 3175,
           "price_change": {
-            "d1": -30.2,
             "w1": -37.7
           }
         },
@@ -43780,7 +43743,6 @@
           "amount": 1654500,
           "avg_price_kg": 612,
           "price_change": {
-            "d1": -9.9,
             "w1": -23.7
           }
         },
@@ -43791,7 +43753,6 @@
           "amount": 711500,
           "avg_price_kg": 737,
           "price_change": {
-            "d1": -53.7,
             "w1": -42.7
           }
         },
@@ -43802,7 +43763,6 @@
           "amount": 679600,
           "avg_price_kg": 3508,
           "price_change": {
-            "d1": 4.4,
             "w1": -12.5
           }
         },
@@ -43813,7 +43773,6 @@
           "amount": 131000,
           "avg_price_kg": 1372,
           "price_change": {
-            "d1": 89.2,
             "w1": -41.2
           }
         },
@@ -43834,7 +43793,6 @@
           "amount": 115800,
           "avg_price_kg": 8478,
           "price_change": {
-            "d1": -18.9,
             "w1": -24.1
           }
         },
@@ -43843,10 +43801,7 @@
           "trades": 2,
           "qty": 248.0,
           "amount": 263000,
-          "avg_price_kg": 1512,
-          "price_change": {
-            "d1": 25.9
-          }
+          "avg_price_kg": 1512
         },
         {
           "name": "케일",
@@ -43855,7 +43810,6 @@
           "amount": 276000,
           "avg_price_kg": 3767,
           "price_change": {
-            "d1": 14.3,
             "w1": -50.4
           }
         },
@@ -43864,10 +43818,7 @@
           "trades": 2,
           "qty": 20.5,
           "amount": 42700,
-          "avg_price_kg": 3700,
-          "price_change": {
-            "d1": -83.9
-          }
+          "avg_price_kg": 3700
         },
         {
           "name": "아스파라거스",
@@ -43876,7 +43827,6 @@
           "amount": 381500,
           "avg_price_kg": 11817,
           "price_change": {
-            "d1": 48.6,
             "w1": -6.7
           }
         },
@@ -43885,10 +43835,7 @@
           "trades": 2,
           "qty": 92.0,
           "amount": 155400,
-          "avg_price_kg": 1650,
-          "price_change": {
-            "d1": -34.0
-          }
+          "avg_price_kg": 1650
         },
         {
           "name": "참당귀",
@@ -43897,7 +43844,6 @@
           "amount": 132700,
           "avg_price_kg": 5050,
           "price_change": {
-            "d1": 13.3,
             "w1": 18.0
           }
         },
@@ -43917,10 +43863,7 @@
           "trades": 2,
           "qty": 9660.0,
           "amount": 2627100,
-          "avg_price_kg": 272,
-          "price_change": {
-            "d1": -2.2
-          }
+          "avg_price_kg": 272
         },
         {
           "name": "호박잎",
@@ -43929,7 +43872,6 @@
           "amount": 614000,
           "avg_price_kg": 8265,
           "price_change": {
-            "d1": 12.7,
             "w1": 7.8
           }
         },
@@ -43940,7 +43882,6 @@
           "amount": 142600,
           "avg_price_kg": 4617,
           "price_change": {
-            "d1": 2.2,
             "w1": 3.8
           }
         },
@@ -43951,7 +43892,6 @@
           "amount": 204400,
           "avg_price_kg": 11350,
           "price_change": {
-            "d1": -11.5,
             "w1": 14.9
           }
         },
@@ -43972,7 +43912,6 @@
           "amount": 163100,
           "avg_price_kg": 5583,
           "price_change": {
-            "d1": 0.0,
             "w1": 0.0
           }
         },
@@ -43983,7 +43922,6 @@
           "amount": 16600,
           "avg_price_kg": 9400,
           "price_change": {
-            "d1": 1.0,
             "w1": -1.5
           }
         },
@@ -43994,7 +43932,6 @@
           "amount": 20400,
           "avg_price_kg": 9636,
           "price_change": {
-            "d1": -59.9,
             "w1": -6.6
           }
         },
@@ -44016,7 +43953,6 @@
           "amount": 40800,
           "avg_price_kg": 1700,
           "price_change": {
-            "d1": -64.6,
             "w1": -56.1
           }
         },
@@ -44025,10 +43961,7 @@
           "trades": 1,
           "qty": 114.0,
           "amount": 782000,
-          "avg_price_kg": 6860,
-          "price_change": {
-            "d1": 7.2
-          }
+          "avg_price_kg": 6860
         },
         {
           "name": "참다래(키위)",
@@ -44094,7 +44027,6 @@
           "amount": 64000,
           "avg_price_kg": 500,
           "price_change": {
-            "d1": 14.2,
             "w1": -25.1
           }
         },
@@ -44105,7 +44037,6 @@
           "amount": 152000,
           "avg_price_kg": 894,
           "price_change": {
-            "d1": -38.6,
             "w1": -39.6
           }
         },
@@ -44150,7 +44081,6 @@
           "amount": 120900,
           "avg_price_kg": 2325,
           "price_change": {
-            "d1": -10.6,
             "w1": -31.6
           }
         },
@@ -44161,7 +44091,6 @@
           "amount": 23600,
           "avg_price_kg": 2950,
           "price_change": {
-            "d1": 32.6,
             "w1": -14.5
           }
         },
@@ -44172,7 +44101,6 @@
           "amount": 984000,
           "avg_price_kg": 1070,
           "price_change": {
-            "d1": 0.8,
             "w1": 2.1
           }
         },
@@ -44183,7 +44111,6 @@
           "amount": 57000,
           "avg_price_kg": 4750,
           "price_change": {
-            "d1": 0.0,
             "w1": 0.0
           }
         },
@@ -44194,7 +44121,6 @@
           "amount": 60400,
           "avg_price_kg": 4027,
           "price_change": {
-            "d1": 0.0,
             "w1": 0.0
           }
         },
@@ -44205,7 +44131,6 @@
           "amount": 190800,
           "avg_price_kg": 7950,
           "price_change": {
-            "d1": 98.8,
             "w1": 89.8
           }
         },
@@ -44214,10 +44139,7 @@
           "trades": 1,
           "qty": 12.0,
           "amount": 35400,
-          "avg_price_kg": 2950,
-          "price_change": {
-            "d1": 32.6
-          }
+          "avg_price_kg": 2950
         },
         {
           "name": "금강초",
@@ -44234,10 +44156,7 @@
           "trades": 1,
           "qty": 2.0,
           "amount": 13400,
-          "avg_price_kg": 6700,
-          "price_change": {
-            "d1": 257.3
-          }
+          "avg_price_kg": 6700
         },
         {
           "name": "팽이버섯",
@@ -44246,7 +44165,6 @@
           "amount": 30000,
           "avg_price_kg": 7500,
           "price_change": {
-            "d1": 372.3,
             "w1": 45.6
           }
         },
@@ -44257,7 +44175,6 @@
           "amount": 70000,
           "avg_price_kg": 4667,
           "price_change": {
-            "d1": 4.0,
             "w1": -2.6
           }
         }
@@ -46934,8 +46851,8 @@
       },
       "price_change": {
         "d1": {
-          "amount": 8.2,
-          "qty": 15.7
+          "amount": 42.5,
+          "qty": 109.0
         },
         "w1": {
           "amount": 10.2,

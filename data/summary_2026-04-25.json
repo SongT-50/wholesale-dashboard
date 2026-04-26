@@ -1,8 +1,8 @@
 {
   "date": "2026-04-25",
-  "total_trades": 11886,
-  "total_amount": 17821006774,
-  "total_qty": 8927960.729999991,
+  "total_trades": 11887,
+  "total_amount": 17821076774,
+  "total_qty": 8927970.729999991,
   "corp_count": 34,
   "market_count": 24,
   "corporations": [
@@ -64692,7 +64692,7 @@
           "amount": 1069830,
           "avg_price_kg": 2071,
           "price_change": {
-            "d1": 8.4,
+            "d1": 7.6,
             "w1": 13.4
           }
         },
@@ -64714,7 +64714,7 @@
           "amount": 3475560,
           "avg_price_kg": 1330,
           "price_change": {
-            "d1": 0.5,
+            "d1": -9.2,
             "w1": -36.2
           }
         },
@@ -64780,7 +64780,7 @@
           "amount": 1541800,
           "avg_price_kg": 3017,
           "price_change": {
-            "d1": 18.1
+            "d1": 7.5
           }
         },
         {
@@ -64799,10 +64799,7 @@
           "trades": 4,
           "qty": 65.5,
           "amount": 170300,
-          "avg_price_kg": 2611,
-          "price_change": {
-            "d1": 3.9
-          }
+          "avg_price_kg": 2611
         },
         {
           "name": "블루베리",
@@ -64874,10 +64871,7 @@
           "trades": 3,
           "qty": 40.0,
           "amount": 208000,
-          "avg_price_kg": 5100,
-          "price_change": {
-            "d1": 2.0
-          }
+          "avg_price_kg": 5100
         },
         {
           "name": "참다래(키위)",
@@ -64897,7 +64891,7 @@
           "amount": 593380,
           "avg_price_kg": 1241,
           "price_change": {
-            "d1": 0.0
+            "d1": -33.5
           }
         },
         {
@@ -64917,7 +64911,7 @@
           "amount": 460290,
           "avg_price_kg": 7381,
           "price_change": {
-            "d1": 4.7
+            "d1": 4.0
           }
         },
         {
@@ -65056,7 +65050,7 @@
           "amount": 1293890,
           "avg_price_kg": 4416,
           "price_change": {
-            "d1": 53.4,
+            "d1": 130.4,
             "w1": 130.4
           }
         },
@@ -65255,7 +65249,7 @@
           "amount": 1675000,
           "avg_price_kg": 3490,
           "price_change": {
-            "d1": -7.1
+            "d1": -27.2
           }
         },
         {
@@ -65265,7 +65259,7 @@
           "amount": 13976000,
           "avg_price_kg": 2154,
           "price_change": {
-            "d1": -3.0,
+            "d1": -2.9,
             "w1": 2.5
           }
         },
@@ -65305,10 +65299,7 @@
           "trades": 1,
           "qty": 283.5,
           "amount": 356400,
-          "avg_price_kg": 1257,
-          "price_change": {
-            "d1": 0.0
-          }
+          "avg_price_kg": 1257
         },
         {
           "name": "달래",
@@ -65402,7 +65393,7 @@
           "amount": 800000,
           "avg_price_kg": 800,
           "price_change": {
-            "d1": -40.9,
+            "d1": -2.4,
             "w1": -3.6
           }
         },
@@ -65626,20 +65617,14 @@
           "trades": 1,
           "qty": 40.0,
           "amount": 76000,
-          "avg_price_kg": 1900,
-          "price_change": {
-            "d1": 0.0
-          }
+          "avg_price_kg": 1900
         },
         {
           "name": "곡물제조",
           "trades": 1,
           "qty": 3.0,
           "amount": 21500,
-          "avg_price_kg": 7167,
-          "price_change": {
-            "d1": 0.0
-          }
+          "avg_price_kg": 7167
         }
       ],
       "origins": [
@@ -67408,8 +67393,8 @@
       },
       "price_change": {
         "d1": {
-          "amount": -24.5,
-          "qty": -19.4
+          "amount": -13.1,
+          "qty": 2.3
         },
         "w1": {
           "amount": -6.5,
@@ -88375,9 +88360,9 @@
       "market_code": "320201",
       "lat": 37.3422,
       "lng": 127.9202,
-      "trades": 4,
-      "total_qty": 231.0,
-      "total_amount": 429700,
+      "trades": 5,
+      "total_qty": 241.0,
+      "total_amount": 499700,
       "products": [
         {
           "name": "사과",
@@ -88418,9 +88403,25 @@
           "price_change": {
             "w1": 7.1
           }
+        },
+        {
+          "name": "마늘",
+          "trades": 1,
+          "qty": 10.0,
+          "amount": 70000,
+          "avg_price_kg": 7000,
+          "price_change": {
+            "w1": 4.1
+          }
         }
       ],
       "origins": [
+        {
+          "name": "강원특별자치도 원주시 중앙동",
+          "trades": 2,
+          "qty": 28.0,
+          "amount": 148600
+        },
         {
           "name": "강원특별자치도 양구군 양구읍",
           "trades": 1,
@@ -88432,12 +88433,6 @@
           "trades": 1,
           "qty": 150.0,
           "amount": 252000
-        },
-        {
-          "name": "강원특별자치도 원주시 중앙동",
-          "trades": 1,
-          "qty": 18.0,
-          "amount": 78600
         },
         {
           "name": "경북 의성군 의성읍",
@@ -88486,12 +88481,22 @@
             "lng": 128.697,
             "foreign": false
           }
+        ],
+        "마늘": [
+          {
+            "name": "강원특별자치도 원주시 중앙동",
+            "trades": 1,
+            "qty": 10.0,
+            "lat": 37.3422,
+            "lng": 127.9202,
+            "foreign": false
+          }
         ]
       },
       "price_change": {
         "d1": {
-          "amount": -23.8,
-          "qty": 40.0
+          "amount": -11.4,
+          "qty": 46.1
         },
         "w1": {
           "amount": -99.7,
@@ -88740,9 +88745,9 @@
     },
     {
       "market": "원주",
-      "trades": 4,
-      "total_qty": 231.0,
-      "total_amount": 429700,
+      "trades": 5,
+      "total_qty": 241.0,
+      "total_amount": 499700,
       "corp_count": 1
     }
   ],
@@ -91666,6 +91671,7 @@
       "구리": 5182,
       "울산": 4833,
       "수원": 8311,
+      "원주": 7000,
       "강릉": 6773,
       "청주": 4416,
       "익산": 2807,
