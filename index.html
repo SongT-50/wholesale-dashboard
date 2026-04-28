@@ -126,6 +126,112 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', s
 .origin-toggle-item .ot-name { flex: 1; }
 .origin-toggle-item .ot-corps { font-family: 'JetBrains Mono'; font-size: 10px; color: var(--dim); }
 
+/* 산지 분석 — 서브 토글 (지역별/품목별) */
+.origin-sub-tabs {
+  display: flex; gap: 4px; margin-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 6px;
+}
+.origin-sub-btn {
+  flex: 1; padding: 6px 10px;
+  background: transparent; color: var(--dim);
+  border: 1px solid var(--border); border-radius: 4px;
+  font-size: 12px; font-weight: 500; cursor: pointer;
+  font-family: inherit;
+  transition: all 0.15s;
+}
+.origin-sub-btn:hover { color: var(--text); border-color: var(--orange); }
+.origin-sub-btn.active {
+  background: var(--orange); color: #0a0a12;
+  border-color: var(--orange); font-weight: 700;
+}
+
+/* 산지 분석 — 연도 드롭다운 다크 스타일 */
+.origin-year-select {
+  background: rgba(10,10,18,0.9); color: var(--text);
+  border: 1px solid var(--border); border-radius: 4px;
+  padding: 4px 8px; font-size: 12px;
+  font-family: inherit;
+  appearance: none; -webkit-appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'><path d='M0 2 L5 7 L10 2' stroke='%23fb923c' stroke-width='1.5' fill='none'/></svg>");
+  background-repeat: no-repeat; background-position: right 8px center;
+  padding-right: 24px;
+}
+.origin-year-select option {
+  background: #0a0a12; color: var(--text); padding: 4px;
+}
+.origin-year-select:hover { border-color: var(--orange); }
+
+/* 산지 분석 탭 */
+.origin-l1-item {
+  position: relative;
+  padding: 8px 10px;
+  margin-bottom: 4px;
+  border-radius: 6px;
+  background: var(--panel-bg);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.15s;
+}
+.origin-l1-item:hover { border-color: var(--orange); background: rgba(251,146,60,0.06); }
+.origin-l1-item.active { border-color: var(--orange); background: rgba(251,146,60,0.12); }
+.origin-l1-item .l1-bar {
+  position: absolute; top: 0; left: 0; bottom: 0;
+  background: rgba(251,146,60,0.18); z-index: 0;
+}
+.origin-l1-item.import .l1-bar { background: rgba(100,149,237,0.18); }
+.origin-l1-item.unmatched .l1-bar { background: rgba(150,150,150,0.18); }
+.origin-l1-item > * { position: relative; z-index: 1; }
+.origin-l1-item .l1-row { display: flex; justify-content: space-between; align-items: center; }
+.origin-l1-item .l1-name { font-size: 13px; font-weight: 700; color: var(--text); }
+.origin-l1-item .l1-kg { font-family: 'JetBrains Mono'; font-size: 11px; color: var(--text); }
+.origin-l1-item .l1-sub { font-size: 10px; color: var(--dim); margin-top: 2px; }
+
+/* 산지 상세 패널 */
+.origin-detail-panel {
+  position: fixed; top: 80px; right: 20px;
+  width: 360px; max-height: calc(100vh - 120px);
+  background: rgba(10,10,18,0.95); backdrop-filter: blur(12px);
+  border: 1px solid var(--orange); border-radius: 10px;
+  padding: 14px 16px; z-index: 20;
+  overflow-y: auto;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+}
+.origin-detail-header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 4px; padding-bottom: 8px; border-bottom: 1px solid var(--border);
+}
+.origin-detail-header strong { font-size: 14px; color: var(--orange); }
+.origin-detail-section { margin-top: 12px; }
+.origin-section-title {
+  font-size: 11px; font-weight: 700; color: var(--dim);
+  text-transform: uppercase; letter-spacing: 0.04em;
+  margin-bottom: 6px;
+}
+.mini-bar-row {
+  position: relative; padding: 4px 8px; margin-bottom: 2px;
+  border-radius: 3px; overflow: hidden;
+  font-size: 11px;
+}
+.mini-bar-row .mb-bar {
+  position: absolute; top: 0; left: 0; bottom: 0;
+  background: rgba(251,146,60,0.15);
+}
+.mini-bar-row > * { position: relative; }
+.mini-bar-row .mb-row { display: flex; justify-content: space-between; align-items: center; }
+.mini-bar-row .mb-name { color: var(--text); font-weight: 500; }
+.mini-bar-row .mb-kg { font-family: 'JetBrains Mono'; font-size: 10px; color: var(--dim); }
+.year-bar-row {
+  display: grid; grid-template-columns: 40px 1fr 70px;
+  gap: 6px; align-items: center; margin-bottom: 3px;
+  font-size: 11px;
+}
+.year-bar-row .yb-label { color: var(--dim); font-family: 'JetBrains Mono'; }
+.year-bar-row .yb-track { height: 8px; background: var(--panel-bg); border-radius: 2px; overflow: hidden; }
+.year-bar-row .yb-fill { height: 100%; background: var(--orange); border-radius: 2px; }
+.year-bar-row .yb-kg { font-family: 'JetBrains Mono'; font-size: 10px; color: var(--text); text-align: right; }
+
 .price-market-row {
   display: flex; justify-content: space-between; align-items: center;
   padding: 4px 0; font-size: 12px; border-bottom: 1px solid rgba(30,41,59,0.5);
@@ -212,6 +318,45 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', s
   font-size: 11px; color: var(--dim); z-index: 5; display: flex; gap: 16px; align-items: center;
 }
 .legend-dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 4px; vertical-align: middle; }
+.legend-row2 {
+  position: fixed; bottom: 56px; left: 380px;
+  background: rgba(10,10,18,0.85); border: 1px solid var(--border);
+  border-radius: 8px; padding: 6px 14px;
+  font-size: 10px; color: var(--dim); z-index: 5;
+  display: flex; gap: 14px; align-items: center;
+}
+
+/* 지도 위 상태 바 — 첫 진입 5초 안 컨텍스트 */
+.context-bar {
+  position: fixed; top: 14px;
+  left: calc(360px + (100vw - 360px) / 2); transform: translateX(-50%);
+  background: rgba(10,10,18,0.85); backdrop-filter: blur(8px);
+  border: 1px solid var(--border); border-radius: 6px;
+  padding: 6px 14px; z-index: 9;
+  font-family: 'JetBrains Mono', monospace; font-size: 12px;
+  color: var(--text); white-space: nowrap;
+  display: flex; gap: 10px; align-items: center;
+  pointer-events: none;
+}
+.context-bar .ctx-sep { color: var(--border); }
+.context-bar .ctx-key { color: var(--accent); font-weight: 700; }
+.context-bar .ctx-dim { color: var(--dim); }
+
+/* KPI 위 기간 배지 — 1주/1달/1년에서만 표시 */
+.period-badge {
+  display: none;
+  font-size: 10px; font-weight: 700;
+  color: var(--blue);
+  background: rgba(96,165,250,0.1);
+  border: 1px solid rgba(96,165,250,0.3);
+  border-radius: 4px;
+  padding: 3px 8px;
+  margin-bottom: 8px;
+  letter-spacing: 0.3px;
+  text-align: center;
+}
+.period-badge.visible { display: block; }
+
 .flow-toggle {
   position: fixed; bottom: 60px; left: 380px; background: rgba(10,10,18,0.85);
   border: 1px solid var(--border); border-radius: 8px; padding: 8px 14px;
@@ -288,6 +433,8 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', s
   .detail-panel .detail-stat .l { font-size: 9px; }
   .origin-float-panel { bottom: 10px; right: 10px; width: 220px; max-height: 250px; }
   .legend { left: 10px; font-size: 10px; bottom: 10px; gap: 8px; padding: 6px 10px; }
+  .legend-row2 { display: none; }
+  .context-bar { display: none; }
   .flow-toggle { left: 10px; bottom: 50px; font-size: 11px; padding: 6px 10px; }
   .metric-toggle { display: none; }
   .metric-toggle-inline { display: flex; }
@@ -428,6 +575,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', s
   </div>
   <div class="date-loading" id="dateLoading">데이터 로딩 중...</div>
 
+  <div class="period-badge" id="periodBadge"></div>
   <div class="summary-grid">
     <div class="summary-card"><div class="num" id="totalQty">-</div><div class="label">물량(톤)</div></div>
     <div class="summary-card"><div class="num" id="totalAmount">-</div><div class="label">거래금액</div></div>
@@ -445,6 +593,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', s
     <button class="tab-btn" data-tab="market" onclick="switchTab('market')">시장별</button>
     <button class="tab-btn" data-tab="price" onclick="switchTab('price')">가격비교</button>
     <button class="tab-btn" data-tab="shipment" onclick="switchTab('shipment')">입하예약</button>
+    <button class="tab-btn" data-tab="origin" onclick="switchTab('origin')">산지 분석</button>
   </div>
 
   <div class="list-section" id="corpListSection"><div id="corpList"></div></div>
@@ -465,6 +614,63 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', s
       <div class="summary-card"><div class="num" id="shipTotalItems">-</div><div class="label">총수량(박스)</div></div>
     </div>
     <div class="scrollable-list" id="shipmentList" style="max-height:50vh;"></div>
+  </div>
+
+  <!-- 산지 분석 탭 -->
+  <div class="list-section" id="originSection" style="display:none;">
+    <div id="originHeader" style="font-size:12px;color:var(--dim);margin-bottom:8px;">산지(광역시도) ↔ 품목/법인</div>
+    <div style="display:flex;gap:8px;align-items:center;margin-bottom:8px;">
+      <label style="font-size:11px;color:var(--dim);">연도</label>
+      <select id="originYearSel" onchange="onOriginYearChange()" class="origin-year-select"></select>
+      <span id="originYearTotal" style="font-size:11px;color:var(--dim);margin-left:auto;"></span>
+    </div>
+    <!-- 서브 토글: 지역별 / 품목별 -->
+    <div class="origin-sub-tabs">
+      <button class="origin-sub-btn active" data-sub="region" onclick="switchOriginSub('region')">지역별</button>
+      <button class="origin-sub-btn" data-sub="product" onclick="switchOriginSub('product')">품목별</button>
+    </div>
+
+    <!-- 지역별 뷰 -->
+    <div id="originRegionView">
+      <div id="originL1List" class="scrollable-list" style="max-height:52vh;"></div>
+    </div>
+
+    <!-- 품목별 뷰 -->
+    <div id="originProductView" style="display:none;">
+      <input class="price-search" id="originProductSearch"
+             placeholder="품목 검색 (예: 무, 양파, 감자)..."
+             oninput="filterOriginProducts()" style="margin-bottom:6px;">
+      <div style="font-size:10px;color:var(--dim);margin-bottom:6px;">
+        ⓘ 근사치 (지역별 TOP 20 품목 역인덱싱). 정확한 집계는 Phase 3에서 재집계 예정.
+      </div>
+      <div id="originProductList" class="scrollable-list" style="max-height:48vh;"></div>
+    </div>
+  </div>
+</div>
+
+<!-- 산지 상세 플로팅 패널 (클릭 시 표시) -->
+<div class="origin-detail-panel" id="originDetailPanel" style="display:none;">
+  <div class="origin-detail-header">
+    <strong id="originSelTitle">—</strong>
+    <button class="origin-float-close" onclick="closeOriginDetail()">&times;</button>
+  </div>
+  <div id="originSelKg" style="font-size:11px;color:var(--dim);margin-bottom:10px;"></div>
+
+  <div class="origin-detail-section">
+    <div class="origin-section-title">법인 (스크롤)</div>
+    <div id="originSelCorps" style="max-height:240px;overflow-y:auto;"></div>
+  </div>
+  <div class="origin-detail-section">
+    <div class="origin-section-title">품목 TOP 10</div>
+    <div id="originSelProducts"></div>
+  </div>
+  <div class="origin-detail-section">
+    <div class="origin-section-title">원문 표기 TOP 5</div>
+    <div id="originSelRaw" style="font-size:10px;color:var(--dim);"></div>
+  </div>
+  <div class="origin-detail-section">
+    <div class="origin-section-title">연도별 추이</div>
+    <div id="originYearBars"></div>
   </div>
 </div>
 
@@ -601,11 +807,26 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', s
   </div>
 </div>
 
+<div class="context-bar" id="contextBar">
+  <span class="ctx-key" id="ctxDate">-</span>
+  <span class="ctx-sep">·</span>
+  <span id="ctxPeriod">1일</span>
+  <span class="ctx-sep">·</span>
+  <span id="ctxMetric">물량 기준</span>
+  <span class="ctx-sep">·</span>
+  <span class="ctx-dim" id="ctxCorpCount">-</span>
+</div>
+
 <div class="legend">
   <span><span class="legend-dot" style="background:#4ade80;"></span>상위 30%</span>
   <span><span class="legend-dot" style="background:#60a5fa;"></span>중간</span>
   <span><span class="legend-dot" style="background:#fb923c;"></span>하위 40%</span>
   <span id="legendMetricLabel">| 원 크기 = 물량(톤) 비례</span>
+</div>
+<div class="legend-row2">
+  <span><span class="legend-dot" style="background:#fb923c;"></span>주황 = 우리 산지</span>
+  <span><span class="legend-dot" style="background:#c084fc;"></span>보라 = 경쟁 산지</span>
+  <span><span class="legend-dot" style="background:#666;"></span>회색 = 거래 없음</span>
 </div>
 
 <script>
@@ -701,6 +922,7 @@ document.addEventListener('keydown', e => {
   else if (e.key === '2') switchTab('market');
   else if (e.key === '3') switchTab('price');
   else if (e.key === '4') switchTab('shipment');
+  else if (e.key === '5') switchTab('origin');
   else if (e.key === 'm' || e.key === 'M') {
     const next = { qty: 'amount', amount: 'trades', trades: 'qty' };
     setMapMetric(next[mapMetric]);
@@ -1026,6 +1248,35 @@ function updateSummary() {
   document.getElementById('totalTrades').textContent = summaryData.total_trades.toLocaleString();
   document.getElementById('totalAmount').textContent = ((summaryData.total_amount || 0) / 100_000_000).toFixed(1) + '억';
   document.getElementById('totalQty').textContent = ((summaryData.total_qty || 0) / 1000).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  updateContextBar();
+  updatePeriodBadge();
+}
+
+// === 상태 바 / 기간 배지 (5초 컨텍스트) ===
+function updateContextBar() {
+  if (!summaryData) return;
+  const periodLabel = {'1d':'1일 정산','1w':'최근 7일 합산','1m':'최근 31일 합산','1y':'최근 365일 합산'}[currentPeriod] || '1일 정산';
+  const metricLabel = {qty:'물량 기준', amount:'금액 기준', trades:'건수 기준'}[mapMetric] || '물량 기준';
+  const dateEl = document.getElementById('ctxDate');
+  const perEl  = document.getElementById('ctxPeriod');
+  const metEl  = document.getElementById('ctxMetric');
+  const corpEl = document.getElementById('ctxCorpCount');
+  if (dateEl) dateEl.textContent = summaryData.date;
+  if (perEl)  perEl.textContent  = periodLabel;
+  if (metEl)  metEl.textContent  = metricLabel;
+  if (corpEl) corpEl.textContent = `${summaryData.corp_count}법인`;
+}
+
+function updatePeriodBadge() {
+  const badge = document.getElementById('periodBadge');
+  if (!badge) return;
+  const map = {'1w':'최근 7일 합산', '1m':'최근 31일 합산', '1y':'최근 365일 합산'};
+  if (map[currentPeriod]) {
+    badge.textContent = map[currentPeriod];
+    badge.classList.add('visible');
+  } else {
+    badge.classList.remove('visible');
+  }
 }
 
 // === 탭 ===
@@ -1037,11 +1288,455 @@ function switchTab(tab) {
   document.getElementById('marketListSection').style.display = tab === 'market' ? '' : 'none';
   document.getElementById('priceSection').style.display = tab === 'price' ? '' : 'none';
   document.getElementById('shipmentSection').style.display = tab === 'shipment' ? '' : 'none';
+  document.getElementById('originSection').style.display = tab === 'origin' ? '' : 'none';
   if (tab === 'price') { closeDetail(); selectedCorp = null; selectedCorpData = null; selectedMarket = null; }
   else { clearPriceSelection(); }
   if (tab !== 'market') { selectedMarket = null; }
   if (tab === 'shipment') { renderShipmentList(); }
+  if (tab === 'origin') { loadOriginsIfNeeded(); }
+  else { closeOriginDetail(); }
   if (deckgl) updateLayers();
+}
+
+// ══════════════════════════════════════════
+// 산지 분석 탭
+// ══════════════════════════════════════════
+let originsData = null;
+let originsV2 = null;      // v2 스키마 (L2 + 품목 매트릭스)
+let regionCoords = null;
+let sigunguCoords = null;  // L2 좌표 {"L1 L2": {lat, lng}}
+let selectedL1 = null;
+
+async function loadOriginsIfNeeded() {
+  if (originsData && regionCoords && originsV2 && sigunguCoords) {
+    renderOriginTab(); updateLayers(); return;
+  }
+  const listEl = document.getElementById('originL1List');
+  listEl.innerHTML = '<div style="padding:20px;text-align:center;color:var(--dim);font-size:12px;">산지 데이터 로드 중…</div>';
+  try {
+    const [res1, res2, resV2, resSig] = await Promise.all([
+      fetch('./data/origins.json?t=' + Date.now()),
+      fetch('./region_coords.json?t=' + Date.now()),
+      fetch('./data/origins_v2.json?t=' + Date.now()).catch(() => null),
+      fetch('./data/sigungu_coords.json?t=' + Date.now()).catch(() => null),
+    ]);
+    if (!res1.ok) throw new Error('origins.json HTTP ' + res1.status);
+    if (!res2.ok) throw new Error('region_coords.json HTTP ' + res2.status);
+    originsData = await res1.json();
+    regionCoords = await res2.json();
+    if (resV2 && resV2.ok) {
+      originsV2 = await resV2.json();
+      console.log('[origins] v2 로드:', Object.keys(originsV2.products || {}).length, '품목');
+    }
+    if (resSig && resSig.ok) {
+      sigunguCoords = await resSig.json();
+      console.log('[origins] 시군구 좌표 로드:', Object.keys(sigunguCoords).length, '개');
+    }
+    renderOriginTab();
+    updateLayers();
+  } catch (e) {
+    listEl.innerHTML = `<div style="padding:20px;color:#f87171;font-size:12px;">
+      데이터 없음 (${e.message})<br>
+      <small style="color:var(--dim);">먼저 생성: <code>python wholesale-dashboard/aggregate_origins.py</code></small>
+    </div>`;
+  }
+}
+
+function renderOriginTab() {
+  if (!originsData) return;
+  // 연도 드롭다운
+  const yearSel = document.getElementById('originYearSel');
+  if (yearSel.options.length === 0) {
+    yearSel.innerHTML = originsData.years
+      .slice()
+      .reverse()
+      .map(y => `<option value="${y}">${y}년</option>`).join('');
+    // 전체 누적 옵션
+    yearSel.insertAdjacentHTML('beforeend', `<option value="__all__">전체 누적</option>`);
+  }
+  renderOriginL1List();
+}
+
+function renderOriginL1List() {
+  if (!originsData) return;
+  const year = document.getElementById('originYearSel').value;
+  const regions = originsData.regions;
+
+  // 선택 연도의 L1별 합계 계산
+  const list = [];
+  for (const [l1, yearsData] of Object.entries(regions)) {
+    let kg = 0, count = 0;
+    if (year === '__all__') {
+      for (const yb of Object.values(yearsData)) { kg += yb.kg; count += yb.count; }
+    } else if (yearsData[year]) {
+      kg = yearsData[year].kg; count = yearsData[year].count;
+    }
+    if (kg > 0) list.push({ l1, kg, count });
+  }
+  list.sort((a, b) => b.kg - a.kg);
+  const total = list.reduce((s, x) => s + x.kg, 0);
+
+  // 상단 요약
+  document.getElementById('originYearTotal').textContent =
+    `${(total/1000000).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g,',')}톤 · ${list.length}개 지역`;
+
+  // 리스트 렌더
+  const listEl = document.getElementById('originL1List');
+  if (!list.length) {
+    listEl.innerHTML = '<div style="padding:20px;text-align:center;color:var(--dim);">데이터 없음</div>';
+    return;
+  }
+  const max = list[0].kg;
+  listEl.innerHTML = list.map(x => {
+    const pct = (x.kg / max * 100).toFixed(0);
+    const ratio = (x.kg / total * 100).toFixed(1);
+    const ton = (x.kg/1000).toLocaleString(undefined, {maximumFractionDigits: 0});
+    const cls = x.l1 === '수입' ? 'import' : (x.l1 === '기타' || x.l1 === '미기재') ? 'unmatched' : '';
+    const active = selectedL1 === x.l1 ? 'active' : '';
+    return `
+      <div class="origin-l1-item ${cls} ${active}" onclick="selectL1('${x.l1}')">
+        <div class="l1-bar" style="width:${pct}%"></div>
+        <div class="l1-row">
+          <span class="l1-name">${x.l1}</span>
+          <span class="l1-kg">${ton}톤</span>
+        </div>
+        <div class="l1-sub">${ratio}% · ${x.count.toLocaleString()}건</div>
+      </div>`;
+  }).join('');
+}
+
+function selectL1(l1) {
+  selectedL1 = l1;
+  selectedProduct = null;
+  renderOriginL1List();
+  if (deckgl) updateLayers();
+
+  // 섹션 제목 원복 (품목 모드 후 돌아왔을 때)
+  document.querySelectorAll('#originDetailPanel .origin-section-title').forEach((el, i) => {
+    if (i === 0) el.textContent = '법인 (스크롤)';
+    if (i === 1) el.textContent = '품목 TOP 10';
+    if (i === 2) el.textContent = '원문 표기 TOP 5';
+    if (i === 3) el.textContent = '연도별 추이';
+  });
+
+  const year = document.getElementById('originYearSel').value;
+  const yearsData = originsData.regions[l1] || {};
+
+  // 병합된 데이터 (연도에 따라)
+  let merged;
+  if (year === '__all__') {
+    const corps = {}, products = {}, raw = {};
+    for (const yb of Object.values(yearsData)) {
+      for (const c of (yb.corps||[])) corps[c.name] = (corps[c.name]||0) + c.kg;
+      for (const p of (yb.products||[])) products[p.name] = (products[p.name]||0) + p.kg;
+      for (const r of (yb.raw_origins||[])) raw[r.name] = (raw[r.name]||0) + r.kg;
+    }
+    merged = {
+      kg: Object.values(yearsData).reduce((s,x)=>s+x.kg,0),
+      count: Object.values(yearsData).reduce((s,x)=>s+x.count,0),
+      corps: Object.entries(corps).map(([n,k])=>({name:n,kg:k})).sort((a,b)=>b.kg-a.kg),
+      products: Object.entries(products).map(([n,k])=>({name:n,kg:k})).sort((a,b)=>b.kg-a.kg),
+      raw_origins: Object.entries(raw).map(([n,k])=>({name:n,kg:k})).sort((a,b)=>b.kg-a.kg),
+    };
+  } else {
+    merged = yearsData[year] || { kg: 0, count: 0, corps: [], products: [], raw_origins: [] };
+  }
+
+  // 상세 패널
+  document.getElementById('originSelTitle').textContent = l1;
+  const tons = (merged.kg/1000).toLocaleString(undefined, {maximumFractionDigits: 0});
+  const yearStr = year === '__all__' ? '전체 누적' : `${year}년`;
+  document.getElementById('originSelKg').innerHTML =
+    `<strong>${yearStr}</strong> · ${tons}톤 · ${merged.count.toLocaleString()}건`;
+
+  // L2 시군구 (v2 데이터 있을 때만)
+  let l2Html = '<div style="color:var(--dim);font-size:11px;padding:4px 8px;">v2 데이터 필요 (재집계 진행 중)</div>';
+  if (originsV2 && originsV2.regions[l1]) {
+    const v2Regions = originsV2.regions[l1];
+    // 선택 연도 기준 L2 집계
+    const l2Counter = {};
+    if (year === '__all__') {
+      for (const yb of Object.values(v2Regions)) {
+        for (const x of (yb.l2 || [])) l2Counter[x.name] = (l2Counter[x.name] || 0) + x.kg;
+      }
+    } else if (v2Regions[year]) {
+      for (const x of (v2Regions[year].l2 || [])) l2Counter[x.name] = x.kg;
+    }
+    const l2Items = Object.entries(l2Counter).map(([name, kg]) => ({name, kg})).sort((a,b)=>b.kg-a.kg);
+    if (l2Items.length) {
+      l2Html = renderMiniBars(l2Items.slice(0, 30));
+    } else {
+      l2Html = '<div style="color:var(--dim);font-size:11px;padding:4px 8px;">세부 지역 없음 (광역만 기록된 경우)</div>';
+    }
+  }
+
+  // 법인 전체 (최대 30개, 스크롤) + L2 시군구
+  document.getElementById('originSelCorps').innerHTML =
+    `<div style="margin-bottom:10px;font-size:10px;font-weight:700;color:var(--orange);text-transform:uppercase;">시군구 TOP 30</div>` +
+    l2Html +
+    `<div style="margin-top:14px;margin-bottom:6px;font-size:10px;font-weight:700;color:var(--dim);text-transform:uppercase;">법인 TOP 30</div>` +
+    renderMiniBars(merged.corps.slice(0, 30));
+  // 품목 TOP 10
+  document.getElementById('originSelProducts').innerHTML = renderMiniBars(merged.products.slice(0, 10));
+  // 원문 표기 TOP 5
+  document.getElementById('originSelRaw').innerHTML = renderMiniBars(merged.raw_origins.slice(0, 5));
+  // 연도별 추이
+  document.getElementById('originYearBars').innerHTML = renderYearBars(yearsData);
+
+  // 섹션 제목 복원 (품목 모드 후 돌아왔을 때)
+  document.querySelectorAll('#originDetailPanel .origin-section-title').forEach((el, i) => {
+    if (i === 0) el.textContent = '시군구 + 법인';
+    if (i === 1) el.textContent = '품목 TOP 10';
+    if (i === 2) el.textContent = '원문 표기 TOP 5';
+    if (i === 3) el.textContent = '연도별 추이';
+  });
+
+  document.getElementById('originDetailPanel').style.display = '';
+  if (deckgl) updateLayers();
+}
+
+function renderMiniBars(items) {
+  if (!items || !items.length) return '<div style="color:var(--dim);font-size:11px;padding:4px 8px;">—</div>';
+  const max = items[0].kg;
+  return items.map(x => {
+    const pct = (x.kg / max * 100).toFixed(0);
+    const ton = (x.kg/1000).toLocaleString(undefined, {maximumFractionDigits: 1});
+    return `
+      <div class="mini-bar-row">
+        <div class="mb-bar" style="width:${pct}%"></div>
+        <div class="mb-row">
+          <span class="mb-name">${x.name}</span>
+          <span class="mb-kg">${ton}t</span>
+        </div>
+      </div>`;
+  }).join('');
+}
+
+function renderYearBars(yearsData) {
+  if (!yearsData || !Object.keys(yearsData).length) return '<div style="color:var(--dim);font-size:11px;">—</div>';
+  const years = Object.keys(yearsData).sort();
+  const values = years.map(y => yearsData[y].kg);
+  const max = Math.max(...values, 1);
+  return years.map(y => {
+    const kg = yearsData[y].kg;
+    const pct = (kg / max * 100).toFixed(0);
+    const ton = (kg/1000).toLocaleString(undefined, {maximumFractionDigits: 0});
+    return `
+      <div class="year-bar-row">
+        <span class="yb-label">${y}</span>
+        <div class="yb-track"><div class="yb-fill" style="width:${pct}%"></div></div>
+        <span class="yb-kg">${ton}t</span>
+      </div>`;
+  }).join('');
+}
+
+function closeOriginDetail() {
+  selectedL1 = null;
+  selectedProduct = null;
+  document.getElementById('originDetailPanel').style.display = 'none';
+  renderOriginL1List();
+  renderOriginProductList();
+  if (deckgl) updateLayers();
+}
+
+// ══════════════════════════════════════════
+// 품목별 서브 뷰 (역인덱싱 근사치)
+// ══════════════════════════════════════════
+// selectedProduct는 가격비교 탭과 공유 (상단 변수 선언부에 이미 let 있음)
+let originSubMode = 'region';   // 'region' | 'product'
+let productIndexCache = null;   // { year: { product: { regions: {l1: kg}, corps: {corp: kg}, total } } }
+
+function switchOriginSub(mode) {
+  originSubMode = mode;
+  document.querySelectorAll('.origin-sub-btn').forEach(b =>
+    b.classList.toggle('active', b.dataset.sub === mode));
+  document.getElementById('originRegionView').style.display = mode === 'region' ? '' : 'none';
+  document.getElementById('originProductView').style.display = mode === 'product' ? '' : 'none';
+  closeOriginDetail();
+  if (mode === 'product') renderOriginProductList();
+}
+
+function onOriginYearChange() {
+  // 연도 변경 시 품목 인덱스 캐시 무효화, 현재 뷰 갱신
+  productIndexCache = null;
+  if (originSubMode === 'region') renderOriginL1List();
+  else renderOriginProductList();
+}
+
+// 역인덱싱: 지역별 products(TOP 20) → 품목별 지역 매트릭스
+function buildProductIndex(year) {
+  const regions = originsData.regions;
+  const index = {};   // product → { regions: {l1: kg}, corps: {corp: kg}, total: kg }
+  // 지역별 총 물량 (법인 점유율 계산용)
+  const l1Totals = {};
+
+  for (const [l1, years] of Object.entries(regions)) {
+    if (l1 === '미기재' || l1 === '기타') continue;
+    let buckets;
+    if (year === '__all__') {
+      buckets = Object.values(years);
+    } else if (years[year]) {
+      buckets = [years[year]];
+    } else continue;
+
+    let l1Total = 0;
+    const l1Corps = {};
+    for (const b of buckets) {
+      l1Total += b.kg;
+      for (const c of (b.corps || [])) l1Corps[c.name] = (l1Corps[c.name] || 0) + c.kg;
+    }
+    l1Totals[l1] = { total: l1Total, corps: l1Corps };
+
+    // 품목 역인덱스 (지역 레벨)
+    for (const b of buckets) {
+      for (const p of (b.products || [])) {
+        if (!index[p.name]) index[p.name] = { regions: {}, corps: {}, total: 0 };
+        index[p.name].regions[l1] = (index[p.name].regions[l1] || 0) + p.kg;
+        index[p.name].total += p.kg;
+      }
+    }
+  }
+
+  // 법인 근사: 해당 품목의 지역별 물량 × 지역 내 법인 점유율
+  for (const [product, data] of Object.entries(index)) {
+    for (const [l1, productKg] of Object.entries(data.regions)) {
+      const l1Info = l1Totals[l1];
+      if (!l1Info || l1Info.total === 0) continue;
+      for (const [corp, corpKg] of Object.entries(l1Info.corps)) {
+        const share = corpKg / l1Info.total;
+        const approxKg = productKg * share;
+        data.corps[corp] = (data.corps[corp] || 0) + approxKg;
+      }
+    }
+  }
+
+  return index;
+}
+
+function getProductIndex() {
+  if (productIndexCache) return productIndexCache;
+  const year = document.getElementById('originYearSel').value;
+  productIndexCache = buildProductIndex(year);
+  return productIndexCache;
+}
+
+function renderOriginProductList(filterText = '') {
+  if (!originsData) return;
+  const index = getProductIndex();
+  const q = (filterText || document.getElementById('originProductSearch').value || '').trim().toLowerCase();
+
+  const items = Object.entries(index)
+    .filter(([name]) => !q || name.toLowerCase().includes(q))
+    .map(([name, d]) => ({ name, kg: d.total, regions: Object.keys(d.regions).length }))
+    .sort((a, b) => b.kg - a.kg);
+
+  const total = items.reduce((s, x) => s + x.kg, 0);
+  const max = items.length ? items[0].kg : 1;
+
+  const listEl = document.getElementById('originProductList');
+  if (!items.length) {
+    listEl.innerHTML = '<div style="padding:20px;text-align:center;color:var(--dim);font-size:11px;">검색 결과 없음</div>';
+    return;
+  }
+  listEl.innerHTML = items.slice(0, 80).map(x => {
+    const pct = (x.kg / max * 100).toFixed(0);
+    const ton = (x.kg/1000).toLocaleString(undefined, {maximumFractionDigits: 0});
+    const active = selectedProduct === x.name ? 'active' : '';
+    return `
+      <div class="origin-l1-item ${active}" onclick="selectProduct('${x.name.replace(/'/g, "\\'")}')">
+        <div class="l1-bar" style="width:${pct}%"></div>
+        <div class="l1-row">
+          <span class="l1-name">${x.name}</span>
+          <span class="l1-kg">${ton}톤</span>
+        </div>
+        <div class="l1-sub">${x.regions}개 지역 · ${items.length > 80 && x === items[80] ? '...' : ''}</div>
+      </div>`;
+  }).join('') + (items.length > 80 ? `<div style="padding:8px;text-align:center;color:var(--dim);font-size:10px;">상위 80개 표시 (전체 ${items.length}개)</div>` : '');
+}
+
+function filterOriginProducts() {
+  renderOriginProductList();
+}
+
+function selectProduct(productName) {
+  selectedProduct = productName;
+  selectedL1 = null;
+  renderOriginProductList();
+
+  const year = document.getElementById('originYearSel').value;
+  const yearStr = year === '__all__' ? '전체 누적' : `${year}년`;
+
+  // v2 데이터 우선 사용, 없으면 근사치 fallback
+  const hasV2 = originsV2 && originsV2.products && originsV2.products[productName];
+  let regionsArr, corpsArr, l2Arr, l2CorpArr, totalKg, yearSeries, accuracy;
+
+  if (hasV2) {
+    const v2p = originsV2.products[productName];
+    regionsArr = (v2p.by_l1 || []).map(x => ({name: x.l1, kg: x.kg}));
+    corpsArr = (v2p.by_corp || []).map(x => ({name: x.corp, kg: x.kg}));
+    l2Arr = (v2p.by_l2 || []).map(x => ({name: `${x.l1.replace(/특별시|광역시|특별자치도|특별자치시|도$/,'').trim() || x.l1} ${x.l2}`, kg: x.kg}));
+    l2CorpArr = v2p.by_l2_corp || [];
+    totalKg = v2p.total_kg;
+    yearSeries = {};
+    for (const [y, kg] of Object.entries(v2p.years || {})) yearSeries[y] = { kg, count: 0 };
+    accuracy = '정확';
+  } else {
+    // 근사치 fallback
+    const index = getProductIndex();
+    const data = index[productName];
+    if (!data) return;
+    regionsArr = Object.entries(data.regions)
+      .map(([l1, kg]) => ({ name: l1, kg })).sort((a, b) => b.kg - a.kg);
+    corpsArr = Object.entries(data.corps)
+      .map(([c, kg]) => ({ name: c, kg: Math.round(kg) })).sort((a, b) => b.kg - a.kg);
+    l2Arr = [];
+    l2CorpArr = [];
+    totalKg = data.total;
+    yearSeries = {};
+    for (const y of originsData.years) {
+      let total = 0;
+      for (const years of Object.values(originsData.regions)) {
+        const b = years[y];
+        if (!b) continue;
+        for (const p of (b.products || [])) if (p.name === productName) total += p.kg;
+      }
+      if (total > 0) yearSeries[y] = { kg: total, count: 0 };
+    }
+    accuracy = '근사';
+  }
+
+  // 상세 패널 표시
+  document.getElementById('originSelTitle').textContent = `🥬 ${productName}`;
+  const tons = (totalKg/1000).toLocaleString(undefined, {maximumFractionDigits: 0});
+  const accColor = accuracy === '정확' ? 'var(--green)' : 'var(--orange)';
+  document.getElementById('originSelKg').innerHTML =
+    `<strong>${yearStr}</strong> · ${tons}톤 · ${regionsArr.length}개 지역 <span style="color:${accColor};">(${accuracy})</span>`;
+
+  // 지역/법인/L2(v2만)
+  let bodyHtml = `<div style="margin-bottom:6px;font-size:10px;font-weight:700;color:var(--dim);text-transform:uppercase;">지역(L1) TOP</div>` +
+    renderMiniBars(regionsArr.slice(0, 17));
+  if (l2Arr.length) {
+    bodyHtml += `<div style="margin-top:14px;margin-bottom:6px;font-size:10px;font-weight:700;color:var(--orange);text-transform:uppercase;">🆕 시군구(L2) TOP 20</div>` +
+      renderMiniBars(l2Arr.slice(0, 20));
+  }
+  bodyHtml += `<div style="margin-top:14px;margin-bottom:6px;font-size:10px;font-weight:700;color:var(--dim);text-transform:uppercase;">법인 TOP 30${accuracy === '정확' ? '' : ' (근사)'}</div>` +
+    renderMiniBars(corpsArr.slice(0, 30));
+  document.getElementById('originSelCorps').innerHTML = bodyHtml;
+  document.getElementById('originSelProducts').innerHTML =
+    '<div style="color:var(--dim);font-size:11px;padding:4px 8px;">(품목 뷰에서는 N/A)</div>';
+  document.getElementById('originSelRaw').innerHTML =
+    '<div style="color:var(--dim);font-size:11px;padding:4px 8px;">(품목 뷰에서는 N/A)</div>';
+  document.getElementById('originYearBars').innerHTML = renderYearBars(yearSeries);
+
+  // 섹션 제목 변경
+  document.querySelectorAll('#originDetailPanel .origin-section-title').forEach((el, i) => {
+    if (i === 0) el.textContent = `지역 TOP 17 + 법인 근사`;
+    if (i === 1) el.textContent = `품목 TOP 10`;
+    if (i === 2) el.textContent = `원문 표기 TOP 5`;
+    if (i === 3) el.textContent = `연도별 추이`;
+  });
+
+  document.getElementById('originDetailPanel').style.display = '';
 }
 
 // === 법인 리스트 ===
@@ -1196,14 +1891,14 @@ function selectCorp(corp, skipZoom = false) {
         const v = pc.period;
         const cls = v > 0 ? 'up' : v < 0 ? 'down' : '';
         const sign = v > 0 ? '+' : '';
-        priceChangeHtml = `<span class="change-badge sm ${cls}" title="기간 변화">${sign}${v}%</span>`;
+        priceChangeHtml = `<span class="change-badge sm ${cls}" title="기간 변화">기간 ${sign}${v}%</span>`;
       } else {
         for (const [key, label] of [['d1','전일'],['w1','전주'],['m1','전월'],['y1','전년']]) {
           const v = pc[key];
           if (v == null) continue;
           const cls = v > 0 ? 'up' : v < 0 ? 'down' : '';
           const sign = v > 0 ? '+' : '';
-          priceChangeHtml += `<span class="change-badge sm ${cls}" title="${label} 대비">${sign}${v}%</span>`;
+          priceChangeHtml += `<span class="change-badge sm ${cls}" title="${label} 대비">${label}비 ${sign}${v}%</span>`;
         }
       }
     }
@@ -1678,6 +2373,7 @@ function setMapMetric(metric) {
   computeThresholds();
   renderCorpList();
   if (deckgl) updateLayers();
+  updateContextBar();
 }
 
 // === 색상/사이즈 ===
@@ -1714,6 +2410,294 @@ function updateLayers() {
       const offset = n > 1 ? 0.008 : 0;
       corpPositions.push({ ...corp, displayLat: corp.lat + Math.sin(angle) * offset, displayLng: corp.lng + Math.cos(angle) * offset });
     });
+  }
+
+  // === 산지 분석 모드 ===
+  if (currentTab === 'origin' && originsData && regionCoords) {
+    const year = document.getElementById('originYearSel')?.value || '__all__';
+
+    // 배경: 법인 83곳 (회색 점)
+    layers.push(new deck.ScatterplotLayer({
+      id: 'corps-bg-origin', data: corpPositions,
+      getPosition: d => [d.displayLng, d.displayLat],
+      getRadius: 1200,
+      getFillColor: [120,120,120,100], getLineColor: [180,180,180,100],
+      lineWidthMinPixels: 1, stroked: true, pickable: false,
+    }));
+
+    // 공판장/1·2군 법인 링 (산지 버블과 구별용)
+    const ORIGIN_T1 = new Set(['서울가락']);
+    const ORIGIN_T2 = new Set(['서울강서', '부산엄궁', '부산반여', '대구북부',
+      '인천남촌', '인천삼산', '광주각화', '광주서부',
+      '대전오정', '대전노은', '울산']);
+    const originIsGpj = c => c.corp.includes('(공)');
+    const originTierCorps = corpPositions.filter(c =>
+      c.corp !== '대전중앙청과㈜' &&
+      (originIsGpj(c) || ORIGIN_T1.has(c.market) || ORIGIN_T2.has(c.market)));
+    if (originTierCorps.length > 0) {
+      layers.push(new deck.ScatterplotLayer({
+        id: 'origin-corps-tier-ring', data: originTierCorps,
+        getPosition: d => [d.displayLng, d.displayLat],
+        getRadius: 3000,
+        radiusMinPixels: 10, radiusMaxPixels: 30,
+        getFillColor: [0,0,0,0],
+        getLineColor: d => {
+          if (originIsGpj(d)) return [74,222,128,255];   // 공판장 = 녹색
+          if (ORIGIN_T1.has(d.market)) return [250,204,21,240];  // 1군 = 노랑
+          return [244,63,94,230];                          // 2군 = 빨강
+        },
+        lineWidthMinPixels: 2.5, stroked: true, filled: false,
+      }));
+    }
+
+    // 지역별 물량 계산 (선택 연도 기준)
+    let l1Totals = {};
+    if (selectedProduct && productIndexCache && productIndexCache[selectedProduct]) {
+      // 품목 모드: 해당 품목의 지역별 물량
+      l1Totals = productIndexCache[selectedProduct].regions;
+    } else {
+      // 지역 모드: 모든 L1 물량
+      for (const [l1, yearsData] of Object.entries(originsData.regions)) {
+        if (l1 === '수입' || l1 === '미기재' || l1 === '기타') continue;
+        let kg = 0;
+        if (year === '__all__') {
+          for (const yb of Object.values(yearsData)) kg += yb.kg;
+        } else if (yearsData[year]) {
+          kg = yearsData[year].kg;
+        }
+        if (kg > 0) l1Totals[l1] = kg;
+      }
+    }
+
+    // L1 좌표 + 물량 매핑
+    const l1Data = [];
+    for (const [l1, kg] of Object.entries(l1Totals)) {
+      const coord = regionCoords[l1];
+      if (!coord) continue;
+      l1Data.push({ l1, kg, lat: coord.lat, lng: coord.lng });
+    }
+    const maxKg = l1Data.length ? Math.max(...l1Data.map(d => d.kg)) : 1;
+
+    // 선택 모드별 색상 결정
+    const isProductMode = !!selectedProduct;
+    const baseFill = isProductMode ? [74,222,128] : [251,146,60];  // 품목=녹 / 지역=주황
+
+    // L1 지역 버블 (반투명 큰 원) — radiusMinPixels/MaxPixels로 줌 무관하게 잘 보이게
+    layers.push(new deck.ScatterplotLayer({
+      id: 'origin-l1-dots', data: l1Data,
+      getPosition: d => [d.lng, d.lat],
+      getRadius: d => {
+        const scale = Math.sqrt(d.kg / maxKg);
+        const base = Math.max(15000, scale * 60000);  // 최소 15km, 최대 60km
+        if (selectedL1 && d.l1 === selectedL1) return base * 1.3;
+        if (selectedL1 && d.l1 !== selectedL1) return base * 0.4;
+        return base;
+      },
+      radiusMinPixels: isProductMode ? 8 : 12,
+      radiusMaxPixels: isProductMode ? 35 : 55,
+      getFillColor: d => {
+        // 품목 모드: L1 배경으로만 (L2가 주인공) → 매우 연하게
+        if (isProductMode) return [...baseFill, 40];
+        if (selectedL1 && d.l1 === selectedL1) return [...baseFill, 200];
+        if (selectedL1) return [...baseFill, 60];
+        return [...baseFill, 110];
+      },
+      getLineColor: d => {
+        if (isProductMode) return [...baseFill, 80];
+        if (selectedL1 && d.l1 === selectedL1) return [255,255,255,255];
+        return [...baseFill, 240];
+      },
+      getLineWidth: d => (selectedL1 && d.l1 === selectedL1) ? 3 : 1,
+      lineWidthMinPixels: 1,
+      lineWidthUnits: 'pixels',
+      stroked: true, filled: true, pickable: true,
+      onClick: ({object}) => { if (object) { selectL1(object.l1); switchOriginSub('region'); } },
+      updateTriggers: {
+        getRadius: [selectedL1, selectedProduct],
+        getFillColor: [selectedL1, selectedProduct],
+        getLineColor: [selectedL1],
+        getLineWidth: [selectedL1],
+      },
+      transitions: { getRadius: 300, getFillColor: 300 },
+    }));
+
+    // L1 라벨 (지역 모드에서만 표시 — 품목 모드에서는 L2 라벨만 보이게)
+    if (!isProductMode) {
+      layers.push(new deck.TextLayer({
+        id: 'origin-l1-labels', data: l1Data,
+        getPosition: d => [d.lng, d.lat],
+        getText: d => {
+          const ton = (d.kg/1000).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g,',');
+          const short = d.l1.replace('특별시','').replace('광역시','').replace('특별자치도','').replace('특별자치시','').replace(/(도|시)$/, '');
+          return `${short} ${ton}t`;
+        },
+        getSize: 12, getColor: [255,255,255,245],
+        getPixelOffset: [0, 0], fontFamily: 'Noto Sans KR', fontWeight: 700,
+        outlineWidth: 5, outlineColor: [10,10,18,255], getTextAnchor: 'middle',
+        getAlignmentBaseline: 'center',
+      }));
+    }
+
+    // ── 품목 모드: v2 데이터로 정확한 시군구 + 법인 + Arc ──
+    if (isProductMode && originsV2 && originsV2.products[selectedProduct] && sigunguCoords) {
+      const v2p = originsV2.products[selectedProduct];
+
+      // 시군구 버블 (by_l2)
+      const l2Points = [];
+      for (const x of (v2p.by_l2 || [])) {
+        const key = `${x.l1} ${x.l2}`;
+        const coord = sigunguCoords[key];
+        if (coord) l2Points.push({ l1: x.l1, l2: x.l2, kg: x.kg, lat: coord.lat, lng: coord.lng, key });
+      }
+      const maxL2 = l2Points.length ? Math.max(...l2Points.map(d=>d.kg)) : 1;
+
+      if (l2Points.length) {
+        // L2(산지) = 녹색 큰 원
+        layers.push(new deck.ScatterplotLayer({
+          id: 'origin-l2-dots', data: l2Points,
+          getPosition: d => [d.lng, d.lat],
+          getRadius: d => Math.max(5000, Math.sqrt(d.kg/maxL2) * 18000),
+          radiusMinPixels: 8, radiusMaxPixels: 35,
+          getFillColor: [74,222,128, 210],
+          getLineColor: [134,239,172,255], lineWidthMinPixels: 1.5, stroked: true, pickable: true,
+        }));
+        layers.push(new deck.TextLayer({
+          id: 'origin-l2-labels', data: l2Points.slice(0, 20),
+          getPosition: d => [d.lng, d.lat],
+          getText: d => d.l2,
+          getSize: 10, getColor: [220,252,231,250],
+          getPixelOffset: [0, -16], fontFamily: 'Noto Sans KR', fontWeight: 700,
+          outlineWidth: 3, outlineColor: [10,10,18,255], getTextAnchor: 'middle',
+        }));
+      }
+
+      // 법인 TOP 10 하이라이트 — 빨강/핑크 (산지 녹색과 강한 대비)
+      const topCorps = (v2p.by_corp || []).slice(0, 10);
+      const topCorpNames = new Set(topCorps.map(c => c.corp));
+      const maxCorpKg = topCorps.length ? topCorps[0].kg : 1;
+      const corpKgMap = Object.fromEntries(topCorps.map(c => [c.corp, c.kg]));
+      const highlighted = corpPositions.filter(c => topCorpNames.has(c.corp));
+
+      // 법인 테두리 링 (아래층 - 더 큰 원, 빨강)
+      layers.push(new deck.ScatterplotLayer({
+        id: 'origin-corp-ring', data: highlighted,
+        getPosition: d => [d.displayLng, d.displayLat],
+        getRadius: d => {
+          const kg = corpKgMap[d.corp] || 0;
+          return Math.max(2000, Math.sqrt(kg / maxCorpKg) * 5500);
+        },
+        radiusMinPixels: 12, radiusMaxPixels: 40,
+        getFillColor: [0,0,0,0],
+        getLineColor: d => d.corp === '대전중앙청과㈜' ? [250,204,21,255] : [244,63,94,255],
+        lineWidthMinPixels: 3, stroked: true, filled: false,
+      }));
+      // 법인 내부 점 (위층 - 작고 진한 빨강)
+      layers.push(new deck.ScatterplotLayer({
+        id: 'origin-corp-hl', data: highlighted,
+        getPosition: d => [d.displayLng, d.displayLat],
+        getRadius: d => {
+          const kg = corpKgMap[d.corp] || 0;
+          return Math.max(800, Math.sqrt(kg / maxCorpKg) * 2500);
+        },
+        radiusMinPixels: 5, radiusMaxPixels: 18,
+        getFillColor: d => d.corp === '대전중앙청과㈜' ? [250,204,21,255] : [225,29,72,240],
+        getLineColor: [255,255,255,255], lineWidthMinPixels: 1.5, stroked: true, pickable: true,
+      }));
+      layers.push(new deck.TextLayer({
+        id: 'origin-corp-labels', data: highlighted,
+        getPosition: d => [d.displayLng, d.displayLat],
+        getText: d => d.corp.replace('㈜','').replace('(공)',''),
+        getSize: 11,
+        getColor: d => d.corp === '대전중앙청과㈜' ? [250,204,21,255] : [252,165,165,255],
+        getPixelOffset: [0, 20], fontFamily: 'Noto Sans KR', fontWeight: 700,
+        outlineWidth: 3, outlineColor: [10,10,18,255], getTextAnchor: 'middle',
+      }));
+
+      // Arc: 시군구 → 법인 (by_l2_corp 전체 시도, 좌표 없으면 자동 필터)
+      const arcs = [];
+      for (const row of (v2p.by_l2_corp || [])) {
+        const srcKey = `${row.l1} ${row.l2}`;
+        const src = sigunguCoords[srcKey];
+        const dst = corpPositions.find(c => c.corp === row.corp);
+        if (!src || !dst) continue;
+        arcs.push({
+          from: [src.lng, src.lat],
+          to: [dst.displayLng, dst.displayLat],
+          kg: row.kg,
+          l1: row.l1, l2: row.l2, corp: row.corp,
+        });
+      }
+      // 각 법인이 최소 하나의 Arc를 갖도록 보장 (TOP 10 법인마다)
+      const arcsCorpSet = new Set(arcs.map(a => a.corp));
+      for (const cinfo of topCorps) {
+        if (!arcsCorpSet.has(cinfo.corp)) {
+          // 이 법인과 연결된 가장 큰 (l2, corp) 조합 찾기 (by_l2_corp는 이미 정렬됨)
+          for (const row of (v2p.by_l2_corp || [])) {
+            if (row.corp !== cinfo.corp) continue;
+            const src = sigunguCoords[`${row.l1} ${row.l2}`];
+            const dst = corpPositions.find(c => c.corp === row.corp);
+            if (!src || !dst) continue;
+            arcs.push({
+              from: [src.lng, src.lat], to: [dst.displayLng, dst.displayLat],
+              kg: row.kg, l1: row.l1, l2: row.l2, corp: row.corp,
+            });
+            break;
+          }
+        }
+      }
+      const maxArc = arcs.length ? arcs[0].kg : 1;
+      if (arcs.length) {
+        layers.push(new deck.ArcLayer({
+          id: 'origin-arcs', data: arcs,
+          getSourcePosition: d => d.from,
+          getTargetPosition: d => d.to,
+          getSourceColor: [74,222,128,140],
+          getTargetColor: d => d.corp === '대전중앙청과㈜' ? [250,204,21,220] : [96,165,250,200],
+          getWidth: d => Math.max(1.2, Math.min(d.kg/maxArc * 6, 6)),
+          greatCircle: false, pickable: true,
+        }));
+      }
+    }
+    // ── 지역 모드 (품목 미선택): 선택 L1의 시군구 버블 (v2 + 좌표 있을 때) ──
+    else if (!isProductMode && selectedL1 && originsV2 && sigunguCoords
+             && originsV2.regions[selectedL1]) {
+      const v2Regions = originsV2.regions[selectedL1];
+      const l2Counter = {};
+      if (year === '__all__') {
+        for (const yb of Object.values(v2Regions))
+          for (const x of (yb.l2 || [])) l2Counter[x.name] = (l2Counter[x.name] || 0) + x.kg;
+      } else if (v2Regions[year]) {
+        for (const x of (v2Regions[year].l2 || [])) l2Counter[x.name] = x.kg;
+      }
+      const l2Points = [];
+      for (const [l2name, kg] of Object.entries(l2Counter)) {
+        const coord = sigunguCoords[`${selectedL1} ${l2name}`];
+        if (coord) l2Points.push({ l2: l2name, kg, lat: coord.lat, lng: coord.lng });
+      }
+      const maxL2 = l2Points.length ? Math.max(...l2Points.map(d=>d.kg)) : 1;
+
+      if (l2Points.length) {
+        layers.push(new deck.ScatterplotLayer({
+          id: 'origin-l2-dots', data: l2Points,
+          getPosition: d => [d.lng, d.lat],
+          getRadius: d => Math.max(3000, Math.sqrt(d.kg/maxL2) * 15000),
+          radiusMinPixels: 5, radiusMaxPixels: 30,
+          getFillColor: [251,146,60,200],
+          getLineColor: [255,255,255,220], lineWidthMinPixels: 1, stroked: true, pickable: true,
+        }));
+        layers.push(new deck.TextLayer({
+          id: 'origin-l2-labels', data: l2Points.slice(0, 20),
+          getPosition: d => [d.lng, d.lat],
+          getText: d => d.l2,
+          getSize: 10, getColor: [253,186,116,240],
+          getPixelOffset: [0, -14], fontFamily: 'Noto Sans KR', fontWeight: 700,
+          outlineWidth: 3, outlineColor: [10,10,18,240], getTextAnchor: 'middle',
+        }));
+      }
+    }
+
+    deckgl.setProps({ layers });
+    return;
   }
 
   // === 출하예약 모드 ===
@@ -2018,6 +3002,42 @@ function updateLayers() {
       getLineColor: [250, 204, 21, pulseAlpha],
       lineWidthMinPixels: 2, stroked: true, filled: false,
     }));
+  }
+
+  // === 법인 강조 링 (산지분석 탭 포함 전체) ===
+  //   - 공판장 (이름에 '(공)') → 녹색 링 (농협/원협, 33곳)
+  //   - 1군 법인 (㈜) = 노란 링
+  //   - 2군 법인 (㈜) = 빨간 링
+  //   - 대전중앙청과 = 별도 MY_CORP 펄스
+  // 산지 분석 탭에서도 표시해야 "녹색 산지 버블 vs 공판장 위치" 구별 가능
+  {
+    const MARKET_T1 = new Set(['서울가락']);
+    const MARKET_T2 = new Set(['서울강서', '부산엄궁', '부산반여', '대구북부',
+      '인천남촌', '인천삼산', '광주각화', '광주서부',
+      '대전오정', '대전노은', '울산']);
+    const isGongpanjang = c => c.corp.includes('(공)');
+    const tieredCorps = corpPositions.filter(c =>
+      c.corp !== '대전중앙청과㈜' &&
+      (isGongpanjang(c) || MARKET_T1.has(c.market) || MARKET_T2.has(c.market)));
+
+    if (tieredCorps.length > 0) {
+      layers.push(new deck.ScatterplotLayer({
+        id: 'corps-tier-ring', data: tieredCorps,
+        getPosition: d => [d.displayLng, d.displayLat],
+        getRadius: d => {
+          const base = getCorpRadius(getCorpMetricValue(d));
+          return base * 1.45;
+        },
+        radiusMinPixels: 10, radiusMaxPixels: 50,
+        getFillColor: [0,0,0,0],
+        getLineColor: d => {
+          if (isGongpanjang(d)) return [74,222,128,230];  // 공판장 = 녹색
+          if (MARKET_T1.has(d.market)) return [250,204,21,230];  // 1군 법인 = 노랑
+          return [244,63,94,210];                                 // 2군 법인 = 빨강
+        },
+        lineWidthMinPixels: 2.5, stroked: true, filled: false,
+      }));
+    }
   }
 
   // === 법인 점 ===
