@@ -1,8 +1,8 @@
 {
   "date": "2026-05-02",
-  "total_trades": 12200,
-  "total_amount": 21146084767,
-  "total_qty": 9789605.54999999,
+  "total_trades": 12202,
+  "total_amount": 21146157547,
+  "total_qty": 9789623.54999999,
   "corp_count": 37,
   "market_count": 27,
   "corporations": [
@@ -59071,98 +59071,140 @@
           "trades": 21,
           "qty": 8719.0,
           "amount": 24496700,
-          "avg_price_kg": 2697
+          "avg_price_kg": 2697,
+          "price_change": {
+            "d1": -5.2
+          }
         },
         {
           "name": "토마토",
           "trades": 20,
           "qty": 2133.0,
           "amount": 6012000,
-          "avg_price_kg": 2464
+          "avg_price_kg": 2464,
+          "price_change": {
+            "d1": -1.7
+          }
         },
         {
           "name": "참외",
           "trades": 15,
           "qty": 7070.0,
           "amount": 44815000,
-          "avg_price_kg": 5421
+          "avg_price_kg": 5421,
+          "price_change": {
+            "d1": -0.4
+          }
         },
         {
           "name": "오이",
           "trades": 13,
           "qty": 4060.0,
           "amount": 7482000,
-          "avg_price_kg": 1690
+          "avg_price_kg": 1690,
+          "price_change": {
+            "d1": -3.5
+          }
         },
         {
           "name": "방울토마토",
           "trades": 11,
           "qty": 1995.0,
           "amount": 7614000,
-          "avg_price_kg": 3356
+          "avg_price_kg": 3356,
+          "price_change": {
+            "d1": 6.6
+          }
         },
         {
           "name": "블루베리",
           "trades": 10,
           "qty": 78.9,
           "amount": 2808000,
-          "avg_price_kg": 36273
+          "avg_price_kg": 36273,
+          "price_change": {
+            "d1": -1.4
+          }
         },
         {
           "name": "딸기",
           "trades": 10,
           "qty": 2902.0,
           "amount": 17367600,
-          "avg_price_kg": 4991
+          "avg_price_kg": 4991,
+          "price_change": {
+            "d1": 8.0
+          }
         },
         {
           "name": "풋고추",
           "trades": 9,
           "qty": 423.0,
           "amount": 2389000,
-          "avg_price_kg": 5433
+          "avg_price_kg": 5433,
+          "price_change": {
+            "d1": -27.6
+          }
         },
         {
           "name": "호박",
           "trades": 8,
           "qty": 1001.0,
           "amount": 1318500,
-          "avg_price_kg": 1352
+          "avg_price_kg": 1352,
+          "price_change": {
+            "d1": -44.5
+          }
         },
         {
           "name": "배추",
           "trades": 8,
           "qty": 2789.0,
           "amount": 2374200,
-          "avg_price_kg": 1715
+          "avg_price_kg": 1715,
+          "price_change": {
+            "d1": -23.0
+          }
         },
         {
           "name": "상추",
           "trades": 8,
           "qty": 1209.0,
           "amount": 5114400,
-          "avg_price_kg": 3773
+          "avg_price_kg": 3773,
+          "price_change": {
+            "d1": 29.7
+          }
         },
         {
           "name": "사과",
           "trades": 6,
           "qty": 2430.0,
           "amount": 12976000,
-          "avg_price_kg": 4430
+          "avg_price_kg": 4430,
+          "price_change": {
+            "d1": -11.0
+          }
         },
         {
           "name": "열무",
           "trades": 6,
           "qty": 1048.0,
           "amount": 1045500,
-          "avg_price_kg": 1339
+          "avg_price_kg": 1339,
+          "price_change": {
+            "d1": 11.9
+          }
         },
         {
           "name": "브로코리(녹색꽃양배추)",
           "trades": 6,
           "qty": 170.0,
           "amount": 743500,
-          "avg_price_kg": 4046
+          "avg_price_kg": 4046,
+          "price_change": {
+            "d1": -11.4
+          }
         },
         {
           "name": "아스파라거스",
@@ -59176,343 +59218,490 @@
           "trades": 6,
           "qty": 260.0,
           "amount": 1302000,
-          "avg_price_kg": 5289
+          "avg_price_kg": 5289,
+          "price_change": {
+            "d1": -4.9
+          }
         },
         {
           "name": "가지",
           "trades": 5,
           "qty": 455.0,
           "amount": 1330000,
-          "avg_price_kg": 2677
+          "avg_price_kg": 2677,
+          "price_change": {
+            "d1": -2.0
+          }
         },
         {
           "name": "미나리",
           "trades": 5,
           "qty": 769.0,
           "amount": 3136000,
-          "avg_price_kg": 2983
+          "avg_price_kg": 2983,
+          "price_change": {
+            "d1": 44.5
+          }
         },
         {
           "name": "느타리버섯",
           "trades": 5,
           "qty": 495.0,
           "amount": 845900,
-          "avg_price_kg": 2077
+          "avg_price_kg": 2077,
+          "price_change": {
+            "d1": 68.5
+          }
         },
         {
           "name": "새송이버섯",
           "trades": 5,
           "qty": 589.0,
           "amount": 1446000,
-          "avg_price_kg": 1865
+          "avg_price_kg": 1865,
+          "price_change": {
+            "d1": -8.8
+          }
         },
         {
           "name": "고구마",
           "trades": 5,
           "qty": 90.0,
           "amount": 582000,
-          "avg_price_kg": 6512
+          "avg_price_kg": 6512,
+          "price_change": {
+            "d1": -5.6
+          }
         },
         {
           "name": "부추",
           "trades": 4,
           "qty": 918.0,
           "amount": 575400,
-          "avg_price_kg": 524
+          "avg_price_kg": 524,
+          "price_change": {
+            "d1": -49.4
+          }
         },
         {
           "name": "머위대",
           "trades": 4,
           "qty": 113.0,
           "amount": 243000,
-          "avg_price_kg": 2831
+          "avg_price_kg": 2831,
+          "price_change": {
+            "d1": -24.5
+          }
         },
         {
           "name": "치커리",
           "trades": 4,
           "qty": 109.0,
           "amount": 106000,
-          "avg_price_kg": 1004
+          "avg_price_kg": 1004,
+          "price_change": {
+            "d1": -77.4
+          }
         },
         {
           "name": "기타",
           "trades": 4,
           "qty": 145.0,
           "amount": 123000,
-          "avg_price_kg": 1363
+          "avg_price_kg": 1363,
+          "price_change": {
+            "d1": -16.3
+          }
         },
         {
           "name": "당근",
           "trades": 4,
           "qty": 145.0,
           "amount": 754000,
-          "avg_price_kg": 5602
+          "avg_price_kg": 5602,
+          "price_change": {
+            "d1": 3.5
+          }
         },
         {
           "name": "깻잎",
           "trades": 3,
           "qty": 469.0,
           "amount": 2350300,
-          "avg_price_kg": 4485
+          "avg_price_kg": 4485,
+          "price_change": {
+            "d1": 27.6
+          }
         },
         {
           "name": "무",
           "trades": 3,
           "qty": 737.0,
           "amount": 114300,
-          "avg_price_kg": 388
+          "avg_price_kg": 388,
+          "price_change": {
+            "d1": -39.8
+          }
         },
         {
           "name": "쪽파",
           "trades": 3,
           "qty": 292.0,
           "amount": 621200,
-          "avg_price_kg": 2777
+          "avg_price_kg": 2777,
+          "price_change": {
+            "d1": 34.0
+          }
         },
         {
           "name": "마늘",
           "trades": 3,
           "qty": 82.0,
           "amount": 369000,
-          "avg_price_kg": 5533
+          "avg_price_kg": 5533,
+          "price_change": {
+            "d1": -0.7
+          }
         },
         {
           "name": "양상추",
           "trades": 3,
           "qty": 170.0,
           "amount": 409000,
-          "avg_price_kg": 2648
+          "avg_price_kg": 2648,
+          "price_change": {
+            "d1": 16.0
+          }
         },
         {
           "name": "적채",
           "trades": 3,
           "qty": 195.0,
           "amount": 234000,
-          "avg_price_kg": 1767
+          "avg_price_kg": 1767,
+          "price_change": {
+            "d1": -5.4
+          }
         },
         {
           "name": "취나물",
           "trades": 3,
           "qty": 58.0,
           "amount": 254000,
-          "avg_price_kg": 4187
+          "avg_price_kg": 4187,
+          "price_change": {
+            "d1": 16.8
+          }
         },
         {
           "name": "참나물",
           "trades": 3,
           "qty": 109.0,
           "amount": 200000,
-          "avg_price_kg": 1800
+          "avg_price_kg": 1800,
+          "price_change": {
+            "d1": -30.7
+          }
         },
         {
           "name": "표고버섯",
           "trades": 3,
           "qty": 220.0,
           "amount": 1513600,
-          "avg_price_kg": 6245
+          "avg_price_kg": 6245,
+          "price_change": {
+            "d1": 25.3
+          }
         },
         {
           "name": "팽이버섯",
           "trades": 3,
           "qty": 530.0,
           "amount": 1057000,
-          "avg_price_kg": 1900
+          "avg_price_kg": 1900,
+          "price_change": {
+            "d1": -1.0
+          }
         },
         {
           "name": "감자",
           "trades": 3,
           "qty": 30.0,
           "amount": 448000,
-          "avg_price_kg": 14800
+          "avg_price_kg": 14800,
+          "price_change": {
+            "d1": 75.3
+          }
         },
         {
           "name": "포도",
           "trades": 3,
           "qty": 443.0,
           "amount": 2458000,
-          "avg_price_kg": 5592
+          "avg_price_kg": 5592,
+          "price_change": {
+            "d1": 1.7
+          }
         },
         {
           "name": "도라지",
           "trades": 3,
           "qty": 13.0,
           "amount": 118000,
-          "avg_price_kg": 12633
+          "avg_price_kg": 12633,
+          "price_change": {
+            "d1": 45.2
+          }
         },
         {
           "name": "새싹",
           "trades": 3,
           "qty": 445.0,
           "amount": 133500,
-          "avg_price_kg": 393
+          "avg_price_kg": 393,
+          "price_change": {
+            "d1": -0.3
+          }
         },
         {
           "name": "얼갈이배추",
           "trades": 2,
           "qty": 454.0,
           "amount": 282200,
-          "avg_price_kg": 1148
+          "avg_price_kg": 1148,
+          "price_change": {
+            "d1": -11.6
+          }
         },
         {
           "name": "양배추",
           "trades": 2,
           "qty": 3870.0,
           "amount": 1298000,
-          "avg_price_kg": 1565
+          "avg_price_kg": 1565,
+          "price_change": {
+            "d1": 30.4
+          }
         },
         {
           "name": "시금치",
           "trades": 2,
           "qty": 508.0,
           "amount": 1314000,
-          "avg_price_kg": 2718
+          "avg_price_kg": 2718,
+          "price_change": {
+            "d1": 19.1
+          }
         },
         {
           "name": "쑥갓",
           "trades": 2,
           "qty": 190.0,
           "amount": 261000,
-          "avg_price_kg": 2091
+          "avg_price_kg": 2091,
+          "price_change": {
+            "d1": 28.7
+          }
         },
         {
           "name": "아욱",
           "trades": 2,
           "qty": 66.0,
           "amount": 120000,
-          "avg_price_kg": 1625
+          "avg_price_kg": 1625,
+          "price_change": {
+            "d1": 15.1
+          }
         },
         {
           "name": "청경채",
           "trades": 2,
           "qty": 188.0,
           "amount": 130500,
-          "avg_price_kg": 666
+          "avg_price_kg": 666,
+          "price_change": {
+            "d1": -6.3
+          }
         },
         {
           "name": "고수",
           "trades": 2,
           "qty": 114.0,
           "amount": 145000,
-          "avg_price_kg": 3550
+          "avg_price_kg": 3550,
+          "price_change": {
+            "d1": 213.3
+          }
         },
         {
           "name": "알타리무",
           "trades": 2,
           "qty": 609.0,
           "amount": 515200,
-          "avg_price_kg": 728
+          "avg_price_kg": 728,
+          "price_change": {
+            "d1": -65.1
+          }
         },
         {
           "name": "양파",
           "trades": 2,
           "qty": 270.0,
           "amount": 194000,
-          "avg_price_kg": 600
+          "avg_price_kg": 600,
+          "price_change": {
+            "d1": -14.4
+          }
         },
         {
           "name": "실파",
           "trades": 2,
           "qty": 350.0,
           "amount": 368500,
-          "avg_price_kg": 948
+          "avg_price_kg": 948,
+          "price_change": {
+            "d1": -21.4
+          }
         },
         {
           "name": "꽈리고추",
           "trades": 2,
           "qty": 96.0,
           "amount": 499000,
-          "avg_price_kg": 5119
+          "avg_price_kg": 5119,
+          "price_change": {
+            "d1": -10.9
+          }
         },
         {
           "name": "고사리",
           "trades": 2,
           "qty": 14.0,
           "amount": 63000,
-          "avg_price_kg": 5175
+          "avg_price_kg": 5175,
+          "price_change": {
+            "d1": -1.6
+          }
         },
         {
           "name": "두릅",
           "trades": 2,
           "qty": 6.5,
           "amount": 76500,
-          "avg_price_kg": 9125
+          "avg_price_kg": 9125,
+          "price_change": {
+            "d1": 23.6
+          }
         },
         {
           "name": "참다래(키위)",
           "trades": 2,
           "qty": 242.0,
           "amount": 2137000,
-          "avg_price_kg": 12008
+          "avg_price_kg": 12008,
+          "price_change": {
+            "d1": -1.0
+          }
         },
         {
           "name": "바나나",
           "trades": 2,
           "qty": 4836.0,
           "amount": 11740000,
-          "avg_price_kg": 2747
+          "avg_price_kg": 2747,
+          "price_change": {
+            "d1": -0.2
+          }
         },
         {
           "name": "오렌지",
           "trades": 2,
           "qty": 306.0,
           "amount": 1015000,
-          "avg_price_kg": 2587
+          "avg_price_kg": 2587,
+          "price_change": {
+            "d1": -23.1
+          }
         },
         {
           "name": "근대",
           "trades": 2,
           "qty": 40.0,
           "amount": 67000,
-          "avg_price_kg": 1557
+          "avg_price_kg": 1557,
+          "price_change": {
+            "d1": -13.5
+          }
         },
         {
           "name": "홍고추",
           "trades": 2,
           "qty": 13.0,
           "amount": 165000,
-          "avg_price_kg": 12000
+          "avg_price_kg": 12000,
+          "price_change": {
+            "d1": -32.7
+          }
         },
         {
           "name": "생강",
           "trades": 2,
           "qty": 6.0,
           "amount": 94000,
-          "avg_price_kg": 13000
+          "avg_price_kg": 13000,
+          "price_change": {
+            "d1": 15.0
+          }
         },
         {
           "name": "피망(단고추)",
           "trades": 2,
           "qty": 15.0,
           "amount": 171000,
-          "avg_price_kg": 10800
+          "avg_price_kg": 10800,
+          "price_change": {
+            "d1": -16.9
+          }
         },
         {
           "name": "셀러리(양미나리)",
           "trades": 2,
           "qty": 18.0,
           "amount": 39000,
-          "avg_price_kg": 2500
+          "avg_price_kg": 2500,
+          "price_change": {
+            "d1": 187.0
+          }
         },
         {
           "name": "케일",
           "trades": 2,
           "qty": 20.0,
           "amount": 26000,
-          "avg_price_kg": 1267
+          "avg_price_kg": 1267,
+          "price_change": {
+            "d1": -18.3
+          }
         },
         {
           "name": "파세리(향미나리)",
           "trades": 2,
           "qty": 2.5,
           "amount": 10000,
-          "avg_price_kg": 4000
+          "avg_price_kg": 4000,
+          "price_change": {
+            "d1": 0.0
+          }
         },
         {
           "name": "비트(붉은사탕무우)",
           "trades": 2,
           "qty": 25.0,
           "amount": 25500,
-          "avg_price_kg": 1200
+          "avg_price_kg": 1200,
+          "price_change": {
+            "d1": -68.4
+          }
         },
         {
           "name": "목이",
@@ -59526,91 +59715,130 @@
           "trades": 2,
           "qty": 15.0,
           "amount": 18000,
-          "avg_price_kg": 1200
+          "avg_price_kg": 1200,
+          "price_change": {
+            "d1": -14.3
+          }
         },
         {
           "name": "배",
           "trades": 1,
           "qty": 975.0,
           "amount": 2972000,
-          "avg_price_kg": 3048
+          "avg_price_kg": 3048,
+          "price_change": {
+            "d1": 79.5
+          }
         },
         {
           "name": "달래",
           "trades": 1,
           "qty": 0.3,
           "amount": 1000,
-          "avg_price_kg": 3333
+          "avg_price_kg": 3333,
+          "price_change": {
+            "d1": 44.9
+          }
         },
         {
           "name": "대파",
           "trades": 1,
           "qty": 2084.0,
           "amount": 1919600,
-          "avg_price_kg": 921
+          "avg_price_kg": 921,
+          "price_change": {
+            "d1": 8.6
+          }
         },
         {
           "name": "수수",
           "trades": 1,
           "qty": 64.0,
           "amount": 521664,
-          "avg_price_kg": 8151
+          "avg_price_kg": 8151,
+          "price_change": {
+            "d1": -7.0
+          }
         },
         {
           "name": "탄제린",
           "trades": 1,
           "qty": 189.0,
           "amount": 742000,
-          "avg_price_kg": 3926
+          "avg_price_kg": 3926,
+          "price_change": {
+            "d1": -5.8
+          }
         },
         {
           "name": "자몽",
           "trades": 1,
           "qty": 45.0,
           "amount": 144000,
-          "avg_price_kg": 3200
+          "avg_price_kg": 3200,
+          "price_change": {
+            "d1": 0.0
+          }
         },
         {
           "name": "망고",
           "trades": 1,
           "qty": 52.0,
           "amount": 390000,
-          "avg_price_kg": 7500
+          "avg_price_kg": 7500,
+          "price_change": {
+            "d1": -0.7
+          }
         },
         {
           "name": "콩나물",
           "trades": 1,
           "qty": 20.0,
           "amount": 14000,
-          "avg_price_kg": 700
+          "avg_price_kg": 700,
+          "price_change": {
+            "d1": 5.7
+          }
         },
         {
           "name": "숙주나물",
           "trades": 1,
           "qty": 10.0,
           "amount": 10000,
-          "avg_price_kg": 1000
+          "avg_price_kg": 1000,
+          "price_change": {
+            "d1": 0.0
+          }
         },
         {
           "name": "비름",
           "trades": 1,
           "qty": 5.0,
           "amount": 6000,
-          "avg_price_kg": 1200
+          "avg_price_kg": 1200,
+          "price_change": {
+            "d1": 0.0
+          }
         },
         {
           "name": "시레기",
           "trades": 1,
           "qty": 2.0,
           "amount": 5000,
-          "avg_price_kg": 2500
+          "avg_price_kg": 2500,
+          "price_change": {
+            "d1": -47.9
+          }
         },
         {
           "name": "겨자",
           "trades": 1,
           "qty": 30.0,
           "amount": 39000,
-          "avg_price_kg": 1300
+          "avg_price_kg": 1300,
+          "price_change": {
+            "d1": -26.8
+          }
         },
         {
           "name": "칼리플라워(꽃양배추)",
@@ -59624,7 +59852,10 @@
           "trades": 1,
           "qty": 15.0,
           "amount": 12500,
-          "avg_price_kg": 833
+          "avg_price_kg": 833,
+          "price_change": {
+            "d1": -13.9
+          }
         },
         {
           "name": "마",
@@ -59638,21 +59869,30 @@
           "trades": 1,
           "qty": 5.0,
           "amount": 8000,
-          "avg_price_kg": 1600
+          "avg_price_kg": 1600,
+          "price_change": {
+            "d1": 0.0
+          }
         },
         {
           "name": "방풍나물",
           "trades": 1,
           "qty": 15.0,
           "amount": 21000,
-          "avg_price_kg": 1400
+          "avg_price_kg": 1400,
+          "price_change": {
+            "d1": -12.5
+          }
         },
         {
           "name": "양송이",
           "trades": 1,
           "qty": 25.0,
           "amount": 120000,
-          "avg_price_kg": 4800
+          "avg_price_kg": 4800,
+          "price_change": {
+            "d1": 20.0
+          }
         },
         {
           "name": "미역",
@@ -60013,6 +60253,12 @@
             "foreign": false
           }
         ]
+      },
+      "price_change": {
+        "d1": {
+          "amount": -33.3,
+          "qty": -44.6
+        }
       }
     },
     {
@@ -80329,7 +80575,7 @@
           "amount": 945000,
           "avg_price_kg": 1750,
           "price_change": {
-            "d1": -23.0,
+            "d1": -22.5,
             "w1": -20.7,
             "m1": -26.9
           }
@@ -80341,7 +80587,7 @@
           "amount": 9425000,
           "avg_price_kg": 3293,
           "price_change": {
-            "d1": 27.5,
+            "d1": 28.4,
             "m1": -9.7
           }
         },
@@ -81749,8 +81995,8 @@
       },
       "price_change": {
         "d1": {
-          "amount": -38.9,
-          "qty": -32.7
+          "amount": -38.8,
+          "qty": -32.6
         },
         "w1": {
           "amount": -4.3,
@@ -92296,9 +92542,9 @@
       "market_code": "320201",
       "lat": 37.3422,
       "lng": 127.9202,
-      "trades": 5,
-      "total_qty": 135.0,
-      "total_amount": 533900,
+      "trades": 7,
+      "total_qty": 153.0,
+      "total_amount": 606680,
       "products": [
         {
           "name": "포도",
@@ -92350,14 +92596,35 @@
           "price_change": {
             "w1": -20.8
           }
+        },
+        {
+          "name": "마늘",
+          "trades": 1,
+          "qty": 10.0,
+          "amount": 70000,
+          "avg_price_kg": 7000,
+          "price_change": {
+            "w1": 18.6
+          }
+        },
+        {
+          "name": "양배추",
+          "trades": 1,
+          "qty": 8.0,
+          "amount": 2780,
+          "avg_price_kg": 348,
+          "price_change": {
+            "w1": -34.5,
+            "m1": -46.5
+          }
         }
       ],
       "origins": [
         {
           "name": "강원특별자치도 원주시 중앙동",
-          "trades": 2,
-          "qty": 102.0,
-          "amount": 322800
+          "trades": 3,
+          "qty": 112.0,
+          "amount": 392800
         },
         {
           "name": "수입산",
@@ -92376,6 +92643,12 @@
           "trades": 1,
           "qty": 10.0,
           "amount": 45100
+        },
+        {
+          "name": "서울특별시",
+          "trades": 1,
+          "qty": 8.0,
+          "amount": 2780
         }
       ],
       "product_origins": {
@@ -92428,20 +92701,40 @@
             "lng": 128.2831,
             "foreign": false
           }
+        ],
+        "마늘": [
+          {
+            "name": "강원특별자치도 원주시 중앙동",
+            "trades": 1,
+            "qty": 10.0,
+            "lat": 37.3422,
+            "lng": 127.9202,
+            "foreign": false
+          }
+        ],
+        "양배추": [
+          {
+            "name": "서울특별시",
+            "trades": 1,
+            "qty": 8.0,
+            "lat": 37.5665,
+            "lng": 126.978,
+            "foreign": false
+          }
         ]
       },
       "price_change": {
         "d1": {
-          "amount": -57.9,
-          "qty": -91.1
+          "amount": -52.2,
+          "qty": -89.9
         },
         "w1": {
           "amount": -99.6,
           "qty": -99.7
         },
         "m1": {
-          "amount": 4.2,
-          "qty": -77.0
+          "amount": 18.4,
+          "qty": -74.0
         }
       }
     }
@@ -92631,9 +92924,9 @@
     },
     {
       "market": "원주",
-      "trades": 5,
-      "total_qty": 135.0,
-      "total_amount": 533900,
+      "trades": 7,
+      "total_qty": 153.0,
+      "total_amount": 606680,
       "corp_count": 1
     }
   ],
@@ -95619,6 +95912,7 @@
       "울산": 4432,
       "수원": 6300,
       "안산": 10000,
+      "원주": 7000,
       "강릉": 7179,
       "전주": 5533,
       "익산": 632,
