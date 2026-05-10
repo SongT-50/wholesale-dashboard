@@ -16615,8 +16615,8 @@
       },
       "price_change": {
         "d1": {
-          "amount": 4.9,
-          "qty": 9.9
+          "amount": -47.5,
+          "qty": -45.1
         },
         "m1": {
           "amount": 11.4,
@@ -26210,8 +26210,8 @@
       },
       "price_change": {
         "d1": {
-          "amount": 15.3,
-          "qty": 10.9
+          "amount": -42.4,
+          "qty": -44.6
         },
         "m1": {
           "amount": 1.2,
@@ -30696,8 +30696,8 @@
       },
       "price_change": {
         "d1": {
-          "amount": 0.4,
-          "qty": -0.5
+          "amount": -49.8,
+          "qty": -50.2
         },
         "m1": {
           "amount": 5.9,
@@ -34429,8 +34429,8 @@
       },
       "price_change": {
         "d1": {
-          "amount": 24.2,
-          "qty": 22.9
+          "amount": -37.9,
+          "qty": -38.5
         },
         "m1": {
           "amount": 22.2,
@@ -47739,8 +47739,8 @@
       },
       "price_change": {
         "d1": {
-          "amount": 31.1,
-          "qty": 3.3
+          "amount": -34.5,
+          "qty": -48.4
         },
         "m1": {
           "amount": 34.9,
@@ -52104,8 +52104,8 @@
       },
       "price_change": {
         "d1": {
-          "amount": -6.6,
-          "qty": -6.6
+          "amount": -53.3,
+          "qty": -53.3
         },
         "m1": {
           "amount": -20.8,
@@ -55491,8 +55491,8 @@
       },
       "price_change": {
         "d1": {
-          "amount": -12.0,
-          "qty": -2.9
+          "amount": -56.0,
+          "qty": -51.4
         },
         "m1": {
           "amount": -2.7,
@@ -62464,8 +62464,8 @@
       },
       "price_change": {
         "d1": {
-          "amount": 10.5,
-          "qty": 8.3
+          "amount": -44.8,
+          "qty": -45.9
         },
         "m1": {
           "amount": 21.8,
@@ -76401,8 +76401,8 @@
       },
       "price_change": {
         "d1": {
-          "amount": 0.2,
-          "qty": 19.2
+          "amount": -49.9,
+          "qty": -40.4
         },
         "m1": {
           "amount": -2.0,
@@ -100351,8 +100351,8 @@
       },
       "price_change": {
         "d1": {
-          "amount": 16.0,
-          "qty": 3.0
+          "amount": -42.0,
+          "qty": -48.5
         },
         "m1": {
           "amount": 0.7,
@@ -103935,8 +103935,8 @@
       },
       "price_change": {
         "d1": {
-          "amount": -16.4,
-          "qty": 2.9
+          "amount": -58.2,
+          "qty": -48.5
         },
         "m1": {
           "amount": -22.8,
@@ -113642,8 +113642,8 @@
       },
       "price_change": {
         "d1": {
-          "amount": -14.4,
-          "qty": -64.6
+          "amount": -57.2,
+          "qty": -82.3
         },
         "m1": {
           "amount": 19.4,
@@ -122844,8 +122844,8 @@
       },
       "price_change": {
         "d1": {
-          "amount": 4.1,
-          "qty": -0.1
+          "amount": -47.9,
+          "qty": -50.1
         },
         "m1": {
           "amount": -0.5,
@@ -128725,8 +128725,8 @@
       },
       "price_change": {
         "d1": {
-          "amount": 9.6,
-          "qty": 41.1
+          "amount": -45.2,
+          "qty": -29.5
         },
         "m1": {
           "amount": 27.8,
@@ -164296,8 +164296,8 @@
       },
       "price_change": {
         "d1": {
-          "amount": -31.8,
-          "qty": -35.3
+          "amount": -65.1,
+          "qty": -67.1
         },
         "m1": {
           "amount": -14.1,
@@ -166449,8 +166449,8 @@
       },
       "price_change": {
         "d1": {
-          "amount": 11.8,
-          "qty": 16.5
+          "amount": -44.1,
+          "qty": -41.8
         },
         "m1": {
           "amount": 31.8,
@@ -168146,8 +168146,8 @@
       },
       "price_change": {
         "d1": {
-          "amount": 13.5,
-          "qty": 55.9
+          "amount": -43.2,
+          "qty": -22.1
         },
         "m1": {
           "amount": -13.7,
@@ -170368,8 +170368,8 @@
       },
       "price_change": {
         "d1": {
-          "amount": 38.5,
-          "qty": 35.3
+          "amount": -25.9,
+          "qty": -26.6
         },
         "m1": {
           "amount": 73.6,
@@ -174128,8 +174128,8 @@
       },
       "price_change": {
         "d1": {
-          "amount": -59.5,
-          "qty": -57.0
+          "amount": -79.7,
+          "qty": -78.5
         },
         "m1": {
           "amount": -68.8,
@@ -184484,8 +184484,8 @@
       },
       "price_change": {
         "d1": {
-          "amount": 14.7,
-          "qty": 29.9
+          "amount": -42.7,
+          "qty": -35.0
         },
         "m1": {
           "amount": 23.4,
@@ -186327,8 +186327,8 @@
       },
       "price_change": {
         "d1": {
-          "amount": -6.6,
-          "qty": 8.9
+          "amount": -53.3,
+          "qty": -45.5
         },
         "m1": {
           "amount": 46.7,
@@ -190856,8 +190856,8 @@
       },
       "price_change": {
         "d1": {
-          "amount": -1.5,
-          "qty": 2.5
+          "amount": -49.7,
+          "qty": -46.4
         },
         "w1": {
           "amount": 1728.2,
@@ -198631,8 +198631,8 @@
       },
       "price_change": {
         "d1": {
-          "amount": -51.1,
-          "qty": -34.4
+          "amount": -75.6,
+          "qty": -67.2
         },
         "m1": {
           "amount": 3.4,
@@ -207463,8 +207463,8 @@
       },
       "price_change": {
         "d1": {
-          "amount": 15.5,
-          "qty": 17.3
+          "amount": -42.2,
+          "qty": -41.4
         },
         "m1": {
           "amount": 22.7,
@@ -211902,8 +211902,8 @@
       },
       "price_change": {
         "d1": {
-          "amount": 56.3,
-          "qty": -16.7
+          "amount": -21.8,
+          "qty": -58.3
         },
         "m1": {
           "amount": 78.2,
@@ -216139,8 +216139,8 @@
       },
       "price_change": {
         "d1": {
-          "amount": -99.5,
-          "qty": -99.9
+          "amount": -99.7,
+          "qty": -100.0
         },
         "m1": {
           "amount": -99.4,
@@ -216246,8 +216246,8 @@
       },
       "price_change": {
         "d1": {
-          "amount": -99.8,
-          "qty": -99.8
+          "amount": -99.9,
+          "qty": -99.9
         },
         "m1": {
           "amount": -99.9,
