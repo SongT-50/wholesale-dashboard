@@ -182620,6 +182620,7 @@
           "amount": 27767500,
           "avg_price_kg": 1937,
           "price_change": {
+            "d1": -5.9,
             "m1": -28.8
           }
         },
@@ -182630,6 +182631,7 @@
           "amount": 3059500,
           "avg_price_kg": 16249,
           "price_change": {
+            "d1": -8.4,
             "m1": 157.3
           }
         },
@@ -182640,6 +182642,7 @@
           "amount": 16586000,
           "avg_price_kg": 3450,
           "price_change": {
+            "d1": 2.7,
             "m1": -41.7
           }
         },
@@ -182650,6 +182653,7 @@
           "amount": 2007000,
           "avg_price_kg": 1538,
           "price_change": {
+            "d1": 3.7,
             "m1": -48.0
           }
         },
@@ -182660,6 +182664,7 @@
           "amount": 7441000,
           "avg_price_kg": 4210,
           "price_change": {
+            "d1": 32.8,
             "m1": -19.3
           }
         },
@@ -182675,14 +182680,20 @@
           "trades": 1,
           "qty": 208.0,
           "amount": 1768000,
-          "avg_price_kg": 8500
+          "avg_price_kg": 8500,
+          "price_change": {
+            "d1": -2.9
+          }
         },
         {
           "name": "복숭아",
           "trades": 1,
           "qty": 44.0,
           "amount": 770000,
-          "avg_price_kg": 17500
+          "avg_price_kg": 17500,
+          "price_change": {
+            "d1": 30.4
+          }
         },
         {
           "name": "살구",
@@ -182708,6 +182719,7 @@
           "amount": 11088000,
           "avg_price_kg": 2154,
           "price_change": {
+            "d1": 0.0,
             "m1": -9.8
           }
         },
@@ -182728,6 +182740,7 @@
           "amount": 3780000,
           "avg_price_kg": 4118,
           "price_change": {
+            "d1": -2.8,
             "m1": 21.6
           }
         },
@@ -182755,6 +182768,7 @@
           "amount": 1106000,
           "avg_price_kg": 7900,
           "price_change": {
+            "d1": 51.3,
             "m1": 3.9
           }
         },
@@ -182765,6 +182779,7 @@
           "amount": 1260000,
           "avg_price_kg": 4000,
           "price_change": {
+            "d1": -13.0,
             "m1": 11.1
           }
         },
@@ -182775,6 +182790,7 @@
           "amount": 930000,
           "avg_price_kg": 31000,
           "price_change": {
+            "d1": 7.8,
             "m1": -21.1
           }
         }
@@ -183230,6 +183246,10 @@
         ]
       },
       "price_change": {
+        "d1": {
+          "amount": -9.1,
+          "qty": 4.4
+        },
         "m1": {
           "amount": -22.2,
           "qty": 3.9
