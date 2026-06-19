@@ -227755,6 +227755,7 @@
           "amount": 24008500,
           "avg_price_kg": 1613,
           "price_change": {
+            "d1": 2.7,
             "w1": -19.7
           }
         },
@@ -227765,6 +227766,7 @@
           "amount": 9313500,
           "avg_price_kg": 2835,
           "price_change": {
+            "d1": -14.7,
             "w1": -74.3
           }
         },
@@ -227775,6 +227777,7 @@
           "amount": 4447200,
           "avg_price_kg": 922,
           "price_change": {
+            "d1": -14.5,
             "w1": -53.7
           }
         },
@@ -227785,6 +227788,7 @@
           "amount": 2674100,
           "avg_price_kg": 1034,
           "price_change": {
+            "d1": -0.3,
             "w1": -16.4
           }
         },
@@ -227795,6 +227799,7 @@
           "amount": 7101500,
           "avg_price_kg": 575,
           "price_change": {
+            "d1": -45.2,
             "w1": -7.7
           }
         },
@@ -227805,6 +227810,7 @@
           "amount": 4227800,
           "avg_price_kg": 893,
           "price_change": {
+            "d1": 2.9,
             "w1": -7.2
           }
         },
@@ -227815,6 +227821,7 @@
           "amount": 3225000,
           "avg_price_kg": 2738,
           "price_change": {
+            "d1": -7.7,
             "w1": -19.5
           }
         },
@@ -227823,7 +227830,10 @@
           "trades": 7,
           "qty": 636.0,
           "amount": 2656000,
-          "avg_price_kg": 3581
+          "avg_price_kg": 3581,
+          "price_change": {
+            "d1": 3.9
+          }
         },
         {
           "name": "상추",
@@ -227832,6 +227842,7 @@
           "amount": 1729000,
           "avg_price_kg": 2792,
           "price_change": {
+            "d1": -15.1,
             "w1": -8.4
           }
         },
@@ -227842,6 +227853,7 @@
           "amount": 7416000,
           "avg_price_kg": 18870,
           "price_change": {
+            "d1": -4.0,
             "w1": -18.6
           }
         },
@@ -227852,6 +227864,7 @@
           "amount": 871300,
           "avg_price_kg": 888,
           "price_change": {
+            "d1": -29.0,
             "w1": -40.8
           }
         },
@@ -227862,6 +227875,7 @@
           "amount": 2091700,
           "avg_price_kg": 2804,
           "price_change": {
+            "d1": 17.0,
             "w1": -43.2
           }
         },
@@ -227872,6 +227886,7 @@
           "amount": 1887000,
           "avg_price_kg": 1820,
           "price_change": {
+            "d1": 12.9,
             "w1": 39.9
           }
         },
@@ -227880,7 +227895,10 @@
           "trades": 4,
           "qty": 2364.0,
           "amount": 5134700,
-          "avg_price_kg": 2228
+          "avg_price_kg": 2228,
+          "price_change": {
+            "d1": 1.1
+          }
         },
         {
           "name": "참외",
@@ -227889,6 +227907,7 @@
           "amount": 13328000,
           "avg_price_kg": 2290,
           "price_change": {
+            "d1": -11.8,
             "w1": -24.5
           }
         },
@@ -227899,6 +227918,7 @@
           "amount": 1353000,
           "avg_price_kg": 5911,
           "price_change": {
+            "d1": -15.6,
             "w1": -7.3
           }
         },
@@ -227909,6 +227929,7 @@
           "amount": 2040500,
           "avg_price_kg": 2307,
           "price_change": {
+            "d1": 106.0,
             "w1": 7.1
           }
         },
@@ -227919,6 +227940,7 @@
           "amount": 1798000,
           "avg_price_kg": 2424,
           "price_change": {
+            "d1": -48.0,
             "w1": -37.3
           }
         },
@@ -227929,6 +227951,7 @@
           "amount": 689000,
           "avg_price_kg": 4917,
           "price_change": {
+            "d1": -6.2,
             "w1": -43.8
           }
         },
@@ -227937,7 +227960,10 @@
           "trades": 3,
           "qty": 480.0,
           "amount": 4513800,
-          "avg_price_kg": 9646
+          "avg_price_kg": 9646,
+          "price_change": {
+            "d1": -8.5
+          }
         },
         {
           "name": "가지",
@@ -227946,6 +227972,7 @@
           "amount": 1232200,
           "avg_price_kg": 2733,
           "price_change": {
+            "d1": 8.7,
             "w1": 26.9
           }
         },
@@ -227956,6 +227983,7 @@
           "amount": 1407000,
           "avg_price_kg": 1267,
           "price_change": {
+            "d1": 180.3,
             "w1": -25.5
           }
         },
@@ -227966,6 +227994,7 @@
           "amount": 223800,
           "avg_price_kg": 567,
           "price_change": {
+            "d1": 6.0,
             "w1": -23.2
           }
         },
@@ -227976,6 +228005,7 @@
           "amount": 279500,
           "avg_price_kg": 3375,
           "price_change": {
+            "d1": 68.8,
             "w1": -33.3
           }
         },
@@ -227996,6 +228026,7 @@
           "amount": 1441000,
           "avg_price_kg": 1920,
           "price_change": {
+            "d1": 25.2,
             "w1": 41.4
           }
         },
@@ -228006,6 +228037,7 @@
           "amount": 1255700,
           "avg_price_kg": 229,
           "price_change": {
+            "d1": -11.9,
             "w1": -42.8
           }
         },
@@ -228016,6 +228048,7 @@
           "amount": 820000,
           "avg_price_kg": 1692,
           "price_change": {
+            "d1": 84.5,
             "w1": 12.8
           }
         },
@@ -228026,6 +228059,7 @@
           "amount": 164000,
           "avg_price_kg": 3500,
           "price_change": {
+            "d1": 40.0,
             "w1": -12.5
           }
         },
@@ -228043,6 +228077,7 @@
           "amount": 1083000,
           "avg_price_kg": 1879,
           "price_change": {
+            "d1": 34.2,
             "w1": 14.1
           }
         },
@@ -228073,6 +228108,7 @@
           "amount": 223500,
           "avg_price_kg": 5234,
           "price_change": {
+            "d1": -7.0,
             "w1": 4.3
           }
         },
@@ -228083,6 +228119,7 @@
           "amount": 1402000,
           "avg_price_kg": 2606,
           "price_change": {
+            "d1": 0.2,
             "w1": -0.2
           }
         },
@@ -228093,6 +228130,7 @@
           "amount": 3260000,
           "avg_price_kg": 990,
           "price_change": {
+            "d1": 41.4,
             "w1": -1.9
           }
         },
@@ -228101,7 +228139,10 @@
           "trades": 1,
           "qty": 144.0,
           "amount": 432000,
-          "avg_price_kg": 3000
+          "avg_price_kg": 3000,
+          "price_change": {
+            "d1": -40.0
+          }
         },
         {
           "name": "사과",
@@ -228120,6 +228161,7 @@
           "amount": 537000,
           "avg_price_kg": 1705,
           "price_change": {
+            "d1": -8.1,
             "w1": 11.9
           }
         },
@@ -228128,21 +228170,30 @@
           "trades": 1,
           "qty": 685.0,
           "amount": 3522000,
-          "avg_price_kg": 5142
+          "avg_price_kg": 5142,
+          "price_change": {
+            "d1": 32.8
+          }
         },
         {
           "name": "비파",
           "trades": 1,
           "qty": 19.2,
           "amount": 48000,
-          "avg_price_kg": 2500
+          "avg_price_kg": 2500,
+          "price_change": {
+            "d1": -20.0
+          }
         },
         {
           "name": "플럼코트",
           "trades": 1,
           "qty": 159.0,
           "amount": 1214000,
-          "avg_price_kg": 7635
+          "avg_price_kg": 7635,
+          "price_change": {
+            "d1": 41.1
+          }
         },
         {
           "name": "미나리",
@@ -228151,6 +228202,7 @@
           "amount": 308000,
           "avg_price_kg": 2800,
           "price_change": {
+            "d1": 39.9,
             "w1": -23.2
           }
         },
@@ -228178,6 +228230,7 @@
           "amount": 231000,
           "avg_price_kg": 8250,
           "price_change": {
+            "d1": 6.5,
             "w1": 73.0
           }
         },
@@ -228206,7 +228259,10 @@
           "trades": 1,
           "qty": 150.0,
           "amount": 471000,
-          "avg_price_kg": 3140
+          "avg_price_kg": 3140,
+          "price_change": {
+            "d1": 2.6
+          }
         },
         {
           "name": "생강",
@@ -228259,6 +228315,7 @@
           "amount": 620000,
           "avg_price_kg": 1240,
           "price_change": {
+            "d1": -7.3,
             "w1": -22.5
           }
         },
@@ -228269,6 +228326,7 @@
           "amount": 21694000,
           "avg_price_kg": 2210,
           "price_change": {
+            "d1": 3.1,
             "w1": 8.0
           }
         },
@@ -228279,6 +228337,7 @@
           "amount": 380000,
           "avg_price_kg": 7600,
           "price_change": {
+            "d1": 52.0,
             "w1": -24.0
           }
         },
@@ -228289,6 +228348,7 @@
           "amount": 7690000,
           "avg_price_kg": 14932,
           "price_change": {
+            "d1": -9.7,
             "w1": -31.5
           }
         },
@@ -228309,6 +228369,7 @@
           "amount": 770000,
           "avg_price_kg": 2406,
           "price_change": {
+            "d1": -3.8,
             "w1": 10.6
           }
         },
@@ -230223,6 +230284,10 @@
         ]
       },
       "price_change": {
+        "d1": {
+          "amount": 4.0,
+          "qty": 20.6
+        },
         "w1": {
           "amount": -2.6,
           "qty": 0.6
