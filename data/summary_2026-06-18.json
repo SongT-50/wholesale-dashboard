@@ -229052,6 +229052,7 @@
           "amount": 20407000,
           "avg_price_kg": 1266,
           "price_change": {
+            "d1": -8.1,
             "m1": -46.8
           }
         },
@@ -229060,7 +229061,10 @@
           "trades": 10,
           "qty": 1494.5,
           "amount": 6982000,
-          "avg_price_kg": 3717
+          "avg_price_kg": 3717,
+          "price_change": {
+            "d1": -12.9
+          }
         },
         {
           "name": "토마토",
@@ -229069,6 +229073,7 @@
           "amount": 1746000,
           "avg_price_kg": 1446,
           "price_change": {
+            "d1": 2.5,
             "m1": -25.0
           }
         },
@@ -229077,7 +229082,10 @@
           "trades": 3,
           "qty": 230.0,
           "amount": 653000,
-          "avg_price_kg": 2858
+          "avg_price_kg": 2858,
+          "price_change": {
+            "d1": 4.8
+          }
         },
         {
           "name": "블루베리",
@@ -229086,6 +229094,7 @@
           "amount": 5414000,
           "avg_price_kg": 17234,
           "price_change": {
+            "d1": 0.2,
             "m1": -33.4
           }
         },
@@ -229096,6 +229105,7 @@
           "amount": 5226000,
           "avg_price_kg": 2481,
           "price_change": {
+            "d1": 35.7,
             "m1": -15.9
           }
         },
@@ -229106,6 +229116,7 @@
           "amount": 829000,
           "avg_price_kg": 3261,
           "price_change": {
+            "d1": 43.5,
             "m1": -19.8
           }
         },
@@ -229114,28 +229125,40 @@
           "trades": 2,
           "qty": 95.0,
           "amount": 271000,
-          "avg_price_kg": 3543
+          "avg_price_kg": 3543,
+          "price_change": {
+            "d1": -33.9
+          }
         },
         {
           "name": "바나나",
           "trades": 2,
           "qty": 4212.0,
           "amount": 10086000,
-          "avg_price_kg": 2107
+          "avg_price_kg": 2107,
+          "price_change": {
+            "d1": 2.4
+          }
         },
         {
           "name": "망고",
           "trades": 2,
           "qty": 260.0,
           "amount": 2296000,
-          "avg_price_kg": 8400
+          "avg_price_kg": 8400,
+          "price_change": {
+            "d1": 180.0
+          }
         },
         {
           "name": "체리",
           "trades": 2,
           "qty": 405.0,
           "amount": 6046000,
-          "avg_price_kg": 16115
+          "avg_price_kg": 16115,
+          "price_change": {
+            "d1": 6.7
+          }
         },
         {
           "name": "딸기",
@@ -229144,6 +229167,7 @@
           "amount": 594000,
           "avg_price_kg": 18000,
           "price_change": {
+            "d1": -10.0,
             "m1": 32.8
           }
         },
@@ -229152,14 +229176,20 @@
           "trades": 1,
           "qty": 225.0,
           "amount": 750000,
-          "avg_price_kg": 3333
+          "avg_price_kg": 3333,
+          "price_change": {
+            "d1": -33.3
+          }
         },
         {
           "name": "포도",
           "trades": 1,
           "qty": 207.0,
           "amount": 2290000,
-          "avg_price_kg": 11063
+          "avg_price_kg": 11063,
+          "price_change": {
+            "d1": -11.3
+          }
         },
         {
           "name": "파인애플",
@@ -229168,6 +229198,7 @@
           "amount": 1080000,
           "avg_price_kg": 3000,
           "price_change": {
+            "d1": 9.1,
             "m1": 63.7
           }
         },
@@ -229176,14 +229207,20 @@
           "trades": 1,
           "qty": 160.0,
           "amount": 300000,
-          "avg_price_kg": 1875
+          "avg_price_kg": 1875,
+          "price_change": {
+            "d1": -14.9
+          }
         },
         {
           "name": "플럼코트",
           "trades": 1,
           "qty": 49.0,
           "amount": 286000,
-          "avg_price_kg": 5837
+          "avg_price_kg": 5837,
+          "price_change": {
+            "d1": 38.6
+          }
         },
         {
           "name": "오렌지",
@@ -229204,7 +229241,10 @@
           "trades": 1,
           "qty": 135.0,
           "amount": 900000,
-          "avg_price_kg": 6667
+          "avg_price_kg": 6667,
+          "price_change": {
+            "d1": 91.6
+          }
         }
       ],
       "origins": [
@@ -229642,6 +229682,10 @@
         ]
       },
       "price_change": {
+        "d1": {
+          "amount": -12.8,
+          "qty": -8.6
+        },
         "m1": {
           "amount": 55.8,
           "qty": 65.9
