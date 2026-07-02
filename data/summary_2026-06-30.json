@@ -1,8 +1,8 @@
 {
   "date": "2026-06-30",
   "total_trades": 42693,
-  "total_amount": 36606289270,
-  "total_qty": 20424052.00000001,
+  "total_amount": 36603811170,
+  "total_qty": 20417128.000000015,
   "corp_count": 83,
   "market_count": 32,
   "corporations": [
@@ -16781,7 +16781,7 @@
           "amount": 171199500,
           "avg_price_kg": 4199,
           "price_change": {
-            "d1": -18.0,
+            "d1": -17.8,
             "w1": 25.5
           }
         },
@@ -21061,7 +21061,7 @@
       },
       "price_change": {
         "d1": {
-          "amount": -19.3,
+          "amount": -19.2,
           "qty": -17.7
         },
         "w1": {
@@ -41230,7 +41230,7 @@
           "amount": 20943000,
           "avg_price_kg": 916,
           "price_change": {
-            "d1": 14.8,
+            "d1": 14.5,
             "w1": -19.4
           }
         },
@@ -95319,8 +95319,8 @@
       "lat": 37.5665,
       "lng": 126.8275,
       "trades": 655,
-      "total_qty": 597853.69,
-      "total_amount": 1093204389,
+      "total_qty": 590929.69,
+      "total_amount": 1090726289,
       "products": [
         {
           "name": "복숭아",
@@ -95598,12 +95598,12 @@
         {
           "name": "배추",
           "trades": 4,
-          "qty": 26536.0,
-          "amount": 9841300,
-          "avg_price_kg": 613,
+          "qty": 19612.0,
+          "amount": 7363200,
+          "avg_price_kg": 617,
           "price_change": {
-            "d1": -30.3,
-            "w1": -15.8
+            "d1": -29.8,
+            "w1": -15.2
           }
         },
         {
@@ -96427,8 +96427,8 @@
         {
           "name": "강원특별자치도 평창군",
           "trades": 1,
-          "qty": 11460.0,
-          "amount": 4216900
+          "qty": 4536.0,
+          "amount": 1738800
         },
         {
           "name": "미국",
@@ -97228,7 +97228,7 @@
           {
             "name": "강원특별자치도 평창군",
             "trades": 1,
-            "qty": 11460.0,
+            "qty": 4536.0,
             "lat": 37.3709,
             "lng": 128.3903,
             "foreign": false
@@ -98151,12 +98151,12 @@
       },
       "price_change": {
         "d1": {
-          "amount": 33.8,
-          "qty": 34.4
+          "amount": 33.5,
+          "qty": 32.8
         },
         "w1": {
-          "amount": 80.5,
-          "qty": 71.3
+          "amount": 80.1,
+          "qty": 69.3
         }
       }
     },
@@ -242543,6 +242543,7 @@
           "amount": 23118500,
           "avg_price_kg": 1366,
           "price_change": {
+            "d1": 2.3,
             "w1": 8.2
           }
         },
@@ -242553,6 +242554,7 @@
           "amount": 7103500,
           "avg_price_kg": 4994,
           "price_change": {
+            "d1": 6.9,
             "w1": 26.6
           }
         },
@@ -242563,6 +242565,7 @@
           "amount": 3179000,
           "avg_price_kg": 3084,
           "price_change": {
+            "d1": 49.9,
             "w1": 13.0
           }
         },
@@ -242573,6 +242576,7 @@
           "amount": 2374000,
           "avg_price_kg": 3527,
           "price_change": {
+            "d1": 8.1,
             "w1": 56.8
           }
         },
@@ -242583,6 +242587,7 @@
           "amount": 5140000,
           "avg_price_kg": 1729,
           "price_change": {
+            "d1": -2.4,
             "w1": 20.0
           }
         },
@@ -242591,7 +242596,10 @@
           "trades": 2,
           "qty": 338.5,
           "amount": 2836000,
-          "avg_price_kg": 8328
+          "avg_price_kg": 8328,
+          "price_change": {
+            "d1": -1.7
+          }
         },
         {
           "name": "멜론",
@@ -242618,14 +242626,20 @@
           "trades": 1,
           "qty": 285.0,
           "amount": 751000,
-          "avg_price_kg": 2635
+          "avg_price_kg": 2635,
+          "price_change": {
+            "d1": -16.6
+          }
         },
         {
           "name": "살구",
           "trades": 1,
           "qty": 20.0,
           "amount": 60000,
-          "avg_price_kg": 3000
+          "avg_price_kg": 3000,
+          "price_change": {
+            "d1": -27.3
+          }
         },
         {
           "name": "바나나",
@@ -242634,6 +242648,7 @@
           "amount": 1760000,
           "avg_price_kg": 1354,
           "price_change": {
+            "d1": -30.8,
             "w1": -2.2
           }
         },
@@ -242649,7 +242664,10 @@
           "trades": 1,
           "qty": 100.0,
           "amount": 1640000,
-          "avg_price_kg": 16400
+          "avg_price_kg": 16400,
+          "price_change": {
+            "d1": 32.3
+          }
         },
         {
           "name": "용과",
@@ -242665,6 +242683,7 @@
           "amount": 1013000,
           "avg_price_kg": 9209,
           "price_change": {
+            "d1": -47.1,
             "w1": -30.8
           }
         },
@@ -242673,7 +242692,10 @@
           "trades": 1,
           "qty": 70.0,
           "amount": 374000,
-          "avg_price_kg": 5343
+          "avg_price_kg": 5343,
+          "price_change": {
+            "d1": 58.5
+          }
         },
         {
           "name": "토마토",
@@ -242682,6 +242704,7 @@
           "amount": 522500,
           "avg_price_kg": 661,
           "price_change": {
+            "d1": -57.3,
             "w1": -48.4
           }
         }
@@ -243125,6 +243148,10 @@
         ]
       },
       "price_change": {
+        "d1": {
+          "amount": -14.0,
+          "qty": -9.7
+        },
         "w1": {
           "amount": 108.5,
           "qty": 139.4
@@ -243551,8 +243578,8 @@
     {
       "market": "서울강서",
       "trades": 1614,
-      "total_qty": 1178559.1900000002,
-      "total_amount": 2008364019,
+      "total_qty": 1171635.1900000002,
+      "total_amount": 2005885919,
       "corp_count": 3
     },
     {
@@ -247080,7 +247107,7 @@
     },
     "배추": {
       "서울가락": 1913,
-      "서울강서": 411,
+      "서울강서": 413,
       "부산엄궁": 7123,
       "부산반여": 10062,
       "대구북부": 1200,
