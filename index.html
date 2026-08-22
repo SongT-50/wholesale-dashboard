@@ -2552,7 +2552,7 @@ function updateLayers() {
           return `${short} ${ton}t`;
         },
         getSize: 12, getColor: [255,255,255,245],
-        getPixelOffset: [0, 0], fontFamily: 'Noto Sans KR', fontWeight: 700,
+        getPixelOffset: [0, 0], characterSet: 'auto', fontFamily: 'Noto Sans KR', fontWeight: 700,
         outlineWidth: 5, outlineColor: [10,10,18,255], getTextAnchor: 'middle',
         getAlignmentBaseline: 'center',
       }));
@@ -2586,7 +2586,7 @@ function updateLayers() {
           getPosition: d => [d.lng, d.lat],
           getText: d => d.l2,
           getSize: 10, getColor: [220,252,231,250],
-          getPixelOffset: [0, -16], fontFamily: 'Noto Sans KR', fontWeight: 700,
+          getPixelOffset: [0, -16], characterSet: 'auto', fontFamily: 'Noto Sans KR', fontWeight: 700,
           outlineWidth: 3, outlineColor: [10,10,18,255], getTextAnchor: 'middle',
         }));
       }
@@ -2629,7 +2629,7 @@ function updateLayers() {
         getText: d => d.corp.replace('㈜','').replace('(공)',''),
         getSize: 11,
         getColor: d => d.corp === '대전중앙청과㈜' ? [250,204,21,255] : [252,165,165,255],
-        getPixelOffset: [0, 20], fontFamily: 'Noto Sans KR', fontWeight: 700,
+        getPixelOffset: [0, 20], characterSet: 'auto', fontFamily: 'Noto Sans KR', fontWeight: 700,
         outlineWidth: 3, outlineColor: [10,10,18,255], getTextAnchor: 'middle',
       }));
 
@@ -2724,7 +2724,7 @@ function updateLayers() {
           getPosition: d => [d.lng, d.lat],
           getText: d => d.l2,
           getSize: 10, getColor: [253,186,116,240],
-          getPixelOffset: [0, -14], fontFamily: 'Noto Sans KR', fontWeight: 700,
+          getPixelOffset: [0, -14], characterSet: 'auto', fontFamily: 'Noto Sans KR', fontWeight: 700,
           outlineWidth: 3, outlineColor: [10,10,18,240], getTextAnchor: 'middle',
         }));
       }
@@ -2767,7 +2767,7 @@ function updateLayers() {
         getText: d => `${d.corp.replace('㈜','').replace('(공)','')}\n${(d.qty_kg/1000).toFixed(1)}톤`,
         getSize: 11,
         getColor: d => d.corp === '대전중앙청과㈜' ? [255,183,77,255] : [192,132,252,220],
-        getPixelOffset: [0, -25], fontFamily: 'Noto Sans KR', fontWeight: 700,
+        getPixelOffset: [0, -25], characterSet: 'auto', fontFamily: 'Noto Sans KR', fontWeight: 700,
         outlineWidth: 4, outlineColor: [10,10,18,240], getTextAnchor: 'middle',
       }));
     }
@@ -2809,7 +2809,7 @@ function updateLayers() {
         getPosition: d => [d.displayLng, d.displayLat],
         getText: d => `${d.corp.replace('㈜','').replace('(공)','')}\n${d.price.toLocaleString()}원`,
         getSize: 11, getColor: d => d.priceColor,
-        getPixelOffset: [0, -25], fontFamily: 'Noto Sans KR', fontWeight: 700,
+        getPixelOffset: [0, -25], characterSet: 'auto', fontFamily: 'Noto Sans KR', fontWeight: 700,
         outlineWidth: 4, outlineColor: [10,10,18,240], getTextAnchor: 'middle',
       }));
     }
@@ -2845,7 +2845,7 @@ function updateLayers() {
         id: 'origin-labels', data: uniqueOrigins,
         getPosition: d => [d.lng, d.lat], getText: d => d.name,
         getSize: 10, getColor: [251,146,60,200], getPixelOffset: [0, -16],
-        fontFamily: 'Noto Sans KR', fontWeight: 700,
+        characterSet: 'auto', fontFamily: 'Noto Sans KR', fontWeight: 700,
         outlineWidth: 3, outlineColor: [10,10,18,200],
       }));
     }
@@ -2889,7 +2889,7 @@ function updateLayers() {
         id: 'origin-labels', data: domesticOrigins,
         getPosition: d => [d.lng, d.lat], getText: d => d.name,
         getSize: 11, getColor: [251,146,60,220], getPixelOffset: [0, -14],
-        fontFamily: 'Noto Sans KR', fontWeight: 700, outlineWidth: 3, outlineColor: [10,10,18,220],
+        characterSet: 'auto', fontFamily: 'Noto Sans KR', fontWeight: 700, outlineWidth: 3, outlineColor: [10,10,18,220],
       }));
     }
 
@@ -2922,7 +2922,7 @@ function updateLayers() {
         getPosition: d => [d.lng, d.lat],
         getText: d => `${d.name} ${d.totalTrades}건 (${d.corps.length}법인)`,
         getSize: 10, getColor: [192,132,252,220], getPixelOffset: [0, -14],
-        fontFamily: 'Noto Sans KR', fontWeight: 700, outlineWidth: 3, outlineColor: [10,10,18,220],
+        characterSet: 'auto', fontFamily: 'Noto Sans KR', fontWeight: 700, outlineWidth: 3, outlineColor: [10,10,18,220],
       }));
     }
   }
@@ -2978,7 +2978,7 @@ function updateLayers() {
         id: 'my-origin-labels', data: myOriginList.slice(0, 30),
         getPosition: d => [d.lng, d.lat], getText: d => d.name,
         getSize: 11, getColor: [251,146,60,220], getPixelOffset: [0, -16],
-        fontFamily: 'Noto Sans KR', fontWeight: 700, outlineWidth: 3, outlineColor: [10,10,18,220],
+        characterSet: 'auto', fontFamily: 'Noto Sans KR', fontWeight: 700, outlineWidth: 3, outlineColor: [10,10,18,220],
       }));
     }
 
@@ -3134,7 +3134,7 @@ function updateLayers() {
       if (selectedCorp && d.corp !== selectedCorp) return [255,255,255,80];
       return [255,255,255,220];
     },
-    getPixelOffset: [0, -20], fontFamily: 'Noto Sans KR', fontWeight: 700,
+    getPixelOffset: [0, -20], characterSet: 'auto', fontFamily: 'Noto Sans KR', fontWeight: 700,
     outlineWidth: 3, outlineColor: [10,10,18,200],
     updateTriggers: { getSize: [selectedCorp, selectedMarket], getColor: [selectedCorp, selectedMarket] },
   }));
