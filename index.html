@@ -319,7 +319,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', s
 }
 .legend-dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 4px; vertical-align: middle; }
 .legend-row2 {
-  position: fixed; bottom: 56px; left: 380px;
+  position: fixed; bottom: 66px; left: 380px;
   background: rgba(10,10,18,0.85); border: 1px solid var(--border);
   border-radius: 8px; padding: 6px 14px;
   font-size: 10px; color: var(--dim); z-index: 5;
@@ -372,7 +372,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', s
 }
 /* 지도 위 플로팅 메트릭 토글 (PC) */
 .metric-toggle {
-  position: fixed; bottom: 96px; left: 380px; display: flex; gap: 2px;
+  position: fixed; bottom: 112px; left: 380px; display: flex; gap: 2px;
   background: rgba(10,10,18,0.92); border: 1px solid var(--accent); border-radius: 8px;
   padding: 4px; z-index: 10;
 }
@@ -723,6 +723,8 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', s
 <!-- ★ 2026-08-22 showFlows 기본값을 true 로 바꿨으므로 버튼 초기 상태도 맞춘다.
      안 맞추면 흐름이 켜져 있는데 버튼은 「표시」라고 말한다 = 화면과 상태가 어긋난다. -->
 <div class="flow-toggle active" id="flowToggle" onclick="toggleFlows()">물류 흐름 숨기기</div>
+<!-- ★ 2026-08-22 몇 개를 그리고 있는지 화면에 적는다. 상위만 보여주면서 말 안 하면 전부인 줄 안다. -->
+
 <div class="metric-toggle" id="metricToggle">
   <button class="metric-btn active" data-metric="qty" onclick="setMapMetric('qty')">물량</button>
   <button class="metric-btn" data-metric="amount" onclick="setMapMetric('amount')">금액</button>
@@ -820,6 +822,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', s
 </div>
 
 <div class="legend">
+  <span id="flowNote" style="color:#8a8a95"></span>
   <span><span class="legend-dot" style="background:#4ade80;"></span>상위 30%</span>
   <span><span class="legend-dot" style="background:#60a5fa;"></span>중간</span>
   <span><span class="legend-dot" style="background:#fb923c;"></span>하위 40%</span>
@@ -3004,6 +3007,21 @@ function updateLayers() {
     if (selectedMarket) {
       domesticFlows = domesticFlows.filter(f => f.dest_market === selectedMarket);
     }
+    // ★ 2026-08-22 (WHOLESALE-T3) — 그리는 개수를 줄인다.
+    //   196개를 전부 그렸더니 수도권 위가 초록 덩어리가 되어 무엇이 큰 흐름인지 안 보였다.
+    //   ⚠️ 데이터를 버리는 게 아니라 「보이는 것」만 줄인다. 줄였다는 사실은 화면에 적는다
+    //      (범례 옆 flowNote). 안 적으면 보는 사람이 전부인 줄 안다.
+    //   시장을 고르면 그 시장 것만 남으므로 더 많이 보여준다.
+    const FLOW_TOP_N = selectedMarket ? 90 : 55;
+    const _flowTotal = domesticFlows.length;
+    domesticFlows = domesticFlows
+      .slice()
+      .sort((a, b) => (b.trades || 0) - (a.trades || 0))
+      .slice(0, FLOW_TOP_N);
+    const _fn = document.getElementById('flowNote');
+    if (_fn) _fn.textContent = _flowTotal > domesticFlows.length
+      ? `물류 흐름 상위 ${domesticFlows.length}개 표시 (전체 ${_flowTotal}개)`
+      : `물류 흐름 ${domesticFlows.length}개`;
     // 법인별 분위수로 색상 분배 (각 법인 내에서 상대적 상/중/하위)
     const corpFlowMap = {};
     for (const f of domesticFlows) {
@@ -3120,8 +3138,51 @@ function updateLayers() {
   }));
 
   // === 법인 이름 ===
+  // ★ 2026-08-22 (WHOLESALE-T3) — 라벨을 상위만 그린다.
+  //   81곳 전부에 이름을 달았더니 수도권(서울가락 6곳·강서·구리·인천)에서 글자가 포개져
+  //   하나도 안 읽혔다. 이름을 다 적는 것과 이름이 읽히는 것은 다르다.
+  //   ⚠️ 예외 셋은 개수와 무관하게 항상 남긴다:
+  //      우리 법인 / 고른 법인 / 고른 시장의 법인. 찾으려던 것이 사라지면 안 된다.
+  //   [2차 정리 2026-08-22] 상위 22곳으로 줄여도 수도권은 안 풀렸다.
+  //   서울가락 한 점에 법인 6곳이 겹쳐 있는데 그 여섯이 전부 상위이기 때문이다.
+  //   ⇒ 규칙을 바꾼다: 한 시장에 법인이 여럿이면 「시장 이름 + N곳」 하나만 쓴다.
+  //      법인 이름은 그 시장을 눌렀을 때 나온다.
+  //      예외 = 우리 법인·고른 법인·고른 시장은 언제나 법인 이름으로 보인다.
+  const LABEL_TOP_N = 22;
+  const _topSet = new Set(
+    corpPositions.slice()
+      .sort((a, b) => (b.total_qty || 0) - (a.total_qty || 0))
+      .slice(0, LABEL_TOP_N)
+      .map(d => d.corp));
+  const labelData = [];
+  for (const [code, corps] of Object.entries(marketGroups)) {
+    const mkt = corps[0];
+    const expanded = selectedMarket && mkt.market === selectedMarket;
+    const pinned = corps.filter(c =>
+      isMyCorp(c) || (selectedCorp && c.corp === selectedCorp));
+    if (corps.length === 1 || expanded) {
+      // 법인이 하나뿐이거나 그 시장을 고른 상태 = 법인 이름 그대로
+      for (const c of corps) {
+        const p = corpPositions.find(x => x.corp === c.corp && x.market === c.market);
+        if (p && (expanded || _topSet.has(c.corp) || isMyCorp(c))) labelData.push(p);
+      }
+    } else {
+      // 여럿이면 시장 하나로 묶는다. 다만 우리 법인·고른 법인은 따로 남긴다.
+      for (const c of pinned) {
+        const p = corpPositions.find(x => x.corp === c.corp && x.market === c.market);
+        if (p) labelData.push(p);
+      }
+      const qty = corps.reduce((s, c) => s + (c.total_qty || 0), 0);
+      if (_topSet.has(corps[0].corp) || corps.some(c => _topSet.has(c.corp)) || pinned.length === 0) {
+        labelData.push({
+          corp: `${mkt.market} ${corps.length}곳`, market: mkt.market,
+          displayLat: mkt.lat, displayLng: mkt.lng, total_qty: qty, _isMarket: true,
+        });
+      }
+    }
+  }
   layers.push(new deck.TextLayer({
-    id: 'labels', data: corpPositions,
+    id: 'labels', data: labelData,
     getPosition: d => [d.displayLng, d.displayLat],
     getText: d => {
       const name = d.corp.replace('㈜','').replace('(공)','');
