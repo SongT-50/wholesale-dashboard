@@ -2994,7 +2994,13 @@ function updateLayers() {
   }
   // === 전체 흐름 (시장 선택 시 자동 표시) ===
   else if ((showFlows || selectedMarket) && summaryData.flows) {
-    let domesticFlows = summaryData.flows.filter(f => f.origin_lat && f.origin_lat !== 0 && !f.foreign);
+    // ★ 2026-08-22 (WHOLESALE-T3) — 좌표가 한국 밖이면 거른다.
+    //   foreign 플래그만 믿으면 샌다. 실물: 「수입산」은 foreign=false 인데
+    //   좌표가 (33.0, 125.0) = 제주 서쪽 바다라 지도에 원이 떠 있었다.
+    //   플래그는 사람이 붙이고 좌표는 계산된다. 좌표로 거르는 쪽이 앞으로도 막는다.
+    const inKorea = (la, ln) => la >= 33.0 && la <= 38.7 && ln >= 125.8 && ln <= 129.7;
+    let domesticFlows = summaryData.flows.filter(
+      f => f.origin_lat && f.origin_lat !== 0 && !f.foreign && inKorea(f.origin_lat, f.origin_lng));
     if (selectedMarket) {
       domesticFlows = domesticFlows.filter(f => f.dest_market === selectedMarket);
     }
@@ -3146,7 +3152,14 @@ function updateLayers() {
 function renderMap() {
   deckgl = new deck.DeckGL({
     container: 'map',
-    mapStyle: 'https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json',
+    // ★ 2026-08-22 (WHOLESALE-T3) — 라벨 없는 배경으로 바꿨다.
+    //   왜: 기본 스타일의 지명이 전부 영어였다(Daejeon·Daegu·Busan·Gwangju…).
+    //   한국 도매시장 대시보드인데 지도가 영어로 말하고 있었다.
+    //   그리고 우리는 시장·법인 이름을 직접 한글로 그린다(TextLayer 11개).
+    //   배경 라벨을 끄면 영어가 사라지고 우리 한글 라벨만 남아 겹침도 준다.
+    //   ⚠️ 전제 = 그 한글 라벨이 실제로 그려져야 한다. 같은 날 characterSet 을 고쳐서
+    //      한글이 렌더되게 만든 뒤에 이 변경을 넣었다. 순서가 반대면 빈 지도가 된다.
+    mapStyle: 'https://basemaps.cartocdn.com/gl/dark-matter-nolabels-gl-style/style.json',
     initialViewState: { longitude: 127.5, latitude: 36.0, zoom: 7, pitch: 30, bearing: 0 },
     controller: true,
     getTooltip: ({object}) => {
