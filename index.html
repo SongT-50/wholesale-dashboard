@@ -720,7 +720,9 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', s
   <div id="foreignList"></div>
 </div>
 <button class="mobile-toggle" id="mobileToggle" onclick="toggleMobilePanel()">지도 보기</button>
-<div class="flow-toggle" id="flowToggle" onclick="toggleFlows()">물류 흐름 표시</div>
+<!-- ★ 2026-08-22 showFlows 기본값을 true 로 바꿨으므로 버튼 초기 상태도 맞춘다.
+     안 맞추면 흐름이 켜져 있는데 버튼은 「표시」라고 말한다 = 화면과 상태가 어긋난다. -->
+<div class="flow-toggle active" id="flowToggle" onclick="toggleFlows()">물류 흐름 숨기기</div>
 <div class="metric-toggle" id="metricToggle">
   <button class="metric-btn active" data-metric="qty" onclick="setMapMetric('qty')">물량</button>
   <button class="metric-btn" data-metric="amount" onclick="setMapMetric('amount')">금액</button>
@@ -883,7 +885,12 @@ let selectedCorpData = null;
 let selectedProduct = null;
 let selectedPriceProduct = null;
 let selectedMarket = null;
-let showFlows = false;
+// ★ 2026-08-22 (WHOLESALE-T3) — 기본값 false -> true.
+//   물류 흐름이 이 대시보드에서 제일 보여줄 것인데 첫 화면에 안 나왔다.
+//   버튼을 눌러야 나오니 처음 여는 사람은 있는 줄도 모른다.
+//   summary 에 flows 200개가 이미 들어 있다(산지 GPS 198개 매칭). 안 쓰고 있었을 뿐이다.
+//   ⇒ 끄고 싶으면 「물류 흐름 숨기기」 버튼이 그대로 있다.
+let showFlows = true;
 // ★ 2026-08-22 (WHOLESALE-T3) — 첫 화면을 「정산이 완비된 날」로 연다.
 //   왜: 예전엔 오늘부터 뒤로 훑어 '파일이 있는 첫 날'을 썼다. 그런데
 //   「파일이 있다」와 「데이터가 찼다」는 다르다. 어제 것은 파일이 있어도 절반만 차 있다.
