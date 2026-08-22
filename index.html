@@ -495,6 +495,12 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', s
 }
 .credit-bar .credit-name { color: var(--yellow); font-weight: 700; }
 
+/* 공모전 제출용 캡처 모드 (?contest=1) — 기본 화면은 그대로다.
+   왜: 제출물 캡처에 회사명·개인명·이메일이 찍히면 안 된다(익명 심사).
+   URL 에 contest 가 붙었을 때만 감춘다. 붙지 않은 평소 화면은 한 글자도 안 바뀐다. */
+body.contest-mode .credit-bar,
+body.contest-mode .guide-footer { display: none !important; }
+
 /* 가이드 헤더 버튼 */
 .guide-header-btn {
   background: rgba(74,222,128,0.1); border: 1px solid rgba(74,222,128,0.4);
@@ -882,6 +888,16 @@ function toggleMobilePanel() {
 }
 
 let summaryData = null;
+// ★ 2026-08-22 (IN-T3) — 공모전 제출용 캡처 모드.
+//   URL 에 ?contest=1 이 붙으면 「우리 법인 강조」를 끈다(별·노란 펄스·항상 라벨).
+//   왜: 캡처에 회사명이 남으면 익명 심사에서 멈춘다. 게이트 ④ 멈춤 조건이다.
+//   ⚠️ 기본값은 그대로다. 파라미터가 없으면 예전 화면과 완전히 같다.
+//   확인법: 주소창에 ?contest=1 을 붙였을 때만 별이 사라진다.
+const CONTEST_MODE = new URLSearchParams(location.search).has('contest');
+//   매칭되지 않는 이름을 넣어 강조 분기를 통째로 비활성화한다(코드 분기를 안 건드린다).
+const MY_CORP_NAME = CONTEST_MODE ? '\u0000__NO_MY_CORP__' : '대전중앙청과㈜';
+if (CONTEST_MODE) document.body.classList.add('contest-mode');
+
 let deckgl = null;
 let selectedCorp = null;
 let selectedCorpData = null;
@@ -1776,7 +1792,7 @@ function renderCorpList() {
   const sorted = [...summaryData.corporations].sort((a, b) => getCorpMetricValue(b) - getCorpMetricValue(a));
   for (const corp of sorted) {
     const div = document.createElement('div');
-    const isMy = corp.corp === '대전중앙청과㈜';
+    const isMy = corp.corp === MY_CORP_NAME;
     div.className = 'corp-item' + (isMy ? ' my-corp' : '');
     div.dataset.corp = corp.corp;
     const badge = isMy ? '<span class="my-badge">MY</span>' : '';
@@ -2167,7 +2183,7 @@ function selectPriceProduct(productName) {
   buildOriginToggle(productName);
 
   if (deckgl) {
-    deckgl.setProps({ initialViewState: { longitude: 127.5, latitude: 36.0, zoom: 7, pitch: 30, bearing: 0, transitionDuration: 800 } });
+    deckgl.setProps({ initialViewState: { longitude: 127.9, latitude: 36.4, zoom: 7.1, pitch: 18, bearing: 0, transitionDuration: 800 } });
   }
   updateLayers();
 }
@@ -2268,7 +2284,7 @@ function renderShipmentList() {
     corpList.className = 'ship-corp-list';
 
     for (const c of corps) {
-      const isMy = c.corp === '대전중앙청과㈜';
+      const isMy = c.corp === MY_CORP_NAME;
       const item = document.createElement('div');
       item.className = 'ship-corp-item';
       const badge = isMy ? '<span class="my-badge" style="margin-left:0;margin-right:4px;">MY</span>' : '';
@@ -2455,7 +2471,7 @@ function updateLayers() {
       '대전오정', '대전노은', '울산']);
     const originIsGpj = c => c.corp.includes('(공)');
     const originTierCorps = corpPositions.filter(c =>
-      c.corp !== '대전중앙청과㈜' &&
+      c.corp !== MY_CORP_NAME &&
       (originIsGpj(c) || ORIGIN_T1.has(c.market) || ORIGIN_T2.has(c.market)));
     if (originTierCorps.length > 0) {
       layers.push(new deck.ScatterplotLayer({
@@ -2611,7 +2627,7 @@ function updateLayers() {
         },
         radiusMinPixels: 12, radiusMaxPixels: 40,
         getFillColor: [0,0,0,0],
-        getLineColor: d => d.corp === '대전중앙청과㈜' ? [250,204,21,255] : [244,63,94,255],
+        getLineColor: d => d.corp === MY_CORP_NAME ? [250,204,21,255] : [244,63,94,255],
         lineWidthMinPixels: 3, stroked: true, filled: false,
       }));
       // 법인 내부 점 (위층 - 작고 진한 빨강)
@@ -2623,7 +2639,7 @@ function updateLayers() {
           return Math.max(800, Math.sqrt(kg / maxCorpKg) * 2500);
         },
         radiusMinPixels: 5, radiusMaxPixels: 18,
-        getFillColor: d => d.corp === '대전중앙청과㈜' ? [250,204,21,255] : [225,29,72,240],
+        getFillColor: d => d.corp === MY_CORP_NAME ? [250,204,21,255] : [225,29,72,240],
         getLineColor: [255,255,255,255], lineWidthMinPixels: 1.5, stroked: true, pickable: true,
       }));
       layers.push(new deck.TextLayer({
@@ -2631,7 +2647,7 @@ function updateLayers() {
         getPosition: d => [d.displayLng, d.displayLat],
         getText: d => d.corp.replace('㈜','').replace('(공)',''),
         getSize: 11,
-        getColor: d => d.corp === '대전중앙청과㈜' ? [250,204,21,255] : [252,165,165,255],
+        getColor: d => d.corp === MY_CORP_NAME ? [250,204,21,255] : [252,165,165,255],
         getPixelOffset: [0, 20], characterSet: 'auto', fontFamily: 'Noto Sans KR', fontWeight: 700,
         outlineWidth: 3, outlineColor: [10,10,18,255], getTextAnchor: 'middle',
       }));
@@ -2685,7 +2701,7 @@ function updateLayers() {
           getSourcePosition: d => d.from,
           getTargetPosition: d => d.to,
           getSourceColor: [74,222,128,90],
-          getTargetColor: d => d.corp === '대전중앙청과㈜' ? [250,204,21,235] : [96,165,250,215],
+          getTargetColor: d => d.corp === MY_CORP_NAME ? [250,204,21,235] : [96,165,250,215],
           getWidth: d => Math.max(1.6, Math.min(Math.pow(d.kg/maxArc, 0.55) * 14, 14)),
           getHeight: arcH,
           getTilt: d => ((d.from[0] - d.to[0]) > 0 ? 1 : -1) * Math.min(22, Math.abs(d.from[0]-d.to[0]) * 9),
@@ -2757,8 +2773,8 @@ function updateLayers() {
         id: 'shipment-dots', data: shipCorps,
         getPosition: d => [d.lng, d.lat],
         getRadius: d => Math.max(800, (d.qty_kg / maxKg) * 8000),
-        getFillColor: d => d.corp === '대전중앙청과㈜' ? [250,204,21,200] : [192,132,252,180],
-        getLineColor: d => d.corp === '대전중앙청과㈜' ? [255,152,0,255] : [255,255,255,80],
+        getFillColor: d => d.corp === MY_CORP_NAME ? [250,204,21,200] : [192,132,252,180],
+        getLineColor: d => d.corp === MY_CORP_NAME ? [255,152,0,255] : [255,255,255,80],
         lineWidthMinPixels: 1, stroked: true, pickable: true,
         onClick: ({object}) => { if (object) showShipmentDetail(object); },
       }));
@@ -2769,7 +2785,7 @@ function updateLayers() {
         getPosition: d => [d.lng, d.lat],
         getText: d => `${d.corp.replace('㈜','').replace('(공)','')}\n${(d.qty_kg/1000).toFixed(1)}톤`,
         getSize: 11,
-        getColor: d => d.corp === '대전중앙청과㈜' ? [255,183,77,255] : [192,132,252,220],
+        getColor: d => d.corp === MY_CORP_NAME ? [255,183,77,255] : [192,132,252,220],
         getPixelOffset: [0, -25], characterSet: 'auto', fontFamily: 'Noto Sans KR', fontWeight: 700,
         outlineWidth: 4, outlineColor: [10,10,18,240], getTextAnchor: 'middle',
       }));
@@ -3044,7 +3060,7 @@ function updateLayers() {
   }
 
   // === 우리 법인 강조 ===
-  const MY_CORP = '대전중앙청과㈜';
+  const MY_CORP = MY_CORP_NAME;
   const isMyCorp = d => d.corp === MY_CORP;
 
   // 우리 법인 펄스 링 (노란색 깜빡이는 외곽선)
@@ -3075,7 +3091,7 @@ function updateLayers() {
       '대전오정', '대전노은', '울산']);
     const isGongpanjang = c => c.corp.includes('(공)');
     const tieredCorps = corpPositions.filter(c =>
-      c.corp !== '대전중앙청과㈜' &&
+      c.corp !== MY_CORP_NAME &&
       (isGongpanjang(c) || MARKET_T1.has(c.market) || MARKET_T2.has(c.market)));
 
     if (tieredCorps.length > 0) {
@@ -3221,7 +3237,11 @@ function renderMap() {
     //   ⚠️ 전제 = 그 한글 라벨이 실제로 그려져야 한다. 같은 날 characterSet 을 고쳐서
     //      한글이 렌더되게 만든 뒤에 이 변경을 넣었다. 순서가 반대면 빈 지도가 된다.
     mapStyle: 'https://basemaps.cartocdn.com/gl/dark-matter-nolabels-gl-style/style.json',
-    initialViewState: { longitude: 127.5, latitude: 36.0, zoom: 7, pitch: 30, bearing: 0 },
+    initialViewState: { longitude: 127.9, latitude: 36.4, zoom: 7.1, pitch: 18, bearing: 0 },
+    // ★ 2026-08-22 (WHOLESALE-T3) — 전체 지도가 화면에 꽉 차게.
+    //   전: 위도 36.0 · 기울기 30도. 서울이 화면 위로 잘리고 남한이 왼쪽에 몰렸다.
+    //   기울기를 30 -> 18 로 낮췄다. 0 으로 하면 물류 곡선의 아치가 납작해져 흐름이 안 보인다.
+    //   경도를 오른쪽으로 민 이유 = 지도 영역이 왼쪽 패널(360px) 옆이라 중심이 왼쪽으로 치우친다.
     controller: true,
     getTooltip: ({object}) => {
       if (!object) return null;
