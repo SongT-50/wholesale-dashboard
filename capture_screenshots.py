@@ -1,4 +1,5 @@
 """대시보드 스크린샷 캡처 — Playwright로 자동화"""
+import os
 import sys
 import time
 from pathlib import Path
@@ -9,7 +10,10 @@ sys.stdout.reconfigure(encoding="utf-8")
 OUT_DIR = Path(__file__).parent / "screenshots"
 OUT_DIR.mkdir(exist_ok=True)
 
-URL = "http://localhost:8000/index.html"
+# ★ 2026-08-22 (WHOLESALE-T3) — 포트를 하드코딩하지 않는다.
+#   8000 이 박혀 있어서 다른 포트로 띄운 서버에는 못 붙었다.
+#   공모전 제출용 캡처를 뜨려는데 그것 때문에 막혔다.
+URL = os.getenv("DASHBOARD_URL", "http://localhost:8000/index.html")
 
 
 def capture(page, name, delay=2):
