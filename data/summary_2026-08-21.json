@@ -8,5 +8,396 @@
   "corporations": [],
   "markets": [],
   "flows": [],
-  "price_map": {}
+  "price_map": {},
+  "shipments": {
+    "date": "2026-08-22",
+    "total_qty": 13058,
+    "total_records": 98,
+    "total_qty_kg": 114439.3,
+    "market_count": 10,
+    "corp_count": 13,
+    "markets": [
+      {
+        "market": "울산",
+        "qty": 2340,
+        "qty_kg": 46800.0
+      },
+      {
+        "market": "안산",
+        "qty": 2400,
+        "qty_kg": 31100.0
+      },
+      {
+        "market": "서울가락",
+        "qty": 2889,
+        "qty_kg": 9644.0
+      },
+      {
+        "market": "광주서부",
+        "qty": 1796,
+        "qty_kg": 9464.0
+      },
+      {
+        "market": "대전오정",
+        "qty": 2322,
+        "qty_kg": 8382.0
+      },
+      {
+        "market": "청주",
+        "qty": 288,
+        "qty_kg": 4320.0
+      },
+      {
+        "market": "안동",
+        "qty": 144,
+        "qty_kg": 2160.0
+      },
+      {
+        "market": "부산엄궁",
+        "qty": 145,
+        "qty_kg": 1380.0
+      },
+      {
+        "market": "전주",
+        "qty": 435,
+        "qty_kg": 875.0
+      },
+      {
+        "market": "강릉",
+        "qty": 299,
+        "qty_kg": 314.3
+      }
+    ],
+    "corporations": [
+      {
+        "corp": "울산중앙청과시장㈜",
+        "market": "울산",
+        "market_code": "380201",
+        "lat": 35.5469,
+        "lng": 129.257,
+        "qty": 2340,
+        "qty_kg": 46800.0,
+        "products": [
+          {
+            "name": "마늘",
+            "qty": 2340,
+            "qty_kg": 46800.0,
+            "grade": "."
+          }
+        ]
+      },
+      {
+        "corp": "안산농산물㈜",
+        "market": "안산",
+        "market_code": "310901",
+        "lat": 37.3139,
+        "lng": 126.8308,
+        "qty": 2400,
+        "qty_kg": 31100.0,
+        "products": [
+          {
+            "name": "배추",
+            "qty": 1000,
+            "qty_kg": 10000.0,
+            "grade": "."
+          },
+          {
+            "name": "무",
+            "qty": 500,
+            "qty_kg": 10000.0,
+            "grade": "."
+          },
+          {
+            "name": "양파",
+            "qty": 600,
+            "qty_kg": 8100.0,
+            "grade": "특"
+          },
+          {
+            "name": "양배추",
+            "qty": 300,
+            "qty_kg": 3000.0,
+            "grade": "특"
+          }
+        ]
+      },
+      {
+        "corp": "농협가락(공)",
+        "market": "서울가락",
+        "market_code": "110001",
+        "lat": 37.4943,
+        "lng": 127.0124,
+        "qty": 2829,
+        "qty_kg": 9278.5,
+        "products": [
+          {
+            "name": "새송이버섯",
+            "qty": 1244,
+            "qty_kg": 3110.0,
+            "grade": "특"
+          },
+          {
+            "name": "팽이버섯",
+            "qty": 586,
+            "qty_kg": 2930.0,
+            "grade": "특"
+          },
+          {
+            "name": "표고버섯",
+            "qty": 168,
+            "qty_kg": 1629.0,
+            "grade": "특"
+          },
+          {
+            "name": "느타리버섯",
+            "qty": 573,
+            "qty_kg": 1146.0,
+            "grade": "특"
+          },
+          {
+            "name": "양송이",
+            "qty": 153,
+            "qty_kg": 306.0,
+            "grade": "특"
+          },
+          {
+            "name": "만가닥",
+            "qty": 105,
+            "qty_kg": 157.5,
+            "grade": "특"
+          }
+        ]
+      },
+      {
+        "corp": "㈜호남청과",
+        "market": "광주서부",
+        "market_code": "240004",
+        "lat": 35.192,
+        "lng": 126.808,
+        "qty": 1018,
+        "qty_kg": 7930.0,
+        "products": [
+          {
+            "name": "양배추",
+            "qty": 732,
+            "qty_kg": 7320.0,
+            "grade": "특"
+          },
+          {
+            "name": "마늘",
+            "qty": 286,
+            "qty_kg": 610.0,
+            "grade": "상, 중, 하"
+          }
+        ]
+      },
+      {
+        "corp": "대전청과㈜",
+        "market": "대전오정",
+        "market_code": "250001",
+        "lat": 36.3862,
+        "lng": 127.426,
+        "qty": 2092,
+        "qty_kg": 6082.0,
+        "products": [
+          {
+            "name": "대파",
+            "qty": 1854,
+            "qty_kg": 3708.0,
+            "grade": "특"
+          },
+          {
+            "name": "바나나",
+            "qty": 148,
+            "qty_kg": 1924.0,
+            "grade": "특"
+          },
+          {
+            "name": "팽이버섯",
+            "qty": 90,
+            "qty_kg": 450.0,
+            "grade": "특"
+          }
+        ]
+      },
+      {
+        "corp": "충북원협청주(공)",
+        "market": "청주",
+        "market_code": "330101",
+        "lat": 36.6424,
+        "lng": 127.489,
+        "qty": 288,
+        "qty_kg": 4320.0,
+        "products": [
+          {
+            "name": "양파",
+            "qty": 288,
+            "qty_kg": 4320.0,
+            "grade": "특"
+          }
+        ]
+      },
+      {
+        "corp": "농협대전(공)",
+        "market": "대전오정",
+        "market_code": "250001",
+        "lat": 36.3862,
+        "lng": 127.426,
+        "qty": 230,
+        "qty_kg": 2300.0,
+        "products": [
+          {
+            "name": "얼갈이배추",
+            "qty": 230,
+            "qty_kg": 2300.0,
+            "grade": "특"
+          }
+        ]
+      },
+      {
+        "corp": "(주)경북청과",
+        "market": "안동",
+        "market_code": "370401",
+        "lat": 36.5684,
+        "lng": 128.7294,
+        "qty": 144,
+        "qty_kg": 2160.0,
+        "products": [
+          {
+            "name": "방울토마토",
+            "qty": 144,
+            "qty_kg": 2160.0,
+            "grade": "특"
+          }
+        ]
+      },
+      {
+        "corp": "두레청과㈜",
+        "market": "광주서부",
+        "market_code": "240004",
+        "lat": 35.192,
+        "lng": 126.808,
+        "qty": 778,
+        "qty_kg": 1534.0,
+        "products": [
+          {
+            "name": "팽이버섯",
+            "qty": 200,
+            "qty_kg": 1000.0,
+            "grade": "특"
+          },
+          {
+            "name": "감귤",
+            "qty": 578,
+            "qty_kg": 534.0,
+            "grade": "특"
+          }
+        ]
+      },
+      {
+        "corp": "항도청과㈜",
+        "market": "부산엄궁",
+        "market_code": "210001",
+        "lat": 35.143,
+        "lng": 128.978,
+        "qty": 145,
+        "qty_kg": 1380.0,
+        "products": [
+          {
+            "name": "호박",
+            "qty": 145,
+            "qty_kg": 1380.0,
+            "grade": "특"
+          }
+        ]
+      },
+      {
+        "corp": "전주청과물㈜",
+        "market": "전주",
+        "market_code": "350101",
+        "lat": 35.8168,
+        "lng": 127.111,
+        "qty": 435,
+        "qty_kg": 875.0,
+        "products": [
+          {
+            "name": "양파",
+            "qty": 435,
+            "qty_kg": 875.0,
+            "grade": "5등"
+          }
+        ]
+      },
+      {
+        "corp": "서울청과㈜",
+        "market": "서울가락",
+        "market_code": "110001",
+        "lat": 37.4943,
+        "lng": 127.0124,
+        "qty": 60,
+        "qty_kg": 365.5,
+        "products": [
+          {
+            "name": "사과",
+            "qty": 23,
+            "qty_kg": 230.0,
+            "grade": "특"
+          },
+          {
+            "name": "방울토마토",
+            "qty": 9,
+            "qty_kg": 45.0,
+            "grade": "특"
+          },
+          {
+            "name": "팽이버섯",
+            "qty": 9,
+            "qty_kg": 42.0,
+            "grade": "특"
+          },
+          {
+            "name": "느타리버섯",
+            "qty": 12,
+            "qty_kg": 24.0,
+            "grade": "특"
+          },
+          {
+            "name": "파프리카",
+            "qty": 4,
+            "qty_kg": 20.0,
+            "grade": "특"
+          },
+          {
+            "name": "만가닥",
+            "qty": 3,
+            "qty_kg": 4.5,
+            "grade": "특"
+          }
+        ]
+      },
+      {
+        "corp": "㈜강릉농산물",
+        "market": "강릉",
+        "market_code": "320301",
+        "lat": 37.7519,
+        "lng": 128.8961,
+        "qty": 299,
+        "qty_kg": 314.3,
+        "products": [
+          {
+            "name": "마늘",
+            "qty": 234,
+            "qty_kg": 211.8,
+            "grade": "특"
+          },
+          {
+            "name": "양파",
+            "qty": 65,
+            "qty_kg": 102.5,
+            "grade": "특"
+          }
+        ]
+      }
+    ]
+  }
 }
