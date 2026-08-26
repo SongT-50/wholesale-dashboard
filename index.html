@@ -552,7 +552,7 @@ body.contest-mode .guide-footer { display: none !important; }
 <body>
 <div id="map"></div>
 
-<div class="credit-bar">거래정보 : <span class="credit-name">대전중앙청과 송태은</span> &nbsp;|&nbsp; 최근 7일 공개 &nbsp;|&nbsp; higheun@gmail.com</div>
+<div class="credit-bar">거래정보 : <span class="credit-name">대전중앙청과 송태은</span> &nbsp;|&nbsp; 최근 7일 공개 &nbsp;|&nbsp; tjc.co.kr</div>
 
 <div class="panel">
   <h1 style="display:flex;align-items:center;gap:8px;">전국 도매시장 법인 <button class="guide-header-btn" onclick="toggleGuide()">사용 가이드</button></h1>
@@ -586,7 +586,7 @@ body.contest-mode .guide-footer { display: none !important; }
     <div class="summary-card"><div class="num" id="totalQty">-</div><div class="label">물량(톤)</div></div>
     <div class="summary-card"><div class="num" id="totalAmount">-</div><div class="label">거래금액</div></div>
     <div class="summary-card"><div class="num" id="totalTrades">-</div><div class="label">거래건수</div></div>
-    <div class="summary-card"><div class="num" id="totalCorps">-</div><div class="label">법인</div></div>
+    <div class="summary-card"><div class="num" id="totalCorps">-</div><div class="label">법인·공판장</div></div>
   </div>
 
   <div class="metric-toggle-inline" id="metricToggleInline">
@@ -812,7 +812,7 @@ body.contest-mode .guide-footer { display: none !important; }
     </div>
 
     <div class="guide-footer">
-      거래정보 : 대전중앙청과 송태은 &nbsp;|&nbsp; 문의: higheun@gmail.com
+      거래정보 : 대전중앙청과 송태은 &nbsp;|&nbsp; 문의: tjc.co.kr
     </div>
   </div>
 </div>
@@ -1294,7 +1294,9 @@ function updateSummary() {
 // === 상태 바 / 기간 배지 (5초 컨텍스트) ===
 function updateContextBar() {
   if (!summaryData) return;
-  const periodLabel = {'1d':'1일 정산','1w':'최근 7일 합산','1m':'최근 31일 합산','1y':'최근 365일 합산'}[currentPeriod] || '1일 정산';
+  // 라벨은 실제 합산된 날 수를 말한다 (요약본이 없는 날은 건너뛰므로 창 크기와 다르다)
+  const _dc = summaryData.days_count;
+  const periodLabel = (currentPeriod === '1d' || !_dc) ? '1일 정산' : `최근 ${_dc}일 합산`;
   const metricLabel = {qty:'물량 기준', amount:'금액 기준', trades:'건수 기준'}[mapMetric] || '물량 기준';
   const dateEl = document.getElementById('ctxDate');
   const perEl  = document.getElementById('ctxPeriod');
@@ -1303,15 +1305,15 @@ function updateContextBar() {
   if (dateEl) dateEl.textContent = summaryData.date;
   if (perEl)  perEl.textContent  = periodLabel;
   if (metEl)  metEl.textContent  = metricLabel;
-  if (corpEl) corpEl.textContent = `${summaryData.corp_count}법인`;
+  if (corpEl) corpEl.textContent = `${summaryData.corp_count}곳`;
 }
 
 function updatePeriodBadge() {
   const badge = document.getElementById('periodBadge');
   if (!badge) return;
-  const map = {'1w':'최근 7일 합산', '1m':'최근 31일 합산', '1y':'최근 365일 합산'};
-  if (map[currentPeriod]) {
-    badge.textContent = map[currentPeriod];
+  const dc = summaryData && summaryData.days_count;
+  if (currentPeriod !== '1d' && dc) {
+    badge.textContent = `최근 ${dc}일 합산`;
     badge.classList.add('visible');
   } else {
     badge.classList.remove('visible');
@@ -2043,7 +2045,7 @@ function selectProduct(productName) {
     const badge = info.isMine ? '●' : '○';
     div.innerHTML = `<span style="color:${nameColor};min-width:14px;">${badge}</span>
       <span class="ot-name" style="color:${nameColor}">${name}</span>
-      <span class="ot-corps">${info.corps.length}법인 ${info.totalTrades}건</span>`;
+      <span class="ot-corps">${info.corps.length}곳 ${info.totalTrades}건</span>`;
     oList.appendChild(div);
   }
   document.getElementById('originFloatPanel').classList.add('visible');
@@ -2218,7 +2220,7 @@ function buildOriginToggle(productName) {
     div.title = corpNames;
     div.innerHTML = `<input type="checkbox" checked data-origin="${name}">
       <span class="ot-name" style="color:${info.foreign ? 'var(--yellow)' : 'var(--text)'}">${name}</span>
-      <span class="ot-corps">${info.corps.length}법인 ${info.totalTrades}건</span>`;
+      <span class="ot-corps">${info.corps.length}곳 ${info.totalTrades}건</span>`;
     div.querySelector('input').addEventListener('change', function() {
       if (this.checked) enabledOrigins.add(name); else enabledOrigins.delete(name);
       updateLayers();
@@ -2273,7 +2275,7 @@ function renderShipmentList() {
 
     const hdr = document.createElement('div');
     hdr.className = 'ship-market-header';
-    hdr.innerHTML = `<span class="ship-market-name">${mkt} (${corps.length}법인)</span>
+    hdr.innerHTML = `<span class="ship-market-name">${mkt} (${corps.length}곳)</span>
       <span class="ship-market-info">${mktItems.toLocaleString()}건 | ${(mktKg/1000).toFixed(1)}톤</span>`;
     hdr.onclick = () => {
       hdr.classList.toggle('expanded');
@@ -2939,7 +2941,7 @@ function updateLayers() {
       layers.push(new deck.TextLayer({
         id: 'other-origin-labels', data: otherOrigins,
         getPosition: d => [d.lng, d.lat],
-        getText: d => `${d.name} ${d.totalTrades}건 (${d.corps.length}법인)`,
+        getText: d => `${d.name} ${d.totalTrades}건 (${d.corps.length}곳)`,
         getSize: 10, getColor: [192,132,252,220], getPixelOffset: [0, -14],
         characterSet: 'auto', fontFamily: 'Noto Sans KR', fontWeight: 700, outlineWidth: 3, outlineColor: [10,10,18,220],
       }));
