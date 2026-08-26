@@ -1147,7 +1147,9 @@ async function loadForPeriod(preserveSelection = false) {
     } else {
       // daily 파일들을 병렬 로드 후 머지
       const dates = getDailyDates(currentPeriod);
-      loading.textContent = `${dates.length}일치 로딩 중...`;
+      // dates.length 는 「찾아보는 창의 크기」이지 「실제로 있는 날 수」가 아니다.
+      // 그대로 쓰면 365일치 로딩 중 이라 뜨고 결과는 116일이 된다.
+      loading.textContent = `${dates.length}일 범위에서 불러오는 중...`;
       const fetches = dates.map(d => fetch(`data/summary_${d}.json`).then(r => r.ok ? r.json() : null).catch(() => null));
       const results = (await Promise.all(fetches)).filter(Boolean);
       if (_loadSeq !== mySeq) return; // 새 요청이 들어왔으면 무시
