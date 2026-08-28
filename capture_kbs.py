@@ -41,6 +41,33 @@ NATIONWIDE = ("() => { deckgl.setProps({ initialViewState: { longitude: 127.9, "
               "transitionDuration: 900 } }); }")
 
 
+def fix_legend(page):
+    """범례에서 「경쟁 산지」를 뺀다 (PIPE #11403).
+
+    ★ 「경쟁」은 해석이 들어간 말이고 사실이 아니다.
+      코드상 보라의 정의 = 그 품목을 「다른 법인이 받은 산지」 중 우리 산지에 없는 곳
+      (index.html 2023행 근처: corp.corp !== selectedCorp 인 법인의 product_origins).
+    ⚠️ 6쪽 본문이 이미 순화해서 쓴다. 화면만 「경쟁」이라 하면 둘이 다른 말을 한다.
+      PIPE 게이트 = 이 한 장만 보고 주황과 보라가 무엇인지 알 수 있나. ⇒ 자르지 않고 문구를 바꾼다.
+    """
+    # ⚠️ el.children.length === 0 으로는 안 잡힌다(실측).
+    #    범례가 <span><span class=legend-dot></span>보라 = 경쟁 산지</span> 구조라
+    #    바깥 span 에 자식이 있다. ⇒ 텍스트 노드를 직접 순회한다.
+    return page.evaluate("""() => {
+        let n = 0;
+        const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+        const hits = [];
+        while (w.nextNode()) {
+            if (w.currentNode.nodeValue.includes('경쟁 산지')) hits.push(w.currentNode);
+        }
+        for (const t of hits) {
+            t.nodeValue = t.nodeValue.replace(/경쟁 산지/g, '다른 법인이 받은 산지');
+            n++;
+        }
+        return n;
+    }""")
+
+
 def mask_personal(page):
     """개인 성함만 가린다. 회사명·도메인은 남긴다(KBS 자료는 우리가 주인공이다)."""
     return page.evaluate("""() => {
@@ -58,6 +85,10 @@ def mask_personal(page):
 def shot(page, name, delay=2.5):
     time.sleep(delay)
     mask_personal(page)
+    fix_legend(page)
+    if page.evaluate("() => document.body.innerText.includes('경쟁 산지')"):
+        print(f"  [중단] {name}: 범례에 「경쟁 산지」가 남아 있다. 안 찍는다.")
+        return False
     if page.evaluate("() => document.body.innerText.includes('송태은')"):
         print(f"  [중단] {name}: 화면에 개인 성함이 남아 있다. 안 찍는다.")
         return False
