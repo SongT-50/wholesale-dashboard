@@ -137,12 +137,17 @@ def cheonan_fixes(page, nonmass):
     if state["box"] and state["rows"] == 0:
         raise SystemExit("★ 멈춤: KAMIS 박스가 비었다. 다 지웠으면 박스째 빼는 게 낫다.")
 
-    # ③ 헤더를 도매로 못박는다 — 본문도 「도매 시세」라 쓴다. 둘이 같은 말을 해야 한다.
+    # ③ 헤더에서 「KAMIS」를 뺀다 (2026-08-29).
+    #   🔴 그 값은 KAMIS(kamis.or.kr)가 아니다. 화면이 읽는 파일의 원천은
+    #     apis.data.go.kr/B552845/risesAndFalls 이고 데이터셋 이름은
+    #     「한국농수산식품유통공사_가격 등락 정보 조회」다 (IN #11558 · WI 독립 확인).
+    #   ⇒ 화면에는 짧게 「전국 도매 시세」라 쓰고, 정확한 이름과 주소는 제출물 출처 표에 적는다.
+    #   ⚠️ index.html 은 안 고친다. 실배포본이고 태은이 결재 밖이다. 화면에서만 바꾼다.
     hdr = page.evaluate("""() => {
         let n = 0;
         document.querySelectorAll('.kamis-header').forEach(el => {
-            if (!el.textContent.includes('도매')) {
-                el.textContent = el.textContent.replace('전국 시세', '전국 도매 시세'); n++;
+            if (el.textContent.includes('KAMIS') || !el.textContent.includes('도매')) {
+                el.textContent = '전국 도매 시세'; n++;
             }
         });
         return n;
