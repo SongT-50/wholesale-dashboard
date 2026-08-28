@@ -224,6 +224,35 @@ def main():
             shot(page, "kbs_07_all83", delay=3)
             print(f"7쪽) {got['date']} · {got['corps']}곳 · {got['trades']:,}건")
 
+        # === 11쪽 8년 8개월 전체 ===
+        # 🔴 7쪽에서 currentDate 를 2026-07-22 로 옮겼다. getMonthKeys 가 그 날짜를 기준으로
+        #    월 목록을 만들기 때문에 그대로 두면 2026-08 이 빠진다.
+        #    실측으로 겪었다 = 2,731일이어야 하는데 2,704일이 찍혔다.
+        #    ⇒ 기본 날짜(D-4)로 되돌리고 나서 전체를 누른다.
+        page.evaluate("""() => {
+            const d = new Date();
+            d.setDate(d.getDate() - 4);
+            currentDate = d.toISOString().slice(0, 10);
+        }""")
+        page.evaluate("""() => {
+            const b = [...document.querySelectorAll('.period-btn')]
+                .find(e => e.getAttribute('onclick') === "setPeriod('all')");
+            if (b) b.click();
+        }""")
+        page.wait_for_timeout(25000)      # 104개월 병합. 실측 17초라 여유를 둔다.
+        page.evaluate(NATIONWIDE)
+        allv = page.evaluate("""() => ({
+            date: summaryData.date, days: summaryData.days_count,
+            corps: summaryData.corp_count, markets: summaryData.market_count,
+            trades: summaryData.total_trades,
+            shownAmount: document.getElementById('totalAmount').textContent })""")
+        print(f"11쪽 화면 실측: {allv}")
+        if not allv["days"] or allv["days"] < 2000:
+            print("[중단] 전체 기간이 안 실렸다. 경량본을 먼저 만들어라(build_monthly_light.py)")
+        else:
+            shot(page, "kbs_11_all_period", delay=3)
+            print(f"11쪽) {allv['date']} · {allv['days']:,}일 · {allv['trades']:,}건")
+
         browser.close()
 
 
