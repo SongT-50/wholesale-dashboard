@@ -3303,9 +3303,25 @@ function renderMap() {
   });
 }
 
+// 「전체」는 월별 요약본(1.3GB)이 있어야 도는데 그건 로컬에만 둔다.
+// GitHub 에는 견본만 올리므로 라이브에서는 이 버튼이 빈 화면을 낸다.
+// ⇒ 첫 달 파일이 실제로 있을 때만 버튼을 보인다. 없는 것을 누르게 두지 않는다.
+async function toggleAllPeriodButton() {
+  const btn = [...document.querySelectorAll('.period-btn')]
+    .find(b => b.getAttribute('onclick') === "setPeriod('all')");
+  if (!btn) return;
+  let ok = false;
+  try {
+    const r = await fetch(`data/summary_m_${ARCHIVE_FIRST_MONTH}.json`, { method: 'HEAD' });
+    ok = r.ok;
+  } catch (e) { ok = false; }
+  btn.style.display = ok ? '' : 'none';
+}
+
 async function init() {
   renderMap();         // deckgl 먼저 생성
   await loadDate(currentDate); // 그 다음 데이터 로드 + updateLayers
+  toggleAllPeriodButton();     // 라이브에서는 스스로 숨는다
 }
 init();
 </script>
