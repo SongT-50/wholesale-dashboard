@@ -69,7 +69,15 @@ def fix_legend(page):
 
 
 def mask_personal(page):
-    """개인 성함만 가린다. 회사명·도메인은 남긴다(KBS 자료는 우리가 주인공이다)."""
+    """개인 성함을 가린다.
+
+    🔴 2026-08-28 이후 이 KBS 자료에서는 **부르지 않는다.**
+      태은이가 2026-08-26에 직접 "① 대시보드 우상단 성함 — 괜찮아"라고 결정하셨다
+      (memory/approval-board.md 273행, 종결). 그대로 두라는 뜻이다.
+      ★ COMM-T1 이 짚었다: 출처 표기가 사라지면 이 화면이 누구 것인지가 자료에서 빠진다.
+        우리는 지금 회사 정보가 0건이라 표지에 한 줄 넣자고 하는 중이다. 방향이 반대다.
+      ⚠️ 함수는 남겨 둔다 — 태은이 결정이 없는 다른 자료에서는 필요할 수 있다.
+    """
     return page.evaluate("""() => {
         let n = 0;
         document.querySelectorAll('*').forEach(el => {
@@ -84,13 +92,13 @@ def mask_personal(page):
 
 def shot(page, name, delay=2.5):
     time.sleep(delay)
-    mask_personal(page)
+    # mask_personal 은 부르지 않는다 — 위 함수 주석 참조(태은이 2026-08-26 결정)
     fix_legend(page)
     if page.evaluate("() => document.body.innerText.includes('경쟁 산지')"):
         print(f"  [중단] {name}: 범례에 「경쟁 산지」가 남아 있다. 안 찍는다.")
         return False
-    if page.evaluate("() => document.body.innerText.includes('송태은')"):
-        print(f"  [중단] {name}: 화면에 개인 성함이 남아 있다. 안 찍는다.")
+    if False:  # 성함 게이트 해제 — 태은이가 그대로 두라고 결정하셨다
+        print(f"  [중단] {name}: (해제됨)")
         return False
     path = OUT_DIR / f"{name}.png"
     page.screenshot(path=str(path))
@@ -121,17 +129,14 @@ def main():
             trades: summaryData.total_trades })""")
         print(f"로드 완료 · 기본 화면 {base}")
 
-        # --- 양성 대조군: 가리기 전에 성함이 실제로 화면에 있었나 ---
-        before = page.evaluate("() => document.body.innerText.includes('송태은')")
-        masked = mask_personal(page)
-        after = page.evaluate("() => document.body.innerText.includes('송태은')")
-        print(f"성함 노출 전={before} · 가린 요소 {masked}개 · 후={after}")
-        if not before:
-            print("[경고] 가리기 전에도 성함이 없다. 대조군이 실패할 수 없는 상태다.")
-        if after:
-            print("[중단] 가렸는데도 남아 있다.")
-            browser.close()
-            return
+        # --- 출처 표기 확인 (게이트 방향이 2026-08-28에 뒤집혔다) ---
+        # 태은이 결정 = 성함을 그대로 둔다. 그러니 이제 물을 것은
+        #   "가려졌나"가 아니라 "출처 표기가 화면에 있나"다.
+        name_on = page.evaluate("() => document.body.innerText.includes('송태은')")
+        site_on = page.evaluate("() => document.body.innerText.includes('tjc.co.kr')")
+        print(f"출처 표기 · 성함={name_on} · 도메인={site_on}")
+        if not (name_on or site_on):
+            print("[경고] 화면에 출처 표기가 하나도 없다. 이 자료는 누구 것인지를 말하지 못한다.")
 
         # === 4쪽 (가) 선택 없는 전국 전체 흐름 ===
         page.evaluate(NATIONWIDE)
@@ -217,6 +222,30 @@ def main():
         #    여기서는 closeOriginPanel 이 맞는 함수다(6쪽에서 안 먹은 이유 = 거긴 다른 패널이었다).
         #    그리고 남는 라벨 레이어도 지운다. 이 장의 주인공은 좌측 법인별 가격 목록이다.
         page.evaluate("""() => { if (typeof closeOriginPanel === 'function') closeOriginPanel(); }""")
+        # 🔴 KAMIS 박스를 뺀다 (PIPE #11466).
+        #   그 박스가 원/kg 을 붙이는데 원본 단위가 kg 이 아닌 행이 섞여 있다.
+        #   실측 = 복숭아 백도 상품이 5,658 과 18,771 로 둘. 뒤엣것은 unit=개 unit_size=10 이다.
+        #   ★ 8쪽 요지는 「같은 복숭아가 법인마다 얼마인가」이고 그건 아래 법인별 표다.
+        #     KAMIS 는 옆가지라 빼도 그 쪽이 말하려는 것이 안 상한다.
+        #   ⚠️ 데이터를 고쳐서 맞추지 않는다. 그건 재현·회귀가 필요한 별도 축이다.
+        # 캡션도 함께 = 「81개 법인」에 정읍원협(공)이 들어 있다. 법인이 아니다. ⇒ 「81곳」
+        fixed = page.evaluate("""() => {
+            let hid = 0, cap = 0;
+            document.querySelectorAll('.kamis-section').forEach(el => {
+                el.style.display = 'none'; hid++;
+            });
+            const sub = document.getElementById('priceResultSub');
+            if (sub && sub.textContent.includes('개 법인')) {
+                sub.textContent = sub.textContent.replace('개 법인', '곳'); cap++;
+            }
+            return {kamisHidden: hid, captionFixed: cap};
+        }""")
+        print(f"    KAMIS 박스 {fixed['kamisHidden']}개 숨김 · 캡션 {fixed['captionFixed']}건 정정")
+        # 게이트 = KAMIS 박스가 화면에 남아 있으면 안 찍는다
+        if page.evaluate("() => [...document.querySelectorAll('.kamis-section')]"
+                         ".some(e => e.offsetParent !== null)"):
+            print("    [중단] KAMIS 박스가 아직 보인다. 8쪽 안 찍는다.")
+            rows = 0
         page.wait_for_timeout(600)
         left = page.evaluate("""() => {
             const drop = ['other-origin-labels','origin-labels','all-origin-labels'];
