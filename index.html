@@ -578,6 +578,10 @@ body.contest-mode .guide-footer { display: none !important; }
     <button class="period-btn" onclick="setPeriod('1w')">1주</button>
     <button class="period-btn" onclick="setPeriod('1m')">1달</button>
     <button class="period-btn" onclick="setPeriod('1y')">1년</button>
+    <!-- 전체 = 월별 요약본(summary_m_YYYY-MM.json)을 읽는다.
+         일별로 8년치를 받으면 2,729개 13.6GB 라 브라우저가 못 버틴다(2026-08-28 실측).
+         월별로 합치면 104개 1.3GB 이고 부하가 1년 버튼과 비슷하다. -->
+    <button class="period-btn" onclick="setPeriod('all')">전체</button>
   </div>
   <div class="date-loading" id="dateLoading">데이터 로딩 중...</div>
 
@@ -972,7 +976,7 @@ document.addEventListener('keydown', e => {
 let _loadSeq = 0;
 function setPeriod(period) {
   currentPeriod = period;
-  const label = {'1d':'1일','1w':'1주','1m':'1달','1y':'1년'}[period];
+  const label = {'1d':'1일','1w':'1주','1m':'1달','1y':'1년','all':'전체'}[period];
   document.querySelectorAll('.period-btn').forEach(btn => btn.classList.toggle('active', btn.textContent === label));
   const seq = ++_loadSeq;
   loadForPeriod(!!selectedCorp).then(() => { if (_loadSeq !== seq) return; }); // 이전 요청 무시
@@ -990,13 +994,34 @@ function getDailyDates(period) {
   return dates;
 }
 
+// 전체 기간용 월 목록. 원본 아카이브가 2018-01 부터다.
+// 없는 달은 fetch 가 404 를 내고 filter(Boolean) 이 걸러낸다 — 일별과 같은 방식이다.
+const ARCHIVE_FIRST_MONTH = '2018-01';
+function getMonthKeys() {
+  const keys = [];
+  const [fy, fm] = ARCHIVE_FIRST_MONTH.split('-').map(Number);
+  const now = new Date(currentDate);
+  let y = fy, m = fm;
+  while (y < now.getFullYear() || (y === now.getFullYear() && m <= now.getMonth() + 1)) {
+    keys.push(`${y}-${String(m).padStart(2, '0')}`);
+    m++;
+    if (m > 12) { m = 1; y++; }
+  }
+  return keys;
+}
+
 function mergeSummaries(dailyList) {
   const corpAgg = {}, marketAgg = {}, flowAgg = {}, priceAgg = {};
   let totalTrades = 0, totalAmount = 0, totalQty = 0, daysCount = 0;
-  const dateRange = [dailyList[0].date, dailyList[dailyList.length - 1].date];
+  // 월별 요약본의 date 는 이미 "2018-01-01 ~ 2018-01-31" 형식이라
+  // 그대로 이으면 "A ~ B ~ C ~ D" 로 네 토막이 된다. 그래서 양 끝값을 따로 쓴다.
+  const _first = dailyList[0], _last = dailyList[dailyList.length - 1];
+  const dateRange = [_first.date_start || _first.date, _last.date_end || _last.date];
 
   for (const data of dailyList) {
-    daysCount++;
+    // 월별 요약본은 그 자체가 여러 날의 합이다. 파일 수가 아니라 날 수를 더한다.
+    // 안 그러면 전체 기간이 「최근 104일」로 표시된다(파일 104개).
+    daysCount += (data.days_count || 1);
     totalTrades += data.total_trades;
     totalAmount += data.total_amount;
     totalQty += (data.total_qty || data.corporations?.reduce((s, c) => s + (c.total_qty || 0), 0) || 0);
@@ -1145,12 +1170,15 @@ async function loadForPeriod(preserveSelection = false) {
       if (_loadSeq !== mySeq) return; // 새 요청이 들어왔으면 무시
       summaryData = loaded;
     } else {
-      // daily 파일들을 병렬 로드 후 머지
-      const dates = getDailyDates(currentPeriod);
-      // dates.length 는 「찾아보는 창의 크기」이지 「실제로 있는 날 수」가 아니다.
+      // daily 파일들을 병렬 로드 후 머지 (전체 기간이면 월별 요약본)
+      const isAll = currentPeriod === 'all';
+      const keys = isAll ? getMonthKeys() : getDailyDates(currentPeriod);
+      // keys.length 는 「찾아보는 창의 크기」이지 「실제로 있는 날 수」가 아니다.
       // 그대로 쓰면 365일치 로딩 중 이라 뜨고 결과는 116일이 된다.
-      loading.textContent = `${dates.length}일 범위에서 불러오는 중...`;
-      const fetches = dates.map(d => fetch(`data/summary_${d}.json`).then(r => r.ok ? r.json() : null).catch(() => null));
+      loading.textContent = isAll
+        ? `전체 기간 ${keys.length}개월 불러오는 중...`
+        : `${keys.length}일 범위에서 불러오는 중...`;
+      const fetches = keys.map(k => fetch(`data/summary_${isAll ? 'm_' : ''}${k}.json`).then(r => r.ok ? r.json() : null).catch(() => null));
       const results = (await Promise.all(fetches)).filter(Boolean);
       if (_loadSeq !== mySeq) return; // 새 요청이 들어왔으면 무시
       if (results.length === 0) throw new Error('no data');
@@ -1298,7 +1326,9 @@ function updateContextBar() {
   if (!summaryData) return;
   // 라벨은 실제 합산된 날 수를 말한다 (요약본이 없는 날은 건너뛰므로 창 크기와 다르다)
   const _dc = summaryData.days_count;
-  const periodLabel = (currentPeriod === '1d' || !_dc) ? '1일 정산' : `최근 ${_dc}일 합산`;
+  const periodLabel = (currentPeriod === '1d' || !_dc) ? '1일 정산'
+    : currentPeriod === 'all' ? `전체 ${_dc.toLocaleString()}일 합산`
+    : `최근 ${_dc}일 합산`;
   const metricLabel = {qty:'물량 기준', amount:'금액 기준', trades:'건수 기준'}[mapMetric] || '물량 기준';
   const dateEl = document.getElementById('ctxDate');
   const perEl  = document.getElementById('ctxPeriod');
@@ -1315,7 +1345,9 @@ function updatePeriodBadge() {
   if (!badge) return;
   const dc = summaryData && summaryData.days_count;
   if (currentPeriod !== '1d' && dc) {
-    badge.textContent = `최근 ${dc}일 합산`;
+    badge.textContent = currentPeriod === 'all'
+      ? `전체 ${dc.toLocaleString()}일 합산`
+      : `최근 ${dc}일 합산`;
     badge.classList.add('visible');
   } else {
     badge.classList.remove('visible');
