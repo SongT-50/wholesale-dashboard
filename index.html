@@ -578,7 +578,7 @@ body.contest-mode .guide-footer { display: none !important; }
     <button class="period-btn" onclick="setPeriod('1w')">1주</button>
     <button class="period-btn" onclick="setPeriod('1m')">1달</button>
     <button class="period-btn" onclick="setPeriod('1y')">1년</button>
-    <!-- 전체 = 월별 요약본(summary_m_YYYY-MM.json)을 읽는다.
+    <!-- 전체 = 월별 경량본(summary_ml_YYYY-MM.json)을 읽는다.
          일별로 8년치를 받으면 2,729개 13.6GB 라 브라우저가 못 버틴다(2026-08-28 실측).
          월별로 합치면 104개 1.3GB 이고 부하가 1년 버튼과 비슷하다. -->
     <button class="period-btn" onclick="setPeriod('all')">전체</button>
@@ -1178,7 +1178,7 @@ async function loadForPeriod(preserveSelection = false) {
       loading.textContent = isAll
         ? `전체 기간 ${keys.length}개월 불러오는 중...`
         : `${keys.length}일 범위에서 불러오는 중...`;
-      const fetches = keys.map(k => fetch(`data/summary_${isAll ? 'm_' : ''}${k}.json`).then(r => r.ok ? r.json() : null).catch(() => null));
+      const fetches = keys.map(k => fetch(`data/summary_${isAll ? 'ml_' : ''}${k}.json`).then(r => r.ok ? r.json() : null).catch(() => null));
       const results = (await Promise.all(fetches)).filter(Boolean);
       if (_loadSeq !== mySeq) return; // 새 요청이 들어왔으면 무시
       if (results.length === 0) throw new Error('no data');
@@ -1315,7 +1315,12 @@ function updateSummary() {
   }
   document.getElementById('totalCorps').textContent = summaryData.corp_count;
   document.getElementById('totalTrades').textContent = summaryData.total_trades.toLocaleString();
-  document.getElementById('totalAmount').textContent = ((summaryData.total_amount || 0) / 100_000_000).toFixed(1) + '억';
+  // 전체 기간이면 억으로 쓰면 1014003.3억 이 되어 못 읽는다(2026-08-28 실측).
+  // 1조 넘으면 조로 바꾼다. 1일~1년 구간은 종전대로 억이다.
+  const _amt = summaryData.total_amount || 0;
+  document.getElementById('totalAmount').textContent =
+    _amt >= 1e12 ? (_amt / 1e12).toFixed(1) + '조'
+                 : (_amt / 100_000_000).toFixed(1) + '억';
   document.getElementById('totalQty').textContent = ((summaryData.total_qty || 0) / 1000).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   updateContextBar();
   updatePeriodBadge();
@@ -3303,7 +3308,7 @@ function renderMap() {
   });
 }
 
-// 「전체」는 월별 요약본(1.3GB)이 있어야 도는데 그건 로컬에만 둔다.
+// 「전체」는 월별 경량본(9.9MB)이 있어야 돈다. 상세본 1.39GB 도 로컬에만 둔다.
 // GitHub 에는 견본만 올리므로 라이브에서는 이 버튼이 빈 화면을 낸다.
 // ⇒ 첫 달 파일이 실제로 있을 때만 버튼을 보인다. 없는 것을 누르게 두지 않는다.
 async function toggleAllPeriodButton() {
@@ -3312,7 +3317,7 @@ async function toggleAllPeriodButton() {
   if (!btn) return;
   let ok = false;
   try {
-    const r = await fetch(`data/summary_m_${ARCHIVE_FIRST_MONTH}.json`, { method: 'HEAD' });
+    const r = await fetch(`data/summary_ml_${ARCHIVE_FIRST_MONTH}.json`, { method: 'HEAD' });
     ok = r.ok;
   } catch (e) { ok = false; }
   btn.style.display = ok ? '' : 'none';
