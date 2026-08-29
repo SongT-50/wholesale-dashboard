@@ -70,7 +70,7 @@ def summarize_shipment(ship_data: dict, corp_coords: dict) -> dict:
     total_records = 0
 
     corp_agg = defaultdict(lambda: {"qty": 0, "qty_kg": 0.0, "records": 0, "products": defaultdict(lambda: {"qty": 0, "qty_kg": 0.0, "grades": set()})})
-    market_agg = defaultdict(lambda: {"qty": 0, "qty_kg": 0.0})
+    market_agg = defaultdict(lambda: {"qty": 0, "qty_kg": 0.0, "records": 0})
 
     for mcode, mdata in ship_data.get("markets", {}).items():
         for item in mdata.get("items", []):
@@ -102,6 +102,7 @@ def summarize_shipment(ship_data: dict, corp_coords: dict) -> dict:
                 ma = market_agg[market_name]
                 ma["qty"] += qty
                 ma["qty_kg"] += kg
+                ma["records"] += 1
 
     # 법인 리스트
     corps = []
@@ -123,6 +124,7 @@ def summarize_shipment(ship_data: dict, corp_coords: dict) -> dict:
             "lng": info.get("lng", 0),
             "qty": int(ca["qty"]),
             "qty_kg": round(ca["qty_kg"], 1),
+            "records": ca["records"],
             "products": products[:30],
         })
 
@@ -133,6 +135,7 @@ def summarize_shipment(ship_data: dict, corp_coords: dict) -> dict:
             "market": mname,
             "qty": int(ma["qty"]),
             "qty_kg": round(ma["qty_kg"], 1),
+            "records": ma["records"],
         })
 
     return {

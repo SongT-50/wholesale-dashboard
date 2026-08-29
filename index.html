@@ -2306,7 +2306,13 @@ function renderShipmentList() {
   for (const mkt of orderedMarkets) {
     const corps = corpsByMarket[mkt] || [];
     const mktData = (ship.markets || []).find(m => m.market === mkt);
-    const mktItems = mktData?.items || corps.reduce((s, c) => s + c.items, 0);
+    // 건수는 records 가 실제로 있을 때만 쓴다.
+    // 옛 summary 에는 records 가 없다 - 0 으로 채우면 수천 건이 "0건"으로 보인다(없는 값을 지어내지 않는다).
+    let mktRecords = mktData?.records;
+    if (mktRecords === undefined && corps.length && corps.every(c => typeof c.records === 'number')) {
+      mktRecords = corps.reduce((s, c) => s + c.records, 0);
+    }
+    const mktCountStr = Number.isFinite(mktRecords) ? `${mktRecords.toLocaleString()}건 | ` : '';
     const mktKg = mktData?.qty_kg || corps.reduce((s, c) => s + c.qty_kg, 0);
 
     const group = document.createElement('div');
@@ -2315,7 +2321,7 @@ function renderShipmentList() {
     const hdr = document.createElement('div');
     hdr.className = 'ship-market-header';
     hdr.innerHTML = `<span class="ship-market-name">${mkt} (${corps.length}곳)</span>
-      <span class="ship-market-info">${mktItems.toLocaleString()}건 | ${(mktKg/1000).toFixed(1)}톤</span>`;
+      <span class="ship-market-info">${mktCountStr}${(mktKg/1000).toFixed(1)}톤</span>`;
     hdr.onclick = () => {
       hdr.classList.toggle('expanded');
       corpList.classList.toggle('expanded');
@@ -2390,7 +2396,7 @@ function renderDetailShipment(corpName) {
   }
 
   const corpShip = ship.corporations.find(c => c.corp === corpName);
-  if (!corpShip || corpShip.items === 0) {
+  if (!corpShip || !corpShip.qty) {
     titleEl.style.display = 'none';
     listEl.style.display = 'none';
     return;
