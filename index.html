@@ -495,6 +495,13 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', s
   border-left: 4px solid rgba(253,224,71,0.95);
 }
 .corp-item.my-corp .corp-name { font-weight: 900; color: #fde047; }
+/* ★ 맨 위로 고정한 카드 — 자리는 올리되 순위는 사실대로 적는다 */
+.corp-item.pinned-corp { border-left: 4px solid rgba(253,224,71,0.95); }
+.corp-rank {
+  margin-left: 8px; font-size: 10px; font-weight: 700;
+  color: var(--dim); border: 1px solid var(--border);
+  border-radius: 4px; padding: 0 5px;
+}
 .corp-item.my-corp:hover { border-color: var(--yellow); background: rgba(250,204,21,0.1); }
 .my-badge {
   display: inline-block; background: rgba(250,204,21,0.2); border: 1px solid rgba(250,204,21,0.5);
@@ -1855,13 +1862,34 @@ function renderCorpList() {
   list.innerHTML = '';
   // 선택된 메트릭 기준 정렬
   const sorted = [...summaryData.corporations].sort((a, b) => getCorpMetricValue(b) - getCorpMetricValue(a));
-  for (const corp of sorted) {
+
+  // 🔴 2026-09-02 — 우리 법인·고른 법인을 목록 맨 위로 고정한다.
+  //   왜: 목록이 물량순이라 화면에 11위까지 보이는데 대전중앙청과는 288.5톤이라 그 밖으로 밀린다.
+  //       ### 그래서 아무리 굵게 칠해도 안 보였다. 강조가 아니라 자리 문제였다.
+  //       (태은이 직접 지적 · PIPE #13844)
+  //   ⚠️ 맨 위에 올리면 1등처럼 보인다. 그건 우리가 안 하는 일이라
+  //       ### 고정한 카드에는 실제 순위를 함께 적는다. 자리는 올리되 사실은 안 바꾼다.
+  const rankOf = new Map(sorted.map((c, i) => [c.corp, i + 1]));
+  const pinnedNames = [];
+  if (selectedCorp) pinnedNames.push(selectedCorp);
+  if (!pinnedNames.includes(MY_CORP_NAME)) pinnedNames.push(MY_CORP_NAME);
+  const pinned = pinnedNames
+    .map(n => sorted.find(c => c.corp === n))
+    .filter(Boolean);
+  const rest = sorted.filter(c => !pinned.includes(c));
+
+  for (const corp of [...pinned, ...rest]) {
     const div = document.createElement('div');
     const isMy = corp.corp === MY_CORP_NAME;
-    div.className = 'corp-item' + (isMy ? ' my-corp' : '');
+    const isPinned = pinned.includes(corp);
+    div.className = 'corp-item' + (isMy ? ' my-corp' : '') + (isPinned ? ' pinned-corp' : '');
     div.dataset.corp = corp.corp;
     const badge = isMy ? '<span class="my-badge">MY</span>' : '';
-    div.innerHTML = `<div><div class="corp-name">${corp.corp}${badge}</div><div class="corp-market">${corp.market}</div></div>
+    // 고정한 카드에만 순위를 적는다. 물량순 그대로 있는 카드는 자리가 곧 순위라 필요 없다.
+    const rank = isPinned
+      ? `<span class="corp-rank">전국 ${rankOf.get(corp.corp)}위</span>` : '';
+    div.innerHTML = `<div><div class="corp-name">${corp.corp}${badge}</div>
+        <div class="corp-market">${corp.market}${rank}</div></div>
       <div class="corp-trades">${formatMetricValue(corp)}</div>`;
     div.addEventListener('click', () => selectCorp(corp));
     list.appendChild(div);
