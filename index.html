@@ -16,6 +16,7 @@
   --bg: #0a0a12; --card: #12121e; --border: #1e293b;
   --text: #e2e8f0; --dim: #94a3b8; --accent: #4ade80;
   --blue: #60a5fa; --orange: #fb923c; --red: #f87171; --yellow: #facc15; --purple: #c084fc;
+  --ovl-rgb: 10,10,18;   /* 지도 위 겹침 박스 바탕 */
 }
 /* ★ 2026-09-02 인쇄용 라이트 — `?print=1` 일 때만. 운영 다크는 그대로다.
    팔레트 = presentations/kbs-poster-2026-09-02/poster-A0.html :root 를 그대로 가져왔다.
@@ -24,6 +25,7 @@ body.print-light {
   --bg: #FBFAF7; --card: #F3F1EA; --border: #D9D4C7;
   --text: #16202B; --dim: #46545F; --accent: #0B5C4E;
   --blue: #2F6FB2; --orange: #C2571A; --red: #B3352F; --yellow: #A8801F; --purple: #7A4B9E;
+  --ovl-rgb: 251,250,247;
 }
 body.print-light .panel, body.print-light .legend, body.print-light .flow-note,
 body.print-light .credit-bar { box-shadow: none; }
@@ -33,7 +35,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', s
 
 .panel {
   position: fixed; top: 0; left: 0; width: 360px; height: 100vh;
-  background: rgba(10,10,18,0.92); backdrop-filter: blur(12px);
+  background: rgba(var(--ovl-rgb),0.92); backdrop-filter: blur(12px);
   border-right: 1px solid var(--border); padding: 24px; overflow-y: auto; z-index: 10;
 }
 .panel h1 { font-size: 18px; font-weight: 900; color: var(--accent); margin-bottom: 8px; }
@@ -110,7 +112,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', s
 .origin-float-panel {
   position: fixed; bottom: 20px; right: 20px;
   width: 280px; max-height: 350px;
-  background: rgba(10,10,18,0.92); backdrop-filter: blur(12px);
+  background: rgba(var(--ovl-rgb),0.92); backdrop-filter: blur(12px);
   border: 1px solid var(--orange); border-radius: 10px;
   padding: 12px 14px; z-index: 10; display: none;
   overflow: hidden;
@@ -158,7 +160,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', s
 
 /* 산지 분석 — 연도 드롭다운 다크 스타일 */
 .origin-year-select {
-  background: rgba(10,10,18,0.9); color: var(--text);
+  background: rgba(var(--ovl-rgb),0.9); color: var(--text);
   border: 1px solid var(--border); border-radius: 4px;
   padding: 4px 8px; font-size: 12px;
   font-family: inherit;
@@ -168,7 +170,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', s
   padding-right: 24px;
 }
 .origin-year-select option {
-  background: #0a0a12; color: var(--text); padding: 4px;
+  background: var(--bg); color: var(--text); padding: 4px;
 }
 .origin-year-select:hover { border-color: var(--orange); }
 
@@ -202,7 +204,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', s
 .origin-detail-panel {
   position: fixed; top: 80px; right: 20px;
   width: 360px; max-height: calc(100vh - 120px);
-  background: rgba(10,10,18,0.95); backdrop-filter: blur(12px);
+  background: rgba(var(--ovl-rgb),0.95); backdrop-filter: blur(12px);
   border: 1px solid var(--orange); border-radius: 10px;
   padding: 14px 16px; z-index: 20;
   overflow-y: auto;
@@ -260,7 +262,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', s
 /* 상세 패널 */
 .detail-panel {
   position: fixed; top: 0; right: -440px; width: 420px; height: 100vh;
-  background: rgba(10,10,18,0.95); backdrop-filter: blur(12px);
+  background: rgba(var(--ovl-rgb),0.95); backdrop-filter: blur(12px);
   border-left: 1px solid var(--border); padding: 24px;
   overflow-y: auto; z-index: 10; transition: right 0.3s ease;
   display: flex; flex-direction: column;
@@ -314,7 +316,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', s
 .po-foreign { color: var(--yellow); }
 
 .foreign-badge {
-  position: fixed; bottom: 140px; left: 380px; background: rgba(10,10,18,0.92);
+  position: fixed; bottom: 140px; left: 380px; background: rgba(var(--ovl-rgb),0.92);
   border: 1px solid var(--yellow); border-radius: 8px; padding: 10px 14px; font-size: 11px;
   z-index: 5; max-width: 280px; display: none;
 }
@@ -323,14 +325,14 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', s
 .foreign-item { color: var(--dim); padding: 1px 0; }
 
 .legend {
-  position: fixed; bottom: 20px; left: 380px; background: rgba(10,10,18,0.85);
+  position: fixed; bottom: 20px; left: 380px; background: rgba(var(--ovl-rgb),0.85);
   border: 1px solid var(--border); border-radius: 8px; padding: 10px 16px;
   font-size: 11px; color: var(--dim); z-index: 5; display: flex; gap: 16px; align-items: center;
 }
 .legend-dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 4px; vertical-align: middle; }
 .legend-row2 {
   position: fixed; bottom: 66px; left: 380px;
-  background: rgba(10,10,18,0.85); border: 1px solid var(--border);
+  background: rgba(var(--ovl-rgb),0.85); border: 1px solid var(--border);
   border-radius: 8px; padding: 6px 14px;
   font-size: 10px; color: var(--dim); z-index: 5;
   display: flex; gap: 14px; align-items: center;
@@ -340,7 +342,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', s
 .context-bar {
   position: fixed; top: 14px;
   left: calc(360px + (100vw - 360px) / 2); transform: translateX(-50%);
-  background: rgba(10,10,18,0.85); backdrop-filter: blur(8px);
+  background: rgba(var(--ovl-rgb),0.85); backdrop-filter: blur(8px);
   border: 1px solid var(--border); border-radius: 6px;
   padding: 6px 14px; z-index: 9;
   font-family: 'JetBrains Mono', monospace; font-size: 12px;
@@ -368,7 +370,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', s
 .period-badge.visible { display: block; }
 
 .flow-toggle {
-  position: fixed; bottom: 60px; left: 380px; background: rgba(10,10,18,0.85);
+  position: fixed; bottom: 60px; left: 380px; background: rgba(var(--ovl-rgb),0.85);
   border: 1px solid var(--border); border-radius: 8px; padding: 8px 14px;
   font-size: 12px; color: var(--dim); z-index: 5; cursor: pointer; user-select: none;
 }
@@ -383,7 +385,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', s
 /* 지도 위 플로팅 메트릭 토글 (PC) */
 .metric-toggle {
   position: fixed; bottom: 112px; left: 380px; display: flex; gap: 2px;
-  background: rgba(10,10,18,0.92); border: 1px solid var(--accent); border-radius: 8px;
+  background: rgba(var(--ovl-rgb),0.92); border: 1px solid var(--accent); border-radius: 8px;
   padding: 4px; z-index: 10;
 }
 /* 모바일 상세 패널 지도 보기 버튼 */
@@ -3335,7 +3337,7 @@ function renderMap() {
           html: `<div style="font-family:'Noto Sans KR';padding:4px;">
             <strong>${object.corp}</strong><br><span style="color:#94a3b8;">${object.market}</span><br>
             물량: ${((object.total_qty||0)/1000).toFixed(1)}톤<br>금액: ${((object.total_amount||0)/10000).toLocaleString()}만원<br>거래: ${object.trades.toLocaleString()}건</div>`,
-          style: { background:'rgba(10,10,18,0.92)', color:'#e2e8f0', border:'1px solid #1e293b', borderRadius:'8px', fontSize:'12px' }
+          style: { background:'rgba(var(--ovl-rgb),0.92)', color:(PRINT_LIGHT?'#16202B':'#e2e8f0'), border:(PRINT_LIGHT?'1px solid #D9D4C7':'1px solid #1e293b'), borderRadius:'8px', fontSize:'12px' }
         };
       }
       if (object.origin && object.dest_corp) {
@@ -3344,7 +3346,7 @@ function renderMap() {
             <strong>${object.origin} → ${object.dest_corp}</strong><br>
             <span style="color:#94a3b8;">${object.dest_market}</span><br>
             거래: ${object.trades.toLocaleString()}건<br>수량: ${object.qty.toLocaleString()}</div>`,
-          style: { background:'rgba(10,10,18,0.92)', color:'#e2e8f0', border:'1px solid #fb923c', borderRadius:'8px', fontSize:'12px' }
+          style: { background:'rgba(var(--ovl-rgb),0.92)', color:(PRINT_LIGHT?'#16202B':'#e2e8f0'), border:'1px solid #fb923c', borderRadius:'8px', fontSize:'12px' }
         };
       }
       return null;
