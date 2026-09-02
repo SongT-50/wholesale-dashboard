@@ -490,11 +490,18 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', s
 .no-shipment { text-align: center; color: var(--dim); font-size: 13px; padding: 30px 0; }
 
 /* 우리 법인(MY) 배지 */
+/* 🔴 2026-09-02 — 태은이가 이 카드에 빨간 원을 그려서 보내셨다. 그게 안 보인다는 증거다.
+   목표 = 그 빨간 원의 강도. 자리를 올린 것만으로는 부족했다(PIPE #13852).
+   ### 3m 밖에서 카드 하나만 떠 보이면 된 것이다. 확인법 = 캡처를 1/4 로 줄여서 본다. */
 .corp-item.my-corp {
-  border-color: rgba(250,204,21,0.75); background: rgba(250,204,21,0.12);
-  border-left: 4px solid rgba(253,224,71,0.95);
+  border: 3px solid #fde047;                 /* ㄱ 굵게 — 태은이가 그린 선 굵기 */
+  border-left: 7px solid #fde047;            /* ㄴ 밝은 노랑. 지도 라벨과 같은 색이라 한 몸으로 읽힌다 */
+  background: rgba(250,204,21,0.22);         /* ㄷ 배경 명도를 올린다 */
+  padding: 14px 12px;                        /* ㅁ 카드를 살짝 크게 — 높이가 다르면 눈이 먼저 간다 */
+  box-shadow: 0 0 0 1px rgba(253,224,71,0.35);
 }
-.corp-item.my-corp .corp-name { font-weight: 900; color: #fde047; }
+.corp-item.my-corp .corp-name { font-weight: 900; color: #fde047; font-size: 15px; }
+.corp-item.my-corp .corp-trades { font-weight: 900; color: #fde047; }
 /* ★ 맨 위로 고정한 카드 — 자리는 올리되 순위는 사실대로 적는다 */
 .corp-item.pinned-corp { border-left: 4px solid rgba(253,224,71,0.95); }
 .corp-rank {
@@ -503,10 +510,11 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', s
   border-radius: 4px; padding: 0 5px;
 }
 .corp-item.my-corp:hover { border-color: var(--yellow); background: rgba(250,204,21,0.1); }
+/* ㄹ MY 배지를 키우고 굵게 — 작으면 3m 밖에서 안 보인다 */
 .my-badge {
-  display: inline-block; background: rgba(250,204,21,0.2); border: 1px solid rgba(250,204,21,0.5);
-  color: var(--yellow); font-size: 9px; font-weight: 900; padding: 1px 6px;
-  border-radius: 8px; margin-left: 6px; vertical-align: middle; letter-spacing: 0.5px;
+  display: inline-block; background: #fde047; border: 1px solid #fde047;
+  color: #0a0a12; font-size: 11px; font-weight: 900; padding: 2px 8px;
+  border-radius: 8px; margin-left: 7px; vertical-align: middle; letter-spacing: 0.5px;
 }
 
 /* 크레딧 바 */
