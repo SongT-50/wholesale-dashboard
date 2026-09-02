@@ -3255,8 +3255,8 @@ function updateLayers() {
         id: 'my-corp-ring', data: myPins,
         getPosition: d => [d.displayLng, d.displayLat],
         stroked: true, filled: false,
-        radiusUnits: 'pixels', getRadius: 22,
-        lineWidthUnits: 'pixels', getLineWidth: 3.5,
+        radiusUnits: 'pixels', getRadius: 34,
+        lineWidthUnits: 'pixels', getLineWidth: 5,
         getLineColor: [253,224,71,255],
         pickable: false,
       }));
@@ -3284,7 +3284,10 @@ function updateLayers() {
       if (selectedCorp && d.corp !== selectedCorp) return [255,255,255,80];
       return [255,255,255,220];
     },
-    getPixelOffset: [0, -20], characterSet: 'auto', fontFamily: 'Noto Sans KR', fontWeight: 700,
+    // ★ 우리 법인 라벨만 더 위로 올린다. 같은 자리에 다른 시장 라벨이 겹쳐 읽히던 것을 푼다.
+    //   (deck.gl TextLayer 는 같은 레이어 안에서 겹침을 스스로 못 푼다. 그리는 순서로는 안 된다.)
+    getPixelOffset: d => isMyCorp(d) ? [0, -46] : [0, -20],
+    characterSet: 'auto', fontFamily: 'Noto Sans KR', fontWeight: 700,
     outlineWidth: 4, outlineColor: [10,10,18,235],
     updateTriggers: { getSize: [selectedCorp, selectedMarket], getColor: [selectedCorp, selectedMarket] },
   }));
