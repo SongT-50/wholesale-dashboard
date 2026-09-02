@@ -17,6 +17,16 @@
   --text: #e2e8f0; --dim: #94a3b8; --accent: #4ade80;
   --blue: #60a5fa; --orange: #fb923c; --red: #f87171; --yellow: #facc15; --purple: #c084fc;
 }
+/* ★ 2026-09-02 인쇄용 라이트 — `?print=1` 일 때만. 운영 다크는 그대로다.
+   팔레트 = presentations/kbs-poster-2026-09-02/poster-A0.html :root 를 그대로 가져왔다.
+   포스터와 화면이 같은 색이면 한 장으로 읽힌다(PIPE #13782). */
+body.print-light {
+  --bg: #FBFAF7; --card: #F3F1EA; --border: #D9D4C7;
+  --text: #16202B; --dim: #46545F; --accent: #0B5C4E;
+  --blue: #2F6FB2; --orange: #C2571A; --red: #B3352F; --yellow: #A8801F; --purple: #7A4B9E;
+}
+body.print-light .panel, body.print-light .legend, body.print-light .flow-note,
+body.print-light .credit-bar { box-shadow: none; }
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', sans-serif; overflow: hidden; }
 #map { width: 100vw; height: 100vh; }
@@ -901,6 +911,9 @@ let summaryData = null;
 //   확인법: 주소창에 ?contest=1 을 붙였을 때만 별이 사라진다.
 const CONTEST_MODE = new URLSearchParams(location.search).has('contest');
 //   매칭되지 않는 이름을 넣어 강조 분기를 통째로 비활성화한다(코드 분기를 안 건드린다).
+// ★ 인쇄용 라이트 스위치. 파라미터가 없으면 아래 코드는 한 줄도 안 돈다.
+const PRINT_LIGHT = new URLSearchParams(location.search).get('print') === '1';
+if (PRINT_LIGHT) document.body.classList.add('print-light');
 const MY_CORP_NAME = CONTEST_MODE ? '\u0000__NO_MY_CORP__' : '대전중앙청과㈜';
 if (CONTEST_MODE) document.body.classList.add('contest-mode');
 
@@ -2592,7 +2605,7 @@ function updateLayers() {
       },
       getLineColor: d => {
         if (isProductMode) return [...baseFill, 80];
-        if (selectedL1 && d.l1 === selectedL1) return [255,255,255,255];
+        if (selectedL1 && d.l1 === selectedL1) return (PRINT_LIGHT?[22,32,43,255]:[255,255,255,255]);
         return [...baseFill, 240];
       },
       getLineWidth: d => (selectedL1 && d.l1 === selectedL1) ? 3 : 1,
@@ -2619,9 +2632,9 @@ function updateLayers() {
           const short = d.l1.replace('특별시','').replace('광역시','').replace('특별자치도','').replace('특별자치시','').replace(/(도|시)$/, '');
           return `${short} ${ton}t`;
         },
-        getSize: 12, getColor: [255,255,255,245],
+        getSize: 12, getColor: (PRINT_LIGHT?[22,32,43,245]:[255,255,255,245]),
         getPixelOffset: [0, 0], characterSet: 'auto', fontFamily: 'Noto Sans KR', fontWeight: 700,
-        outlineWidth: 5, outlineColor: [10,10,18,255], getTextAnchor: 'middle',
+        outlineWidth: 5, outlineColor: (PRINT_LIGHT?[251,250,247,255]:[10,10,18,255]), getTextAnchor: 'middle',
         getAlignmentBaseline: 'center',
       }));
     }
@@ -2655,7 +2668,7 @@ function updateLayers() {
           getText: d => d.l2,
           getSize: 10, getColor: [220,252,231,250],
           getPixelOffset: [0, -16], characterSet: 'auto', fontFamily: 'Noto Sans KR', fontWeight: 700,
-          outlineWidth: 3, outlineColor: [10,10,18,255], getTextAnchor: 'middle',
+          outlineWidth: 3, outlineColor: (PRINT_LIGHT?[251,250,247,255]:[10,10,18,255]), getTextAnchor: 'middle',
         }));
       }
 
@@ -2689,7 +2702,7 @@ function updateLayers() {
         },
         radiusMinPixels: 5, radiusMaxPixels: 18,
         getFillColor: d => d.corp === MY_CORP_NAME ? [250,204,21,255] : [225,29,72,240],
-        getLineColor: [255,255,255,255], lineWidthMinPixels: 1.5, stroked: true, pickable: true,
+        getLineColor: (PRINT_LIGHT?[22,32,43,255]:[255,255,255,255]), lineWidthMinPixels: 1.5, stroked: true, pickable: true,
       }));
       layers.push(new deck.TextLayer({
         id: 'origin-corp-labels', data: highlighted,
@@ -2698,7 +2711,7 @@ function updateLayers() {
         getSize: 11,
         getColor: d => d.corp === MY_CORP_NAME ? [250,204,21,255] : [252,165,165,255],
         getPixelOffset: [0, 20], characterSet: 'auto', fontFamily: 'Noto Sans KR', fontWeight: 700,
-        outlineWidth: 3, outlineColor: [10,10,18,255], getTextAnchor: 'middle',
+        outlineWidth: 3, outlineColor: (PRINT_LIGHT?[251,250,247,255]:[10,10,18,255]), getTextAnchor: 'middle',
       }));
 
       // Arc: 시군구 → 법인 (by_l2_corp 전체 시도, 좌표 없으면 자동 필터)
@@ -2785,7 +2798,7 @@ function updateLayers() {
           getRadius: d => Math.max(3000, Math.sqrt(d.kg/maxL2) * 15000),
           radiusMinPixels: 5, radiusMaxPixels: 30,
           getFillColor: [251,146,60,200],
-          getLineColor: [255,255,255,220], lineWidthMinPixels: 1, stroked: true, pickable: true,
+          getLineColor: (PRINT_LIGHT?[22,32,43,220]:[255,255,255,220]), lineWidthMinPixels: 1, stroked: true, pickable: true,
         }));
         layers.push(new deck.TextLayer({
           id: 'origin-l2-labels', data: l2Points.slice(0, 20),
@@ -2793,7 +2806,7 @@ function updateLayers() {
           getText: d => d.l2,
           getSize: 10, getColor: [253,186,116,240],
           getPixelOffset: [0, -14], characterSet: 'auto', fontFamily: 'Noto Sans KR', fontWeight: 700,
-          outlineWidth: 3, outlineColor: [10,10,18,240], getTextAnchor: 'middle',
+          outlineWidth: 3, outlineColor: (PRINT_LIGHT?[251,250,247,240]:[10,10,18,240]), getTextAnchor: 'middle',
         }));
       }
     }
@@ -2814,7 +2827,7 @@ function updateLayers() {
         getPosition: d => [d.displayLng, d.displayLat],
         getRadius: d => getCorpRadius(getCorpMetricValue(d)) * 0.4,
         getFillColor: d => { const c = getCorpColor(getCorpMetricValue(d)); return [c[0],c[1],c[2],30]; },
-        getLineColor: [255,255,255,15], lineWidthMinPixels: 1, stroked: true,
+        getLineColor: (PRINT_LIGHT?[22,32,43,15]:[255,255,255,15]), lineWidthMinPixels: 1, stroked: true,
       }));
 
       // 출하예약 원 (보라색)
@@ -2823,7 +2836,7 @@ function updateLayers() {
         getPosition: d => [d.lng, d.lat],
         getRadius: d => Math.max(800, (d.qty_kg / maxKg) * 8000),
         getFillColor: d => d.corp === MY_CORP_NAME ? [250,204,21,200] : [192,132,252,180],
-        getLineColor: d => d.corp === MY_CORP_NAME ? [255,152,0,255] : [255,255,255,80],
+        getLineColor: d => d.corp === MY_CORP_NAME ? [255,152,0,255] : (PRINT_LIGHT?[22,32,43,80]:[255,255,255,80]),
         lineWidthMinPixels: 1, stroked: true, pickable: true,
         onClick: ({object}) => { if (object) showShipmentDetail(object); },
       }));
@@ -2836,7 +2849,7 @@ function updateLayers() {
         getSize: 11,
         getColor: d => d.corp === MY_CORP_NAME ? [255,183,77,255] : [192,132,252,220],
         getPixelOffset: [0, -25], characterSet: 'auto', fontFamily: 'Noto Sans KR', fontWeight: 700,
-        outlineWidth: 4, outlineColor: [10,10,18,240], getTextAnchor: 'middle',
+        outlineWidth: 4, outlineColor: (PRINT_LIGHT?[251,250,247,240]:[10,10,18,240]), getTextAnchor: 'middle',
       }));
     }
 
@@ -2869,7 +2882,7 @@ function updateLayers() {
         getPosition: d => [d.displayLng, d.displayLat],
         getRadius: d => d.priceRadius,
         getFillColor: d => d.priceColor,
-        getLineColor: [255,255,255,100], lineWidthMinPixels: 1, stroked: true,
+        getLineColor: (PRINT_LIGHT?[22,32,43,100]:[255,255,255,100]), lineWidthMinPixels: 1, stroked: true,
       }));
 
       layers.push(new deck.TextLayer({
@@ -2878,7 +2891,7 @@ function updateLayers() {
         getText: d => `${d.corp.replace('㈜','').replace('(공)','')}\n${d.price.toLocaleString()}원`,
         getSize: 11, getColor: d => d.priceColor,
         getPixelOffset: [0, -25], characterSet: 'auto', fontFamily: 'Noto Sans KR', fontWeight: 700,
-        outlineWidth: 4, outlineColor: [10,10,18,240], getTextAnchor: 'middle',
+        outlineWidth: 4, outlineColor: (PRINT_LIGHT?[251,250,247,240]:[10,10,18,240]), getTextAnchor: 'middle',
       }));
     }
 
@@ -2906,7 +2919,7 @@ function updateLayers() {
       layers.push(new deck.ScatterplotLayer({
         id: 'origin-dots', data: uniqueOrigins,
         getPosition: d => [d.lng, d.lat], getRadius: 2500,
-        getFillColor: [251,146,60,180], getLineColor: [255,255,255,120],
+        getFillColor: [251,146,60,180], getLineColor: (PRINT_LIGHT?[22,32,43,120]:[255,255,255,120]),
         lineWidthMinPixels: 1, stroked: true,
       }));
       layers.push(new deck.TextLayer({
@@ -2914,7 +2927,7 @@ function updateLayers() {
         getPosition: d => [d.lng, d.lat], getText: d => d.name,
         getSize: 10, getColor: [251,146,60,200], getPixelOffset: [0, -16],
         characterSet: 'auto', fontFamily: 'Noto Sans KR', fontWeight: 700,
-        outlineWidth: 3, outlineColor: [10,10,18,200],
+        outlineWidth: 3, outlineColor: (PRINT_LIGHT?[251,250,247,200]:[10,10,18,200]),
       }));
     }
 
@@ -2924,7 +2937,7 @@ function updateLayers() {
       getPosition: d => [d.displayLng, d.displayLat],
       getRadius: d => getCorpRadius(getCorpMetricValue(d)) * 0.5,
       getFillColor: d => { const c = getCorpColor(getCorpMetricValue(d)); return [c[0],c[1],c[2],40]; },
-      getLineColor: [255,255,255,20], lineWidthMinPixels: 1, stroked: true,
+      getLineColor: (PRINT_LIGHT?[22,32,43,20]:[255,255,255,20]), lineWidthMinPixels: 1, stroked: true,
     }));
 
     deckgl.setProps({ layers });
@@ -2950,14 +2963,14 @@ function updateLayers() {
       layers.push(new deck.ScatterplotLayer({
         id: 'origin-dots', data: domesticOrigins,
         getPosition: d => [d.lng, d.lat], getRadius: 2000,
-        getFillColor: [251,146,60,200], getLineColor: [255,255,255,150],
+        getFillColor: [251,146,60,200], getLineColor: (PRINT_LIGHT?[22,32,43,150]:[255,255,255,150]),
         lineWidthMinPixels: 1, stroked: true,
       }));
       layers.push(new deck.TextLayer({
         id: 'origin-labels', data: domesticOrigins,
         getPosition: d => [d.lng, d.lat], getText: d => d.name,
         getSize: 11, getColor: [251,146,60,220], getPixelOffset: [0, -14],
-        characterSet: 'auto', fontFamily: 'Noto Sans KR', fontWeight: 700, outlineWidth: 3, outlineColor: [10,10,18,220],
+        characterSet: 'auto', fontFamily: 'Noto Sans KR', fontWeight: 700, outlineWidth: 3, outlineColor: (PRINT_LIGHT?[251,250,247,220]:[10,10,18,220]),
       }));
     }
 
@@ -2990,7 +3003,7 @@ function updateLayers() {
         getPosition: d => [d.lng, d.lat],
         getText: d => `${d.name} ${d.totalTrades}건 (${d.corps.length}곳)`,
         getSize: 10, getColor: [192,132,252,220], getPixelOffset: [0, -14],
-        characterSet: 'auto', fontFamily: 'Noto Sans KR', fontWeight: 700, outlineWidth: 3, outlineColor: [10,10,18,220],
+        characterSet: 'auto', fontFamily: 'Noto Sans KR', fontWeight: 700, outlineWidth: 3, outlineColor: (PRINT_LIGHT?[251,250,247,220]:[10,10,18,220]),
       }));
     }
   }
@@ -3039,14 +3052,14 @@ function updateLayers() {
       layers.push(new deck.ScatterplotLayer({
         id: 'my-origin-dots', data: myOriginList,
         getPosition: d => [d.lng, d.lat], getRadius: 2500,
-        getFillColor: [251,146,60,200], getLineColor: [255,255,255,150],
+        getFillColor: [251,146,60,200], getLineColor: (PRINT_LIGHT?[22,32,43,150]:[255,255,255,150]),
         lineWidthMinPixels: 1, stroked: true,
       }));
       layers.push(new deck.TextLayer({
         id: 'my-origin-labels', data: myOriginList.slice(0, 30),
         getPosition: d => [d.lng, d.lat], getText: d => d.name,
         getSize: 11, getColor: [251,146,60,220], getPixelOffset: [0, -16],
-        characterSet: 'auto', fontFamily: 'Noto Sans KR', fontWeight: 700, outlineWidth: 3, outlineColor: [10,10,18,220],
+        characterSet: 'auto', fontFamily: 'Noto Sans KR', fontWeight: 700, outlineWidth: 3, outlineColor: (PRINT_LIGHT?[251,250,247,220]:[10,10,18,220]),
       }));
     }
 
@@ -3190,10 +3203,10 @@ function updateLayers() {
       return getCorpColor(v);
     },
     getLineColor: d => {
-      if (selectedCorp && d.corp === selectedCorp) return [255,255,255,255];
+      if (selectedCorp && d.corp === selectedCorp) return (PRINT_LIGHT?[22,32,43,255]:[255,255,255,255]);
       if (isMyCorp(d)) return [255,152,0,255];  // 주황 테두리
-      if (selectedMarket && d.market === selectedMarket) return [255,255,255,180];
-      return [255,255,255,40];
+      if (selectedMarket && d.market === selectedMarket) return (PRINT_LIGHT?[22,32,43,180]:[255,255,255,180]);
+      return (PRINT_LIGHT?[22,32,43,40]:[255,255,255,40]);
     },
     getLineWidth: d => isMyCorp(d) ? 3 : 1,
     lineWidthMinPixels: 1, stroked: true, pickable: true,
@@ -3280,15 +3293,15 @@ function updateLayers() {
     },
     getColor: d => {
       if (isMyCorp(d)) return [253,224,71,255];  // 밝은 노랑 (산지 주황과 명도를 벌린다)
-      if (selectedMarket && d.market !== selectedMarket) return [255,255,255,50];
-      if (selectedCorp && d.corp !== selectedCorp) return [255,255,255,80];
-      return [255,255,255,220];
+      if (selectedMarket && d.market !== selectedMarket) return (PRINT_LIGHT?[22,32,43,50]:[255,255,255,50]);
+      if (selectedCorp && d.corp !== selectedCorp) return (PRINT_LIGHT?[22,32,43,80]:[255,255,255,80]);
+      return (PRINT_LIGHT?[22,32,43,220]:[255,255,255,220]);
     },
     // ★ 우리 법인 라벨만 더 위로 올린다. 같은 자리에 다른 시장 라벨이 겹쳐 읽히던 것을 푼다.
     //   (deck.gl TextLayer 는 같은 레이어 안에서 겹침을 스스로 못 푼다. 그리는 순서로는 안 된다.)
     getPixelOffset: d => isMyCorp(d) ? [0, -46] : [0, -20],
     characterSet: 'auto', fontFamily: 'Noto Sans KR', fontWeight: 700,
-    outlineWidth: 4, outlineColor: [10,10,18,235],
+    outlineWidth: 4, outlineColor: (PRINT_LIGHT?[251,250,247,235]:[10,10,18,235]),
     updateTriggers: { getSize: [selectedCorp, selectedMarket], getColor: [selectedCorp, selectedMarket] },
   }));
 
@@ -3306,7 +3319,9 @@ function renderMap() {
     //   배경 라벨을 끄면 영어가 사라지고 우리 한글 라벨만 남아 겹침도 준다.
     //   ⚠️ 전제 = 그 한글 라벨이 실제로 그려져야 한다. 같은 날 characterSet 을 고쳐서
     //      한글이 렌더되게 만든 뒤에 이 변경을 넣었다. 순서가 반대면 빈 지도가 된다.
-    mapStyle: 'https://basemaps.cartocdn.com/gl/dark-matter-nolabels-gl-style/style.json',
+    mapStyle: PRINT_LIGHT
+      ? 'https://basemaps.cartocdn.com/gl/positron-nolabels-gl-style/style.json'
+      : 'https://basemaps.cartocdn.com/gl/dark-matter-nolabels-gl-style/style.json',
     initialViewState: { longitude: 127.9, latitude: 36.4, zoom: 7.1, pitch: 18, bearing: 0 },
     // ★ 2026-08-22 — 전체 지도가 화면에 꽉 차게.
     //   전: 위도 36.0 · 기울기 30도. 서울이 화면 위로 잘리고 남한이 왼쪽에 몰렸다.
