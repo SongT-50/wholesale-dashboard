@@ -892,7 +892,7 @@ function toggleMobilePanel() {
 }
 
 let summaryData = null;
-// ★ 2026-08-22 (IN-T3) — 공모전 제출용 캡처 모드.
+// ★ 2026-08-22 — 공모전 제출용 캡처 모드.
 //   URL 에 ?contest=1 이 붙으면 「우리 법인 강조」를 끈다(별·노란 펄스·항상 라벨).
 //   왜: 캡처에 회사명이 남으면 익명 심사에서 멈춘다. 게이트 ④ 멈춤 조건이다.
 //   ⚠️ 기본값은 그대로다. 파라미터가 없으면 예전 화면과 완전히 같다.
@@ -908,13 +908,13 @@ let selectedCorpData = null;
 let selectedProduct = null;
 let selectedPriceProduct = null;
 let selectedMarket = null;
-// ★ 2026-08-22 (WHOLESALE-T3) — 기본값 false -> true.
+// ★ 2026-08-22 — 기본값 false -> true.
 //   물류 흐름이 이 대시보드에서 제일 보여줄 것인데 첫 화면에 안 나왔다.
 //   버튼을 눌러야 나오니 처음 여는 사람은 있는 줄도 모른다.
 //   summary 에 flows 200개가 이미 들어 있다(산지 GPS 198개 매칭). 안 쓰고 있었을 뿐이다.
 //   ⇒ 끄고 싶으면 「물류 흐름 숨기기」 버튼이 그대로 있다.
 let showFlows = true;
-// ★ 2026-08-22 (WHOLESALE-T3) — 첫 화면을 「정산이 완비된 날」로 연다.
+// ★ 2026-08-22 — 첫 화면을 「정산이 완비된 날」로 연다.
 //   왜: 예전엔 오늘부터 뒤로 훑어 '파일이 있는 첫 날'을 썼다. 그런데
 //   「파일이 있다」와 「데이터가 찼다」는 다르다. 어제 것은 파일이 있어도 절반만 차 있다.
 //   실물: 2026-08-20 은 49법인 11,774톤인데 2026-08-18 은 81법인 38,503톤이다.
@@ -2733,7 +2733,7 @@ function updateLayers() {
       }
       const maxArc = arcs.length ? arcs[0].kg : 1;
       if (arcs.length) {
-        // ★ 2026-08-22 물류 포물선 업그레이드 (WHOLESALE-T3)
+        // ★ 2026-08-22 물류 포물선 업그레이드
         //   바뀐 것 넷:
         //   1) getHeight — 물량이 큰 흐름일수록 높이 뜬다. 예전엔 전부 같은 높이라
         //      선이 서로 겹쳐 어느 것이 굵은지 안 보였다.
@@ -3060,7 +3060,7 @@ function updateLayers() {
   }
   // === 전체 흐름 (시장 선택 시 자동 표시) ===
   else if ((showFlows || selectedMarket) && summaryData.flows) {
-    // ★ 2026-08-22 (WHOLESALE-T3) — 좌표가 한국 밖이면 거른다.
+    // ★ 2026-08-22 — 좌표가 한국 밖이면 거른다.
     //   foreign 플래그만 믿으면 샌다. 실물: 「수입산」은 foreign=false 인데
     //   좌표가 (33.0, 125.0) = 제주 서쪽 바다라 지도에 원이 떠 있었다.
     //   플래그는 사람이 붙이고 좌표는 계산된다. 좌표로 거르는 쪽이 앞으로도 막는다.
@@ -3070,7 +3070,7 @@ function updateLayers() {
     if (selectedMarket) {
       domesticFlows = domesticFlows.filter(f => f.dest_market === selectedMarket);
     }
-    // ★ 2026-08-22 (WHOLESALE-T3) — 그리는 개수를 줄인다.
+    // ★ 2026-08-22 — 그리는 개수를 줄인다.
     //   196개를 전부 그렸더니 수도권 위가 초록 덩어리가 되어 무엇이 큰 흐름인지 안 보였다.
     //   ⚠️ 데이터를 버리는 게 아니라 「보이는 것」만 줄인다. 줄였다는 사실은 화면에 적는다
     //      (범례 옆 flowNote). 안 적으면 보는 사람이 전부인 줄 안다.
@@ -3201,7 +3201,7 @@ function updateLayers() {
   }));
 
   // === 법인 이름 ===
-  // ★ 2026-08-22 (WHOLESALE-T3) — 라벨을 상위만 그린다.
+  // ★ 2026-08-22 — 라벨을 상위만 그린다.
   //   81곳 전부에 이름을 달았더니 수도권(서울가락 6곳·강서·구리·인천)에서 글자가 포개져
   //   하나도 안 읽혔다. 이름을 다 적는 것과 이름이 읽히는 것은 다르다.
   //   ⚠️ 예외 셋은 개수와 무관하게 항상 남긴다:
@@ -3276,7 +3276,7 @@ function updateLayers() {
 function renderMap() {
   deckgl = new deck.DeckGL({
     container: 'map',
-    // ★ 2026-08-22 (WHOLESALE-T3) — 라벨 없는 배경으로 바꿨다.
+    // ★ 2026-08-22 — 라벨 없는 배경으로 바꿨다.
     //   왜: 기본 스타일의 지명이 전부 영어였다(Daejeon·Daegu·Busan·Gwangju…).
     //   한국 도매시장 대시보드인데 지도가 영어로 말하고 있었다.
     //   그리고 우리는 시장·법인 이름을 직접 한글로 그린다(TextLayer 11개).
@@ -3285,7 +3285,7 @@ function renderMap() {
     //      한글이 렌더되게 만든 뒤에 이 변경을 넣었다. 순서가 반대면 빈 지도가 된다.
     mapStyle: 'https://basemaps.cartocdn.com/gl/dark-matter-nolabels-gl-style/style.json',
     initialViewState: { longitude: 127.9, latitude: 36.4, zoom: 7.1, pitch: 18, bearing: 0 },
-    // ★ 2026-08-22 (WHOLESALE-T3) — 전체 지도가 화면에 꽉 차게.
+    // ★ 2026-08-22 — 전체 지도가 화면에 꽉 차게.
     //   전: 위도 36.0 · 기울기 30도. 서울이 화면 위로 잘리고 남한이 왼쪽에 몰렸다.
     //   기울기를 30 -> 18 로 낮췄다. 0 으로 하면 물류 곡선의 아치가 납작해져 흐름이 안 보인다.
     //   경도를 오른쪽으로 민 이유 = 지도 영역이 왼쪽 패널(360px) 옆이라 중심이 왼쪽으로 치우친다.

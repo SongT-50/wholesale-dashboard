@@ -7,3 +7,8 @@ node_modules/
 # 왜: 공모전 캡처에 우리 법인 상세 패널(품목 93 · 산지 76 · 입하예약)이 찍혀 있다.
 # 제출물은 PDF 로 나가지 이 저장소로 나가지 않는다.
 screenshots/
+
+# 내부 캡처 도구 - 공개 저장소에 둘 이유가 없다 (2026-09-02)
+capture_screenshots.py
+capture_kbs.py
+capture_contest.py
