@@ -479,8 +479,10 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', s
 
 /* 우리 법인(MY) 배지 */
 .corp-item.my-corp {
-  border-color: rgba(250,204,21,0.4); background: rgba(250,204,21,0.05);
+  border-color: rgba(250,204,21,0.75); background: rgba(250,204,21,0.12);
+  border-left: 4px solid rgba(253,224,71,0.95);
 }
+.corp-item.my-corp .corp-name { font-weight: 900; color: #fde047; }
 .corp-item.my-corp:hover { border-color: var(--yellow); background: rgba(250,204,21,0.1); }
 .my-badge {
   display: inline-block; background: rgba(250,204,21,0.2); border: 1px solid rgba(250,204,21,0.5);
@@ -3244,6 +3246,24 @@ function updateLayers() {
       }
     }
   }
+  // ★ 우리 법인 위치에 빈 링 하나 — 채운 원(산지)과 「형태」로 갈린다.
+  //   색만 벌리면 노랑↔주황 구별에 기대게 된다. 형태 축을 하나 더 둔다.
+  {
+    const myPins = labelData.filter(d => isMyCorp(d));
+    if (myPins.length) {
+      layers.push(new deck.ScatterplotLayer({
+        id: 'my-corp-ring', data: myPins,
+        getPosition: d => [d.displayLng, d.displayLat],
+        stroked: true, filled: false,
+        radiusUnits: 'pixels', getRadius: 22,
+        lineWidthUnits: 'pixels', getLineWidth: 3.5,
+        getLineColor: [253,224,71,255],
+        pickable: false,
+      }));
+    }
+  }
+  // ★ 우리 법인 라벨을 마지막에 그린다 — 겹치면 위로 오게
+  labelData.sort((a, b) => (isMyCorp(a) ? 1 : 0) - (isMyCorp(b) ? 1 : 0));
   layers.push(new deck.TextLayer({
     id: 'labels', data: labelData,
     getPosition: d => [d.displayLng, d.displayLat],
@@ -3253,19 +3273,19 @@ function updateLayers() {
     },
     getSize: d => {
       if (selectedCorp && d.corp === selectedCorp) return 14;
-      if (isMyCorp(d)) return 13;
+      if (isMyCorp(d)) return 20;
       if (selectedMarket && d.market === selectedMarket) return 13;
       if (selectedCorp || selectedMarket) return 10;
-      return 12;
+      return 11;
     },
     getColor: d => {
-      if (isMyCorp(d)) return [255,183,77,255];  // 주황 라벨
+      if (isMyCorp(d)) return [253,224,71,255];  // 밝은 노랑 (산지 주황과 명도를 벌린다)
       if (selectedMarket && d.market !== selectedMarket) return [255,255,255,50];
       if (selectedCorp && d.corp !== selectedCorp) return [255,255,255,80];
       return [255,255,255,220];
     },
     getPixelOffset: [0, -20], characterSet: 'auto', fontFamily: 'Noto Sans KR', fontWeight: 700,
-    outlineWidth: 3, outlineColor: [10,10,18,200],
+    outlineWidth: 4, outlineColor: [10,10,18,235],
     updateTriggers: { getSize: [selectedCorp, selectedMarket], getColor: [selectedCorp, selectedMarket] },
   }));
 
