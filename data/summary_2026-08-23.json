@@ -20,97 +20,116 @@
       {
         "market": "서울가락",
         "qty": 136011,
-        "qty_kg": 1072779.5
+        "qty_kg": 1072779.5,
+        "records": 4646
       },
       {
         "market": "대구북부",
         "qty": 6155,
-        "qty_kg": 301615.5
+        "qty_kg": 301615.5,
+        "records": 15
       },
       {
         "market": "서울강서",
         "qty": 23783,
-        "qty_kg": 147650.0
+        "qty_kg": 147650.0,
+        "records": 226
       },
       {
         "market": "대전오정",
         "qty": 10740,
-        "qty_kg": 98238.0
+        "qty_kg": 98238.0,
+        "records": 104
       },
       {
         "market": "구리",
         "qty": 19014,
-        "qty_kg": 88496.8
+        "qty_kg": 88496.8,
+        "records": 496
       },
       {
         "market": "인천남촌",
         "qty": 10816,
-        "qty_kg": 82760.0
+        "qty_kg": 82760.0,
+        "records": 65
       },
       {
         "market": "대전노은",
         "qty": 6328,
-        "qty_kg": 57171.0
+        "qty_kg": 57171.0,
+        "records": 47
       },
       {
         "market": "인천삼산",
         "qty": 2743,
-        "qty_kg": 38015.0
+        "qty_kg": 38015.0,
+        "records": 17
       },
       {
         "market": "안산",
         "qty": 2400,
-        "qty_kg": 31100.0
+        "qty_kg": 31100.0,
+        "records": 5
       },
       {
         "market": "광주서부",
         "qty": 3410,
-        "qty_kg": 26454.0
+        "qty_kg": 26454.0,
+        "records": 7
       },
       {
         "market": "순천",
         "qty": 720,
-        "qty_kg": 14400.0
+        "qty_kg": 14400.0,
+        "records": 1
       },
       {
         "market": "청주",
         "qty": 1968,
-        "qty_kg": 9679.0
+        "qty_kg": 9679.0,
+        "records": 18
       },
       {
         "market": "부산엄궁",
         "qty": 343,
-        "qty_kg": 5145.0
+        "qty_kg": 5145.0,
+        "records": 5
       },
       {
         "market": "안동",
         "qty": 382,
-        "qty_kg": 4584.0
+        "qty_kg": 4584.0,
+        "records": 1
       },
       {
         "market": "포항",
         "qty": 483,
-        "qty_kg": 4163.0
+        "qty_kg": 4163.0,
+        "records": 15
       },
       {
         "market": "수원",
         "qty": 244,
-        "qty_kg": 1952.0
+        "qty_kg": 1952.0,
+        "records": 8
       },
       {
         "market": "익산",
         "qty": 132,
-        "qty_kg": 1716.0
+        "qty_kg": 1716.0,
+        "records": 4
       },
       {
         "market": "강릉",
         "qty": 860,
-        "qty_kg": 1049.6
+        "qty_kg": 1049.6,
+        "records": 20
       },
       {
         "market": "정읍",
         "qty": 10,
-        "qty_kg": 50.0
+        "qty_kg": 50.0,
+        "records": 1
       }
     ],
     "corporations": [
@@ -122,6 +141,7 @@
         "lng": 127.0124,
         "qty": 121488,
         "qty_kg": 697354.5,
+        "records": 4460,
         "products": [
           {
             "name": "수박",
@@ -313,6 +333,7 @@
         "lng": 128.567,
         "qty": 584,
         "qty_kg": 240312.0,
+        "records": 2,
         "products": [
           {
             "name": "감귤",
@@ -330,6 +351,7 @@
         "lng": 127.0124,
         "qty": 19,
         "qty_kg": 210400.0,
+        "records": 19,
         "products": [
           {
             "name": "무",
@@ -359,6 +381,7 @@
         "lng": 127.0124,
         "qty": 6506,
         "qty_kg": 99980.0,
+        "records": 144,
         "products": [
           {
             "name": "양파",
@@ -484,6 +507,7 @@
         "lng": 126.7312,
         "qty": 10816,
         "qty_kg": 82760.0,
+        "records": 65,
         "products": [
           {
             "name": "복숭아",
@@ -603,6 +627,7 @@
         "lng": 127.426,
         "qty": 7183,
         "qty_kg": 81794.0,
+        "records": 21,
         "products": [
           {
             "name": "양파",
@@ -668,6 +693,7 @@
         "lng": 126.8275,
         "qty": 18276,
         "qty_kg": 81095.0,
+        "records": 197,
         "products": [
           {
             "name": "감자",
@@ -757,6 +783,7 @@
         "lng": 126.8275,
         "qty": 5507,
         "qty_kg": 66555.0,
+        "records": 29,
         "products": [
           {
             "name": "무",
@@ -810,6 +837,7 @@
         "lng": 128.567,
         "qty": 5571,
         "qty_kg": 61303.5,
+        "records": 13,
         "products": [
           {
             "name": "감자",
@@ -857,6 +885,7 @@
         "lng": 127.1293,
         "qty": 9163,
         "qty_kg": 54461.8,
+        "records": 155,
         "products": [
           {
             "name": "감자",
@@ -982,6 +1011,7 @@
         "lng": 127.3203,
         "qty": 5596,
         "qty_kg": 51315.0,
+        "records": 46,
         "products": [
           {
             "name": "무",
@@ -1077,6 +1107,7 @@
         "lng": 127.0124,
         "qty": 6412,
         "qty_kg": 51265.0,
+        "records": 15,
         "products": [
           {
             "name": "얼갈이배추",
@@ -1118,6 +1149,7 @@
         "lng": 126.722,
         "qty": 2743,
         "qty_kg": 38015.0,
+        "records": 17,
         "products": [
           {
             "name": "양파",
@@ -1165,6 +1197,7 @@
         "lng": 126.8308,
         "qty": 2400,
         "qty_kg": 31100.0,
+        "records": 5,
         "products": [
           {
             "name": "무",
@@ -1200,6 +1233,7 @@
         "lng": 127.1293,
         "qty": 6919,
         "qty_kg": 26091.0,
+        "records": 336,
         "products": [
           {
             "name": "복숭아",
@@ -1235,6 +1269,7 @@
         "lng": 126.808,
         "qty": 2678,
         "qty_kg": 19134.0,
+        "records": 6,
         "products": [
           {
             "name": "고구마",
@@ -1264,6 +1299,7 @@
         "lng": 127.426,
         "qty": 3557,
         "qty_kg": 16444.0,
+        "records": 83,
         "products": [
           {
             "name": "대파",
@@ -1329,6 +1365,7 @@
         "lng": 127.4872,
         "qty": 720,
         "qty_kg": 14400.0,
+        "records": 1,
         "products": [
           {
             "name": "양파",
@@ -1346,6 +1383,7 @@
         "lng": 127.0124,
         "qty": 1586,
         "qty_kg": 13780.0,
+        "records": 8,
         "products": [
           {
             "name": "사과",
@@ -1375,6 +1413,7 @@
         "lng": 127.1293,
         "qty": 2932,
         "qty_kg": 7944.0,
+        "records": 5,
         "products": [
           {
             "name": "포도",
@@ -1398,6 +1437,7 @@
         "lng": 126.808,
         "qty": 732,
         "qty_kg": 7320.0,
+        "records": 1,
         "products": [
           {
             "name": "양배추",
@@ -1415,6 +1455,7 @@
         "lng": 127.489,
         "qty": 1395,
         "qty_kg": 6814.0,
+        "records": 7,
         "products": [
           {
             "name": "양배추",
@@ -1438,6 +1479,7 @@
         "lng": 127.3203,
         "qty": 732,
         "qty_kg": 5856.0,
+        "records": 1,
         "products": [
           {
             "name": "양배추",
@@ -1455,6 +1497,7 @@
         "lng": 128.978,
         "qty": 343,
         "qty_kg": 5145.0,
+        "records": 5,
         "products": [
           {
             "name": "바나나",
@@ -1472,6 +1515,7 @@
         "lng": 128.7294,
         "qty": 382,
         "qty_kg": 4584.0,
+        "records": 1,
         "products": [
           {
             "name": "방울토마토",
@@ -1489,6 +1533,7 @@
         "lng": 129.365,
         "qty": 483,
         "qty_kg": 4163.0,
+        "records": 15,
         "products": [
           {
             "name": "수박",
@@ -1506,6 +1551,7 @@
         "lng": 127.489,
         "qty": 573,
         "qty_kg": 2865.0,
+        "records": 11,
         "products": [
           {
             "name": "복숭아",
@@ -1523,6 +1569,7 @@
         "lng": 127.015,
         "qty": 244,
         "qty_kg": 1952.0,
+        "records": 8,
         "products": [
           {
             "name": "양배추",
@@ -1540,6 +1587,7 @@
         "lng": 126.9548,
         "qty": 132,
         "qty_kg": 1716.0,
+        "records": 4,
         "products": [
           {
             "name": "바나나",
@@ -1557,6 +1605,7 @@
         "lng": 128.8961,
         "qty": 860,
         "qty_kg": 1049.6,
+        "records": 20,
         "products": [
           {
             "name": "양파",
@@ -1586,6 +1635,7 @@
         "lng": 126.856,
         "qty": 10,
         "qty_kg": 50.0,
+        "records": 1,
         "products": [
           {
             "name": "자두",
