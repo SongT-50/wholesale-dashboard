@@ -60,7 +60,47 @@ def new_state():
         "prod": defaultdict(lambda: {"total": 0.0, "years": _dd(), "by_l1": _dd(),
                                      "by_corp": _dd(), "by_l2": _dd(),
                                      "by_l2_corp": _dd()}),
+        # relay = 산지가 아니라 «도매시장 경유지» 로 판정돼 위 집계에서 «뺀» 것.
+        # 조용히 버리지 않는다 — origins.json meta.relay 에 그대로 실린다.
+        "relay": {"kg": 0.0, "count": 0, "by_rule": _dd(), "by_rule_count": _dd(),
+                  "raw": _dd(), "by_year_kg": _dd()},
     }
+
+
+BLACKLIST_PATH = os.path.join(OUT, "market_address_blacklist.json")
+_BL = None
+
+
+def load_blacklist():
+    """이름형 토큰 + 주소형 prefix. 파일이 없으면 «멈춘다» — 경유지 0건으로 조용히 넘어가지 않는다."""
+    global _BL
+    if _BL is None:
+        if not os.path.exists(BLACKLIST_PATH):
+            print("### [치명] %s 가 없다. 경유지 필터 없이 집계하면 가락동이 산지로 센다." % BLACKLIST_PATH)
+            sys.exit(2)
+        with io.open(BLACKLIST_PATH, encoding="utf-8") as fh:
+            j = json.load(fh)
+        _BL = {"tokens": tuple(j["name_tokens"]),
+               "prefixes": tuple((e["prefix"].replace("  ", " "), e["market"]) for e in j["address_prefixes"])}
+    return _BL
+
+
+def relay_rule(origin):
+    """경유지면 규칙 이름을, 아니면 None. 순서 = 이름형 먼저(§2-ㄱ), 그다음 주소형(§5).
+
+    ⚠️ 「걸렀다」≠「실제로 도매시장을 경유했다」. 주소가 그렇게 기재됐을 뿐이다.
+    """
+    bl = load_blacklist()
+    o = " ".join(str(origin or "").split())
+    if not o:
+        return None
+    for tkn in bl["tokens"]:
+        if tkn in o:
+            return "name:" + tkn
+    for pre, market in bl["prefixes"]:
+        if o.startswith(pre):
+            return "addr:" + market
+    return None
 
 
 def split_origin(s):
@@ -99,6 +139,16 @@ def ingest(state, date):
             if qty <= 0:
                 continue
             raw = r.get("origin") or ""
+            rule = relay_rule(raw)
+            if rule:
+                rl = state["relay"]
+                rl["kg"] += qty
+                rl["count"] += 1
+                rl["by_rule"][rule] += qty
+                rl["by_rule_count"][rule] += 1
+                rl["raw"][" ".join(str(raw).split())] += qty
+                rl["by_year_kg"][year] += qty
+                continue
             l1, l2 = split_origin(raw)
             if not l1:
                 continue
@@ -138,6 +188,11 @@ def to_plain(state):
                      "by_l1": dict(v["by_l1"]), "by_corp": dict(v["by_corp"]),
                      "by_l2": dict(v["by_l2"]), "by_l2_corp": dict(v["by_l2_corp"])}
                  for k, v in state["prod"].items()},
+        "relay": {"kg": state["relay"]["kg"], "count": state["relay"]["count"],
+                  "by_rule": dict(state["relay"]["by_rule"]),
+                  "by_rule_count": dict(state["relay"]["by_rule_count"]),
+                  "raw": dict(state["relay"]["raw"]),
+                  "by_year_kg": dict(state["relay"]["by_year_kg"])},
     }
 
 
@@ -158,6 +213,12 @@ def from_plain(p):
         for k in ("years", "by_l1", "by_corp", "by_l2", "by_l2_corp"):
             for kk, vv in (v.get(k) or {}).items():
                 t[k][kk] += vv
+    rl = p.get("relay") or {}
+    s["relay"]["kg"] = rl.get("kg", 0.0)
+    s["relay"]["count"] = rl.get("count", 0)
+    for k in ("by_rule", "by_rule_count", "raw", "by_year_kg"):
+        for kk, vv in (rl.get(k) or {}).items():
+            s["relay"][k][kk] += vv
     return s
 
 
@@ -198,12 +259,25 @@ def finalize(state):
                                 for n, v in top(b["raw_origins"], CAP_RAW_ORIGINS)],
                 "l2": [{"name": n, "kg": round(v, 1)} for n, v in top(b["l2"])],
             }
+    rl = state["relay"]
+    kept_kg = sum(b["kg"] for ys in state["regions"].values() for b in ys.values())
+    relay_meta = {
+        "note": "산지가 아니라 «도매시장 경유지»(이름형 시장·공판장… / 주소형 가락동·매천동…)로 판정돼 regions·products 에서 «뺀» 것. "
+                "걸렀다 ≠ 실제 경유 — 주소가 그렇게 기재됐을 뿐이다. 규칙 = data/market_address_blacklist.json",
+        "kg": round(rl["kg"], 1), "count": rl["count"],
+        "share_of_kg": round(rl["kg"] / max(rl["kg"] + kept_kg, 1e-9), 4),
+        "by_rule": [{"rule": k, "kg": round(v, 1), "count": rl["by_rule_count"].get(k, 0)}
+                    for k, v in top(rl["by_rule"])],
+        "by_year_kg": {y: round(v, 1) for y, v in sorted(rl["by_year_kg"].items())},
+        "raw_top": [{"name": n, "kg": round(v, 1)} for n, v in top(rl["raw"], 50)],
+    }
     o1 = {
         "years": years,
         "regions": regions,
         "meta": {"days": len(days), "from": days[0], "to": days[-1],
                  "generated_by": "aggregate_origins.py",
-                 "caps": {"raw_origins_per_region_year": CAP_RAW_ORIGINS}},
+                 "caps": {"raw_origins_per_region_year": CAP_RAW_ORIGINS},
+                 "relay": relay_meta},
     }
     with io.open(os.path.join(OUT, "origins.json"), "w", encoding="utf-8") as fh:
         json.dump(o1, fh, ensure_ascii=False)
@@ -245,6 +319,11 @@ def finalize(state):
                 l2keys.add("%s %s" % (l1, x["name"]))
     print("origins.json      시도 %d · 연도 %s · 일수 %d (%s ~ %s)"
           % (len(regions), ",".join(years), len(days), days[0], days[-1]))
+    print("  경유지로 뺀 것   %s건 · %.1f톤 · 전체 kg 의 %.2f%% (규칙 %d개 · 상위 %s)"
+          % (format(rl["count"], ","), rl["kg"] / 1000, 100 * relay_meta["share_of_kg"],
+             len(rl["by_rule"]), relay_meta["by_rule"][0]["rule"] if relay_meta["by_rule"] else "-"))
+    if rl["count"] == 0:
+        print("  ### 경유지 0건 — 블랙리스트가 안 읽혔거나 표본이 비었다. 「없다」로 읽지 마라.")
     print("origins_v2.json   품목 %d (전체 %d 중 상위) · 시군구키 %d"
           % (len(products), len(state["prod"]), len(l2keys)))
     print("### 시군구 좌표(sigungu_coords.json)는 이 스크립트가 «안» 만든다 — 좌표 소스가 따로 필요하다.")
