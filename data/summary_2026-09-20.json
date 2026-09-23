@@ -23,6 +23,7 @@
           "amount": 50316700,
           "avg_price_kg": 3030,
           "price_change": {
+            "d1": -6.4,
             "w1": -4.5,
             "m1": 86.5
           }
@@ -34,6 +35,7 @@
           "amount": 29833100,
           "avg_price_kg": 2720,
           "price_change": {
+            "d1": 6.8,
             "w1": 43.2,
             "m1": -31.4
           }
@@ -45,6 +47,7 @@
           "amount": 1251700,
           "avg_price_kg": 2819,
           "price_change": {
+            "d1": -2.7,
             "m1": -1.8
           }
         },
@@ -55,6 +58,7 @@
           "amount": 1819100,
           "avg_price_kg": 2872,
           "price_change": {
+            "d1": -0.3,
             "w1": -58.9,
             "m1": -39.7
           }
@@ -66,6 +70,7 @@
           "amount": 7255200,
           "avg_price_kg": 2806,
           "price_change": {
+            "d1": 7.1,
             "m1": 89.6
           }
         },
@@ -76,6 +81,7 @@
           "amount": 586600,
           "avg_price_kg": 5064,
           "price_change": {
+            "d1": 15.9,
             "m1": 98.9
           }
         },
@@ -84,14 +90,20 @@
           "trades": 2,
           "qty": 25.0,
           "amount": 64600,
-          "avg_price_kg": 2547
+          "avg_price_kg": 2547,
+          "price_change": {
+            "d1": 2.9
+          }
         },
         {
           "name": "대추",
           "trades": 2,
           "qty": 63.0,
           "amount": 360000,
-          "avg_price_kg": 4900
+          "avg_price_kg": 4900,
+          "price_change": {
+            "d1": -31.9
+          }
         },
         {
           "name": "오이",
@@ -100,6 +112,7 @@
           "amount": 416800,
           "avg_price_kg": 1227,
           "price_change": {
+            "d1": 6.1,
             "m1": -20.3
           }
         },
@@ -110,6 +123,7 @@
           "amount": 133800,
           "avg_price_kg": 575,
           "price_change": {
+            "d1": -54.7,
             "m1": -54.1
           }
         },
@@ -120,6 +134,7 @@
           "amount": 1115100,
           "avg_price_kg": 600,
           "price_change": {
+            "d1": -53.6,
             "m1": -75.1
           }
         },
@@ -130,6 +145,7 @@
           "amount": 500000,
           "avg_price_kg": 8500,
           "price_change": {
+            "d1": 325.0,
             "m1": 335.9
           }
         },
@@ -140,6 +156,7 @@
           "amount": 1972000,
           "avg_price_kg": 2122,
           "price_change": {
+            "d1": 28.2,
             "m1": 20.8
           }
         },
@@ -150,6 +167,7 @@
           "amount": 582900,
           "avg_price_kg": 4350,
           "price_change": {
+            "d1": 21.4,
             "m1": 106.5
           }
         },
@@ -160,6 +178,7 @@
           "amount": 480000,
           "avg_price_kg": 16000,
           "price_change": {
+            "d1": 42.9,
             "m1": 101.5
           }
         },
@@ -170,6 +189,7 @@
           "amount": 73000,
           "avg_price_kg": 3650,
           "price_change": {
+            "d1": -9.8,
             "m1": -11.4
           }
         },
@@ -180,6 +200,7 @@
           "amount": 175000,
           "avg_price_kg": 12500,
           "price_change": {
+            "d1": -34.7,
             "m1": -51.9
           }
         },
@@ -190,6 +211,7 @@
           "amount": 220000,
           "avg_price_kg": 2750,
           "price_change": {
+            "d1": 3.1,
             "m1": 3.1
           }
         },
@@ -200,6 +222,7 @@
           "amount": 200000,
           "avg_price_kg": 3333,
           "price_change": {
+            "d1": 28.2,
             "m1": -23.1
           }
         },
@@ -210,6 +233,7 @@
           "amount": 400000,
           "avg_price_kg": 4000,
           "price_change": {
+            "d1": 0.0,
             "m1": 0.0
           }
         },
@@ -220,6 +244,7 @@
           "amount": 513800,
           "avg_price_kg": 7340,
           "price_change": {
+            "d1": 0.5,
             "m1": -4.1
           }
         }
@@ -639,6 +664,10 @@
         ]
       },
       "price_change": {
+        "d1": {
+          "amount": -68.2,
+          "qty": -71.1
+        },
         "w1": {
           "amount": 326.0,
           "qty": 220.5
@@ -666,6 +695,7 @@
           "amount": 6900300,
           "avg_price_kg": 1065,
           "price_change": {
+            "d1": -39.7,
             "m1": 8.9
           }
         },
@@ -676,6 +706,7 @@
           "amount": 47141000,
           "avg_price_kg": 2885,
           "price_change": {
+            "d1": 4.6,
             "m1": 16.5
           }
         },
@@ -686,6 +717,7 @@
           "amount": 8270000,
           "avg_price_kg": 4081,
           "price_change": {
+            "d1": 26.2,
             "m1": 8.8
           }
         },
@@ -694,7 +726,10 @@
           "trades": 4,
           "qty": 167.0,
           "amount": 147700,
-          "avg_price_kg": 883
+          "avg_price_kg": 883,
+          "price_change": {
+            "d1": 9.6
+          }
         },
         {
           "name": "사과",
@@ -703,6 +738,7 @@
           "amount": 12395000,
           "avg_price_kg": 4282,
           "price_change": {
+            "d1": 2.3,
             "m1": -13.8
           }
         },
@@ -713,6 +749,7 @@
           "amount": 5800500,
           "avg_price_kg": 2038,
           "price_change": {
+            "d1": -17.0,
             "m1": -15.5
           }
         },
@@ -723,6 +760,7 @@
           "amount": 1384100,
           "avg_price_kg": 2339,
           "price_change": {
+            "d1": -15.1,
             "m1": -33.4
           }
         },
@@ -733,6 +771,7 @@
           "amount": 979900,
           "avg_price_kg": 5130,
           "price_change": {
+            "d1": -2.4,
             "m1": 18.9
           }
         },
@@ -743,6 +782,7 @@
           "amount": 1819700,
           "avg_price_kg": 5781,
           "price_change": {
+            "d1": -14.8,
             "m1": 6.2
           }
         },
@@ -753,6 +793,7 @@
           "amount": 5210000,
           "avg_price_kg": 6144,
           "price_change": {
+            "d1": 50.0,
             "m1": 39.7
           }
         },
@@ -763,6 +804,7 @@
           "amount": 1425800,
           "avg_price_kg": 1570,
           "price_change": {
+            "d1": 28.4,
             "m1": 25.0
           }
         },
@@ -773,6 +815,7 @@
           "amount": 1879800,
           "avg_price_kg": 2107,
           "price_change": {
+            "d1": -28.2,
             "m1": 4.4
           }
         },
@@ -783,6 +826,7 @@
           "amount": 5120000,
           "avg_price_kg": 5614,
           "price_change": {
+            "d1": -3.0,
             "m1": 0.2
           }
         },
@@ -791,7 +835,10 @@
           "trades": 1,
           "qty": 120.0,
           "amount": 324000,
-          "avg_price_kg": 2700
+          "avg_price_kg": 2700,
+          "price_change": {
+            "d1": -27.9
+          }
         },
         {
           "name": "얼갈이배추",
@@ -800,6 +847,7 @@
           "amount": 777000,
           "avg_price_kg": 2089,
           "price_change": {
+            "d1": -23.3,
             "m1": 15.6
           }
         },
@@ -810,6 +858,7 @@
           "amount": 117000,
           "avg_price_kg": 975,
           "price_change": {
+            "d1": -49.1,
             "m1": -70.9
           }
         },
@@ -820,6 +869,7 @@
           "amount": 216000,
           "avg_price_kg": 5400,
           "price_change": {
+            "d1": 9.3,
             "m1": 66.6
           }
         },
@@ -830,6 +880,7 @@
           "amount": 1404000,
           "avg_price_kg": 1755,
           "price_change": {
+            "d1": 43.0,
             "m1": 20.6
           }
         },
@@ -840,6 +891,7 @@
           "amount": 2560000,
           "avg_price_kg": 1067,
           "price_change": {
+            "d1": 21.4,
             "m1": 31.7
           }
         },
@@ -850,6 +902,7 @@
           "amount": 945000,
           "avg_price_kg": 1929,
           "price_change": {
+            "d1": -0.6,
             "m1": 13.8
           }
         }
@@ -1255,6 +1308,10 @@
         ]
       },
       "price_change": {
+        "d1": {
+          "amount": -80.3,
+          "qty": -82.3
+        },
         "m1": {
           "amount": -82.0,
           "qty": -87.2
@@ -1276,7 +1333,10 @@
           "trades": 15,
           "qty": 645.0,
           "amount": 1924500,
-          "avg_price_kg": 3842
+          "avg_price_kg": 3842,
+          "price_change": {
+            "d1": 30.5
+          }
         },
         {
           "name": "포도",
@@ -1285,6 +1345,7 @@
           "amount": 9661100,
           "avg_price_kg": 2615,
           "price_change": {
+            "d1": 24.2,
             "m1": -25.6
           }
         },
@@ -1295,6 +1356,7 @@
           "amount": 455000,
           "avg_price_kg": 259,
           "price_change": {
+            "d1": -78.0,
             "m1": -75.7
           }
         },
@@ -1305,6 +1367,7 @@
           "amount": 3384000,
           "avg_price_kg": 5161,
           "price_change": {
+            "d1": 8.2,
             "m1": 59.3
           }
         },
@@ -1315,6 +1378,7 @@
           "amount": 2400500,
           "avg_price_kg": 820,
           "price_change": {
+            "d1": -31.0,
             "m1": -62.9
           }
         },
@@ -1325,6 +1389,7 @@
           "amount": 72500,
           "avg_price_kg": 400,
           "price_change": {
+            "d1": -67.2,
             "m1": -18.7
           }
         },
@@ -1335,6 +1400,7 @@
           "amount": 3031400,
           "avg_price_kg": 1385,
           "price_change": {
+            "d1": -26.0,
             "m1": -15.6
           }
         },
@@ -1345,6 +1411,7 @@
           "amount": 1645200,
           "avg_price_kg": 2395,
           "price_change": {
+            "d1": 8.1,
             "m1": -27.8
           }
         },
@@ -1355,6 +1422,7 @@
           "amount": 252100,
           "avg_price_kg": 1750,
           "price_change": {
+            "d1": -45.2,
             "m1": -55.8
           }
         },
@@ -1365,6 +1433,7 @@
           "amount": 3433000,
           "avg_price_kg": 1622,
           "price_change": {
+            "d1": -21.4,
             "m1": -28.8
           }
         },
@@ -1375,6 +1444,7 @@
           "amount": 1055400,
           "avg_price_kg": 3918,
           "price_change": {
+            "d1": -28.9,
             "m1": -23.0
           }
         },
@@ -1385,6 +1455,7 @@
           "amount": 1102400,
           "avg_price_kg": 2080,
           "price_change": {
+            "d1": -35.5,
             "m1": -11.6
           }
         },
@@ -1395,6 +1466,7 @@
           "amount": 7230700,
           "avg_price_kg": 9884,
           "price_change": {
+            "d1": 13.3,
             "m1": 85.7
           }
         },
@@ -1405,6 +1477,7 @@
           "amount": 1337400,
           "avg_price_kg": 4301,
           "price_change": {
+            "d1": 17.6,
             "m1": -10.8
           }
         },
@@ -1413,7 +1486,10 @@
           "trades": 1,
           "qty": 7.0,
           "amount": 23100,
-          "avg_price_kg": 3300
+          "avg_price_kg": 3300,
+          "price_change": {
+            "d1": -31.2
+          }
         },
         {
           "name": "파프리카",
@@ -1422,6 +1498,7 @@
           "amount": 266700,
           "avg_price_kg": 1586,
           "price_change": {
+            "d1": -73.4,
             "m1": -5.4
           }
         },
@@ -1432,6 +1509,7 @@
           "amount": 288000,
           "avg_price_kg": 1800,
           "price_change": {
+            "d1": -85.6,
             "m1": -84.6
           }
         },
@@ -1442,6 +1520,7 @@
           "amount": 180000,
           "avg_price_kg": 2250,
           "price_change": {
+            "d1": -48.6,
             "m1": -66.1
           }
         },
@@ -1452,6 +1531,7 @@
           "amount": 48000,
           "avg_price_kg": 4000,
           "price_change": {
+            "d1": -38.5,
             "m1": -55.1
           }
         },
@@ -1462,6 +1542,7 @@
           "amount": 140000,
           "avg_price_kg": 1786,
           "price_change": {
+            "d1": -64.0,
             "m1": -13.6
           }
         },
@@ -1472,6 +1553,7 @@
           "amount": 160000,
           "avg_price_kg": 2000,
           "price_change": {
+            "d1": 48.8,
             "m1": 67.4
           }
         },
@@ -1482,6 +1564,7 @@
           "amount": 559200,
           "avg_price_kg": 6657,
           "price_change": {
+            "d1": -1.4,
             "m1": -26.5
           }
         },
@@ -1492,6 +1575,7 @@
           "amount": 564000,
           "avg_price_kg": 1567,
           "price_change": {
+            "d1": 19.3,
             "m1": 38.7
           }
         }
@@ -1983,6 +2067,10 @@
         ]
       },
       "price_change": {
+        "d1": {
+          "amount": -95.7,
+          "qty": -94.6
+        },
         "m1": {
           "amount": -98.3,
           "qty": -98.2
@@ -2004,7 +2092,10 @@
           "trades": 15,
           "qty": 1600.0,
           "amount": 4947600,
-          "avg_price_kg": 2548
+          "avg_price_kg": 2548,
+          "price_change": {
+            "d1": -8.8
+          }
         },
         {
           "name": "배",
@@ -2013,6 +2104,7 @@
           "amount": 980000,
           "avg_price_kg": 1729,
           "price_change": {
+            "d1": -24.2,
             "m1": -18.9
           }
         },
@@ -2023,6 +2115,7 @@
           "amount": 195300,
           "avg_price_kg": 902,
           "price_change": {
+            "d1": -5.2,
             "m1": 32.5
           }
         },
@@ -2033,6 +2126,7 @@
           "amount": 2945800,
           "avg_price_kg": 2787,
           "price_change": {
+            "d1": 5.3,
             "m1": -11.8
           }
         },
@@ -2043,6 +2137,7 @@
           "amount": 3606000,
           "avg_price_kg": 2905,
           "price_change": {
+            "d1": 2.9,
             "m1": -11.3
           }
         },
@@ -2053,6 +2148,7 @@
           "amount": 1856100,
           "avg_price_kg": 2655,
           "price_change": {
+            "d1": 11.5,
             "m1": -20.5
           }
         },
@@ -2063,6 +2159,7 @@
           "amount": 732100,
           "avg_price_kg": 721,
           "price_change": {
+            "d1": -93.4,
             "m1": -95.9
           }
         },
@@ -2073,6 +2170,7 @@
           "amount": 732400,
           "avg_price_kg": 1120,
           "price_change": {
+            "d1": -5.4,
             "m1": 4.4
           }
         },
@@ -2083,6 +2181,7 @@
           "amount": 1959760,
           "avg_price_kg": 5680,
           "price_change": {
+            "d1": 8.5,
             "m1": -11.5
           }
         },
@@ -2093,6 +2192,7 @@
           "amount": 1926000,
           "avg_price_kg": 1654,
           "price_change": {
+            "d1": -48.6,
             "m1": -58.7
           }
         },
@@ -2103,6 +2203,7 @@
           "amount": 634300,
           "avg_price_kg": 2184,
           "price_change": {
+            "d1": 27.6,
             "m1": -19.0
           }
         },
@@ -2113,6 +2214,7 @@
           "amount": 536700,
           "avg_price_kg": 2565,
           "price_change": {
+            "d1": -48.5,
             "m1": -41.8
           }
         },
@@ -2123,6 +2225,7 @@
           "amount": 1069400,
           "avg_price_kg": 8179,
           "price_change": {
+            "d1": 57.0,
             "m1": 71.3
           }
         },
@@ -2131,7 +2234,10 @@
           "trades": 1,
           "qty": 50.0,
           "amount": 230000,
-          "avg_price_kg": 4600
+          "avg_price_kg": 4600,
+          "price_change": {
+            "d1": -32.0
+          }
         },
         {
           "name": "열무",
@@ -2140,6 +2246,7 @@
           "amount": 105000,
           "avg_price_kg": 750,
           "price_change": {
+            "d1": -71.6,
             "m1": -75.3
           }
         },
@@ -2150,6 +2257,7 @@
           "amount": 36500,
           "avg_price_kg": 3650,
           "price_change": {
+            "d1": -33.6,
             "m1": -54.9
           }
         },
@@ -2160,6 +2268,7 @@
           "amount": 673000,
           "avg_price_kg": 5608,
           "price_change": {
+            "d1": 28.9,
             "m1": 73.4
           }
         },
@@ -2170,6 +2279,7 @@
           "amount": 1200000,
           "avg_price_kg": 1000,
           "price_change": {
+            "d1": -33.3,
             "m1": -14.7
           }
         },
@@ -2190,6 +2300,7 @@
           "amount": 1470400,
           "avg_price_kg": 1882,
           "price_change": {
+            "d1": 42.1,
             "m1": 21.3
           }
         },
@@ -2210,6 +2321,7 @@
           "amount": 7800000,
           "avg_price_kg": 1300,
           "price_change": {
+            "d1": -7.1,
             "m1": 13.7
           }
         }
@@ -2663,6 +2775,10 @@
         ]
       },
       "price_change": {
+        "d1": {
+          "amount": -95.3,
+          "qty": -93.3
+        },
         "m1": {
           "amount": -97.9,
           "qty": -97.3
@@ -3450,6 +3566,7 @@
           "amount": 15445500,
           "avg_price_kg": 3201,
           "price_change": {
+            "d1": 16.6,
             "m1": -19.8
           }
         },
@@ -3460,6 +3577,7 @@
           "amount": 11176000,
           "avg_price_kg": 10044,
           "price_change": {
+            "d1": 18.0,
             "m1": 56.3
           }
         },
@@ -3470,6 +3588,7 @@
           "amount": 35371000,
           "avg_price_kg": 2858,
           "price_change": {
+            "d1": 33.5,
             "m1": 31.0
           }
         },
@@ -3480,6 +3599,7 @@
           "amount": 6338500,
           "avg_price_kg": 2720,
           "price_change": {
+            "d1": 17.4,
             "m1": 69.8
           }
         },
@@ -3488,7 +3608,10 @@
           "trades": 6,
           "qty": 2795.0,
           "amount": 19347600,
-          "avg_price_kg": 4965
+          "avg_price_kg": 4965,
+          "price_change": {
+            "d1": -7.3
+          }
         },
         {
           "name": "오이",
@@ -3497,6 +3620,7 @@
           "amount": 956000,
           "avg_price_kg": 1300,
           "price_change": {
+            "d1": -20.0,
             "m1": 14.8
           }
         },
@@ -3507,6 +3631,7 @@
           "amount": 587500,
           "avg_price_kg": 983,
           "price_change": {
+            "d1": -62.8,
             "m1": -15.7
           }
         },
@@ -3517,6 +3642,7 @@
           "amount": 717000,
           "avg_price_kg": 3921,
           "price_change": {
+            "d1": -26.4,
             "m1": -20.0
           }
         },
@@ -3541,6 +3667,7 @@
           "amount": 840000,
           "avg_price_kg": 1200,
           "price_change": {
+            "d1": -11.1,
             "m1": -21.1
           }
         },
@@ -3551,6 +3678,7 @@
           "amount": 252000,
           "avg_price_kg": 4000,
           "price_change": {
+            "d1": -27.8,
             "m1": -61.7
           }
         }
@@ -3820,6 +3948,10 @@
         ]
       },
       "price_change": {
+        "d1": {
+          "amount": -61.9,
+          "qty": -66.9
+        },
         "m1": {
           "amount": -17.9,
           "qty": -45.3
@@ -4383,6 +4515,7 @@
           "amount": 18333900,
           "avg_price_kg": 3434,
           "price_change": {
+            "d1": -11.0,
             "m1": -24.0
           }
         },
@@ -4391,7 +4524,10 @@
           "trades": 10,
           "qty": 338.5,
           "amount": 1697400,
-          "avg_price_kg": 4578
+          "avg_price_kg": 4578,
+          "price_change": {
+            "d1": 21.4
+          }
         },
         {
           "name": "포도",
@@ -4400,6 +4536,7 @@
           "amount": 2253700,
           "avg_price_kg": 2439,
           "price_change": {
+            "d1": -9.6,
             "m1": -35.7
           }
         },
@@ -4410,6 +4547,7 @@
           "amount": 2051300,
           "avg_price_kg": 2996,
           "price_change": {
+            "d1": 0.5,
             "m1": -2.3
           }
         },
@@ -4420,6 +4558,7 @@
           "amount": 730000,
           "avg_price_kg": 1220,
           "price_change": {
+            "d1": -23.4,
             "m1": -9.2
           }
         },
@@ -4437,6 +4576,7 @@
           "amount": 156000,
           "avg_price_kg": 5200,
           "price_change": {
+            "d1": -65.1,
             "m1": -37.8
           }
         },
@@ -4447,6 +4587,7 @@
           "amount": 622000,
           "avg_price_kg": 1244,
           "price_change": {
+            "d1": -15.5,
             "m1": -1.7
           }
         },
@@ -4457,6 +4598,7 @@
           "amount": 192000,
           "avg_price_kg": 6000,
           "price_change": {
+            "d1": 11.4,
             "m1": -59.2
           }
         }
@@ -4632,6 +4774,10 @@
         ]
       },
       "price_change": {
+        "d1": {
+          "amount": -92.1,
+          "qty": -93.8
+        },
         "m1": {
           "amount": -96.2,
           "qty": -97.3
@@ -4655,6 +4801,7 @@
           "amount": 4398300,
           "avg_price_kg": 3828,
           "price_change": {
+            "d1": 16.9,
             "m1": 1.9
           }
         },
@@ -4665,6 +4812,7 @@
           "amount": 2379800,
           "avg_price_kg": 3564,
           "price_change": {
+            "d1": -6.0,
             "m1": 0.3
           }
         },
@@ -4675,6 +4823,7 @@
           "amount": 4141400,
           "avg_price_kg": 1595,
           "price_change": {
+            "d1": -49.5,
             "m1": -21.8
           }
         },
@@ -4683,21 +4832,30 @@
           "trades": 3,
           "qty": 36.0,
           "amount": 182000,
-          "avg_price_kg": 4867
+          "avg_price_kg": 4867,
+          "price_change": {
+            "d1": 78.6
+          }
         },
         {
           "name": "단감",
           "trades": 3,
           "qty": 45.0,
           "amount": 42300,
-          "avg_price_kg": 777
+          "avg_price_kg": 777,
+          "price_change": {
+            "d1": -56.1
+          }
         },
         {
           "name": "밤",
           "trades": 2,
           "qty": 45.0,
           "amount": 193500,
-          "avg_price_kg": 4683
+          "avg_price_kg": 4683,
+          "price_change": {
+            "d1": 54.4
+          }
         },
         {
           "name": "참다래(키위)",
@@ -4706,6 +4864,7 @@
           "amount": 238000,
           "avg_price_kg": 3400,
           "price_change": {
+            "d1": -11.5,
             "m1": -32.9
           }
         },
@@ -4716,6 +4875,7 @@
           "amount": 120000,
           "avg_price_kg": 706,
           "price_change": {
+            "d1": -77.1,
             "m1": -80.6
           }
         },
@@ -4724,7 +4884,10 @@
           "trades": 1,
           "qty": 4.0,
           "amount": 23000,
-          "avg_price_kg": 5750
+          "avg_price_kg": 5750,
+          "price_change": {
+            "d1": 51.3
+          }
         },
         {
           "name": "망고",
@@ -4733,6 +4896,7 @@
           "amount": 744000,
           "avg_price_kg": 12400,
           "price_change": {
+            "d1": 101.2,
             "m1": 45.9
           }
         },
@@ -4743,6 +4907,7 @@
           "amount": 21000,
           "avg_price_kg": 2100,
           "price_change": {
+            "d1": -12.5,
             "m1": -50.0
           }
         },
@@ -4753,6 +4918,7 @@
           "amount": 3600000,
           "avg_price_kg": 3600,
           "price_change": {
+            "d1": -39.7,
             "m1": -46.0
           }
         }
@@ -4934,6 +5100,10 @@
         ]
       },
       "price_change": {
+        "d1": {
+          "amount": -70.7,
+          "qty": -62.0
+        },
         "m1": {
           "amount": -42.4,
           "qty": -46.9
@@ -4957,6 +5127,7 @@
           "amount": 9633100,
           "avg_price_kg": 2527,
           "price_change": {
+            "d1": 3.2,
             "m1": -24.6
           }
         },
@@ -4965,7 +5136,10 @@
           "trades": 6,
           "qty": 191.0,
           "amount": 653400,
-          "avg_price_kg": 2983
+          "avg_price_kg": 2983,
+          "price_change": {
+            "d1": -14.5
+          }
         },
         {
           "name": "배",
@@ -4974,6 +5148,7 @@
           "amount": 10005300,
           "avg_price_kg": 2171,
           "price_change": {
+            "d1": 14.5,
             "m1": -8.0
           }
         },
@@ -4984,6 +5159,7 @@
           "amount": 1971600,
           "avg_price_kg": 2609,
           "price_change": {
+            "d1": -30.6,
             "m1": -10.3
           }
         },
@@ -4994,6 +5170,7 @@
           "amount": 231000,
           "avg_price_kg": 1101,
           "price_change": {
+            "d1": -61.3,
             "m1": -66.4
           }
         },
@@ -5004,6 +5181,7 @@
           "amount": 158800,
           "avg_price_kg": 8822,
           "price_change": {
+            "d1": 28.3,
             "m1": 68.0
           }
         }
@@ -5147,6 +5325,10 @@
         ]
       },
       "price_change": {
+        "d1": {
+          "amount": -76.1,
+          "qty": -73.6
+        },
         "m1": {
           "amount": -90.9,
           "qty": -90.0
@@ -5717,6 +5899,7 @@
           "amount": 873200,
           "avg_price_kg": 452,
           "price_change": {
+            "d1": -44.7,
             "m1": -68.6
           }
         },
@@ -5727,6 +5910,7 @@
           "amount": 10810200,
           "avg_price_kg": 2642,
           "price_change": {
+            "d1": -5.1,
             "m1": -23.2
           }
         },
@@ -5735,7 +5919,10 @@
           "trades": 5,
           "qty": 225.0,
           "amount": 841800,
-          "avg_price_kg": 3304
+          "avg_price_kg": 3304,
+          "price_change": {
+            "d1": 14.9
+          }
         },
         {
           "name": "멜론",
@@ -5744,6 +5931,7 @@
           "amount": 1635700,
           "avg_price_kg": 1392,
           "price_change": {
+            "d1": -15.5,
             "m1": -31.3
           }
         },
@@ -5754,6 +5942,7 @@
           "amount": 190000,
           "avg_price_kg": 2062,
           "price_change": {
+            "d1": -42.9,
             "m1": -29.9
           }
         },
@@ -5762,7 +5951,10 @@
           "trades": 2,
           "qty": 555.0,
           "amount": 1596000,
-          "avg_price_kg": 2450
+          "avg_price_kg": 2450,
+          "price_change": {
+            "d1": -14.8
+          }
         },
         {
           "name": "치커리",
@@ -5771,6 +5963,7 @@
           "amount": 90000,
           "avg_price_kg": 1625,
           "price_change": {
+            "d1": -6.7,
             "m1": -9.5
           }
         },
@@ -5781,6 +5974,7 @@
           "amount": 263900,
           "avg_price_kg": 2275,
           "price_change": {
+            "d1": 5.3,
             "m1": -20.5
           }
         },
@@ -5791,6 +5985,7 @@
           "amount": 920000,
           "avg_price_kg": 10000,
           "price_change": {
+            "d1": 39.1,
             "m1": 73.7
           }
         },
@@ -5801,6 +5996,7 @@
           "amount": 120000,
           "avg_price_kg": 2000,
           "price_change": {
+            "d1": -46.9,
             "m1": -64.1
           }
         },
@@ -5821,6 +6017,7 @@
           "amount": 450000,
           "avg_price_kg": 90000,
           "price_change": {
+            "d1": 6328.6,
             "m1": 5347.9
           }
         },
@@ -5831,6 +6028,7 @@
           "amount": 69800,
           "avg_price_kg": 332,
           "price_change": {
+            "d1": -65.3,
             "m1": -80.8
           }
         },
@@ -5841,6 +6039,7 @@
           "amount": 4250000,
           "avg_price_kg": 1700,
           "price_change": {
+            "d1": 38.4,
             "m1": 39.3
           }
         }
@@ -6098,6 +6297,10 @@
         ]
       },
       "price_change": {
+        "d1": {
+          "amount": -94.2,
+          "qty": -93.0
+        },
         "m1": {
           "amount": -93.6,
           "qty": -92.8
@@ -6235,19 +6438,6 @@
       "foreign": false
     },
     {
-      "origin": "울산광역시 울산 남구",
-      "origin_lat": 35.5384,
-      "origin_lng": 129.3114,
-      "dest_corp": "울산중앙청과시장㈜",
-      "dest_market": "울산",
-      "dest_lat": 35.5469,
-      "dest_lng": 129.257,
-      "trades": 14,
-      "qty": 15866.0,
-      "amount": 28847000,
-      "foreign": false
-    },
-    {
       "origin": "경북 영주시 영주우체국사서함",
       "origin_lat": 36.8057,
       "origin_lng": 128.624,
@@ -6258,6 +6448,19 @@
       "trades": 14,
       "qty": 3675.0,
       "amount": 18333900,
+      "foreign": false
+    },
+    {
+      "origin": "울산광역시 울산 남구",
+      "origin_lat": 35.5384,
+      "origin_lng": 129.3114,
+      "dest_corp": "울산중앙청과시장㈜",
+      "dest_market": "울산",
+      "dest_lat": 35.5469,
+      "dest_lng": 129.257,
+      "trades": 14,
+      "qty": 15866.0,
+      "amount": 28847000,
       "foreign": false
     },
     {
@@ -6300,19 +6503,6 @@
       "foreign": false
     },
     {
-      "origin": "경상남도 함안군",
-      "origin_lat": 35.2724,
-      "origin_lng": 128.4066,
-      "dest_corp": "울산중앙청과시장㈜",
-      "dest_market": "울산",
-      "dest_lat": 35.5469,
-      "dest_lng": 129.257,
-      "trades": 11,
-      "qty": 1438.0,
-      "amount": 1345000,
-      "foreign": false
-    },
-    {
       "origin": "경남 거창군 거창읍 중앙리  336∼483",
       "origin_lat": 35.6867,
       "origin_lng": 127.9098,
@@ -6336,6 +6526,19 @@
       "trades": 11,
       "qty": 2990.0,
       "amount": 5288900,
+      "foreign": false
+    },
+    {
+      "origin": "경상남도 함안군",
+      "origin_lat": 35.2724,
+      "origin_lng": 128.4066,
+      "dest_corp": "울산중앙청과시장㈜",
+      "dest_market": "울산",
+      "dest_lat": 35.5469,
+      "dest_lng": 129.257,
+      "trades": 11,
+      "qty": 1438.0,
+      "amount": 1345000,
       "foreign": false
     },
     {
@@ -6375,45 +6578,6 @@
       "trades": 10,
       "qty": 4635.4,
       "amount": 7803300,
-      "foreign": false
-    },
-    {
-      "origin": "경북 영양군 영양읍 서부2리",
-      "origin_lat": 36.6668,
-      "origin_lng": 129.1125,
-      "dest_corp": "울산원협(공)",
-      "dest_market": "울산",
-      "dest_lat": 35.5469,
-      "dest_lng": 129.257,
-      "trades": 9,
-      "qty": 220.0,
-      "amount": 923300,
-      "foreign": false
-    },
-    {
-      "origin": "울산 울주군 삼남면",
-      "origin_lat": 35.5384,
-      "origin_lng": 129.3114,
-      "dest_corp": "울산원협(공)",
-      "dest_market": "울산",
-      "dest_lat": 35.5469,
-      "dest_lng": 129.257,
-      "trades": 9,
-      "qty": 1957.5,
-      "amount": 6133300,
-      "foreign": false
-    },
-    {
-      "origin": "충청북도 영동군",
-      "origin_lat": 36.1748,
-      "origin_lng": 127.7765,
-      "dest_corp": "울산원협(공)",
-      "dest_market": "울산",
-      "dest_lat": 35.5469,
-      "dest_lng": 129.257,
-      "trades": 9,
-      "qty": 448.0,
-      "amount": 1251700,
       "foreign": false
     },
     {
@@ -6469,29 +6633,42 @@
       "foreign": false
     },
     {
-      "origin": "경상북도 경주시",
-      "origin_lat": 35.8562,
-      "origin_lng": 129.2247,
-      "dest_corp": "울산중앙청과시장㈜",
+      "origin": "경북 영양군 영양읍 서부2리",
+      "origin_lat": 36.6668,
+      "origin_lng": 129.1125,
+      "dest_corp": "울산원협(공)",
       "dest_market": "울산",
       "dest_lat": 35.5469,
       "dest_lng": 129.257,
-      "trades": 8,
-      "qty": 1129.5,
-      "amount": 2398900,
+      "trades": 9,
+      "qty": 220.0,
+      "amount": 923300,
+      "foreign": false
+    },
+    {
+      "origin": "울산 울주군 삼남면",
+      "origin_lat": 35.5384,
+      "origin_lng": 129.3114,
+      "dest_corp": "울산원협(공)",
+      "dest_market": "울산",
+      "dest_lat": 35.5469,
+      "dest_lng": 129.257,
+      "trades": 9,
+      "qty": 1957.5,
+      "amount": 6133300,
       "foreign": false
     },
     {
       "origin": "충청북도 영동군",
       "origin_lat": 36.1748,
       "origin_lng": 127.7765,
-      "dest_corp": "울산중앙청과시장㈜",
+      "dest_corp": "울산원협(공)",
       "dest_market": "울산",
       "dest_lat": 35.5469,
       "dest_lng": 129.257,
-      "trades": 8,
-      "qty": 6224.0,
-      "amount": 19428500,
+      "trades": 9,
+      "qty": 448.0,
+      "amount": 1251700,
       "foreign": false
     },
     {
@@ -6534,16 +6711,29 @@
       "foreign": false
     },
     {
-      "origin": "울산광역시",
-      "origin_lat": 35.5384,
-      "origin_lng": 129.3114,
-      "dest_corp": "울산원협(공)",
+      "origin": "경상북도 경주시",
+      "origin_lat": 35.8562,
+      "origin_lng": 129.2247,
+      "dest_corp": "울산중앙청과시장㈜",
       "dest_market": "울산",
       "dest_lat": 35.5469,
       "dest_lng": 129.257,
-      "trades": 7,
-      "qty": 3785.0,
-      "amount": 11816000,
+      "trades": 8,
+      "qty": 1129.5,
+      "amount": 2398900,
+      "foreign": false
+    },
+    {
+      "origin": "충청북도 영동군",
+      "origin_lat": 36.1748,
+      "origin_lng": 127.7765,
+      "dest_corp": "울산중앙청과시장㈜",
+      "dest_market": "울산",
+      "dest_lat": 35.5469,
+      "dest_lng": 129.257,
+      "trades": 8,
+      "qty": 6224.0,
+      "amount": 19428500,
       "foreign": false
     },
     {
@@ -6586,29 +6776,16 @@
       "foreign": false
     },
     {
-      "origin": "충남 공주시 공주우체국사서함",
-      "origin_lat": 36.4465,
-      "origin_lng": 127.119,
-      "dest_corp": "울산원협(공)",
-      "dest_market": "울산",
-      "dest_lat": 35.5469,
-      "dest_lng": 129.257,
-      "trades": 6,
-      "qty": 2144.0,
-      "amount": 7255200,
-      "foreign": false
-    },
-    {
-      "origin": "울산 남구 삼산동1∼1311",
+      "origin": "울산광역시",
       "origin_lat": 35.5384,
       "origin_lng": 129.3114,
       "dest_corp": "울산원협(공)",
       "dest_market": "울산",
       "dest_lat": 35.5469,
       "dest_lng": 129.257,
-      "trades": 6,
-      "qty": 430.0,
-      "amount": 1833800,
+      "trades": 7,
+      "qty": 3785.0,
+      "amount": 11816000,
       "foreign": false
     },
     {
@@ -6664,29 +6841,29 @@
       "foreign": false
     },
     {
-      "origin": "경상북도 영천시",
-      "origin_lat": 35.9732,
-      "origin_lng": 128.9382,
-      "dest_corp": "울산중앙청과시장㈜",
+      "origin": "충남 공주시 공주우체국사서함",
+      "origin_lat": 36.4465,
+      "origin_lng": 127.119,
+      "dest_corp": "울산원협(공)",
       "dest_market": "울산",
       "dest_lat": 35.5469,
       "dest_lng": 129.257,
-      "trades": 5,
-      "qty": 2975.0,
-      "amount": 9086500,
+      "trades": 6,
+      "qty": 2144.0,
+      "amount": 7255200,
       "foreign": false
     },
     {
-      "origin": "울산 울주군 서생면",
+      "origin": "울산 남구 삼산동1∼1311",
       "origin_lat": 35.5384,
       "origin_lng": 129.3114,
       "dest_corp": "울산원협(공)",
       "dest_market": "울산",
       "dest_lat": 35.5469,
       "dest_lng": 129.257,
-      "trades": 5,
-      "qty": 810.0,
-      "amount": 2367800,
+      "trades": 6,
+      "qty": 430.0,
+      "amount": 1833800,
       "foreign": false
     },
     {
@@ -6833,16 +7010,29 @@
       "foreign": false
     },
     {
-      "origin": "충남 아산시 둔포면",
-      "origin_lat": 36.7898,
-      "origin_lng": 127.0018,
+      "origin": "경상북도 영천시",
+      "origin_lat": 35.9732,
+      "origin_lng": 128.9382,
+      "dest_corp": "울산중앙청과시장㈜",
+      "dest_market": "울산",
+      "dest_lat": 35.5469,
+      "dest_lng": 129.257,
+      "trades": 5,
+      "qty": 2975.0,
+      "amount": 9086500,
+      "foreign": false
+    },
+    {
+      "origin": "울산 울주군 서생면",
+      "origin_lat": 35.5384,
+      "origin_lng": 129.3114,
       "dest_corp": "울산원협(공)",
       "dest_market": "울산",
       "dest_lat": 35.5469,
       "dest_lng": 129.257,
-      "trades": 4,
-      "qty": 2700.0,
-      "amount": 13248000,
+      "trades": 5,
+      "qty": 810.0,
+      "amount": 2367800,
       "foreign": false
     },
     {
@@ -6989,55 +7179,16 @@
       "foreign": false
     },
     {
-      "origin": "경북 영천시 임고면 고천리",
-      "origin_lat": 35.9732,
-      "origin_lng": 128.9382,
+      "origin": "충남 아산시 둔포면",
+      "origin_lat": 36.7898,
+      "origin_lng": 127.0018,
       "dest_corp": "울산원협(공)",
       "dest_market": "울산",
       "dest_lat": 35.5469,
       "dest_lng": 129.257,
-      "trades": 3,
-      "qty": 866.0,
-      "amount": 3384800,
-      "foreign": false
-    },
-    {
-      "origin": "경북 영천시 화남면",
-      "origin_lat": 35.9732,
-      "origin_lng": 128.9382,
-      "dest_corp": "울산원협(공)",
-      "dest_market": "울산",
-      "dest_lat": 35.5469,
-      "dest_lng": 129.257,
-      "trades": 3,
-      "qty": 1360.0,
-      "amount": 3865500,
-      "foreign": false
-    },
-    {
-      "origin": "경상북도 영양군",
-      "origin_lat": 36.6668,
-      "origin_lng": 129.1125,
-      "dest_corp": "울산원협(공)",
-      "dest_market": "울산",
-      "dest_lat": 35.5469,
-      "dest_lng": 129.257,
-      "trades": 3,
-      "qty": 344.0,
-      "amount": 716700,
-      "foreign": false
-    },
-    {
-      "origin": "경북 경주시 성동동131∼178",
-      "origin_lat": 35.8562,
-      "origin_lng": 129.2247,
-      "dest_corp": "울산원협(공)",
-      "dest_market": "울산",
-      "dest_lat": 35.5469,
-      "dest_lng": 129.257,
-      "trades": 3,
-      "qty": 64.0,
-      "amount": 728000,
+      "trades": 4,
+      "qty": 2700.0,
+      "amount": 13248000,
       "foreign": false
     },
     {
@@ -7288,81 +7439,55 @@
       "foreign": false
     },
     {
-      "origin": "부산광역시 부산 중구",
-      "origin_lat": 35.1796,
-      "origin_lng": 129.0756,
-      "dest_corp": "울산중앙청과시장㈜",
-      "dest_market": "울산",
-      "dest_lat": 35.5469,
-      "dest_lng": 129.257,
-      "trades": 2,
-      "qty": 442.5,
-      "amount": 2817000,
-      "foreign": false
-    },
-    {
-      "origin": "제주특별자치도 제주시",
-      "origin_lat": 33.5097,
-      "origin_lng": 126.5219,
-      "dest_corp": "울산중앙청과시장㈜",
-      "dest_market": "울산",
-      "dest_lat": 35.5469,
-      "dest_lng": 129.257,
-      "trades": 2,
-      "qty": 2040.0,
-      "amount": 10240000,
-      "foreign": false
-    },
-    {
-      "origin": "경상북도 청송군",
-      "origin_lat": 36.436,
-      "origin_lng": 129.0573,
-      "dest_corp": "울산원협(공)",
-      "dest_market": "울산",
-      "dest_lat": 35.5469,
-      "dest_lng": 129.257,
-      "trades": 2,
-      "qty": 560.0,
-      "amount": 1482400,
-      "foreign": false
-    },
-    {
-      "origin": "경상북도 영천시",
+      "origin": "경북 영천시 임고면 고천리",
       "origin_lat": 35.9732,
       "origin_lng": 128.9382,
       "dest_corp": "울산원협(공)",
       "dest_market": "울산",
       "dest_lat": 35.5469,
       "dest_lng": 129.257,
-      "trades": 2,
-      "qty": 156.0,
-      "amount": 516000,
+      "trades": 3,
+      "qty": 866.0,
+      "amount": 3384800,
       "foreign": false
     },
     {
-      "origin": "경북 영천시 북안면 관리",
+      "origin": "경북 영천시 화남면",
       "origin_lat": 35.9732,
       "origin_lng": 128.9382,
       "dest_corp": "울산원협(공)",
       "dest_market": "울산",
       "dest_lat": 35.5469,
       "dest_lng": 129.257,
-      "trades": 2,
-      "qty": 864.0,
-      "amount": 3120000,
+      "trades": 3,
+      "qty": 1360.0,
+      "amount": 3865500,
       "foreign": false
     },
     {
-      "origin": "경북 경주시 경주우체국사서함",
+      "origin": "경상북도 영양군",
+      "origin_lat": 36.6668,
+      "origin_lng": 129.1125,
+      "dest_corp": "울산원협(공)",
+      "dest_market": "울산",
+      "dest_lat": 35.5469,
+      "dest_lng": 129.257,
+      "trades": 3,
+      "qty": 344.0,
+      "amount": 716700,
+      "foreign": false
+    },
+    {
+      "origin": "경북 경주시 성동동131∼178",
       "origin_lat": 35.8562,
       "origin_lng": 129.2247,
       "dest_corp": "울산원협(공)",
       "dest_market": "울산",
       "dest_lat": 35.5469,
       "dest_lng": 129.257,
-      "trades": 2,
-      "qty": 280.0,
-      "amount": 416800,
+      "trades": 3,
+      "qty": 64.0,
+      "amount": 728000,
       "foreign": false
     },
     {
@@ -7704,81 +7829,81 @@
       "foreign": false
     },
     {
+      "origin": "부산광역시 부산 중구",
+      "origin_lat": 35.1796,
+      "origin_lng": 129.0756,
+      "dest_corp": "울산중앙청과시장㈜",
+      "dest_market": "울산",
+      "dest_lat": 35.5469,
+      "dest_lng": 129.257,
+      "trades": 2,
+      "qty": 442.5,
+      "amount": 2817000,
+      "foreign": false
+    },
+    {
+      "origin": "제주특별자치도 제주시",
+      "origin_lat": 33.5097,
+      "origin_lng": 126.5219,
+      "dest_corp": "울산중앙청과시장㈜",
+      "dest_market": "울산",
+      "dest_lat": 35.5469,
+      "dest_lng": 129.257,
+      "trades": 2,
+      "qty": 2040.0,
+      "amount": 10240000,
+      "foreign": false
+    },
+    {
       "origin": "경상북도 청송군",
       "origin_lat": 36.436,
       "origin_lng": 129.0573,
-      "dest_corp": "울산중앙청과시장㈜",
-      "dest_market": "울산",
-      "dest_lat": 35.5469,
-      "dest_lng": 129.257,
-      "trades": 1,
-      "qty": 2205.0,
-      "amount": 8065000,
-      "foreign": false
-    },
-    {
-      "origin": "경상북도 영양군",
-      "origin_lat": 36.6668,
-      "origin_lng": 129.1125,
-      "dest_corp": "울산중앙청과시장㈜",
-      "dest_market": "울산",
-      "dest_lat": 35.5469,
-      "dest_lng": 129.257,
-      "trades": 1,
-      "qty": 140.0,
-      "amount": 865000,
-      "foreign": false
-    },
-    {
-      "origin": "경상남도 창녕군",
-      "origin_lat": 35.5444,
-      "origin_lng": 128.4914,
-      "dest_corp": "울산중앙청과시장㈜",
-      "dest_market": "울산",
-      "dest_lat": 35.5469,
-      "dest_lng": 129.257,
-      "trades": 1,
-      "qty": 4400.0,
-      "amount": 4950000,
-      "foreign": false
-    },
-    {
-      "origin": "충청남도 아산시",
-      "origin_lat": 36.7898,
-      "origin_lng": 127.0018,
-      "dest_corp": "울산중앙청과시장㈜",
-      "dest_market": "울산",
-      "dest_lat": 35.5469,
-      "dest_lng": 129.257,
-      "trades": 1,
-      "qty": 1035.0,
-      "amount": 5796000,
-      "foreign": false
-    },
-    {
-      "origin": "경상남도 김해시",
-      "origin_lat": 35.2341,
-      "origin_lng": 128.8891,
-      "dest_corp": "울산중앙청과시장㈜",
-      "dest_market": "울산",
-      "dest_lat": 35.5469,
-      "dest_lng": 129.257,
-      "trades": 1,
-      "qty": 2400.0,
-      "amount": 3120000,
-      "foreign": false
-    },
-    {
-      "origin": "대구 북구 읍내동1∼241",
-      "origin_lat": 35.8714,
-      "origin_lng": 128.6014,
       "dest_corp": "울산원협(공)",
       "dest_market": "울산",
       "dest_lat": 35.5469,
       "dest_lng": 129.257,
-      "trades": 1,
-      "qty": 1610.0,
-      "amount": 1025100,
+      "trades": 2,
+      "qty": 560.0,
+      "amount": 1482400,
+      "foreign": false
+    },
+    {
+      "origin": "경상북도 영천시",
+      "origin_lat": 35.9732,
+      "origin_lng": 128.9382,
+      "dest_corp": "울산원협(공)",
+      "dest_market": "울산",
+      "dest_lat": 35.5469,
+      "dest_lng": 129.257,
+      "trades": 2,
+      "qty": 156.0,
+      "amount": 516000,
+      "foreign": false
+    },
+    {
+      "origin": "경북 영천시 북안면 관리",
+      "origin_lat": 35.9732,
+      "origin_lng": 128.9382,
+      "dest_corp": "울산원협(공)",
+      "dest_market": "울산",
+      "dest_lat": 35.5469,
+      "dest_lng": 129.257,
+      "trades": 2,
+      "qty": 864.0,
+      "amount": 3120000,
+      "foreign": false
+    },
+    {
+      "origin": "경북 경주시 경주우체국사서함",
+      "origin_lat": 35.8562,
+      "origin_lng": 129.2247,
+      "dest_corp": "울산원협(공)",
+      "dest_market": "울산",
+      "dest_lat": 35.5469,
+      "dest_lng": 129.257,
+      "trades": 2,
+      "qty": 280.0,
+      "amount": 416800,
       "foreign": false
     },
     {
@@ -8313,52 +8438,130 @@
       "qty": 1000.0,
       "amount": 3600000,
       "foreign": false
+    },
+    {
+      "origin": "경상북도 청송군",
+      "origin_lat": 36.436,
+      "origin_lng": 129.0573,
+      "dest_corp": "울산중앙청과시장㈜",
+      "dest_market": "울산",
+      "dest_lat": 35.5469,
+      "dest_lng": 129.257,
+      "trades": 1,
+      "qty": 2205.0,
+      "amount": 8065000,
+      "foreign": false
+    },
+    {
+      "origin": "경상북도 영양군",
+      "origin_lat": 36.6668,
+      "origin_lng": 129.1125,
+      "dest_corp": "울산중앙청과시장㈜",
+      "dest_market": "울산",
+      "dest_lat": 35.5469,
+      "dest_lng": 129.257,
+      "trades": 1,
+      "qty": 140.0,
+      "amount": 865000,
+      "foreign": false
+    },
+    {
+      "origin": "경상남도 창녕군",
+      "origin_lat": 35.5444,
+      "origin_lng": 128.4914,
+      "dest_corp": "울산중앙청과시장㈜",
+      "dest_market": "울산",
+      "dest_lat": 35.5469,
+      "dest_lng": 129.257,
+      "trades": 1,
+      "qty": 4400.0,
+      "amount": 4950000,
+      "foreign": false
+    },
+    {
+      "origin": "충청남도 아산시",
+      "origin_lat": 36.7898,
+      "origin_lng": 127.0018,
+      "dest_corp": "울산중앙청과시장㈜",
+      "dest_market": "울산",
+      "dest_lat": 35.5469,
+      "dest_lng": 129.257,
+      "trades": 1,
+      "qty": 1035.0,
+      "amount": 5796000,
+      "foreign": false
+    },
+    {
+      "origin": "경상남도 김해시",
+      "origin_lat": 35.2341,
+      "origin_lng": 128.8891,
+      "dest_corp": "울산중앙청과시장㈜",
+      "dest_market": "울산",
+      "dest_lat": 35.5469,
+      "dest_lng": 129.257,
+      "trades": 1,
+      "qty": 2400.0,
+      "amount": 3120000,
+      "foreign": false
+    },
+    {
+      "origin": "대구 북구 읍내동1∼241",
+      "origin_lat": 35.8714,
+      "origin_lng": 128.6014,
+      "dest_corp": "울산원협(공)",
+      "dest_market": "울산",
+      "dest_lat": 35.5469,
+      "dest_lng": 129.257,
+      "trades": 1,
+      "qty": 1610.0,
+      "amount": 1025100,
+      "foreign": false
     }
   ],
   "price_map": {
     "포도": {
-      "울산": 2854,
       "창원팔용": 2920,
       "부산반여": 3249,
       "부산엄궁": 2733,
-      "구미": 2820
+      "구미": 2820,
+      "울산": 2854
     },
     "배": {
-      "울산": 3024,
       "창원팔용": 2858,
       "부산반여": 2184,
       "부산엄궁": 1869,
-      "구미": 1826
+      "구미": 1826,
+      "울산": 3024
     },
     "수박": {
-      "울산": 942,
       "부산반여": 1326,
-      "부산엄궁": 355
+      "부산엄궁": 355,
+      "울산": 942
     },
     "단감": {
-      "울산": 2547,
       "창원팔용": 4723,
       "부산반여": 2754,
       "부산엄궁": 3769,
-      "구미": 777
+      "구미": 777,
+      "울산": 2547
     },
     "사과": {
-      "울산": 2984,
       "창원팔용": 6021,
       "부산반여": 5081,
-      "구미": 3487
+      "구미": 3487,
+      "울산": 2984
     },
     "호박": {
-      "울산": 1232,
       "창원팔용": 1091,
       "부산반여": 1335,
-      "부산엄궁": 2027
+      "부산엄궁": 2027,
+      "울산": 1232
     },
     "멜론": {
-      "울산": 2806,
       "창원팔용": 2720,
       "부산반여": 2038,
-      "부산엄궁": 1932
+      "부산엄궁": 1932,
+      "울산": 2806
     },
     "박": {
       "창원팔용": 1856,
@@ -8366,76 +8569,73 @@
       "부산엄궁": 371
     },
     "복숭아": {
-      "울산": 2919,
       "창원팔용": 2996,
-      "부산엄궁": 3947
+      "부산엄궁": 3947,
+      "울산": 2919
     },
     "상추": {
-      "울산": 5264,
       "부산반여": 2567,
-      "부산엄궁": 2324
+      "부산엄궁": 2324,
+      "울산": 5264
     },
     "대추": {
-      "울산": 4900,
       "부산반여": 4933,
       "부산엄궁": 5328,
-      "구미": 3611
+      "구미": 3611,
+      "울산": 4900
     },
     "연근": {
-      "울산": 3333,
       "부산반여": 2715,
-      "부산엄궁": 2864
+      "부산엄궁": 2864,
+      "울산": 3333
     },
     "감귤": {
-      "울산": 4811,
       "창원팔용": 3921,
       "부산반여": 3899,
       "부산엄궁": 4453,
-      "구미": 3600
+      "구미": 3600,
+      "울산": 4811
     },
     "부추": {
-      "울산": 3425,
       "창원팔용": 5200,
       "부산반여": 4844,
-      "부산엄궁": 3918
+      "부산엄궁": 3918,
+      "울산": 3425
     },
     "쪽파": {
-      "울산": 12400,
       "창원팔용": 5000,
       "부산반여": 7098,
-      "부산엄궁": 4301
-    },
-    "얼갈이배추": {
-      "울산": 1150,
-      "부산반여": 2152,
-      "부산엄궁": 1116
-    },
-    "대파": {
-      "울산": 1929,
-      "창원팔용": 1222,
-      "부산반여": 1703,
-      "부산엄궁": 1633
+      "부산엄궁": 4301,
+      "울산": 12400
     },
     "오이": {
-      "울산": 1227,
       "창원팔용": 1300,
       "부산반여": 1082,
-      "부산엄궁": 1700
+      "부산엄궁": 1700,
+      "울산": 1227
+    },
+    "대파": {
+      "창원팔용": 1222,
+      "부산반여": 1703,
+      "부산엄궁": 1633,
+      "울산": 1929
+    },
+    "얼갈이배추": {
+      "부산반여": 2152,
+      "부산엄궁": 1116,
+      "울산": 1150
     },
     "배추": {
-      "울산": 1840,
       "부산반여": 721,
-      "부산엄궁": 2038
+      "부산엄궁": 2038,
+      "울산": 1840
     },
     "열무": {
-      "울산": 2493,
-      "부산반여": 700
+      "부산반여": 700,
+      "울산": 2493
     },
     "치커리": {
       "부산엄궁": 1608
-    },
-    "토마토": {
-      "울산": 5064
     },
     "방울토마토": {
       "부산반여": 6780,
@@ -8444,30 +8644,34 @@
     "가지": {
       "부산엄궁": 1545
     },
+    "토마토": {
+      "울산": 5064
+    },
     "양파": {
-      "울산": 1125,
       "부산반여": 1138,
-      "부산엄궁": 1100
-    },
-    "깻잎": {
-      "울산": 16000,
-      "부산엄궁": 9923
-    },
-    "고사리": {
-      "울산": 8500,
-      "부산반여": 4000,
-      "부산엄궁": 90000
+      "부산엄궁": 1100,
+      "울산": 1125
     },
     "방아": {
       "부산반여": 5008
+    },
+    "고사리": {
+      "부산반여": 4000,
+      "부산엄궁": 90000,
+      "울산": 8500
     },
     "자두": {
       "부산엄궁": 3899,
       "구미": 2609
     },
-    "도라지": {
-      "울산": 4000,
-      "부산반여": 4000
+    "깻잎": {
+      "부산엄궁": 9923,
+      "울산": 16000
+    },
+    "오렌지": {
+      "창원팔용": 3400,
+      "부산반여": 3030,
+      "구미": 706
     }
   },
   "shipments": {
@@ -12125,6 +12329,2418 @@
     ]
   },
   "kamis": {
+    "changes": [
+      {
+        "item": "쌀",
+        "variety": "20kg",
+        "grade": "상품",
+        "price_kg": 3036.0,
+        "d1": 0.0,
+        "w1": 0.02,
+        "m1": 0.16,
+        "y1": 4.08
+      },
+      {
+        "item": "쌀",
+        "variety": "20kg",
+        "grade": "중품",
+        "price_kg": 2825.0,
+        "d1": 0.0,
+        "w1": 0.35,
+        "m1": 0.35,
+        "y1": 5.56
+      },
+      {
+        "item": "찹쌀",
+        "variety": "일반계",
+        "grade": "상품",
+        "price_kg": 3498.0,
+        "d1": 0.0,
+        "w1": 1.55,
+        "m1": 2.3,
+        "y1": 31.24
+      },
+      {
+        "item": "찹쌀",
+        "variety": "일반계",
+        "grade": "중품",
+        "price_kg": 3075.0,
+        "d1": 0.0,
+        "w1": 5.75,
+        "m1": 7.52,
+        "y1": 24.07
+      },
+      {
+        "item": "콩",
+        "variety": "흰 콩(국산)",
+        "grade": "상품",
+        "price_kg": 5723.0,
+        "d1": 0.0,
+        "w1": 0.0,
+        "m1": 0.57,
+        "y1": 0.56
+      },
+      {
+        "item": "콩",
+        "variety": "흰 콩(국산)",
+        "grade": "중품",
+        "price_kg": 5000.0,
+        "d1": 0.0,
+        "w1": 0.0,
+        "m1": 0.0,
+        "y1": 4.17
+      },
+      {
+        "item": "콩",
+        "variety": "흰 콩(수입)",
+        "grade": "중품",
+        "price_kg": 3623.0,
+        "d1": 0.0,
+        "w1": 0.0,
+        "m1": 1.12,
+        "y1": 3.76
+      },
+      {
+        "item": "팥",
+        "variety": "붉은 팥(국산)",
+        "grade": "상품",
+        "price_kg": 16750.0,
+        "d1": 0.0,
+        "w1": 0.0,
+        "m1": 1.18,
+        "y1": 14.64
+      },
+      {
+        "item": "팥",
+        "variety": "붉은 팥(수입)",
+        "grade": "중품",
+        "price_kg": 6578.0,
+        "d1": 0.0,
+        "w1": 0.1,
+        "m1": 0.64,
+        "y1": 0.34
+      },
+      {
+        "item": "녹두",
+        "variety": "국산",
+        "grade": "상품",
+        "price_kg": 13760.0,
+        "d1": 0.0,
+        "w1": 0.0,
+        "m1": 0.95,
+        "y1": 2.71
+      },
+      {
+        "item": "녹두",
+        "variety": "국산",
+        "grade": "중품",
+        "price_kg": 10650.0,
+        "d1": 0.0,
+        "w1": 0.0,
+        "m1": 0.0,
+        "y1": 0.71
+      },
+      {
+        "item": "메밀",
+        "variety": "메밀(수입)",
+        "grade": "중품",
+        "price_kg": 3025.0,
+        "d1": 0.0,
+        "w1": 0.0,
+        "m1": 0.0,
+        "y1": 9.1
+      },
+      {
+        "item": "고구마",
+        "variety": "밤",
+        "grade": "상품",
+        "price_kg": 3375.0,
+        "d1": 0.0,
+        "w1": 6.3,
+        "m1": 8.59,
+        "y1": 3.81
+      },
+      {
+        "item": "고구마",
+        "variety": "밤",
+        "grade": "중품",
+        "price_kg": 2641.0,
+        "d1": 0.0,
+        "w1": 6.58,
+        "m1": 8.87,
+        "y1": 1.75
+      },
+      {
+        "item": "감자",
+        "variety": "수미(노지)",
+        "grade": "상품",
+        "price_kg": 1710.0,
+        "d1": 0.0,
+        "w1": 4.69,
+        "m1": 5.51,
+        "y1": 19.99
+      },
+      {
+        "item": "감자",
+        "variety": "수미(노지)",
+        "grade": "중품",
+        "price_kg": 1329.0,
+        "d1": 0.0,
+        "w1": 4.61,
+        "m1": 6.62,
+        "y1": 26.69
+      },
+      {
+        "item": "배추",
+        "variety": "여름(고랭지)",
+        "grade": "상품",
+        "price_kg": 19870.0,
+        "d1": 0.0,
+        "w1": 10.79,
+        "m1": 55.54,
+        "y1": 5.47
+      },
+      {
+        "item": "배추",
+        "variety": "여름(고랭지)",
+        "grade": "중품",
+        "price_kg": 15355.0,
+        "d1": 0.0,
+        "w1": 14.71,
+        "m1": 58.59,
+        "y1": 12.33
+      },
+      {
+        "item": "양배추",
+        "variety": "양배추",
+        "grade": "상품",
+        "price_kg": 876.0,
+        "d1": 0.0,
+        "w1": 16.96,
+        "m1": 9.06,
+        "y1": 28.79
+      },
+      {
+        "item": "양배추",
+        "variety": "양배추",
+        "grade": "중품",
+        "price_kg": 646.0,
+        "d1": 0.0,
+        "w1": 14.47,
+        "m1": 7.24,
+        "y1": 32.59
+      },
+      {
+        "item": "시금치",
+        "variety": "시금치",
+        "grade": "상품",
+        "price_kg": 12543.0,
+        "d1": 0.0,
+        "w1": 13.12,
+        "m1": 5.87,
+        "y1": 17.48
+      },
+      {
+        "item": "시금치",
+        "variety": "시금치",
+        "grade": "중품",
+        "price_kg": 8882.0,
+        "d1": 0.0,
+        "w1": 12.81,
+        "m1": 1.38,
+        "y1": 4.57
+      },
+      {
+        "item": "상추",
+        "variety": "적",
+        "grade": "상품",
+        "price_kg": 7348.0,
+        "d1": 0.0,
+        "w1": 51.28,
+        "m1": 15.06,
+        "y1": 45.75
+      },
+      {
+        "item": "상추",
+        "variety": "적",
+        "grade": "중품",
+        "price_kg": 5197.0,
+        "d1": 0.0,
+        "w1": 50.57,
+        "m1": 10.4,
+        "y1": 50.06
+      },
+      {
+        "item": "상추",
+        "variety": "청",
+        "grade": "상품",
+        "price_kg": 7371.0,
+        "d1": 0.0,
+        "w1": 53.3,
+        "m1": 23.87,
+        "y1": 42.99
+      },
+      {
+        "item": "상추",
+        "variety": "청",
+        "grade": "중품",
+        "price_kg": 5348.0,
+        "d1": 0.0,
+        "w1": 49.97,
+        "m1": 9.26,
+        "y1": 44.0
+      },
+      {
+        "item": "얼갈이배추",
+        "variety": "얼갈이배추",
+        "grade": "상품",
+        "price_kg": 2224.0,
+        "d1": 0.0,
+        "w1": 30.83,
+        "m1": 16.37,
+        "y1": 33.49
+      },
+      {
+        "item": "얼갈이배추",
+        "variety": "얼갈이배추",
+        "grade": "중품",
+        "price_kg": 1545.0,
+        "d1": 0.0,
+        "w1": 31.77,
+        "m1": 13.71,
+        "y1": 34.93
+      },
+      {
+        "item": "수박",
+        "variety": "수박",
+        "grade": "상품",
+        "price_kg": 18555.0,
+        "d1": 0.0,
+        "w1": 3.0,
+        "m1": 21.64,
+        "y1": 7.41
+      },
+      {
+        "item": "수박",
+        "variety": "수박",
+        "grade": "중품",
+        "price_kg": 14675.0,
+        "d1": 0.0,
+        "w1": 1.56,
+        "m1": 29.38,
+        "y1": 8.02
+      },
+      {
+        "item": "오이",
+        "variety": "가시계통",
+        "grade": "상품",
+        "price_kg": 2162.0,
+        "d1": 0.0,
+        "w1": 32.59,
+        "m1": 19.35,
+        "y1": 15.24
+      },
+      {
+        "item": "오이",
+        "variety": "가시계통",
+        "grade": "중품",
+        "price_kg": 1423.0,
+        "d1": 0.0,
+        "w1": 37.65,
+        "m1": 23.11,
+        "y1": 17.0
+      },
+      {
+        "item": "오이",
+        "variety": "다다기계통",
+        "grade": "상품",
+        "price_kg": 31800.0,
+        "d1": 0.0,
+        "w1": 39.3,
+        "m1": 3.87,
+        "y1": 18.34
+      },
+      {
+        "item": "오이",
+        "variety": "다다기계통",
+        "grade": "중품",
+        "price_kg": 21080.0,
+        "d1": 0.0,
+        "w1": 37.57,
+        "m1": 20.32,
+        "y1": 19.24
+      },
+      {
+        "item": "오이",
+        "variety": "취청",
+        "grade": "상품",
+        "price_kg": 30583.0,
+        "d1": 0.0,
+        "w1": 41.59,
+        "m1": 8.52,
+        "y1": 18.21
+      },
+      {
+        "item": "오이",
+        "variety": "취청",
+        "grade": "중품",
+        "price_kg": 17950.0,
+        "d1": 0.0,
+        "w1": 44.98,
+        "m1": 4.01,
+        "y1": 28.53
+      },
+      {
+        "item": "호박",
+        "variety": "애호박",
+        "grade": "상품",
+        "price_kg": 31595.0,
+        "d1": 0.0,
+        "w1": 27.72,
+        "m1": 53.97,
+        "y1": 2.12
+      },
+      {
+        "item": "호박",
+        "variety": "애호박",
+        "grade": "중품",
+        "price_kg": 21275.0,
+        "d1": 0.0,
+        "w1": 28.87,
+        "m1": 55.75,
+        "y1": 3.01
+      },
+      {
+        "item": "호박",
+        "variety": "쥬키니",
+        "grade": "상품",
+        "price_kg": 2339.0,
+        "d1": 0.0,
+        "w1": 49.63,
+        "m1": 45.97,
+        "y1": 9.95
+      },
+      {
+        "item": "호박",
+        "variety": "쥬키니",
+        "grade": "중품",
+        "price_kg": 1492.0,
+        "d1": 0.0,
+        "w1": 51.23,
+        "m1": 51.73,
+        "y1": 13.49
+      },
+      {
+        "item": "토마토",
+        "variety": "토마토",
+        "grade": "상품",
+        "price_kg": 5412.0,
+        "d1": 0.0,
+        "w1": 20.37,
+        "m1": 59.93,
+        "y1": 12.68
+      },
+      {
+        "item": "토마토",
+        "variety": "토마토",
+        "grade": "중품",
+        "price_kg": 4408.0,
+        "d1": 0.0,
+        "w1": 18.65,
+        "m1": 63.26,
+        "y1": 17.17
+      },
+      {
+        "item": "무",
+        "variety": "고랭지",
+        "grade": "상품",
+        "price_kg": 917.0,
+        "d1": 0.0,
+        "w1": 5.61,
+        "m1": 6.91,
+        "y1": 47.88
+      },
+      {
+        "item": "무",
+        "variety": "고랭지",
+        "grade": "중품",
+        "price_kg": 713.0,
+        "d1": 0.0,
+        "w1": 1.21,
+        "m1": 5.16,
+        "y1": 49.99
+      },
+      {
+        "item": "당근",
+        "variety": "무세척(국산)",
+        "grade": "상품",
+        "price_kg": 2184.0,
+        "d1": 0.0,
+        "w1": 2.5,
+        "m1": 16.9,
+        "y1": 1.02
+      },
+      {
+        "item": "당근",
+        "variety": "무세척(국산)",
+        "grade": "중품",
+        "price_kg": 1614.0,
+        "d1": 0.0,
+        "w1": 1.16,
+        "m1": 11.77,
+        "y1": 10.73
+      },
+      {
+        "item": "당근",
+        "variety": "세척(수입)",
+        "grade": "중품",
+        "price_kg": 826.0,
+        "d1": 0.0,
+        "w1": 0.71,
+        "m1": 2.05,
+        "y1": 2.45
+      },
+      {
+        "item": "열무",
+        "variety": "열무",
+        "grade": "상품",
+        "price_kg": 2844.0,
+        "d1": 0.0,
+        "w1": 7.91,
+        "m1": 5.72,
+        "y1": 7.4
+      },
+      {
+        "item": "열무",
+        "variety": "열무",
+        "grade": "중품",
+        "price_kg": 2007.0,
+        "d1": 0.0,
+        "w1": 10.72,
+        "m1": 2.41,
+        "y1": 10.47
+      },
+      {
+        "item": "건고추",
+        "variety": "화건",
+        "grade": "상품",
+        "price_kg": 22660.0,
+        "d1": 0.0,
+        "w1": 0.25,
+        "m1": 1.18,
+        "y1": 2.5
+      },
+      {
+        "item": "건고추",
+        "variety": "화건",
+        "grade": "중품",
+        "price_kg": 21467.0,
+        "d1": 0.0,
+        "w1": 0.44,
+        "m1": 3.91,
+        "y1": 5.44
+      },
+      {
+        "item": "풋고추",
+        "variety": "풋고추(녹광 등)",
+        "grade": "상품",
+        "price_kg": 7865.0,
+        "d1": 0.0,
+        "w1": 5.5,
+        "m1": 3.57,
+        "y1": 28.45
+      },
+      {
+        "item": "풋고추",
+        "variety": "풋고추(녹광 등)",
+        "grade": "중품",
+        "price_kg": 3339.0,
+        "d1": 0.0,
+        "w1": 15.35,
+        "m1": 0.83,
+        "y1": 22.61
+      },
+      {
+        "item": "풋고추",
+        "variety": "꽈리고추",
+        "grade": "상품",
+        "price_kg": 11434.0,
+        "d1": 0.0,
+        "w1": 20.61,
+        "m1": 88.36,
+        "y1": 10.01
+      },
+      {
+        "item": "풋고추",
+        "variety": "꽈리고추",
+        "grade": "중품",
+        "price_kg": 7213.0,
+        "d1": 0.0,
+        "w1": 36.41,
+        "m1": 138.04,
+        "y1": 15.86
+      },
+      {
+        "item": "풋고추",
+        "variety": "청양고추",
+        "grade": "상품",
+        "price_kg": 5428.0,
+        "d1": 0.0,
+        "w1": 3.57,
+        "m1": 35.09,
+        "y1": 4.63
+      },
+      {
+        "item": "풋고추",
+        "variety": "청양고추",
+        "grade": "중품",
+        "price_kg": 3110.0,
+        "d1": 0.0,
+        "w1": 5.32,
+        "m1": 37.13,
+        "y1": 12.3
+      },
+      {
+        "item": "붉은고추",
+        "variety": "붉은고추",
+        "grade": "상품",
+        "price_kg": 12347.0,
+        "d1": 0.0,
+        "w1": 55.7,
+        "m1": 161.47,
+        "y1": 57.84
+      },
+      {
+        "item": "붉은고추",
+        "variety": "붉은고추",
+        "grade": "중품",
+        "price_kg": 6657.0,
+        "d1": 0.0,
+        "w1": 56.72,
+        "m1": 123.07,
+        "y1": 55.93
+      },
+      {
+        "item": "피마늘",
+        "variety": "한지",
+        "grade": "상품",
+        "price_kg": 11575.0,
+        "d1": 0.0,
+        "w1": 5.23,
+        "m1": 6.68,
+        "y1": 17.31
+      },
+      {
+        "item": "피마늘",
+        "variety": "한지",
+        "grade": "중품",
+        "price_kg": 8500.0,
+        "d1": 0.0,
+        "w1": 0.0,
+        "m1": 0.0,
+        "y1": 21.43
+      },
+      {
+        "item": "양파",
+        "variety": "양파",
+        "grade": "상품",
+        "price_kg": 1254.0,
+        "d1": 0.0,
+        "w1": 0.16,
+        "m1": 5.17,
+        "y1": 2.48
+      },
+      {
+        "item": "양파",
+        "variety": "양파",
+        "grade": "중품",
+        "price_kg": 955.0,
+        "d1": 0.0,
+        "w1": 0.9,
+        "m1": 6.39,
+        "y1": 6.59
+      },
+      {
+        "item": "파",
+        "variety": "대파",
+        "grade": "상품",
+        "price_kg": 2116.0,
+        "d1": 0.0,
+        "w1": 0.05,
+        "m1": 7.84,
+        "y1": 3.02
+      },
+      {
+        "item": "파",
+        "variety": "대파",
+        "grade": "중품",
+        "price_kg": 1706.0,
+        "d1": 0.0,
+        "w1": 1.04,
+        "m1": 8.57,
+        "y1": 5.5
+      },
+      {
+        "item": "파",
+        "variety": "쪽파",
+        "grade": "상품",
+        "price_kg": 8672.0,
+        "d1": 0.0,
+        "w1": 9.77,
+        "m1": 16.05,
+        "y1": 51.74
+      },
+      {
+        "item": "파",
+        "variety": "쪽파",
+        "grade": "중품",
+        "price_kg": 6603.0,
+        "d1": 0.0,
+        "w1": 7.57,
+        "m1": 6.21,
+        "y1": 62.4
+      },
+      {
+        "item": "생강",
+        "variety": "국산",
+        "grade": "상품",
+        "price_kg": 6650.0,
+        "d1": 0.0,
+        "w1": 1.02,
+        "m1": 1.02,
+        "y1": 28.24
+      },
+      {
+        "item": "생강",
+        "variety": "국산",
+        "grade": "중품",
+        "price_kg": 5168.0,
+        "d1": 0.0,
+        "w1": 0.09,
+        "m1": 0.09,
+        "y1": 21.55
+      },
+      {
+        "item": "생강",
+        "variety": "수입",
+        "grade": "중품",
+        "price_kg": 8192.0,
+        "d1": 0.0,
+        "w1": 0.18,
+        "m1": 0.18,
+        "y1": 6.56
+      },
+      {
+        "item": "가지",
+        "variety": "가지",
+        "grade": "상품",
+        "price_kg": 4103.0,
+        "d1": 0.0,
+        "w1": 3.87,
+        "m1": null,
+        "y1": null
+      },
+      {
+        "item": "가지",
+        "variety": "가지",
+        "grade": "중품",
+        "price_kg": 2323.0,
+        "d1": 0.0,
+        "w1": 1.01,
+        "m1": null,
+        "y1": null
+      },
+      {
+        "item": "미나리",
+        "variety": "미나리",
+        "grade": "상품",
+        "price_kg": 11048.0,
+        "d1": 0.0,
+        "w1": 0.06,
+        "m1": 33.96,
+        "y1": 6.31
+      },
+      {
+        "item": "미나리",
+        "variety": "미나리",
+        "grade": "중품",
+        "price_kg": 6725.0,
+        "d1": 0.0,
+        "w1": 2.54,
+        "m1": 50.0,
+        "y1": 10.55
+      },
+      {
+        "item": "깻잎",
+        "variety": "깻잎",
+        "grade": "상품",
+        "price_kg": 25778.0,
+        "d1": 0.0,
+        "w1": 4.59,
+        "m1": 50.92,
+        "y1": 49.13
+      },
+      {
+        "item": "깻잎",
+        "variety": "깻잎",
+        "grade": "중품",
+        "price_kg": 16103.0,
+        "d1": 0.0,
+        "w1": 3.17,
+        "m1": 37.51,
+        "y1": 31.05
+      },
+      {
+        "item": "부추",
+        "variety": "부추",
+        "grade": "상품",
+        "price_kg": 5960.0,
+        "d1": 0.0,
+        "w1": 12.24,
+        "m1": null,
+        "y1": null
+      },
+      {
+        "item": "피망",
+        "variety": "청",
+        "grade": "상품",
+        "price_kg": 9381.0,
+        "d1": 0.0,
+        "w1": 17.14,
+        "m1": 113.97,
+        "y1": 82.8
+      },
+      {
+        "item": "피망",
+        "variety": "청",
+        "grade": "중품",
+        "price_kg": 5881.0,
+        "d1": 0.0,
+        "w1": 19.53,
+        "m1": 117.64,
+        "y1": 69.39
+      },
+      {
+        "item": "파프리카",
+        "variety": "파프리카",
+        "grade": "상품",
+        "price_kg": 9646.0,
+        "d1": 0.0,
+        "w1": 22.99,
+        "m1": 160.42,
+        "y1": 40.69
+      },
+      {
+        "item": "파프리카",
+        "variety": "파프리카",
+        "grade": "중품",
+        "price_kg": 6391.0,
+        "d1": 0.0,
+        "w1": 14.58,
+        "m1": 173.82,
+        "y1": 33.73
+      },
+      {
+        "item": "멜론",
+        "variety": "멜론",
+        "grade": "상품",
+        "price_kg": 3454.0,
+        "d1": 0.0,
+        "w1": 2.07,
+        "m1": 0.62,
+        "y1": 4.54
+      },
+      {
+        "item": "멜론",
+        "variety": "멜론",
+        "grade": "중품",
+        "price_kg": 2873.0,
+        "d1": 0.0,
+        "w1": 2.54,
+        "m1": 3.23,
+        "y1": 6.0
+      },
+      {
+        "item": "참깨",
+        "variety": "백색(국산)",
+        "grade": "상품",
+        "price_kg": 25573.0,
+        "d1": 0.0,
+        "w1": 0.0,
+        "m1": 1.39,
+        "y1": 4.77
+      },
+      {
+        "item": "참깨",
+        "variety": "백색(국산)",
+        "grade": "중품",
+        "price_kg": 24100.0,
+        "d1": 0.0,
+        "w1": 0.0,
+        "m1": 0.0,
+        "y1": 3.29
+      },
+      {
+        "item": "참깨",
+        "variety": "중국",
+        "grade": "중품",
+        "price_kg": 7273.0,
+        "d1": 0.0,
+        "w1": 0.14,
+        "m1": 1.09,
+        "y1": 0.91
+      },
+      {
+        "item": "들깨",
+        "variety": "국산",
+        "grade": "상품",
+        "price_kg": 16304.0,
+        "d1": 0.0,
+        "w1": 0.0,
+        "m1": 0.27,
+        "y1": 7.08
+      },
+      {
+        "item": "들깨",
+        "variety": "국산",
+        "grade": "중품",
+        "price_kg": 13696.0,
+        "d1": 0.0,
+        "w1": 0.0,
+        "m1": 0.0,
+        "y1": 16.67
+      },
+      {
+        "item": "들깨",
+        "variety": "수입",
+        "grade": "중품",
+        "price_kg": 6595.0,
+        "d1": 0.0,
+        "w1": 0.0,
+        "m1": 0.47,
+        "y1": 17.5
+      },
+      {
+        "item": "땅콩",
+        "variety": "국산",
+        "grade": "상품",
+        "price_kg": 17140.0,
+        "d1": 0.0,
+        "w1": 0.23,
+        "m1": 1.31,
+        "y1": 14.9
+      },
+      {
+        "item": "느타리버섯",
+        "variety": "느타리버섯",
+        "grade": "상품",
+        "price_kg": 13625.0,
+        "d1": 0.0,
+        "w1": 16.98,
+        "m1": 20.98,
+        "y1": 46.47
+      },
+      {
+        "item": "느타리버섯",
+        "variety": "느타리버섯",
+        "grade": "중품",
+        "price_kg": 6886.0,
+        "d1": 0.0,
+        "w1": 12.48,
+        "m1": 17.07,
+        "y1": 8.9
+      },
+      {
+        "item": "팽이버섯",
+        "variety": "팽이버섯",
+        "grade": "상품",
+        "price_kg": 2748.0,
+        "d1": 0.0,
+        "w1": 3.27,
+        "m1": 24.91,
+        "y1": 18.5
+      },
+      {
+        "item": "팽이버섯",
+        "variety": "팽이버섯",
+        "grade": "중품",
+        "price_kg": 2156.0,
+        "d1": 0.0,
+        "w1": 0.78,
+        "m1": 22.17,
+        "y1": 12.13
+      },
+      {
+        "item": "새송이버섯",
+        "variety": "새송이버섯",
+        "grade": "상품",
+        "price_kg": 5222.0,
+        "d1": 0.0,
+        "w1": 0.11,
+        "m1": 25.35,
+        "y1": 12.59
+      },
+      {
+        "item": "새송이버섯",
+        "variety": "새송이버섯",
+        "grade": "중품",
+        "price_kg": 4112.0,
+        "d1": 0.0,
+        "w1": 4.71,
+        "m1": 22.18,
+        "y1": 15.96
+      },
+      {
+        "item": "사과",
+        "variety": "홍로",
+        "grade": "상품",
+        "price_kg": 6062.0,
+        "d1": 0.0,
+        "w1": 3.62,
+        "m1": 22.9,
+        "y1": 15.72
+      },
+      {
+        "item": "사과",
+        "variety": "홍로",
+        "grade": "중품",
+        "price_kg": 5034.0,
+        "d1": 0.0,
+        "w1": 6.47,
+        "m1": 28.62,
+        "y1": 21.3
+      },
+      {
+        "item": "배",
+        "variety": "신고",
+        "grade": "상품",
+        "price_kg": 4102.0,
+        "d1": 0.0,
+        "w1": null,
+        "m1": null,
+        "y1": 14.81
+      },
+      {
+        "item": "배",
+        "variety": "신고",
+        "grade": "중품",
+        "price_kg": 3292.0,
+        "d1": 0.0,
+        "w1": null,
+        "m1": null,
+        "y1": 9.16
+      },
+      {
+        "item": "배",
+        "variety": "원황",
+        "grade": "상품",
+        "price_kg": 3192.0,
+        "d1": 0.0,
+        "w1": 4.96,
+        "m1": 21.15,
+        "y1": 18.94
+      },
+      {
+        "item": "배",
+        "variety": "원황",
+        "grade": "중품",
+        "price_kg": 2667.0,
+        "d1": 0.0,
+        "w1": 1.23,
+        "m1": 19.11,
+        "y1": 17.09
+      },
+      {
+        "item": "포도",
+        "variety": "캠벨얼리",
+        "grade": "L과",
+        "price_kg": 6525.0,
+        "d1": 0.0,
+        "w1": 0.23,
+        "m1": 20.36,
+        "y1": 0.84
+      },
+      {
+        "item": "포도",
+        "variety": "거봉",
+        "grade": "L과",
+        "price_kg": 7580.0,
+        "d1": 0.0,
+        "w1": 0.36,
+        "m1": 15.31,
+        "y1": 4.11
+      },
+      {
+        "item": "바나나",
+        "variety": "수입",
+        "grade": "상품",
+        "price_kg": 2520.0,
+        "d1": 0.0,
+        "w1": 1.69,
+        "m1": 10.9,
+        "y1": 0.03
+      },
+      {
+        "item": "바나나",
+        "variety": "수입",
+        "grade": "중품",
+        "price_kg": 2128.0,
+        "d1": 0.0,
+        "w1": 0.56,
+        "m1": 9.41,
+        "y1": 4.59
+      },
+      {
+        "item": "파인애플",
+        "variety": "수입",
+        "grade": "상품",
+        "price_kg": 3333.0,
+        "d1": 0.0,
+        "w1": 0.58,
+        "m1": 8.93,
+        "y1": 8.72
+      },
+      {
+        "item": "파인애플",
+        "variety": "수입",
+        "grade": "중품",
+        "price_kg": 2836.0,
+        "d1": 0.0,
+        "w1": 1.39,
+        "m1": 13.07,
+        "y1": 11.89
+      },
+      {
+        "item": "고등어",
+        "variety": "생선",
+        "grade": "중품",
+        "price_kg": 5497.0,
+        "d1": 0.0,
+        "w1": 0.89,
+        "m1": 9.68,
+        "y1": 0.69
+      },
+      {
+        "item": "고등어",
+        "variety": "냉동",
+        "grade": "중품",
+        "price_kg": 4218.0,
+        "d1": 0.0,
+        "w1": 0.97,
+        "m1": 0.67,
+        "y1": 1.87
+      },
+      {
+        "item": "갈치",
+        "variety": "생선",
+        "grade": "中",
+        "price_kg": 23817.0,
+        "d1": 0.0,
+        "w1": 0.23,
+        "m1": 6.92,
+        "y1": 3.28
+      },
+      {
+        "item": "갈치",
+        "variety": "냉동",
+        "grade": "中",
+        "price_kg": 14500.0,
+        "d1": 0.0,
+        "w1": 0.52,
+        "m1": 0.28,
+        "y1": 0.99
+      },
+      {
+        "item": "명태",
+        "variety": "냉동",
+        "grade": "中",
+        "price_kg": 2465.0,
+        "d1": 0.0,
+        "w1": 0.14,
+        "m1": 4.23,
+        "y1": 20.71
+      },
+      {
+        "item": "북어",
+        "variety": "황태",
+        "grade": "중품",
+        "price_kg": 54920.0,
+        "d1": 0.0,
+        "w1": 0.0,
+        "m1": 0.0,
+        "y1": 0.96
+      },
+      {
+        "item": "마른오징어",
+        "variety": "마른오징어",
+        "grade": "중품",
+        "price_kg": 109000.0,
+        "d1": 0.0,
+        "w1": 0.0,
+        "m1": 0.0,
+        "y1": 2.81
+      },
+      {
+        "item": "김",
+        "variety": "마른김",
+        "grade": "중품",
+        "price_kg": 11170.0,
+        "d1": 0.0,
+        "w1": 0.0,
+        "m1": 0.0,
+        "y1": 1.67
+      },
+      {
+        "item": "마른미역",
+        "variety": "마른미역",
+        "grade": "상품",
+        "price_kg": 15240.0,
+        "d1": 0.0,
+        "w1": 0.0,
+        "m1": 0.0,
+        "y1": 3.11
+      },
+      {
+        "item": "쌀",
+        "variety": "20kg",
+        "grade": "상품",
+        "price_kg": 3072.0,
+        "d1": 0.0,
+        "w1": 0.31,
+        "m1": 0.01,
+        "y1": 1.68
+      },
+      {
+        "item": "찹쌀",
+        "variety": "일반계",
+        "grade": "상품",
+        "price_kg": 5206.0,
+        "d1": 0.0,
+        "w1": 0.6,
+        "m1": 1.74,
+        "y1": 18.97
+      },
+      {
+        "item": "콩",
+        "variety": "흰 콩(국산)",
+        "grade": "상품",
+        "price_kg": 10011.0,
+        "d1": 0.0,
+        "w1": 0.56,
+        "m1": 0.16,
+        "y1": 0.16
+      },
+      {
+        "item": "팥",
+        "variety": "붉은 팥(국산)",
+        "grade": "상품",
+        "price_kg": 27218.0,
+        "d1": 0.0,
+        "w1": 0.52,
+        "m1": 0.94,
+        "y1": 1.53
+      },
+      {
+        "item": "녹두",
+        "variety": "국산",
+        "grade": "상품",
+        "price_kg": 21644.0,
+        "d1": 0.0,
+        "w1": 6.3,
+        "m1": 10.67,
+        "y1": 8.23
+      },
+      {
+        "item": "고구마",
+        "variety": "밤",
+        "grade": "상품",
+        "price_kg": 4558.0,
+        "d1": 0.0,
+        "w1": 7.09,
+        "m1": 14.61,
+        "y1": 13.13
+      },
+      {
+        "item": "감자",
+        "variety": "수미(노지)",
+        "grade": "상품",
+        "price_kg": 2834.0,
+        "d1": 0.0,
+        "w1": 0.35,
+        "m1": 9.29,
+        "y1": 22.89
+      },
+      {
+        "item": "배추",
+        "variety": "여름(고랭지)",
+        "grade": "상품",
+        "price_kg": 5899.0,
+        "d1": 0.0,
+        "w1": 3.82,
+        "m1": 4.24,
+        "y1": 5.05
+      },
+      {
+        "item": "양배추",
+        "variety": "양배추",
+        "grade": "상품",
+        "price_kg": 3005.0,
+        "d1": 0.0,
+        "w1": 3.69,
+        "m1": 0.6,
+        "y1": 29.77
+      },
+      {
+        "item": "시금치",
+        "variety": "시금치",
+        "grade": "상품",
+        "price_kg": 18104.0,
+        "d1": 0.0,
+        "w1": 17.46,
+        "m1": 14.66,
+        "y1": 33.75
+      },
+      {
+        "item": "상추",
+        "variety": "적",
+        "grade": "상품",
+        "price_kg": 17562.0,
+        "d1": 0.0,
+        "w1": 12.07,
+        "m1": 14.25,
+        "y1": 5.79
+      },
+      {
+        "item": "상추",
+        "variety": "청",
+        "grade": "상품",
+        "price_kg": 18054.0,
+        "d1": 0.0,
+        "w1": 12.34,
+        "m1": 8.34,
+        "y1": 12.42
+      },
+      {
+        "item": "얼갈이배추",
+        "variety": "얼갈이배추",
+        "grade": "상품",
+        "price_kg": 3287.0,
+        "d1": 0.0,
+        "w1": 13.07,
+        "m1": 0.42,
+        "y1": 15.52
+      },
+      {
+        "item": "수박",
+        "variety": "수박",
+        "grade": "상품",
+        "price_kg": 23352.0,
+        "d1": 0.0,
+        "w1": 1.44,
+        "m1": 10.51,
+        "y1": 22.79
+      },
+      {
+        "item": "참외",
+        "variety": "참외",
+        "grade": "상품",
+        "price_kg": 16506.0,
+        "d1": 0.0,
+        "w1": 1.03,
+        "m1": 12.14,
+        "y1": 27.25
+      },
+      {
+        "item": "오이",
+        "variety": "가시계통",
+        "grade": "상품",
+        "price_kg": 12137.0,
+        "d1": 0.0,
+        "w1": 1.85,
+        "m1": 9.65,
+        "y1": 12.32
+      },
+      {
+        "item": "오이",
+        "variety": "다다기계통",
+        "grade": "상품",
+        "price_kg": 10600.0,
+        "d1": 0.0,
+        "w1": 18.94,
+        "m1": 10.26,
+        "y1": 14.67
+      },
+      {
+        "item": "오이",
+        "variety": "취청",
+        "grade": "상품",
+        "price_kg": 14742.0,
+        "d1": 0.0,
+        "w1": 9.43,
+        "m1": 1.49,
+        "y1": 5.53
+      },
+      {
+        "item": "호박",
+        "variety": "애호박",
+        "grade": "상품",
+        "price_kg": 2193.0,
+        "d1": 0.0,
+        "w1": 15.03,
+        "m1": 52.82,
+        "y1": 32.03
+      },
+      {
+        "item": "호박",
+        "variety": "쥬키니",
+        "grade": "상품",
+        "price_kg": 2473.0,
+        "d1": 0.0,
+        "w1": 11.15,
+        "m1": 37.54,
+        "y1": 19.76
+      },
+      {
+        "item": "토마토",
+        "variety": "토마토",
+        "grade": "상품",
+        "price_kg": 7045.0,
+        "d1": 0.0,
+        "w1": 26.3,
+        "m1": 43.6,
+        "y1": 15.74
+      },
+      {
+        "item": "무",
+        "variety": "고랭지",
+        "grade": "상품",
+        "price_kg": 2137.0,
+        "d1": 0.0,
+        "w1": 6.44,
+        "m1": 12.63,
+        "y1": 6.9
+      },
+      {
+        "item": "당근",
+        "variety": "무세척(국산)",
+        "grade": "상품",
+        "price_kg": 3815.0,
+        "d1": 0.0,
+        "w1": 7.74,
+        "m1": 8.26,
+        "y1": 4.61
+      },
+      {
+        "item": "열무",
+        "variety": "열무",
+        "grade": "상품",
+        "price_kg": 3159.0,
+        "d1": 0.0,
+        "w1": 13.52,
+        "m1": 8.14,
+        "y1": 10.43
+      },
+      {
+        "item": "건고추",
+        "variety": "화건",
+        "grade": "상품",
+        "price_kg": 29300.0,
+        "d1": 0.0,
+        "w1": 0.81,
+        "m1": 3.32,
+        "y1": 3.74
+      },
+      {
+        "item": "풋고추",
+        "variety": "풋고추(녹광 등)",
+        "grade": "상품",
+        "price_kg": 20411.0,
+        "d1": 0.0,
+        "w1": 22.88,
+        "m1": 20.7,
+        "y1": 19.22
+      },
+      {
+        "item": "풋고추",
+        "variety": "꽈리고추",
+        "grade": "상품",
+        "price_kg": 15562.0,
+        "d1": 0.0,
+        "w1": 18.15,
+        "m1": 15.69,
+        "y1": 12.04
+      },
+      {
+        "item": "풋고추",
+        "variety": "청양고추",
+        "grade": "상품",
+        "price_kg": 14067.0,
+        "d1": 0.0,
+        "w1": 13.83,
+        "m1": 23.2,
+        "y1": 8.4
+      },
+      {
+        "item": "붉은고추",
+        "variety": "붉은고추",
+        "grade": "상품",
+        "price_kg": 24080.0,
+        "d1": 0.0,
+        "w1": 21.86,
+        "m1": 21.13,
+        "y1": 25.03
+      },
+      {
+        "item": "깐마늘(국산)",
+        "variety": "깐마늘(국산)",
+        "grade": "상품",
+        "price_kg": 10608.0,
+        "d1": 0.0,
+        "w1": 0.91,
+        "m1": 9.7,
+        "y1": 10.51
+      },
+      {
+        "item": "양파",
+        "variety": "양파",
+        "grade": "상품",
+        "price_kg": 1892.0,
+        "d1": 0.0,
+        "w1": 4.13,
+        "m1": 5.16,
+        "y1": 2.62
+      },
+      {
+        "item": "파",
+        "variety": "대파",
+        "grade": "상품",
+        "price_kg": 2872.0,
+        "d1": 0.0,
+        "w1": 8.91,
+        "m1": 6.02,
+        "y1": 8.33
+      },
+      {
+        "item": "파",
+        "variety": "쪽파",
+        "grade": "상품",
+        "price_kg": 9320.0,
+        "d1": 0.0,
+        "w1": 7.45,
+        "m1": 12.32,
+        "y1": 30.35
+      },
+      {
+        "item": "생강",
+        "variety": "국산",
+        "grade": "상품",
+        "price_kg": 15142.0,
+        "d1": 0.0,
+        "w1": 0.13,
+        "m1": 1.16,
+        "y1": 0.28
+      },
+      {
+        "item": "가지",
+        "variety": "가지",
+        "grade": "상품",
+        "price_kg": 2593.0,
+        "d1": 0.0,
+        "w1": 11.48,
+        "m1": null,
+        "y1": null
+      },
+      {
+        "item": "미나리",
+        "variety": "미나리",
+        "grade": "상품",
+        "price_kg": 19366.0,
+        "d1": 0.0,
+        "w1": 0.0,
+        "m1": 9.93,
+        "y1": 3.42
+      },
+      {
+        "item": "깻잎",
+        "variety": "깻잎",
+        "grade": "상품",
+        "price_kg": 38599.0,
+        "d1": 0.0,
+        "w1": 6.16,
+        "m1": 27.31,
+        "y1": 17.25
+      },
+      {
+        "item": "부추",
+        "variety": "부추",
+        "grade": "상품",
+        "price_kg": 8476.0,
+        "d1": 0.0,
+        "w1": 11.58,
+        "m1": null,
+        "y1": null
+      },
+      {
+        "item": "피망",
+        "variety": "청",
+        "grade": "상품",
+        "price_kg": 25259.0,
+        "d1": 0.0,
+        "w1": 51.17,
+        "m1": 94.31,
+        "y1": 79.15
+      },
+      {
+        "item": "파프리카",
+        "variety": "파프리카",
+        "grade": "상품",
+        "price_kg": 2506.0,
+        "d1": 0.0,
+        "w1": 0.2,
+        "m1": 75.98,
+        "y1": 22.54
+      },
+      {
+        "item": "멜론",
+        "variety": "멜론",
+        "grade": "상품",
+        "price_kg": 9123.0,
+        "d1": 0.0,
+        "w1": 2.33,
+        "m1": 3.89,
+        "y1": 11.0
+      },
+      {
+        "item": "참깨",
+        "variety": "백색(국산)",
+        "grade": "상품",
+        "price_kg": 34418.0,
+        "d1": 0.0,
+        "w1": 1.1,
+        "m1": 3.37,
+        "y1": 5.21
+      },
+      {
+        "item": "땅콩",
+        "variety": "국산",
+        "grade": "상품",
+        "price_kg": 36015.0,
+        "d1": 0.0,
+        "w1": 10.19,
+        "m1": 1.15,
+        "y1": 4.89
+      },
+      {
+        "item": "느타리버섯",
+        "variety": "느타리버섯",
+        "grade": "상품",
+        "price_kg": 13431.0,
+        "d1": 0.0,
+        "w1": 12.01,
+        "m1": 17.19,
+        "y1": 35.52
+      },
+      {
+        "item": "팽이버섯",
+        "variety": "팽이버섯",
+        "grade": "상품",
+        "price_kg": 3586.0,
+        "d1": 0.0,
+        "w1": 0.56,
+        "m1": 5.49,
+        "y1": 5.49
+      },
+      {
+        "item": "새송이버섯",
+        "variety": "새송이버섯",
+        "grade": "상품",
+        "price_kg": 6456.0,
+        "d1": 0.0,
+        "w1": 17.03,
+        "m1": 17.88,
+        "y1": 6.25
+      },
+      {
+        "item": "사과",
+        "variety": "홍로",
+        "grade": "상품",
+        "price_kg": 22599.0,
+        "d1": 0.0,
+        "w1": 0.13,
+        "m1": 24.99,
+        "y1": 13.08
+      },
+      {
+        "item": "배",
+        "variety": "신고",
+        "grade": "상품",
+        "price_kg": 30903.0,
+        "d1": 0.0,
+        "w1": null,
+        "m1": 26.39,
+        "y1": 12.67
+      },
+      {
+        "item": "배",
+        "variety": "원황",
+        "grade": "상품",
+        "price_kg": 30790.0,
+        "d1": 0.0,
+        "w1": 11.03,
+        "m1": 16.07,
+        "y1": 3.73
+      },
+      {
+        "item": "복숭아",
+        "variety": "백도",
+        "grade": "상품",
+        "price_kg": 19236.0,
+        "d1": 0.0,
+        "w1": 0.29,
+        "m1": 4.32,
+        "y1": 21.65
+      },
+      {
+        "item": "포도",
+        "variety": "캠벨얼리",
+        "grade": "L과",
+        "price_kg": 6869.0,
+        "d1": 0.0,
+        "w1": 2.42,
+        "m1": 23.52,
+        "y1": 20.37
+      },
+      {
+        "item": "포도",
+        "variety": "거봉",
+        "grade": "L과",
+        "price_kg": 8868.0,
+        "d1": 0.0,
+        "w1": 1.97,
+        "m1": 2.38,
+        "y1": 16.94
+      },
+      {
+        "item": "바나나",
+        "variety": "수입",
+        "grade": "상품",
+        "price_kg": 3337.0,
+        "d1": 0.0,
+        "w1": 3.09,
+        "m1": 9.87,
+        "y1": 8.79
+      },
+      {
+        "item": "방울토마토",
+        "variety": "방울토마토",
+        "grade": "상품",
+        "price_kg": 8357.0,
+        "d1": 0.0,
+        "w1": 7.96,
+        "m1": 18.09,
+        "y1": 34.11
+      },
+      {
+        "item": "레몬",
+        "variety": "수입",
+        "grade": "상품",
+        "price_kg": 7933.0,
+        "d1": 0.0,
+        "w1": 11.67,
+        "m1": 11.94,
+        "y1": 18.74
+      },
+      {
+        "item": "체리",
+        "variety": "수입",
+        "grade": "상품",
+        "price_kg": 20191.0,
+        "d1": 0.0,
+        "w1": 7.17,
+        "m1": 9.66,
+        "y1": 12.29
+      },
+      {
+        "item": "참깨",
+        "variety": "인도",
+        "grade": "중품",
+        "price_kg": 5342.0,
+        "d1": 0.0,
+        "w1": 0.0,
+        "m1": 1.42,
+        "y1": 3.14
+      },
+      {
+        "item": "레몬",
+        "variety": "수입",
+        "grade": "상품",
+        "price_kg": 3549.0,
+        "d1": 0.0,
+        "w1": 0.15,
+        "m1": 11.49,
+        "y1": 19.52
+      },
+      {
+        "item": "레몬",
+        "variety": "수입",
+        "grade": "중품",
+        "price_kg": 3265.0,
+        "d1": 0.0,
+        "w1": 1.11,
+        "m1": 10.72,
+        "y1": 30.13
+      },
+      {
+        "item": "망고",
+        "variety": "수입",
+        "grade": "상품",
+        "price_kg": 15969.0,
+        "d1": 0.0,
+        "w1": 3.02,
+        "m1": 13.82,
+        "y1": 7.93
+      },
+      {
+        "item": "파인애플",
+        "variety": "수입",
+        "grade": "상품",
+        "price_kg": 7391.0,
+        "d1": 0.0,
+        "w1": 0.05,
+        "m1": 0.26,
+        "y1": 8.05
+      },
+      {
+        "item": "망고",
+        "variety": "수입",
+        "grade": "상품",
+        "price_kg": 7993.0,
+        "d1": 0.0,
+        "w1": 6.33,
+        "m1": 30.26,
+        "y1": 10.86
+      },
+      {
+        "item": "고춧가루",
+        "variety": "국산",
+        "grade": "상품",
+        "price_kg": 33899.0,
+        "d1": 0.0,
+        "w1": 0.39,
+        "m1": 1.26,
+        "y1": 2.5
+      },
+      {
+        "item": "고춧가루",
+        "variety": "중국",
+        "grade": "상품",
+        "price_kg": 13544.0,
+        "d1": 0.0,
+        "w1": 0.0,
+        "m1": 0.0,
+        "y1": 1.38
+      },
+      {
+        "item": "고등어",
+        "variety": "냉동(수입)",
+        "grade": "중품",
+        "price_kg": 9140.0,
+        "d1": 0.0,
+        "w1": 0.25,
+        "m1": 0.44,
+        "y1": 51.3
+      },
+      {
+        "item": "전복",
+        "variety": "냉장",
+        "grade": "중품",
+        "price_kg": 24855.0,
+        "d1": 0.0,
+        "w1": 1.14,
+        "m1": 14.33,
+        "y1": 6.84
+      },
+      {
+        "item": "새우",
+        "variety": "흰다리(수입)",
+        "grade": "중품",
+        "price_kg": 14020.0,
+        "d1": 0.0,
+        "w1": 0.0,
+        "m1": 0.29,
+        "y1": 1.54
+      },
+      {
+        "item": "깐마늘(국산)",
+        "variety": "깐마늘(대서)",
+        "grade": "상품",
+        "price_kg": 8420.0,
+        "d1": 0.0,
+        "w1": 0.0,
+        "m1": 0.24,
+        "y1": 10.07
+      },
+      {
+        "item": "깐마늘(국산)",
+        "variety": "깐마늘(대서)",
+        "grade": "중품",
+        "price_kg": 7160.0,
+        "d1": 0.0,
+        "w1": 0.14,
+        "m1": 1.38,
+        "y1": 5.45
+      },
+      {
+        "item": "깐마늘(국산)",
+        "variety": "깐마늘(남도)",
+        "grade": "상품",
+        "price_kg": 8650.0,
+        "d1": 0.0,
+        "w1": 0.0,
+        "m1": 0.0,
+        "y1": 7.45
+      },
+      {
+        "item": "깐마늘(국산)",
+        "variety": "깐마늘(남도)",
+        "grade": "중품",
+        "price_kg": 7750.0,
+        "d1": 0.0,
+        "w1": 0.0,
+        "m1": 0.0,
+        "y1": 12.32
+      },
+      {
+        "item": "느타리버섯",
+        "variety": "애느타리버섯",
+        "grade": "상품",
+        "price_kg": 5870.0,
+        "d1": 0.0,
+        "w1": 3.62,
+        "m1": 49.9,
+        "y1": 26.3
+      },
+      {
+        "item": "느타리버섯",
+        "variety": "애느타리버섯",
+        "grade": "중품",
+        "price_kg": 4382.0,
+        "d1": 0.0,
+        "w1": 7.42,
+        "m1": 47.72,
+        "y1": 17.72
+      },
+      {
+        "item": "감귤",
+        "variety": "시설",
+        "grade": "S과",
+        "price_kg": 7750.0,
+        "d1": 0.0,
+        "w1": 2.65,
+        "m1": 2.79,
+        "y1": 1.11
+      },
+      {
+        "item": "느타리버섯",
+        "variety": "애느타리버섯",
+        "grade": "상품",
+        "price_kg": 7044.0,
+        "d1": 0.0,
+        "w1": 8.14,
+        "m1": 15.98,
+        "y1": 12.1
+      },
+      {
+        "item": "감귤",
+        "variety": "시설",
+        "grade": "M과",
+        "price_kg": 7345.0,
+        "d1": 0.0,
+        "w1": 1.91,
+        "m1": 17.38,
+        "y1": 25.85
+      },
+      {
+        "item": "오렌지",
+        "variety": "네이블 호주",
+        "grade": "상품",
+        "price_kg": 3258.0,
+        "d1": 0.0,
+        "w1": 3.87,
+        "m1": 6.65,
+        "y1": 12.27
+      },
+      {
+        "item": "오렌지",
+        "variety": "네이블 호주",
+        "grade": "중품",
+        "price_kg": 3022.0,
+        "d1": 0.0,
+        "w1": 1.4,
+        "m1": 6.78,
+        "y1": 11.23
+      },
+      {
+        "item": "방울토마토",
+        "variety": "대추방울토마토",
+        "grade": "상품",
+        "price_kg": 8737.0,
+        "d1": 0.0,
+        "w1": 13.46,
+        "m1": 89.93,
+        "y1": 6.94
+      },
+      {
+        "item": "방울토마토",
+        "variety": "대추방울토마토",
+        "grade": "중품",
+        "price_kg": 6642.0,
+        "d1": 0.0,
+        "w1": 10.33,
+        "m1": 78.22,
+        "y1": 5.52
+      },
+      {
+        "item": "포도",
+        "variety": "샤인머스켓",
+        "grade": "L과",
+        "price_kg": 5516.0,
+        "d1": 0.0,
+        "w1": 5.5,
+        "m1": 30.62,
+        "y1": 4.91
+      },
+      {
+        "item": "방울토마토",
+        "variety": "대추방울토마토",
+        "grade": "상품",
+        "price_kg": 9338.0,
+        "d1": 0.0,
+        "w1": 7.9,
+        "m1": 59.79,
+        "y1": 29.43
+      },
+      {
+        "item": "포도",
+        "variety": "샤인머스켓",
+        "grade": "L과",
+        "price_kg": 6431.0,
+        "d1": 0.0,
+        "w1": 5.53,
+        "m1": 27.26,
+        "y1": 21.03
+      },
+      {
+        "item": "피마늘",
+        "variety": "난지(대서)",
+        "grade": "상품",
+        "price_kg": 5756.0,
+        "d1": 0.0,
+        "w1": 0.0,
+        "m1": 1.23,
+        "y1": 13.4
+      },
+      {
+        "item": "피마늘",
+        "variety": "난지(대서)",
+        "grade": "중품",
+        "price_kg": 4400.0,
+        "d1": 0.0,
+        "w1": 0.0,
+        "m1": 0.0,
+        "y1": 9.59
+      },
+      {
+        "item": "쌀",
+        "variety": "10kg",
+        "grade": "상품",
+        "price_kg": 3391.0,
+        "d1": 0.0,
+        "w1": 0.99,
+        "m1": 2.67,
+        "y1": 2.77
+      },
+      {
+        "item": "풋고추",
+        "variety": "오이맛고추",
+        "grade": "상품",
+        "price_kg": 7800.0,
+        "d1": 0.0,
+        "w1": 21.62,
+        "m1": 52.45,
+        "y1": 43.39
+      },
+      {
+        "item": "풋고추",
+        "variety": "오이맛고추",
+        "grade": "중품",
+        "price_kg": 3970.0,
+        "d1": 0.0,
+        "w1": 17.55,
+        "m1": 34.1,
+        "y1": 27.51
+      },
+      {
+        "item": "풋고추",
+        "variety": "오이맛고추",
+        "grade": "상품",
+        "price_kg": 12722.0,
+        "d1": 0.0,
+        "w1": 11.38,
+        "m1": 18.77,
+        "y1": 9.09
+      },
+      {
+        "item": "아보카도",
+        "variety": "수입",
+        "grade": "상품",
+        "price_kg": 1900.0,
+        "d1": 0.0,
+        "w1": 0.8,
+        "m1": 19.12,
+        "y1": 1.09
+      },
+      {
+        "item": "물오징어",
+        "variety": "연근해(신선 냉장)",
+        "grade": "大",
+        "price_kg": 5849.0,
+        "d1": 0.0,
+        "w1": 2.31,
+        "m1": 14.02,
+        "y1": 11.37
+      },
+      {
+        "item": "물오징어",
+        "variety": "연근해(냉동)",
+        "grade": "大",
+        "price_kg": 4909.0,
+        "d1": 0.0,
+        "w1": 13.89,
+        "m1": null,
+        "y1": null
+      },
+      {
+        "item": "고등어",
+        "variety": "국산(신선 냉장)",
+        "grade": "大",
+        "price_kg": 4255.0,
+        "d1": 0.0,
+        "w1": 0.09,
+        "m1": 6.26,
+        "y1": 3.53
+      },
+      {
+        "item": "명태",
+        "variety": "냉동(원양수입통합)",
+        "grade": "大",
+        "price_kg": 3991.0,
+        "d1": 0.0,
+        "w1": 0.6,
+        "m1": 4.38,
+        "y1": 9.55
+      },
+      {
+        "item": "알배기배추",
+        "variety": "알배기배추",
+        "grade": "상품",
+        "price_kg": 5104.0,
+        "d1": 0.0,
+        "w1": 5.08,
+        "m1": 41.48,
+        "y1": 15.31
+      },
+      {
+        "item": "알배기배추",
+        "variety": "알배기배추",
+        "grade": "중품",
+        "price_kg": 3174.0,
+        "d1": 0.0,
+        "w1": 0.04,
+        "m1": 46.12,
+        "y1": 2.01
+      },
+      {
+        "item": "브로콜리",
+        "variety": "브로콜리(국산)",
+        "grade": "상품",
+        "price_kg": 8419.0,
+        "d1": 0.0,
+        "w1": 3.39,
+        "m1": 52.79,
+        "y1": 7.27
+      },
+      {
+        "item": "브로콜리",
+        "variety": "브로콜리(국산)",
+        "grade": "중품",
+        "price_kg": 5533.0,
+        "d1": 0.0,
+        "w1": 8.41,
+        "m1": 53.48,
+        "y1": 12.01
+      },
+      {
+        "item": "알배기배추",
+        "variety": "알배기배추",
+        "grade": "상품",
+        "price_kg": 4592.0,
+        "d1": 0.0,
+        "w1": 1.06,
+        "m1": 27.98,
+        "y1": 6.97
+      },
+      {
+        "item": "브로콜리",
+        "variety": "브로콜리(국산)",
+        "grade": "상품",
+        "price_kg": 3929.0,
+        "d1": 0.0,
+        "w1": 5.34,
+        "m1": 28.65,
+        "y1": 5.35
+      },
+      {
+        "item": "삼치",
+        "variety": "냉동",
+        "grade": "中",
+        "price_kg": 5984.0,
+        "d1": 0.0,
+        "w1": 0.25,
+        "m1": 0.34,
+        "y1": 9.26
+      },
+      {
+        "item": "갈치",
+        "variety": "냉동",
+        "grade": "大",
+        "price_kg": 21550.0,
+        "d1": 0.0,
+        "w1": 0.52,
+        "m1": 2.82,
+        "y1": 1.06
+      },
+      {
+        "item": "갈치",
+        "variety": "국산(냉장)",
+        "grade": "大",
+        "price_kg": 14228.0,
+        "d1": 0.0,
+        "w1": 0.44,
+        "m1": 1.19,
+        "y1": 13.22
+      },
+      {
+        "item": "갈치",
+        "variety": "국산(냉동)",
+        "grade": "大",
+        "price_kg": 10129.0,
+        "d1": 0.0,
+        "w1": 5.5,
+        "m1": 6.14,
+        "y1": null
+      },
+      {
+        "item": "명태",
+        "variety": "냉동",
+        "grade": "大",
+        "price_kg": 2629.0,
+        "d1": 0.0,
+        "w1": 0.13,
+        "m1": 3.71,
+        "y1": 18.42
+      },
+      {
+        "item": "고등어",
+        "variety": "수입산(염장)",
+        "grade": "大",
+        "price_kg": 11920.0,
+        "d1": 0.0,
+        "w1": 0.75,
+        "m1": 2.9,
+        "y1": 21.76
+      },
+      {
+        "item": "마른멸치",
+        "variety": "마른멸치",
+        "grade": "대멸",
+        "price_kg": 7025.0,
+        "d1": 0.0,
+        "w1": 0.36,
+        "m1": 1.75,
+        "y1": 15.46
+      },
+      {
+        "item": "마른멸치",
+        "variety": "마른멸치",
+        "grade": "대멸",
+        "price_kg": 24435.0,
+        "d1": 0.0,
+        "w1": 0.99,
+        "m1": 4.79,
+        "y1": 4.62
+      },
+      {
+        "item": "건다시마",
+        "variety": "완도산",
+        "grade": "상품",
+        "price_kg": 12990.0,
+        "d1": 0.0,
+        "w1": 1.17,
+        "m1": 1.64,
+        "y1": 2.12
+      },
+      {
+        "item": "홍합",
+        "variety": "안깐홍합(냉장)",
+        "grade": "상품",
+        "price_kg": 1688.0,
+        "d1": 0.0,
+        "w1": 0.0,
+        "m1": 0.0,
+        "y1": 29.49
+      },
+      {
+        "item": "삼치",
+        "variety": "냉장",
+        "grade": "大",
+        "price_kg": 9090.0,
+        "d1": 0.0,
+        "w1": 5.18,
+        "m1": null,
+        "y1": 7.18
+      },
+      {
+        "item": "물오징어",
+        "variety": "연근해(냉동)",
+        "grade": "중품",
+        "price_kg": 14600.0,
+        "d1": 0.0,
+        "w1": 0.34,
+        "m1": 4.2,
+        "y1": 7.59
+      },
+      {
+        "item": "물오징어",
+        "variety": "원양(냉동)",
+        "grade": "중품",
+        "price_kg": 10850.0,
+        "d1": 0.0,
+        "w1": 0.12,
+        "m1": 0.51,
+        "y1": 5.96
+      },
+      {
+        "item": "녹두",
+        "variety": "중국",
+        "grade": "중품",
+        "price_kg": 6830.0,
+        "d1": 0.0,
+        "w1": 0.0,
+        "m1": null,
+        "y1": null
+      },
+      {
+        "item": "녹두",
+        "variety": "페루",
+        "grade": "중품",
+        "price_kg": 4370.0,
+        "d1": 0.0,
+        "w1": 0.0,
+        "m1": null,
+        "y1": null
+      },
+      {
+        "item": "현미",
+        "variety": "찰현미",
+        "grade": "상품",
+        "price_kg": 5690.0,
+        "d1": 0.0,
+        "w1": 0.44,
+        "m1": null,
+        "y1": null
+      },
+      {
+        "item": "현미",
+        "variety": "찰현미",
+        "grade": "상품",
+        "price_kg": 3338.0,
+        "d1": 0.0,
+        "w1": 0.29,
+        "m1": null,
+        "y1": null
+      },
+      {
+        "item": "보리쌀",
+        "variety": "찰보리",
+        "grade": "상품",
+        "price_kg": 2057.0,
+        "d1": 0.0,
+        "w1": 0.23,
+        "m1": null,
+        "y1": null
+      },
+      {
+        "item": "보리쌀",
+        "variety": "찰보리",
+        "grade": "상품",
+        "price_kg": 5234.0,
+        "d1": 0.0,
+        "w1": 1.36,
+        "m1": null,
+        "y1": null
+      },
+      {
+        "item": "혼식곡",
+        "variety": "국산",
+        "grade": "상품",
+        "price_kg": 7406.0,
+        "d1": 0.0,
+        "w1": 0.0,
+        "m1": null,
+        "y1": null
+      },
+      {
+        "item": "블루베리",
+        "variety": "수입(냉동)",
+        "grade": "상품",
+        "price_kg": 11453.0,
+        "d1": 0.0,
+        "w1": 10.97,
+        "m1": null,
+        "y1": null
+      },
+      {
+        "item": "키위",
+        "variety": "골드",
+        "grade": "상품",
+        "price_kg": 6745.0,
+        "d1": 0.0,
+        "w1": 0.27,
+        "m1": null,
+        "y1": null
+      },
+      {
+        "item": "키위",
+        "variety": "골드",
+        "grade": "중품",
+        "price_kg": 6382.0,
+        "d1": 0.0,
+        "w1": 2.11,
+        "m1": null,
+        "y1": null
+      },
+      {
+        "item": "키위",
+        "variety": "골드",
+        "grade": "상품",
+        "price_kg": 12893.0,
+        "d1": 0.0,
+        "w1": 9.03,
+        "m1": null,
+        "y1": null
+      }
+    ],
     "trends": [
       {
         "item": "소",
