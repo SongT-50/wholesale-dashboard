@@ -1,0 +1,78 @@
+{
+  "date": "2026-09-25",
+  "total_trades": 0,
+  "total_amount": 0,
+  "total_qty": 0,
+  "corp_count": 0,
+  "market_count": 0,
+  "corporations": [],
+  "markets": [],
+  "flows": [],
+  "price_map": {},
+  "shipments": {
+    "date": "2026-09-26",
+    "total_qty": 1493,
+    "total_records": 14,
+    "total_qty_kg": 14604.0,
+    "market_count": 2,
+    "corp_count": 2,
+    "markets": [
+      {
+        "market": "서울가락",
+        "qty": 1,
+        "qty_kg": 11200.0,
+        "records": 1
+      },
+      {
+        "market": "대전오정",
+        "qty": 1492,
+        "qty_kg": 3404.0,
+        "records": 13
+      }
+    ],
+    "corporations": [
+      {
+        "corp": "대아청과㈜",
+        "market": "서울가락",
+        "market_code": "110001",
+        "lat": 37.4943,
+        "lng": 127.0124,
+        "qty": 1,
+        "qty_kg": 11200.0,
+        "records": 1,
+        "products": [
+          {
+            "name": "배추",
+            "qty": 1,
+            "qty_kg": 11200.0,
+            "grade": "특"
+          }
+        ]
+      },
+      {
+        "corp": "대전청과㈜",
+        "market": "대전오정",
+        "market_code": "250001",
+        "lat": 36.3862,
+        "lng": 127.426,
+        "qty": 1492,
+        "qty_kg": 3404.0,
+        "records": 13,
+        "products": [
+          {
+            "name": "대파",
+            "qty": 1352,
+            "qty_kg": 2704.0,
+            "grade": "특"
+          },
+          {
+            "name": "팽이버섯",
+            "qty": 140,
+            "qty_kg": 700.0,
+            "grade": "특"
+          }
+        ]
+      }
+    ]
+  }
+}
