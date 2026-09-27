@@ -1,0 +1,240 @@
+{
+  "date": "2026-09-26",
+  "total_trades": 0,
+  "total_amount": 0,
+  "total_qty": 0,
+  "corp_count": 0,
+  "market_count": 0,
+  "corporations": [],
+  "markets": [],
+  "flows": [],
+  "price_map": {},
+  "shipments": {
+    "date": "2026-09-27",
+    "total_qty": 17652,
+    "total_records": 111,
+    "total_qty_kg": 966825.0,
+    "market_count": 3,
+    "corp_count": 7,
+    "markets": [
+      {
+        "market": "서울가락",
+        "qty": 12067,
+        "qty_kg": 928345.0,
+        "records": 92
+      },
+      {
+        "market": "수원",
+        "qty": 3281,
+        "qty_kg": 25557.0,
+        "records": 8
+      },
+      {
+        "market": "대전노은",
+        "qty": 2304,
+        "qty_kg": 12923.0,
+        "records": 11
+      }
+    ],
+    "corporations": [
+      {
+        "corp": "대아청과㈜",
+        "market": "서울가락",
+        "market_code": "110001",
+        "lat": 37.4943,
+        "lng": 127.0124,
+        "qty": 70,
+        "qty_kg": 764800.0,
+        "records": 70,
+        "products": [
+          {
+            "name": "배추",
+            "qty": 30,
+            "qty_kg": 329600.0,
+            "grade": "특"
+          },
+          {
+            "name": "무",
+            "qty": 19,
+            "qty_kg": 224000.0,
+            "grade": "특"
+          },
+          {
+            "name": "양배추",
+            "qty": 21,
+            "qty_kg": 211200.0,
+            "grade": "특"
+          }
+        ]
+      },
+      {
+        "corp": "동화청과㈜",
+        "market": "서울가락",
+        "market_code": "110001",
+        "lat": 37.4943,
+        "lng": 127.0124,
+        "qty": 7333,
+        "qty_kg": 101840.0,
+        "records": 14,
+        "products": [
+          {
+            "name": "얼갈이배추",
+            "qty": 7330,
+            "qty_kg": 58640.0,
+            "grade": "특"
+          },
+          {
+            "name": "양파",
+            "qty": 3,
+            "qty_kg": 43200.0,
+            "grade": "특"
+          }
+        ]
+      },
+      {
+        "corp": "한국청과㈜",
+        "market": "서울가락",
+        "market_code": "110001",
+        "lat": 37.4943,
+        "lng": 127.0124,
+        "qty": 602,
+        "qty_kg": 31800.0,
+        "records": 3,
+        "products": [
+          {
+            "name": "양파",
+            "qty": 2,
+            "qty_kg": 28800.0,
+            "grade": "특"
+          },
+          {
+            "name": "팽이버섯",
+            "qty": 600,
+            "qty_kg": 3000.0,
+            "grade": "특"
+          }
+        ]
+      },
+      {
+        "corp": "수원청과물㈜",
+        "market": "수원",
+        "market_code": "310101",
+        "lat": 37.279,
+        "lng": 127.015,
+        "qty": 3281,
+        "qty_kg": 25557.0,
+        "records": 8,
+        "products": [
+          {
+            "name": "양파",
+            "qty": 1347,
+            "qty_kg": 20205.0,
+            "grade": "특"
+          },
+          {
+            "name": "양배추",
+            "qty": 244,
+            "qty_kg": 1952.0,
+            "grade": "특"
+          },
+          {
+            "name": "당근",
+            "qty": 190,
+            "qty_kg": 1900.0,
+            "grade": "특"
+          },
+          {
+            "name": "대파",
+            "qty": 1500,
+            "qty_kg": 1500.0,
+            "grade": "특"
+          }
+        ]
+      },
+      {
+        "corp": "㈜중앙청과",
+        "market": "서울가락",
+        "market_code": "110001",
+        "lat": 37.4943,
+        "lng": 127.0124,
+        "qty": 3701,
+        "qty_kg": 18505.0,
+        "records": 3,
+        "products": [
+          {
+            "name": "토마토",
+            "qty": 3701,
+            "qty_kg": 18505.0,
+            "grade": "특"
+          }
+        ]
+      },
+      {
+        "corp": "대전중앙청과㈜",
+        "market": "대전노은",
+        "market_code": "250003",
+        "lat": 36.3743,
+        "lng": 127.3203,
+        "qty": 2304,
+        "qty_kg": 12923.0,
+        "records": 11,
+        "products": [
+          {
+            "name": "포도",
+            "qty": 1525,
+            "qty_kg": 4776.0,
+            "grade": "., 특"
+          },
+          {
+            "name": "당근",
+            "qty": 400,
+            "qty_kg": 4000.0,
+            "grade": "."
+          },
+          {
+            "name": "바나나",
+            "qty": 269,
+            "qty_kg": 3497.0,
+            "grade": "."
+          },
+          {
+            "name": "방울토마토",
+            "qty": 90,
+            "qty_kg": 450.0,
+            "grade": "."
+          },
+          {
+            "name": "호박",
+            "qty": 20,
+            "qty_kg": 200.0,
+            "grade": "."
+          }
+        ]
+      },
+      {
+        "corp": "서울청과㈜",
+        "market": "서울가락",
+        "market_code": "110001",
+        "lat": 37.4943,
+        "lng": 127.0124,
+        "qty": 361,
+        "qty_kg": 11400.0,
+        "records": 2,
+        "products": [
+          {
+            "name": "양배추",
+            "qty": 1,
+            "qty_kg": 9600.0,
+            "grade": "특"
+          },
+          {
+            "name": "팽이버섯",
+            "qty": 360,
+            "qty_kg": 1800.0,
+            "grade": "특"
+          }
+        ]
+      }
+    ]
+  }
+}
