@@ -486,8 +486,39 @@ def preprocess(date: str):
     print(f"  가격맵: {len(price_map)}개 품목")
 
 
+def _is_by_weight(unit):
+    """이 행의 avg_price_kg 가 정말 「원/kg」인가. **세 상태다.**
+
+      True  = 무게 기준 (unit 이 정확히 'kg' 또는 'g')
+      False = 무게 기준이 **아니다** (개·마리·포기·속·손·'kg(그물망 3포기)')
+      None  = ### **모른다** (unit 이 비었다)
+
+    🔴 None 을 False 로 뭉개지 마라. 2026-08-29 에 내가 그 실수를 했다.
+       `price_trend` 원자료는 `unit`·`unit_code` 칸이 있는데 **6,802행 전부 빈 값**이다.
+       둘을 합치면 trends 342행이 **전부** 「단위주의」로 찍히고, 그러면
+       ### **진짜 44건이 그 소음에 묻힌다.** 「모른다」와 「아니다」는 다른 말이다.
+
+    판별 = unit 문자열이 **정확히** 'kg' 또는 'g' 일 때만 참.
+
+    🔴 startswith 를 쓰지 마라. 원자료에 `kg(그물망 3포기)` 가 실재하고(2026-08 23일분 46건)
+       그 46건은 전부 환산이 안 된 값이다. startswith('kg') 로 걸러내면 그대로 통과한다.
+    🔴 그리고 「환산 전후 값이 같으면 환산 안 된 것」으로 세지 마라. 한 겹 얕다.
+       unit=kg / unit_size=1 인 713건은 나눠도 값이 같을 뿐 원/kg 이 맞다. 그걸 깎으면 과잉이다.
+    근거 = intelligence/RESULT-kamis-price-unit-verdict-2026-08-29.md (PIPE 판정)
+         + intelligence/RESULT-kamis-unit-23day-replication-2026-08-29.md (WI 23일 대조군)
+    """
+    u = (unit or "").strip()
+    if not u:
+        return None
+    return u in ("kg", "g")
+
+
 def load_kamis_data(date: str) -> dict | None:
-    """KAMIS 수집기 데이터(price_change, price_trend) 로드 및 병합."""
+    """KAMIS 수집기 데이터(price_change, price_trend) 로드 및 병합.
+
+    ⚠️ unit / unit_size 를 반드시 함께 넘긴다. 안 넘기면 화면이 단위를 알 방법이 없어
+       모든 행에 '원/kg' 을 무조건 붙인다(2026-08-29 실측 오염률 19.2%).
+    """
     result = {}
 
     # price_change (등락률)
@@ -502,7 +533,11 @@ def load_kamis_data(date: str) -> dict | None:
                     "item": item["item_name"],
                     "variety": item.get("variety_name", ""),
                     "grade": item.get("grade_name", ""),
+                    "market": item.get("se_name", ""),  # 소매 / 중도매 — 섞으면 소매 개당가가 도매 kg가 옆에 선다
                     "price_kg": item.get("avg_price_kg", 0),
+                    "unit": item.get("unit", ""),
+                    "unit_size": item.get("unit_size", ""),
+                    "by_weight": _is_by_weight(item.get("unit")),
                     "d1": item.get("change_1d_pct", 0),
                     "w1": item.get("change_1w_pct", 0),
                     "m1": item.get("change_1m_pct", 0),
@@ -523,7 +558,11 @@ def load_kamis_data(date: str) -> dict | None:
                     "item": item["item_name"],
                     "variety": item.get("variety_name", ""),
                     "grade": item.get("grade_name", ""),
+                    "market": item.get("se_name", ""),  # 소매 / 중도매 — 섞으면 소매 개당가가 도매 kg가 옆에 선다
                     "price_kg": item.get("avg_price_kg", 0),
+                    "unit": item.get("unit", ""),
+                    "unit_size": item.get("unit_size", ""),
+                    "by_weight": _is_by_weight(item.get("unit")),
                     "w1": item.get("w1_avg_price_kg", 0),
                     "w2": item.get("w2_avg_price_kg", 0),
                     "w3": item.get("w3_avg_price_kg", 0),

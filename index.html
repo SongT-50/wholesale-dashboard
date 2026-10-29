@@ -86,6 +86,33 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', s
 
 /* KAMIS 전국 시세 */
 .kamis-section { background: rgba(59,130,246,0.08); border: 1px solid rgba(59,130,246,0.2); border-radius: 6px; padding: 8px 10px; margin-bottom: 10px; }
+.kamis-compare { background: #fff; color: #111; border: 2px solid #2563eb; border-radius: 10px; padding: 16px 18px; margin-bottom: 12px; }
+.kamis-compare .kc-title { font-size: 20px; font-weight: 800; margin-bottom: 10px; color: #1e3a8a; }
+.kamis-compare .kc-row { display: grid; grid-template-columns: 1.3fr 1fr 1.1fr; align-items: center; gap: 10px; padding: 10px 0; border-top: 1px solid #e5e7eb; }
+.kamis-compare .kc-base { background: #eff6ff; border-radius: 6px; padding: 10px 8px; border-top: none; }
+.kamis-compare .kc-lab { font-size: 15px; font-weight: 700; }
+.kamis-compare .kc-lab small { display: block; font-size: 13px; font-weight: 500; color: #4b5563; margin-top: 2px; }
+.kamis-compare .kc-val { font-size: 30px; font-weight: 800; text-align: right; font-variant-numeric: tabular-nums; }
+.kamis-compare .kc-val span { font-size: 15px; font-weight: 600; margin-left: 4px; color: #374151; }
+.kamis-compare .kc-diff { font-size: 18px; font-weight: 700; color: #b91c1c; }
+.kamis-compare .kc-note { font-size: 13px; color: #6b7280; }
+.kamis-compare .kc-foot { font-size: 12px; color: #4b5563; margin-top: 10px; line-height: 1.5; }
+@media (max-width: 640px) { .kamis-compare .kc-row { grid-template-columns: 1fr 1fr; } .kamis-compare .kc-val { font-size: 24px; } }
+.kamis-compare .kc-big-btn { float: right; font-size: 13px; font-weight: 700; color: #1e3a8a; background: #eff6ff; border: 1px solid #93c5fd; border-radius: 6px; padding: 3px 8px; cursor: pointer; }
+/* 크게 보기 — 사진 한 장에 읽히게 화면 가운데에 띄운다 */
+.kc-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: center; z-index: 9999; padding: 16px; }
+.kc-overlay .kamis-compare { width: min(980px, 96vw); max-height: 94vh; overflow: auto; margin: 0; padding: 26px 30px; }
+.kc-overlay .kc-big-btn { display: none; }
+.kc-overlay .kc-close { position: absolute; top: 14px; right: 18px; font-size: 26px; color: #fff; background: none; border: none; cursor: pointer; }
+.kc-overlay .kamis-compare .kc-title { font-size: 32px; margin-bottom: 16px; }
+.kc-overlay .kamis-compare .kc-row { padding: 16px 0; }
+.kc-overlay .kamis-compare .kc-lab { font-size: 22px; }
+.kc-overlay .kamis-compare .kc-lab small { font-size: 17px; }
+.kc-overlay .kamis-compare .kc-val { font-size: 48px; }
+.kc-overlay .kamis-compare .kc-val span { font-size: 20px; }
+.kc-overlay .kamis-compare .kc-diff { font-size: 26px; }
+.kc-overlay .kamis-compare .kc-note { font-size: 18px; }
+.kc-overlay .kamis-compare .kc-foot { font-size: 16px; margin-top: 16px; }
 .kamis-header { font-size: 10px; font-weight: 700; color: var(--blue); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
 .kamis-row { display: flex; align-items: center; gap: 6px; font-size: 11px; padding: 3px 0; flex-wrap: wrap; }
 .kamis-label { color: var(--dim); min-width: 60px; }
@@ -2199,6 +2226,57 @@ function filterPriceProducts() {
   });
 }
 
+// KAMIS ↔ 전국 도매법인 경락가 비교 카드 (2026-10-29 · 사진으로 읽히게 큰 글씨)
+//   🔴 차이·배수는 KAMIS 「중도매」 + by_weight === true 행만 계산한다.
+//      소매(개당·포기당)·단위 모름 행은 값만 단위째 보이고 kg 경락가와 맞대지 않는다.
+//   🔴 두 값은 같은 것이 아니다 — 경락가 = 도매법인 경매 낙찰가 / KAMIS 중도매 = 중도매인 판매가.
+//      그래서 「차이」는 오차가 아니라 유통 단계 차이로 읽힌다. 카드에 그 뜻을 적는다.
+//   경락가 = 전 법인 총금액 ÷ 총물량(kg) (거래량 가중). 회사명은 카드에 안 나온다.
+function buildKamisCompareCard(productName, kItems, corpPrices) {
+  let amt = 0, kg = 0, trades = 0, n = 0;
+  for (const corp of summaryData.corporations || []) {
+    const p = (corp.products || []).find(x => x.name === productName);
+    if (p && p.avg_price_kg > 0 && p.qty > 0) { amt += p.amount; kg += p.qty; trades += p.trades; n++; }
+  }
+  const auction = kg > 0 ? Math.round(amt / kg) : 0;
+  const won = v => Math.round(v).toLocaleString();
+  const nm = k => (k.variety ? `${k.variety} ` : '') + (k.grade || '');
+  const perUnit = k => {
+    if (k.by_weight === true) return '원/kg';
+    const u = (k.unit || '').trim(), sz = String(k.unit_size ?? '').trim();
+    return '원/' + (u ? (sz && sz !== '1' ? `${sz}${u}` : u) : '거래단위');
+  };
+  const known = kItems.some(k => k.by_weight !== undefined && k.by_weight !== null);
+  if (!known) return '';  // 단위 정보 없는 옛 요약본 — 원/kg 로 단정하지 않는다
+  const whole = kItems.filter(k => k.market === '중도매' && k.price_kg > 0);
+  const retail = kItems.filter(k => k.market === '소매' && k.price_kg > 0);
+  let rows = '';
+  for (const k of whole) {
+    let diff = '<span class="kc-note">kg 단가가 아니라 비교하지 않음</span>';
+    if (k.by_weight === true && auction > 0) {
+      const d = k.price_kg - auction, r = k.price_kg / auction;
+      diff = `<span class="kc-diff">${d >= 0 ? '+' : '−'}${won(Math.abs(d))}원/kg · ${r.toFixed(2)}배</span>`;
+    }
+    rows += `<div class="kc-row"><div class="kc-lab">KAMIS 전국 도매가<small>${nm(k)}</small></div>
+      <div class="kc-val">${won(k.price_kg)}<span>${perUnit(k)}</span></div>${diff}</div>`;
+  }
+  for (const k of retail) {
+    rows += `<div class="kc-row"><div class="kc-lab">KAMIS 전국 소매가<small>${nm(k)}</small></div>
+      <div class="kc-val">${won(k.price_kg)}<span>${perUnit(k)}</span></div>
+      <span class="kc-note">${k.by_weight === true ? '소매가 — 경락가와 유통 단계가 다름' : '개수·묶음 단위 — kg 비교 안 함'}</span></div>`;
+  }
+  if (!rows) return '';
+  const d = summaryData.date || '';
+  return `<div class="kamis-compare">
+    <button class="kc-big-btn" onclick="openKamisBig()">크게 보기</button>
+    <div class="kc-title">${productName} · KAMIS 전국 시세 ↔ 전국 도매법인 경락가</div>
+    <div class="kc-row kc-base"><div class="kc-lab">전국 도매법인 평균 경락가<small>${n}개 법인 · ${trades.toLocaleString()}건 · 총금액÷총물량</small></div>
+      <div class="kc-val">${auction > 0 ? won(auction) : '—'}<span>원/kg</span></div><span class="kc-note">비교 기준</span></div>
+    ${rows}
+    <div class="kc-foot">기준일 ${d} (경락가·KAMIS 같은 날) · 차이 = KAMIS 도매가 − 경락가 · 경락가는 경매 낙찰가, KAMIS 도매가는 중도매인 판매가라 차이에 유통 단계가 들어 있다<br>출처: KAMIS(aT 농산물유통정보) · 전국 공영도매시장 정산 자료</div>
+  </div>`;
+}
+
 function selectPriceProduct(productName) {
   selectedPriceProduct = productName;
   document.querySelectorAll('.price-product-item').forEach(el => el.classList.toggle('selected', el.dataset.product === productName));
@@ -2229,6 +2307,22 @@ function selectPriceProduct(productName) {
   listEl.innerHTML = '';
 
   // KAMIS 전국 시세 (있으면 상단에 표시)
+  // 🔴 단위 표기 — by_weight 가 참일 때만 '원/kg'. 아니면 실제 거래단위를 밝힌다.
+  //    원자료 unit 이 개·마리·포기·속·손 이거나 'kg(그물망 3포기)' 같은 혼합 표기이면
+  //    avg_price_kg 는 kg 단가가 아니다(2026-08 23일분 5,335행 중 985행 = 18.5%).
+  //    값을 숨기지 않는다 — 숨기면 「자료가 없다」로 읽힌다. 단위만 바로 붙인다.
+  //    ⚠️ by_weight 가 없는 옛 요약본은 종전대로 '원/kg' 로 둔다(회귀 방지).
+  const kamisPriceLabel = (k) => {
+    if (!(k.price_kg > 0)) return '';
+    const v = k.price_kg.toLocaleString();
+    if (k.by_weight === false) {
+      const u = (k.unit || '').trim();
+      const sz = String(k.unit_size ?? '').trim();
+      const per = u ? (sz && sz !== '1' ? `${sz}${u}` : u) : '거래단위';
+      return `${v}원/${per} <span class="kamis-unit-warn" title="kg 단가가 아니다. 원자료 거래단위 기준">단위주의</span>`;
+    }
+    return `${v}원/kg`;
+  };
   const kamis = summaryData.kamis;
   if (kamis?.changes) {
     const kItems = kamis.changes.filter(k => k.item === productName);
@@ -2236,7 +2330,7 @@ function selectPriceProduct(productName) {
       let kamisHtml = '<div class="kamis-section">';
       kamisHtml += '<div class="kamis-header">KAMIS 전국 시세</div>';
       for (const k of kItems) {
-        const label = k.variety ? `${k.variety} ${k.grade}` : k.grade;
+        const label = (k.market ? `[${k.market}] ` : '') + (k.variety ? `${k.variety} ${k.grade}` : k.grade);
         const badges = [];
         if (k.d1) { const c = k.d1 > 0 ? 'up' : 'down'; badges.push(`<span class="change-badge sm ${c}">일 ${k.d1>0?'+':''}${k.d1}%</span>`); }
         if (k.w1) { const c = k.w1 > 0 ? 'up' : 'down'; badges.push(`<span class="change-badge sm ${c}">주 ${k.w1>0?'+':''}${k.w1}%</span>`); }
@@ -2257,11 +2351,12 @@ function selectPriceProduct(productName) {
           }
         }
         kamisHtml += `<div class="kamis-row"><span class="kamis-label">${label}</span>
-          <span class="kamis-price">${k.price_kg > 0 ? k.price_kg.toLocaleString()+'원/kg' : ''}</span>
+          <span class="kamis-price">${kamisPriceLabel(k)}</span>
           ${trendHtml} ${badges.join(' ')}</div>`;
       }
       kamisHtml += '</div>';
-      listEl.innerHTML = kamisHtml;
+      window._kcLast = { productName, kItems, corpPrices };
+      listEl.innerHTML = buildKamisCompareCard(productName, kItems, corpPrices) + kamisHtml;
     }
   }
 
@@ -3412,10 +3507,39 @@ async function toggleAllPeriodButton() {
   btn.style.display = ok ? '' : 'none';
 }
 
+// KAMIS 비교 카드 크게 보기 (2026-10-29) — 같은 카드를 화면 가운데에 큰 글씨로
+function openKamisBig() {
+  const last = window._kcLast;
+  if (!last) return;
+  const html = buildKamisCompareCard(last.productName, last.kItems, last.corpPrices);
+  if (!html) return;
+  closeKamisBig();
+  const ov = document.createElement('div');
+  ov.className = 'kc-overlay';
+  ov.innerHTML = '<button class="kc-close" onclick="closeKamisBig()" aria-label="닫기">✕</button>' + html;
+  ov.addEventListener('click', e => { if (e.target === ov) closeKamisBig(); });
+  document.body.appendChild(ov);
+}
+function closeKamisBig() { document.querySelectorAll('.kc-overlay').forEach(e => e.remove()); }
+
 async function init() {
   renderMap();         // deckgl 먼저 생성
+  // ?date=YYYY-MM-DD 가 있으면 그 날로 연다 (사진을 같은 날로 다시 찍을 수 있게)
+  const qs = new URLSearchParams(location.search);
+  const qDate = qs.get('date');
+  if (qDate && /^\d{4}-\d{2}-\d{2}$/.test(qDate)) currentDate = qDate;
   await loadDate(currentDate); // 그 다음 데이터 로드 + updateLayers
   toggleAllPeriodButton();     // 라이브에서는 스스로 숨는다
+  // ?kamis=품목 이면 가격비교 탭 → 그 품목 → 비교 카드 크게 보기
+  const qKamis = qs.get('kamis');
+  if (qKamis) {
+    // loadDate 뒤 화면 갱신이 한 번 더 돌며 품목 선택을 지운다 — 그것이 끝난 뒤에 고른다
+    await new Promise(r => setTimeout(r, 1000));
+    const tab = document.querySelector('[data-tab="price"]');
+    if (tab) tab.click();
+    selectPriceProduct(qKamis);
+    openKamisBig();
+  }
 }
 init();
 </script>
