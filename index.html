@@ -103,6 +103,9 @@ body { background: var(--bg); color: var(--text); font-family: 'Noto Sans KR', s
 .kc-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: center; z-index: 9999; padding: 16px; }
 .kc-overlay .kamis-compare { width: min(980px, 96vw); max-height: 94vh; overflow: auto; margin: 0; padding: 26px 30px; }
 .kc-overlay .kc-big-btn { display: none; }
+/* 공모전 캡처(?contest=1) — 뒤 지도의 법인 이름이 비치지 않게 완전히 가린다 */
+body.contest-mode .kc-overlay { background: #f3f4f6; }
+body.contest-mode .kc-overlay .kc-close { color: #374151; }
 .kc-overlay .kc-close { position: absolute; top: 14px; right: 18px; font-size: 26px; color: #fff; background: none; border: none; cursor: pointer; }
 .kc-overlay .kamis-compare .kc-title { font-size: 32px; margin-bottom: 16px; }
 .kc-overlay .kamis-compare .kc-row { padding: 16px 0; }
