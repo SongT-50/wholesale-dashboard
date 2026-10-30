@@ -1367,10 +1367,30 @@ function jumpToDate(dateStr) {
   loadForPeriod();
 }
 
-function jumpToToday() {
+// ★ 2026-10-30 — 거래가 있는 날까지 하루씩 뒤로 간다(최대 14일).
+//   왜: 첫 화면 = 오늘-4일이라 목요일마다 일요일(거래 0)이 열려 빈 화면이었다(10/29 실물).
+//   「오늘」 버튼도 안내문엔 「데이터 없으면 최근 거래일로」라 적혀 있었는데 코드엔 없었다.
+//   빈 날 파일은 작고(일요일 ≈130KB) 찾은 날 파일은 바로 다음 loadForPeriod 가 브라우저 캐시로 다시 읽는다.
+async function findTradeDay(start) {
+  const d = new Date(start);
+  for (let i = 0; i < 14; i++) {
+    const ds = d.toISOString().slice(0, 10);
+    try {
+      const r = await fetch(`data/summary_${ds}.json`);
+      if (r.ok) {
+        const j = await r.json();
+        if ((j.total_trades || 0) > 0) return ds;
+      }
+    } catch (e) { /* 못 읽은 날은 건너뛴다 */ }
+    d.setDate(d.getDate() - 1);
+  }
+  return start; // 못 찾으면 원래 날 그대로(빈 화면이 「못 찾았다」를 보여준다)
+}
+
+async function jumpToToday() {
   const d = new Date();
   d.setMinutes(d.getMinutes() + d.getTimezoneOffset() + 540);
-  currentDate = d.toISOString().slice(0, 10);
+  currentDate = await findTradeDay(d.toISOString().slice(0, 10));
   loadForPeriod();
 }
 
@@ -3531,6 +3551,7 @@ async function init() {
   const qs = new URLSearchParams(location.search);
   const qDate = qs.get('date');
   if (qDate && /^\d{4}-\d{2}-\d{2}$/.test(qDate)) currentDate = qDate;
+  else currentDate = await findTradeDay(currentDate); // 날짜를 지정하지 않았을 때만 빈 날을 건너뛴다
   await loadDate(currentDate); // 그 다음 데이터 로드 + updateLayers
   toggleAllPeriodButton();     // 라이브에서는 스스로 숨는다
   // ?kamis=품목 이면 가격비교 탭 → 그 품목 → 비교 카드 크게 보기
