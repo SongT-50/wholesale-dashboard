@@ -1,5 +1,10 @@
+Required Notice: Copyright (c) 2026 대전중앙청과(주) (https://tjc.co.kr)
+
 적용 범위 안내
 
-- LICENSE(MIT)는 이 저장소의 소스 코드에 적용합니다.
-- data/ 폴더의 자료는 aT 도매시장 정산 공공데이터와 기상청 자료를 가공한 것으로, 각 제공기관의 이용 조건을 따릅니다.
+- LICENSE(PolyForm Noncommercial 1.0.0)는 이 저장소의 소스 코드에 적용합니다.
+  2026-11-10 ~ 2026-11-22 사이에 MIT 로 받아간 사본은 그 사본에 대해 MIT 가 유지됩니다.
+- data/ 폴더의 자료는 한국농수산식품유통공사(aT) 도매시장 정산 공공데이터, KAMIS 농산물 유통정보,
+  기상청 자료를 가공한 것으로, 각 제공기관의 이용 조건을 따릅니다.
 - LICENSE는 특허출원 10-2026-0155046 및 그로부터 발생하는 특허권의 실시권을 부여하지 않습니다.
+- 상업적 이용 문의: https://github.com/SongT-50/wholesale-dashboard/issues
